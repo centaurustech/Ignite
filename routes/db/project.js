@@ -16,7 +16,7 @@ var projectSchema = mongoose.Schema({
         budget_breakdown:   String,
         challenges:         String,
         value_proposition:  String,
-        is_approved:        Boolean,
+        is_approved:        { type: Boolean, default: false },
         category:           String,
         backers:            [String],
         creator:            String,
