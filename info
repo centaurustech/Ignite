@@ -26,16 +26,7 @@ Ignite/
 ------ directives/			> all directives pertaining to the web pages
 ------ services/			> angular factories used in controllers for RESTful calls to the server
 - routes/					> routing for all urls including api calls
----- api/					> user defined modules for mongodb operations
+---- db/					> user defined modules for mongodb operations
 - typings/					> typescript files for Visual Studio Code Intellisense
 - views/					> all html files pertaining to the website
 - app.js					> initialization code for express.js
-
-
-
-
-// ==================================================================
-//			 					Log 
-// ==================================================================
-
-Tue Jun 9 => 4 hours.

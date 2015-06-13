@@ -1,3 +1,4 @@
+/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 /**
  * Angular factory used for all CRUD operations for the Model model.
  * This module can be included into any other module as a dependency, 
