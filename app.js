@@ -15,9 +15,9 @@ var configDB        = require('./config/database.js');
 mongoose.connect(configDB.url); // connect to our database
 
 // <----- Include route js files ----->
-var routes = require('./routes/index');
-var users  = require('./routes/users');
-var api    = require('./routes/services');
+var routes     = require('./routes/index');
+var project    = require('./routes/api/project');
+var user       = require('./routes/api/user');
 
 
 var app = express();
@@ -38,11 +38,8 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 
 // <---- Routes ----->
 app.use('/', routes);
-app.use('/users', users); 
-app.use('/api', api);
-
-
-
+app.use('/api', project,
+                user);
 
 
 // <---- Error Handling ---->
