@@ -1,18 +1,26 @@
 /// <reference path="typings/node/node.d.ts"/>
 // <---- Required Modules ---->
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var express         = require('express');
+var path            = require('path');
+var favicon         = require('serve-favicon');
+var logger          = require('morgan');
+var cookieParser    = require('cookie-parser');
+var bodyParser      = require('body-parser');
+var mongoose        = require('mongoose');
 
-var app = express();
+// <---- User Defined Modules ---->
+var configDB        = require('./config/database.js');
+
+// <----- MongoDB Set Up ----->
+mongoose.connect(configDB.url); // connect to our database
 
 // <----- Include route js files ----->
 var routes = require('./routes/index');
-var users = require('./routes/users');
-var api = require('./routes/services');
+var users  = require('./routes/users');
+var api    = require('./routes/services');
+
+
+var app = express();
 
 // <---- View Set Up ---->
 app.use(express.static(path.join(__dirname, 'views')));
