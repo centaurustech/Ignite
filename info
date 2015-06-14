@@ -32,11 +32,3 @@ Ignite/
 - views/					> all html files pertaining to the website
 - app.js					> initialization code for express.js
 
-// ==================================================================
-//			 				  MongoDB 
-// ==================================================================
-
-Switch to the db ignite 
-	> use ignite
-
-
