@@ -24,7 +24,8 @@ var projectSchema = mongoose.Schema({
         team_members:       [String],
         city:               String,
         followers:          [String],
-        country:            String
+        country:            String,
+        is_in_progress:     { type: Boolean, default: true }
 });
 
 // <---- Methods ---->
