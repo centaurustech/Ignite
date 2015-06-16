@@ -1,4 +1,5 @@
 /// <reference path="typings/node/node.d.ts"/>
+
 // <---- Required Modules ---->
 var express         = require('express');
 var path            = require('path');
@@ -15,9 +16,9 @@ var configDB        = require('./config/database.js');
 mongoose.connect(configDB.url); // connect to our database
 
 // <----- Include route js files ----->
-var routes     = require('./routes/index');
-var project    = require('./routes/api/project');
-var user       = require('./routes/api/user');
+var routes     = require('./server/routes/index');
+var project    = require('./server/routes/api/project');
+var user       = require('./server/routes/api/user');
 
 
 var app = express();

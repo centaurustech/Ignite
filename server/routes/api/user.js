@@ -6,7 +6,7 @@ var express = require('express');
 var router = express.Router();
 var app = express();
 
-var User = require('../db/user');
+var User = require('../../db/user');
 
 // Middleware to retrieve the id from the path and attach to req object
 router.param('id', function(req, res, next, id) {

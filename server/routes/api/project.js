@@ -6,7 +6,7 @@ var express = require('express');
 var router = express.Router();
 var app = express();
 
-var Project = require('../db/project');
+var Project = require('../../db/project');
 
 // Middleware to retrieve the project from the id in the path and attach to req object
 router.param('id', function(req, res, next, id) {
