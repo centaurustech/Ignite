@@ -8,7 +8,9 @@ var logger          = require('morgan');
 var cookieParser    = require('cookie-parser');
 var bodyParser      = require('body-parser');
 var mongoose        = require('mongoose');
-var expressLayouts = require('express-ejs-layouts');
+var expressLayouts  = require('express-ejs-layouts');
+var passport        = require('passport');
+var LocalStrategy   = require('passport-local').Strategy;
 
 // <---- User Defined Modules ---->
 var configDB        = require('./config/database.js');
@@ -39,6 +41,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
+
+// <---- Local Passport for Login ---->
+app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+// passport config
+var User = require('./server/db/user');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 // <---- Routes ----->
 app.use('/', routes);

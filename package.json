@@ -15,6 +15,10 @@
     "serve-favicon": "~2.2.1",
     "mongoose": "*",
     "bower": "*",
-    "express-ejs-layouts": "*" 
+    "express-ejs-layouts": "*", 
+    "passport": "^0.2.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^1.0.0",
+    "express-session": "^1.10.1"
   }
 }

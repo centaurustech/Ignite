@@ -25,10 +25,16 @@ Ignite/
 ------ controllers/			> angular modules/controllers for web pages
 ------ directives/			> all directives pertaining to the web pages
 ------ services/			> angular factories used in controllers for RESTful calls to the server
-- routes/					
----- api/					> routing for all api server calls 
+- server/
 ---- db/					> user defined modules for mongodb operations and schemas
+---- routes/					
+------ api/					> routing for all api server calls 
 - typings/					> typescript files for Visual Studio Code Intellisense
 - views/					> all html files pertaining to the website
 - app.js					> initialization code for express.js
 
+
+// ==================================================================
+//			 				Authentication
+// ==================================================================
+http://mherman.org/blog/2015/01/31/local-authentication-with-passport-and-express-4/#.VYCZCxNViko
