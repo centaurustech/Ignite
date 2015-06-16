@@ -9,19 +9,19 @@ angular.module('ModelService', []).factory('Model', ['$http', function($http) {
     return {
         // call to get
         get : function() {
-            return $http.get('/api/model');
+            return $http.get('/api/project');
         },
 
 
         // these will work when more API routes are defined on the Node side of things
         // call to POST to create
-        create : function(nerdData) {
-            return $http.post('/api/model', nerdData);
+        create : function(project) {
+            return $http.post('/api/project', project);
         },
 
         // call to DELETE 
         delete : function(id) {
-            return $http.delete('/api/model/' + id);
+            return $http.delete('/api/project/' + id);
         }
     };       
 

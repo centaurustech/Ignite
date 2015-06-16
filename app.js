@@ -8,6 +8,7 @@ var logger          = require('morgan');
 var cookieParser    = require('cookie-parser');
 var bodyParser      = require('body-parser');
 var mongoose        = require('mongoose');
+var expressLayouts = require('express-ejs-layouts');
 
 // <---- User Defined Modules ---->
 var configDB        = require('./config/database.js');
@@ -25,7 +26,9 @@ var app = express();
 
 // <---- View Set Up ---->
 app.use(express.static(path.join(__dirname, 'views')));
-
+app.set('view engine', 'ejs');
+app.use(expressLayouts);
+ 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 
