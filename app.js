@@ -31,8 +31,8 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
  
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+// Favicon
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // <---- Middleware setup ---->
 app.use(logger('dev'));
