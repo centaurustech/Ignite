@@ -3,9 +3,9 @@ var mongoose = require('mongoose');
 
 // <---- Schema ---->
 var commentSchema = mongoose.Schema({
-       project_id:  String,
-	   user_id: 	String,
-	   comment: 	String
+       project_id:  { type: String,   default: "" },
+	   user_id: 	{ type: String,   default: "" },
+	   comment: 	{ type: String,   default: "" }
 });
 
 // <---- Methods ---->

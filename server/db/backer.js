@@ -3,9 +3,9 @@ var mongoose = require('mongoose');
 
 // <---- Schema ---->
 var backerSchema = mongoose.Schema({
-        project_id: String,
-		funded: 	Number,
-		user_id: 	String
+        project_id: { type: String,   default: "" },
+		funded: 	{ type: Number,   default: 0  },
+		user_id: 	{ type: String,   default: "" }
 });
 
 // <---- Methods ---->

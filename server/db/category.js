@@ -3,8 +3,8 @@ var mongoose = require('mongoose');
 
 // <---- Schema ---->
 var categorySchema = mongoose.Schema({
-        name: 		 String,
-		project_ids: [String]
+        name: 		 { type: String,   default: "" },
+		project_ids: { type: [String], default: [] }
 });
 
 // <---- Methods ---->

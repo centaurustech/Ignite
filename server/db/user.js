@@ -4,16 +4,16 @@ var passportLocalMongoose = require('passport-local-mongoose');
 
 // <---- Schema ---->
 var userSchema = mongoose.Schema({
-        username: 	 	 String,
-		password: 	 	 String,
-		first_name:  	 String,
-		last_name: 	 	 String,
-		title: 		 	 String,
-		department:  	 String,
-		description: 	 String,
-		email: 		 	 String,
-		is_budget_owner: Boolean,
-		is_approver: 	 Boolean
+        username: 	 	 { type: String,   default: ""    },
+		password: 	 	 { type: String,   default: ""    },
+		first_name:  	 { type: String,   default: ""    },
+		last_name: 	 	 { type: String,   default: ""    },
+		title: 		 	 { type: String,   default: ""    },
+		department:  	 { type: String,   default: "" 	  },
+		description: 	 { type: String,   default: ""    },
+		email: 		 	 { type: String,   default: ""    },
+		is_budget_owner: { type: Boolean,  default: false },
+		is_approver: 	 { type: Boolean,  default: false }
 });
 
 

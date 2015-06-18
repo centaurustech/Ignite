@@ -3,9 +3,9 @@ var mongoose = require('mongoose');
 
 // <---- Schema ---->
 var resourceSchema = mongoose.Schema({
-        project_id: String,
-		role: String,
-		description: String
+        project_id:  { type: String,   default: "" },
+		role:		 { type: String,   default: "" },
+		description: { type: String,   default: "" }
 });
 
 // <---- Methods ---->
