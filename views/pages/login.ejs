@@ -1,11 +1,13 @@
 <h1> Login Page </h1>
 <p>Please Login</p>
 		
-<form role='form' action='/login' method='post'>
+<form role='form' action='/users/login' method='post'>
 	<input type='text' name='username' placeholder='Enter Username'/>
 	<input type='password', name='password', placeholder='Password'/>
 	<button type='submit'>Submit</button>
 </form>
+
+<h1> or <a href='/register'>Register</a> </h1>
 
 
 <%- contentFor('js') %>

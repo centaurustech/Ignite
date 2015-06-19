@@ -19,7 +19,10 @@ var configDB        = require('./config/database.js');
 mongoose.connect(configDB.url); // connect to our database
 
 // <----- Include route js files ----->
-var routes     = require('./server/routes/index');
+var index     = require('./server/routes/index');
+var users     = require('./server/routes/users');
+
+// <----- Include API route js files ----->
 var project    = require('./server/routes/api/project');
 var user       = require('./server/routes/api/user');
 
@@ -60,7 +63,8 @@ passport.deserializeUser(User.deserializeUser());
 
 
 // <---- Routes ----->
-app.use('/', routes);
+app.use('/', index);
+app.use('/users', users);
 app.use('/api', project,
                 user);
 

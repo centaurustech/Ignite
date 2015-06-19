@@ -7,40 +7,16 @@ var User     = require('../db/user');
 var router   = express.Router();
 
 /* GET home page. */
-router.get('/', function (req, res) {    
+router.get('/', isLoggedIn,  function (req, res) {    
     res.render('pages/index', { layout: 'layout', user : req.user });
 });
 
-/* GET register page */
-router.get('/register', function(req, res) {
-    res.render('pages/register', { });
-});
-
-/* POST register page to register */
-router.post('/register', function(req, res) {
-    User.register(new User({ username : req.body.username }), req.body.password, function(err, account) {
-        if (err) {            
-            return res.render('pages/register', { account : account });
-        }
-        passport.authenticate('local')(req, res, function () {
-            res.redirect('/');
-        });
-    });
-});
-
-/* GET login page */
-router.get('/login', function(req, res) {
-    res.render('pages/login', { user : req.user });
-});
-
-/* POST login page to login */
-router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('/');
-});
-
-router.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-});
+function isLoggedIn(req, res, next) {
+	// if user is authenticated in the session, carry on 
+	if (req.isAuthenticated())
+		return next();
+	// if they aren't redirect them to the home page
+	res.render('pages/login', { layout: 'layout' });
+};
 
 module.exports = router;

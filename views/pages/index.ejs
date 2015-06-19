@@ -1,12 +1,12 @@
 <body ng-app="Ignite">
-	<%if (!user) { %>
-		<a href='/register'> Register </a> <br/>
-		<a href='/login'> Login </a>
-	<% } %>
+		<%if (!user) { %>
+			<a href='/register'> Register </a> <br/>
+			<a href='/login'> Login </a>
+		<% } %>
 	<%if (user) { %>
 		<div ng-controller="IndexController as controller">
 			<h2> You are logged in as: <%= user.username %> </h2>
-			<a href='/logout'> Logout </a>  
+			<a href='/users/logout'> Logout </a>  
 			<p>{{ HelloWorld }}</p>
 			<button ng-click="GetProject()">Click</button>
 		</div>
