@@ -16,7 +16,7 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 	// if they aren't redirect them to the home page
-	res.render('pages/login', { layout: 'layout' });
+	res.render('pages/login', { layout: 'layout', user : null });
 };
 
 module.exports = router;

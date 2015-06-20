@@ -22,6 +22,13 @@ router.param('id', function(req, res, next, id) {
 // ======================================================== //
 
 /**
+ * Retrieve the current user
+ */
+router.get('/currentUser', function(req, res) {
+    res.json(req.user);    
+});
+
+/**
  *  Route to retrieve a single user by it's id.
  *  id is a field in the request object
  */

@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -13,4 +12,9 @@ a {
 
 .ng-valid.ng-dirty {
 	border-color: green;
+}
+
+/* Use media inside of nav bar without starting a new line */
+.navbar-header > .media > .media-body {
+	width: 0px;
 }

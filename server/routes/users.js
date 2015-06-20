@@ -9,7 +9,7 @@ var router   = express.Router();
 
 /* GET register page */
 router.get('/register', function(req, res) {
-    res.render('pages/register', { message : null });
+    res.render('pages/register', { message : null, user: null });
 });
 
 /* POST register page to register */
