@@ -9,18 +9,31 @@ var router   = express.Router();
 
 /* GET register page */
 router.get('/register', function(req, res) {
-    res.render('pages/register', { });
+    res.render('pages/register', { message : null });
 });
 
 /* POST register page to register */
 router.post('/register', function(req, res) {
-    User.register(new User({ username : req.body.username }), req.body.password, function(err, account) {
+    User.register(new User(
+                        { username          : req.body.username,
+                          first_name        : req.body.first_name,
+                          last_name         : req.body.last_name,
+                          title             : req.body.title,
+                          department        : req.body.department,
+                          location          : req.body.location,
+                          email             : req.body.email,
+                          is_budget_owner   : req.body.is_budget_owner,
+                          is_approver       : req.body.is_approver }),
+                          req.body.password, 
+                          function(err, account) {
         if (err) {            
-            return res.render('pages/register', { account : account });
+            console.log("username in user");
+            res.status(400).send('Username already in use');
+        } else {
+            passport.authenticate('local')(req, res, function () {
+            res.redirect('/');    
+            });
         }
-        passport.authenticate('local')(req, res, function () {
-            res.redirect('/');
-        });
     });
 });
 

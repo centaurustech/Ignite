@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+.ng-invalid.ng-dirty {
+	border-color: red;
+}
+
+.ng-valid.ng-dirty {
+	border-color: green;
+}
