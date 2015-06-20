@@ -20,10 +20,6 @@
 			});
 			
 		};
-		
-		
-		$scope.moduleState = "index";
-		
 	}]);
 
 })();
