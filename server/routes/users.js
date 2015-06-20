@@ -6,6 +6,10 @@ var passport = require('passport');
 var User     = require('../db/user');
 var router   = express.Router();
 
+/* GET Profile page */
+router.get('/', function(req, res) {
+    res.render('pages/profile', { user: req.user }); 
+});
 
 /* GET register page */
 router.get('/register', function(req, res) {

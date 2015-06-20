@@ -15,6 +15,6 @@ a {
 }
 
 /* Use media inside of nav bar without starting a new line */
-.navbar-header > .media > .media-body {
-	width: 0px;
+.navbar-header > .media {
+	width: 170px;
 }

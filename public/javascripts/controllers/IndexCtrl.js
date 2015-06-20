@@ -6,8 +6,6 @@
 (function() {
 	var app = angular.module('Ignite', ["ProjectService"]);
 	
-	
-	
 	app.controller("IndexController", ["$scope", "Project", function($scope, Project) {
 		$scope.HelloWorld = "Hello World!";
 		
@@ -22,6 +20,10 @@
 			});
 			
 		};
+		
+		
+		$scope.moduleState = "index";
+		
 	}]);
 
 })();
