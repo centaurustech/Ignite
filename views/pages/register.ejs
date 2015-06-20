@@ -1,26 +1,23 @@
+<body ng-app="Ignite">
 <h1> Register Page </h1>
 <p>Please Register</p>
-
-<%if (message) { %>
-		<h1 style="color: red"> <%= message %> </h1>
-<% } %>
-<body ng-app="Ignite">
 <div ng-controller="RegisterController as RegisterCtrl">
-	<h3> {{ message }} </h3>
+	<h3 style="color: red"> {{ message }} </h3>
 	<form name="registerForm" ng-submit="registerForm.$valid && RegisterCtrl.register()" novalidate>
-		<input type='text' name='username' placeholder='Enter Username' ng-model="form.username" required/>
-		<input type='password', name='password', placeholder='Password' ng-model="form.password" required/>
-		<input type='text' name='first_name' placeholder='Enter First Name' ng-model="form.first_name" required/>
-		<input type='text' name='last_name' placeholder='Enter Last Name' ng-model="form.last_name" required/>
-		<input type='text' name='title' placeholder='Enter Title' ng-model="form.title" required/>
-		<input type='text' name='department' placeholder='Enter Department' ng-model="form.department"required/>
-		<input type='text' name='location' placeholder='Enter location' ng-model="form.location" required/>
-		<input type='email' name='email' placeholder='Enter Email' ng-model="form.email" required/>
-		<input type="checkbox" name="is_budget_owner" value="Budget Owner" ng-model="form.is_budget_owner">Budget Owner<br>
-		<input type="checkbox" name="is_approver" value="Project Approver" ng-model="form.is_approver">Project Approver<br>
-		<button type='submit'>Submit</button>
+		<input type='text' 		name='username'   placeholder='Enter Username'   ng-model="form.username"   required/><br/>
+		<input type='password', name='password',  placeholder='Password' 	     ng-model="form.password"   required/><br/>
+		<input type='text' 		name='first_name' placeholder='Enter First Name' ng-model="form.first_name" required/><br/>
+		<input type='text' 		name='last_name'  placeholder='Enter Last Name'  ng-model="form.last_name"  required/><br/>
+		<input type='text' 		name='title' 	  placeholder='Enter Title' 	 ng-model="form.title" 	    required/><br/>
+		<input type='text' 		name='department' placeholder='Enter Department' ng-model="form.department" required/><br/>
+		<input type='text' 		name='location'   placeholder='Enter location'   ng-model="form.location"   required/><br/>
+		<input type='email' 	name='email' 	  placeholder='Enter Email' 	 ng-model="form.email" 	    required/><br/>
+		<input type="checkbox"  name="is_budget_owner" value="Budget Owner" 	 ng-model="form.is_budget_owner">Budget Owner<br>
+		<input type="checkbox"  name="is_approver"     value="Project Approver"  ng-model="form.is_approver">Project Approver<br>
+		<button type='submit'>Register</button>
 	</form>
 </div>
+<a href='/users/login'>Go Back</a>
 </body>
 
 <%- contentFor('js') %>
