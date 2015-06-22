@@ -45,10 +45,10 @@
     			  <!-- User Photo and FundIT Logo-->
     		  	<div class="media">
     			  <a class="pull-left" href="#/profileView">
-    				  	<img width="50px" class="media-object img-circle" ng-src="{{ $root.user.image }}" alt="Image" >
+    				  	<img id="profile-image" width="50px" class="media-object img-circle" ng-src="{{ $root.user.image }}" alt="Image" >
             </a>
     			  <div class="media-body">
-    				<a href="#/homeView" class="header-logo"><h4 class="media-heading">FundIT</h4></a>
+    				<a href="#/homeView" class="header-logo"><img width="100px" src="/assets/images/FundIT_logo.png"></a>
     					<p>Welcome, {{ $root.user.first_name }} </p>
     			  </div>
     			</div>
