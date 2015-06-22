@@ -26,11 +26,28 @@
 		}
 	]);
 	
-	app.controller("IndexController", ["$scope", "User", function($scope, User) {
-		$scope.user;
-		User.getCurrentUser().success(function(data) {
-			$scope.user = data;
+	app.controller("IndexController", ["$scope","$rootScope", "User", "$window", function($scope, $rootScope, User, $window) {
+		$rootScope.user = null;
+		// Check if the visitor is logged in.
+		User.getCurrentUser().success(function(data) {			
+			if(data) {
+				// If there is a currentUser, then assign it to the root scope user
+				// to be used in child scopes.
+				$rootScope.user = data;
+			}
+			// Redirect to login page if they are not logged in.
+			if(!$rootScope.user) {
+				$window.location.href="/login.html";
+			}
 		});
+		
+		// logout function for the logout button
+		$scope.logout = function() {
+			User.logout().success(function(data) {
+				$window.location.href="/login.html";
+			});
+		};
+		
 	}]);
 
 })();

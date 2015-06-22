@@ -11,7 +11,7 @@
 		]);
 	
 	
-	app.controller("LoginController", ["$scope", "$http", "$window", 'User', function($scope, $http, $window, User) {
+	app.controller("LoginController", ["$scope", "$rootScope", "$http", "$window", 'User', function($scope, $rootScope, $http, $window, User) {
 		$scope.form = {};	// Login Form
 		$scope.message;		// Error Message
 		
@@ -24,7 +24,6 @@
 				.error(function(data) {
 					$scope.message = data;
 				}).success(function(data) {
-					User.user = data;
 					$window.location.href= '/';
 				});
 		};

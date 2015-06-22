@@ -6,7 +6,7 @@
 	var app = angular.module('RegisterControllers', []);
 	
 
-	app.controller("RegisterController", ["$scope", "$http", "$window", function($scope, $http, $window) {
+	app.controller("RegisterController", ["$scope","$rootScope", "$http", "$window", function($scope, $rootScope, $http, $window) {
 		$scope.form = {};
 		$scope.message;
 		console.log("register Controller");

@@ -45,11 +45,11 @@
     			  <!-- User Photo and FundIT Logo-->
     		  	<div class="media">
     			  <a class="pull-left" href="#/profileView">
-    				  	<img width="50px" class="media-object img-circle" ng-src="{{ user.image }}" alt="Image" >
+    				  	<img width="50px" class="media-object img-circle" ng-src="{{ $root.user.image }}" alt="Image" >
             </a>
     			  <div class="media-body">
     				<a href="#/homeView" class="header-logo"><h4 class="media-heading">FundIT</h4></a>
-    					<p>Welcome, {{ user.first_name }} </p>
+    					<p>Welcome, {{ $root.user.first_name }} </p>
     			  </div>
     			</div>
     	    </div>
@@ -71,7 +71,7 @@
     	            <li><a href="#">Way To Go!</a></li>
     	            <li><a href="#">Wowee</a></li>
     	            <li role="separator" class="divider"></li>
-    	            <li><a href="#">Keep At It</a></li>
+    	            <li><a href="#" ng-click="logout()">Logout</a></li>
     	          </ul>
     	        </li>
     			<li><a href="#"><div id="create-project-button">Create Project</div></a></li>

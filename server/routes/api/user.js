@@ -44,11 +44,10 @@ router.post('/user/register', function(req, res) {
                           req.body.password,
                           function(err, account) {
         if (err) {
-            console.log("username in user");
             res.status(400).send('Username already in use');
         } else {
             passport.authenticate('local')(req, res, function () {
-            res.redirect('/');
+            res.json(req.user).redirect('/');
             });
         }
     });
