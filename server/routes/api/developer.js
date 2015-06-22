@@ -17,9 +17,9 @@ var Project = require('../../db/project');
  * Drop the projects collection, it is a GET to use the current user.
  */
 router.get('/dev/dropProjects', function(req, res) {
-   mongoose.connection.collections['project'].drop( function(err) {
-    console.log('projects dropped');
- 
+   mongoose.connection.collections['projects'].drop( function(err) {
+        res.send("Projects Dropped");
+   });
 });
 
 module.exports = router;

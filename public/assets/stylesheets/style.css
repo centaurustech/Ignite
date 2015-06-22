@@ -18,3 +18,37 @@ a {
 .navbar-header > .media {
 	width: 170px;
 }
+
+
+#myCarousel img {
+  	min-width: 100%;
+  	height: 400px;
+}
+
+#myCarousel .carousel-title {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left:0;
+    right:0;
+    bottom:0;
+    height:150px;
+    
+    color: white;
+    text-decoration: none;
+    font-size: 2.5em;
+}
+
+#myCarousel .carousel-title .carousel-description {
+  display: inline-block;
+  font-size: 0.5em;
+  word-wrap: break-word;
+  width: 80%;
+  line-height: 110%;
+}
+
+#myCarousel .item {
+    height:auto;
+    margin: auto;
+    text-align:center;
+}
