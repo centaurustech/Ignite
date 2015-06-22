@@ -20,6 +20,21 @@ angular.module('UserService', []).factory('User', ['$http', function($http) {
             });
 		},
         
+        register : function(registerForm) {
+			return $http.post('/api/user/register', {
+    				'username':        registerForm.username,
+    				'password':        registerForm.password,
+    				'first_name':      registerForm.first_name,
+    				'last_name':       registerForm.last_name,
+    				'title':           registerForm.title,
+    				'department':      registerForm.department,
+    				'location':        registerForm.location,
+    				'email':           registerForm.email,
+    				'is_budget_owner': registerForm.is_budget_owner,
+    				'is_approver':     registerForm.is_approver
+    			});
+        },
+        
         // Logout the current user.
         logout : function() {
             return $http.post('/api/user/logout');

@@ -47,7 +47,7 @@ router.post('/user/register', function(req, res) {
             res.status(400).send('Username already in use');
         } else {
             passport.authenticate('local')(req, res, function () {
-            res.json(req.user).redirect('/');
+            res.json(req.user);
             });
         }
     });

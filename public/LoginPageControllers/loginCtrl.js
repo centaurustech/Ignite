@@ -11,7 +11,7 @@
 		]);
 	
 	
-	app.controller("LoginController", ["$scope", "$rootScope", "$http", "$window", 'User', function($scope, $rootScope, $http, $window, User) {
+	app.controller("LoginController", ["$scope", "$http", "$window", 'User', function($scope, $http, $window, User) {
 		$scope.form = {};	// Login Form
 		$scope.message;		// Error Message
 		
