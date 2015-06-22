@@ -41,9 +41,7 @@ router.param('id', function(req, res, next, id) {
  *  /api/project/[id] 
  */
 router.get('/project/:id', function(req, res) {
-    
     res.send(req.project);
-      
 });
 
 /**

@@ -21,6 +21,7 @@ mongoose.connect(configDB.url); // connect to our database
 //var project    = require('./server/routes/api/project');
 var user          = require('./server/routes/api/user');
 var project       = require('./server/routes/api/project');
+var developer     = require('./server/routes/api/developer');
 
 
 var app = express();
@@ -58,7 +59,8 @@ passport.deserializeUser(User.deserializeUser());
 
 // <---- Routes for API ----->
 app.use('/api', user
-              , project);
+              , project
+              , developer);
 
 
 // <---- Error Handling ---->

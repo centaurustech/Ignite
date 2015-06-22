@@ -12,7 +12,7 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 	// if they aren't redirect them to the home page
-	res.sendFile('LoginView/loginView.html', { root: "public" });
+	res.sendFile('login.html', { root: "public" });
 };
 
 module.exports = router;
