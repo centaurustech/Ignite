@@ -1,19 +1,20 @@
-/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 
 /**
  * Angular Module and Controller for /users/register
  */
 (function() {
-	var app = angular.module('Ignite', []);
+	var app = angular.module('RegisterControllers', []);
 	
-	
+
 	app.controller("RegisterController", ["$scope", "$http", "$window", function($scope, $http, $window) {
 		$scope.form = {};
 		$scope.message;
+		console.log("register Controller");
 		
-		this.register = function() {
-			
-			$http.post('/users/register', {
+		// TODO: Move to UserService
+		$scope.register = function() {
+			console.log("register");
+			$http.post('/api/user/register', {
 				'username': $scope.form.username,
 				'password': $scope.form.password,
 				'first_name': $scope.form.first_name,

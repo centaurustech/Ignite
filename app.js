@@ -8,7 +8,6 @@ var logger          = require('morgan');
 var cookieParser    = require('cookie-parser');
 var bodyParser      = require('body-parser');
 var mongoose        = require('mongoose');
-var expressLayouts  = require('express-ejs-layouts');
 var passport        = require('passport');
 var LocalStrategy   = require('passport-local').Strategy;
 
@@ -18,24 +17,19 @@ var configDB        = require('./config/database.js');
 // <----- MongoDB Set Up ----->
 mongoose.connect(configDB.url); // connect to our database
 
-// <----- Include route js files ----->
-var index     = require('./server/routes/index');
-var users     = require('./server/routes/users');
-
 // <----- Include API route js files ----->
-var project    = require('./server/routes/api/project');
-var user       = require('./server/routes/api/user');
+//var project    = require('./server/routes/api/project');
+var user          = require('./server/routes/api/user');
+var project       = require('./server/routes/api/project');
 
 
 var app = express();
 
 // <---- View Set Up ---->
-app.use(express.static(path.join(__dirname, 'views')));
-app.set('view engine', 'ejs');
-app.use(expressLayouts);
+//app.set('view engine', 'html');
  
 // Favicon
-app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/assets/favicon.ico'));
 
 // <---- Middleware setup ---->
 app.use(logger('dev'));
@@ -62,11 +56,9 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-// <---- Routes ----->
-app.use('/', index);
-app.use('/users', users);
-app.use('/api', project,
-                user);
+// <---- Routes for API ----->
+app.use('/api', user
+              , project);
 
 
 // <---- Error Handling ---->

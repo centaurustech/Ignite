@@ -3,17 +3,11 @@
  * 
  */
 var express = require('express');
+var passport = require('passport');
 var router = express.Router();
 var app = express();
 
 var User = require('../../db/user');
-
-// Middleware to retrieve the id from the path and attach to req object
-router.param('id', function(req, res, next, id) {
-    req.id = id;
-    return next();
-});
-
 
 // ======================================================== //
 //                                                          //
@@ -24,55 +18,52 @@ router.param('id', function(req, res, next, id) {
 /**
  * Retrieve the current user
  */
-router.get('/currentUser', function(req, res) {
-    res.json(req.user);    
+router.get('/user/currentUser', function(req, res) {
+    if(req.user) {
+        res.json(req.user);    
+    } else {
+        res.json(null);
+    }     
 });
 
 /**
- *  Route to retrieve a single user by it's id.
- *  id is a field in the request object
- */
-router.get('/user/:id', function(req, res) {
-    res.send(req.id);
-});
-
-/**
- *  Route to retrieve all users.
- */
-router.get('/user', function(req, res) {
-    res.send("ALL USERS");
-});
-
-/**
- * Route to create a user.
+ * Route to register a user.
  * The new user is in the request body.
  */
-router.post('/user', function(req, res, next) {
-    
-    var user = new User(req.body);
-    
-    user.save(function(err) {
-       if(err) { next(err); } 
+router.post('/user/register', function(req, res) {
+    User.register(new User(
+                        { username          : req.body.username,
+                          first_name        : req.body.first_name,
+                          last_name         : req.body.last_name,
+                          title             : req.body.title,
+                          department        : req.body.department,
+                          location          : req.body.location,
+                          email             : req.body.email,
+                          is_budget_owner   : req.body.is_budget_owner,
+                          is_approver       : req.body.is_approver }),
+                          req.body.password,
+                          function(err, account) {
+        if (err) {
+            console.log("username in user");
+            res.status(400).send('Username already in use');
+        } else {
+            passport.authenticate('local')(req, res, function () {
+            res.redirect('/');
+            });
+        }
     });
-    
-    res.end();
 });
 
-/**
- * Route to update a user by id.
- * The updated user is in the request body.
- */
-router.put('/user/:id', function(req, res) {
-    
+/* POST login page to login */
+router.post('/user/login', passport.authenticate('local'), function(req, res) {
+    console.log(req.user);
+    res.send(req.user);
 });
 
-/**
- * Route to delete a user by id.
- * id is a field in the request object. 
- */
-router.delete('/user/:id', function(req, res) {
-    
+/* POST logout */
+router.post('/user/logout', function(req, res) {
+    req.logout();
+    res.redirect('/#/loginView');
 });
-
 
 module.exports = router;
