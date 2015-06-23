@@ -11,6 +11,9 @@ angular.module('ProjectService', []).factory('Project', ['$http', function($http
             return $http.get('/api/project');
         },
         
+        getById : function(id) {
+            return $http.get('/api/project/' + id);
+        },
         // get all categories
         getCategories: function() {
             return $http.get('/api/project/categories');

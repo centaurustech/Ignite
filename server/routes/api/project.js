@@ -8,23 +8,11 @@ var app = express();
 
 var Project = require('../../db/project');
 
-//// Middleware to retrieve the project from the id in the path and attach to req object
-//router.param('id', function(req, res, next, id) {
-//    
-//    var query = Project.findById(id);
-//    
-//    query.exec(function (err, project){
-//        if (err) { return next(err); }
-//        if (!project) { 
-//            res.status(404).send('Not Found');
-//            return;
-//         }
-//        
-//        req.project = project;    
-//        return next();
-//    });
-//    
-//});
+// Middleware to retrieve the id and attach it to the req object.
+router.param('id', function(req, res, next, id) {
+    req.id = id;
+    return next();
+});
 
 /**
  * Retrieve all categories.
@@ -53,6 +41,7 @@ router.get('/project/categories', function(req, res) {
  */
 router.get('/project/:id', function(req, res) {
     var query = Project.findOne({"_id": req.id});
+    
     query.exec(function(err, project) {
         if(err) {
             console.error(err);
@@ -61,6 +50,7 @@ router.get('/project/:id', function(req, res) {
         if(!project) {
             res.send("Not Found");
         } else {
+            console.log(project);
             res.json(project);
         }
     });

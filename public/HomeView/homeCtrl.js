@@ -22,7 +22,7 @@
   		};
 	});
 	
-	app.controller('CarouselCtrl', ["$scope", "Project", function($scope, Project) {
+	app.controller('CarouselCtrl', ["$scope", "$location", "Project", function($scope, $location, Project) {
 		$scope.projects;
 		
 		Project.get().success(function(data) {

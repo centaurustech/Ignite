@@ -7,12 +7,15 @@
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-     <div class="item active">
-        <a class="carousel-title">{{projects[0].title}}</a>
+    <div class="item active">
+        <a href="/#/projectView/{{ projects[0]._id }}" class="carousel-title">
+           {{projects[0].title}}<br/>
+           <span class="carousel-description">{{projects[0].description}}</span>
+        </a>
         <img ng-src="{{projects[0].image}}" alt="Project">
     </div>
     <div ng-repeat="project in projects" ng-if="$index >= 1" class="item">
-        <a class="carousel-title">
+        <a href="/#/projectView/{{ project._id }}" class="carousel-title">
           {{project.title}}<br/>
           <span class="carousel-description">{{project.description}}</span>
         </a>

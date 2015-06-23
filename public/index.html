@@ -25,15 +25,16 @@
     <script type="text/javascript" src="/Services/UserService.js"></script> 
     <script type="text/javascript" src="/Filters/ProjectFilters.js"></script> 
     <script type="text/javascript" src="/HomeView/homeCtrl.js"></script>
+      <script type="text/javascript" src="/ProjectView/projectCtrl.js"></script>
       
     
   
   </head>
-  <body ng-controller="IndexController" class="container">
+  <body ng-controller="IndexController" class="container-fluid">
     
     <!-- Nav Bar -->
     <header>
-    	<nav class="navbar navbar-default">
+    	<nav class="navbar navbar-default navbar-fixed-top">
     	  <div class="container-fluid">
     	    <div class="navbar-header">
     			  <!-- Button when the nav bar is collapsed for smaller screens -->
@@ -83,7 +84,7 @@
     </header>
    
    <!-- View Container -->
-   <div ng-view></div>
+   <div ng-view autoscroll="true"></div>
      
      
      <!-- Footer -->

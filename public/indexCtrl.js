@@ -7,6 +7,7 @@
 		 "ngRoute",
 		 "UserService",
 		 "HomeControllers",
+		 "ProjectControllers",
 		 "ProjectFilters"
 		 ]);
 	
@@ -20,6 +21,10 @@
 				})
 				.when('/profileView', {
 					templateUrl: 'ProfileView/profileView.html'
+				})
+				.when('/projectView/:projectId', {
+					templateUrl: 'ProjectView/projectView.html',
+					controller: 'ProjectController'
 				})
 				.otherwise({
 					redirectTo: '/homeView'

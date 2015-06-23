@@ -1,7 +1,7 @@
 <div class="row">
 	<h1 class="col-md-12">EXPIRES SOON</h1>
 	<div ng-repeat="project in projects | orderBy: 'start_date'" ng-if="$index < displayNumber" class="col-md-3 project-gallery">
-		<img ng-src="{{ project.image }}" class="project-gallery-image"/>
+		<a href="/#/projectView/{{ project._id }}"><img ng-src="{{ project.image }}" class="project-gallery-image"/></a>
 		<strong>{{project.title}}</strong><br/>
 		by {{ project.creator }}<br/><br/>
 		<div class="project-gallery-description">{{ project.description }}</div><br/>
