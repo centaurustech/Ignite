@@ -8,6 +8,7 @@
 		 "UserService",
 		 "HomeControllers",
 		 "ProjectControllers",
+		 "ProfileControllers",
 		 "ProjectFilters"
 		 ]);
 	
@@ -20,7 +21,8 @@
 					controller: 'HomeController'
 				})
 				.when('/profileView', {
-					templateUrl: 'ProfileView/profileView.html'
+					templateUrl: 'ProfileView/profileView.html',
+					controller: 'ProfileController'
 				})
 				.when('/projectView/:projectId', {
 					templateUrl: 'ProjectView/projectView.html',

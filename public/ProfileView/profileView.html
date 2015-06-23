@@ -1,3 +1,19 @@
-<div class="row">
-	<h1>USER PAGE</h1>
+<div ng-controller="ProfileController" class="row">
+	<img class="user-image" ng-src="{{$root.user.image}}"/>
+	<h1>Username</h1>
+	{{ $root.user.first_name }}
+	<h3>Name</h3>
+	{{ $root.user.first_name  + " " +  $root.user.last_name }}
+	<h3>Title</h3>
+	{{ $root.user.title }}
+	<h3>Department</h3>
+	{{ $root.user.department }}
+	<h3>Location</h3>
+	{{ $root.user.location }}
+	<h3>Email</h3>
+	{{ $root.user.email }}
+	<h3>Is A Budget Owner?</h3>
+	{{ $root.user.is_budget_owner }}
+	<h3>Is An Approver?</h3>
+	{{ $root.user.is_approver }}
 </div>
