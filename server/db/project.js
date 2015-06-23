@@ -18,12 +18,12 @@ var projectSchema = mongoose.Schema({
         challenges:         { type: String,            default: ""         },
         value_proposition:  { type: String,            default: ""         },
         is_approved:        { type: Boolean,           default: false      },
-        category:           { type: [Schema.ObjectId], ref:     'Category' },
+        category:           { type: Schema.ObjectId,   ref:     'Category' },
         backers:            { type: [Schema.ObjectId], ref:     'Backer'   },
         creator:            { type: Schema.ObjectId,   ref:     'User'     },
         comments:           { type: [Schema.ObjectId], ref:     'Comment'  },
         team_members:       { type: [Schema.ObjectId], ref:     'User'     },
-        city:               { type: [Schema.ObjectId], ref:     'City'     },
+        city:               { type: Schema.ObjectId,   ref:     'City'     },
         followers:          { type: [Schema.ObjectId], ref:     'User'     },
         is_in_progress:     { type: Boolean,           default: true       }
 });
