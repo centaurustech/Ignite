@@ -56,3 +56,35 @@ a {
 #profile-image {
   margin-bottom: 10px;
 }
+
+.project-gallery-image {
+  width: 100%;
+}
+
+.project-gallery {
+  margin-bottom: 50px;  
+}
+
+.project-gallery-more-button {
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-gallery-description {
+  height: 100px;
+  overflow: hidden; 
+}
+
+.project-gallery-description:before {
+  position: absolute;
+  content: '';
+  height: 100px;
+  width: 100%;
+  pointer-events: none;
+  /* FF3.6+ */ /* Chrome,Safari4+ */ /* Chrome10+,Safari5.1+ */ /* Opera 11.10+ */ /* IE10+ */
+  background: -webkit-linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+  background: -o-linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}

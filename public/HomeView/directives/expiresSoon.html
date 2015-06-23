@@ -1,0 +1,15 @@
+<div class="row">
+	<h1 class="col-md-12">EXPIRES SOON</h1>
+	<div ng-repeat="project in projects | orderBy: 'start_date'" ng-if="$index < displayNumber" class="col-md-3 project-gallery">
+		<img ng-src="{{ project.image }}" class="project-gallery-image"/>
+		<strong>{{project.title}}</strong><br/>
+		by {{ project.creator }}<br/><br/>
+		<div class="project-gallery-description">{{ project.description }}</div><br/>
+		<strong>Funded: {{ (project.budget / project.funded) * 100 | number: 0 }}%</strong><br/>
+		Start: {{ project.start_date | date }}<br/>
+		End: {{ project.end_date | date }}
+	</div>
+	<div class="project-gallery-more-button">
+		<button ng-click="incrementDisplayNumber()">More</button>
+	</div>
+</div>

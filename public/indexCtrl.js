@@ -6,7 +6,8 @@
 	 	[
 		 "ngRoute",
 		 "UserService",
-		 "HomeControllers"
+		 "HomeControllers",
+		 "ProjectFilters"
 		 ]);
 	
 	
