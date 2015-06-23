@@ -8,22 +8,32 @@ var app = express();
 
 var Project = require('../../db/project');
 
-// Middleware to retrieve the project from the id in the path and attach to req object
-router.param('id', function(req, res, next, id) {
-    
-    var query = Project.findById(id);
-    
-    query.exec(function (err, project){
-        if (err) { return next(err); }
-        if (!project) { 
-            res.status(404).send('Not Found');
-            return;
-         }
-        
-        req.project = project;    
-        return next();
-    });
-    
+//// Middleware to retrieve the project from the id in the path and attach to req object
+//router.param('id', function(req, res, next, id) {
+//    
+//    var query = Project.findById(id);
+//    
+//    query.exec(function (err, project){
+//        if (err) { return next(err); }
+//        if (!project) { 
+//            res.status(404).send('Not Found');
+//            return;
+//         }
+//        
+//        req.project = project;    
+//        return next();
+//    });
+//    
+//});
+
+/**
+ * Retrieve all categories.
+ * 
+ * <Usage>
+ *      /api/project/categories
+ */
+router.get('/project/categories', function(req, res) {
+    res.send('["Technology", "Customer Service", "Investment", "HR", "Environment", "Innovation", "Life", "Love", "HSBC"]');
 });
 
 
@@ -33,6 +43,7 @@ router.param('id', function(req, res, next, id) {
 //                                                          //
 // ======================================================== //
 
+
 /**
  * Route to retrieve a single project by it's id.
  * id is a field in the request object
@@ -41,7 +52,18 @@ router.param('id', function(req, res, next, id) {
  *  /api/project/[id] 
  */
 router.get('/project/:id', function(req, res) {
-    res.send(req.project);
+    var query = Project.findOne({"_id": req.id});
+    query.exec(function(err, project) {
+        if(err) {
+            console.error(err);
+        }
+        
+        if(!project) {
+            res.send("Not Found");
+        } else {
+            res.json(project);
+        }
+    });
 });
 
 /**
@@ -59,6 +81,8 @@ router.get('/project', function(req, res, next) {
     });
     
 });
+
+
 
 /**
  * Route to create a project.
@@ -140,9 +164,6 @@ router.put('/project/:id/add_backer', function(req, res, next) {
             if(err) { next(err); } 
         });
     });
-    
-    
-    
     res.end();
 });
 

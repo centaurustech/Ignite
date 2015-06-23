@@ -6,21 +6,14 @@
 angular.module('ProjectService', []).factory('Project', ['$http', function($http) {
 
     return {
-        // call to get
+        // call to get all projects
         get : function() {
             return $http.get('/api/project');
         },
-
-
-        // these will work when more API routes are defined on the Node side of things
-        // call to POST to create
-        create : function(project) {
-            return $http.post('/api/project', project);
-        },
-
-        // call to DELETE 
-        delete : function(id) {
-            return $http.delete('/api/project/' + id);
+        
+        // get all categories
+        getCategories: function() {
+            return $http.get('/api/project/categories');
         }
     };       
 

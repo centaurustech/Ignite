@@ -31,6 +31,25 @@
 	}]);
 	
 	
+	/* Categories Directive and Controller */
+	app.directive('categories', function() {
+		return {
+			restrict: 'E',
+    		templateUrl: 'HomeView/directives/categories.html',
+			controller: 'CategoriesCtrl'
+  		};
+	});
+	
+	app.controller('CategoriesCtrl', ["$scope", "Project", function($scope, Project) {
+		$scope.categories;
+		
+		Project.getCategories().success(function(data) {
+			$scope.categories = data;
+		});
+		
+	}]);
+	
+	
 	/* Expires Soon Directive and Controller */
 	app.directive('expiresSoon', function() {
 		return {
@@ -96,7 +115,4 @@
 			$scope.displayNumber += 4;	
 		};
 	}]);
-	
-	
-
 })();
