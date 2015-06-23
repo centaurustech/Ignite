@@ -140,21 +140,31 @@ router.delete('/project/:id', function(req, res, next) {
  *      backer_id: user_id associated to the user funding the project
  *      funded:    The amount being funded
  */
-router.put('/project/:id/add_backer', function(req, res, next) {
+router.post('/project/:id/add_backer', function(req, res, next) {
     // Request objects
-    var project = req.project;
     var backer_id = req.query.backer_id;
     var funded = req.query.funded; 
     
-    project.addBacker(backer_id, funded, function(err) {
-        if(err) { console.error(err); }
+    var query = Project.findOne({"_id": req.id});
+    
+    query.exec(function(err, project) {
+        if(err) {
+            console.error(err);
+        }
         
-        console.log("saving project with backer");
-        project.save(function(err) {
-            if(err) { next(err); } 
-        });
+        if(!project) {
+            res.send("Not Found");
+        } else {
+            project.addBacker(backer_id, funded, function(err) {
+                if(err) { console.error(err); }
+                
+                project.save(function(err) {
+                    if(err) { next(err); }
+                    res.json(project); 
+                });
+             });
+        }
     });
-    res.end();
 });
 
 

@@ -14,6 +14,13 @@ angular.module('ProjectService', []).factory('Project', ['$http', function($http
         getById : function(id) {
             return $http.get('/api/project/' + id);
         },
+        
+        addBacker : function(projectId, userId, fundAmount) {
+            return $http.post('/api/project/' + projectId + 
+                              '/add_backer?backer_id=' + userId + 
+                              '&funded=' + fundAmount);
+        },
+        
         // get all categories
         getCategories: function() {
             return $http.get('/api/project/categories');

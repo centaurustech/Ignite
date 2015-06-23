@@ -45,7 +45,7 @@ projectSchema.methods.addBacker = function(backer_id, funded, callback) {
         backers.forEach(function(backer) {
             if(backer.user_id === backer_id) {
                 // Update funded with new funded
-                backer.funded = funded;
+                backer.funded += +funded;
             }
             
             return;
@@ -61,7 +61,7 @@ projectSchema.methods.addBacker = function(backer_id, funded, callback) {
             if(err) { callback(err); }
             console.log("saved the new backer and adding backer_id to project");
             project.backers.push(backer._id);
-            
+            project.funded = Number(project.funded) + Number(funded);
             callback(null);
         });
     });

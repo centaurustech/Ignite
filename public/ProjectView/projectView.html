@@ -17,4 +17,11 @@
 	{{ project.challenges }}<br/>
 	<h3>City</h3>
 	{{ project.city }}<br/>
+	<hr/>
+	<h1>FundIT</h1>
+	<span style="color: red;">{{ message }} </span>
+	<form name="fundForm" ng-submit="fundForm.$valid && fundProject()" novalidate>
+		<input type='text' name='amount' ng-model="fundAmount" required/><br/>
+		<button type='submit'>FundIT</button>
+	</form>
 </div>
