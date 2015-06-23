@@ -1,11 +1,12 @@
 // <---- Required Modules ---->
 var mongoose = require('mongoose');
+var Schema   = mongoose.Schema;
 
 // <---- Schema ---->
 var backerSchema = mongoose.Schema({
-        project_id: { type: String,   default: "" },
-		funded: 	{ type: Number,   default: 0  },
-		user_id: 	{ type: String,   default: "" }
+        project_id: { type: Schema.ObjectId, ref:     'project' },
+		funded: 	{ type: Number,          default: 0     },
+		user_id: 	{ type: Schema.ObjectId, ref:     'user'    }
 });
 
 // <---- Methods ---->

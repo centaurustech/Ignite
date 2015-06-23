@@ -1,31 +1,31 @@
 // <---- Required Modules ---->
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 var Backer = require('./backer');
 
 // <---- Schema ---->
 var projectSchema = mongoose.Schema({
-        image:              { type: String,   default: ""       },
-        title:              { type: String,   default: ""       },
-        start_date:         { type: Date,     default: Date.now },
-        end_date:           { type: Date,     default: Date.now },
-        budget:             { type: Number,   default: 0        },
-        funded:             { type: Number,   default: 0        },
-        resources:          { type: [String], default: []       },
-        description:        { type: String,   default: ""       },
-        budget_breakdown:   { type: String,   default: ""       },
-        challenges:         { type: String,   default: ""       },
-        value_proposition:  { type: String,   default: ""       },
-        is_approved:        { type: Boolean,  default: false    },
-        category:           { type: String,   default: ""       },
-        backers:            { type: [String], default: []       },
-        creator:            { type: String,   default: ""       },
-        comments:           { type: [String], default: []       },
-        team_members:       { type: [String], default: []       },
-        city:               { type: String,   default: ""       },
-        followers:          { type: [String], default: []       },
-        country:            { type: String,   default: ""       },
-        is_in_progress:     { type: Boolean,  default: true     }
+        image:              { type: String,     	   default: ""         },
+        title:              { type: String,            default: ""         },
+        start_date:         { type: Date,              default: Date.now   },
+        end_date:           { type: Date,              default: Date.now   },
+        budget:             { type: Number,            default: 0          },
+        funded:             { type: Number,            default: 0          },
+        resources:          { type: [Schema.ObjectId], ref:     'Resource' },
+        description:        { type: String,            default: ""         },
+        budget_breakdown:   { type: String,            default: ""         },
+        challenges:         { type: String,            default: ""         },
+        value_proposition:  { type: String,            default: ""         },
+        is_approved:        { type: Boolean,           default: false      },
+        category:           { type: [Schema.ObjectId], ref:     'Category' },
+        backers:            { type: [Schema.ObjectId], ref:     'Backer'   },
+        creator:            { type: Schema.ObjectId,   ref:     'User'     },
+        comments:           { type: [Schema.ObjectId], ref:     'Comment'  },
+        team_members:       { type: [Schema.ObjectId], ref:     'User'     },
+        city:               { type: [Schema.ObjectId], ref:     'City'     },
+        followers:          { type: [Schema.ObjectId], ref:     'User'     },
+        is_in_progress:     { type: Boolean,           default: true       }
 });
 
 // <---- Methods ---->
