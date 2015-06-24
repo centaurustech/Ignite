@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
 var Backer   = require('./backer');
 var Comment  = require('./comment');
 var User     = require('./user');
-var Resource = require('./resource')
+var Resource = require('./resource');
+var Category = require('./category');
 
 // <---- Schema ---->
 var projectSchema = mongoose.Schema({
@@ -201,6 +202,30 @@ projectSchema.methods.addResource = function(role, description, callback) {
     });     
 };
 
+/**
+ * Set the category for the project
+ */
+ projectSchema.methods.setCategory = function(name, callback) {
+     var project = this;
+     
+     
+     Category.findOne({"name": name}, function(err, category) {
+        if(err) { console.error(err); }
+        
+        project.category = category._id;        // Add the category id to the project,
+        category.project_ids.push(project._id); // Add the project id to the category.
+        
+        category.save(function(err, catResult) {
+            if(err) {console.error(err); }
+            
+            project.save(function(err, projResult) {
+               if(err) {console.error(err); }
+               
+               return callback(null, projResult); 
+            });
+        });
+     });
+ };
 
 
 // create the model for users and expose it to our app

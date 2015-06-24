@@ -386,7 +386,7 @@ describe('Project', function() {
         ProjectDummies.BasicProject().save(function(err, BasicProject) {    // Save BasicProject
             var role        = "Software Engineer";
             var description = "Make Stuff";       
-            BasicProject.addResource(role, description, function(err, project){   // Add comment from BasicUser for BasicProject
+            BasicProject.addResource(role, description, function(err, project){   // Add resource BasicProject
                 // Verify that only one backer has been added.
                 project.resources.length.should.eql(1);
                 
@@ -416,7 +416,7 @@ describe('Project', function() {
             var description = "Make Stuff"; 
             var role2        = "Software Engineer1";
             var description2 = "Make Stuff2";       
-            BasicProject.addResource(role, description, function(err, project){   // Add comment from BasicUser for BasicProject
+            BasicProject.addResource(role, description, function(err, project){   // Add Resource to BasicProject
                 // Verify that only one backer has been added.
                 project.resources.length.should.eql(1);
                 
@@ -429,13 +429,15 @@ describe('Project', function() {
                         resource.role.should.eql(role);
                         resource.description.should.eql(description);
                         
-                        BasicProject.addResource(role2, description2, function(err, project) {
+                        BasicProject.addResource(role2, description2, function(err, project) {  // Add Resource to BasicProject
                            project.resources.length.should.eql(2);
                            
                            Resource.findOne({"_id" : BasicProject.resources[1]})
                             	.populate('project_id').exec(function(err, resource) {
+                                    // Check that fields are correct
                                     resource.role.should.eql(role2);
                                     resource.description.should.eql(description2);
+                                    
                                     done();
                            });
                         });   
@@ -445,7 +447,29 @@ describe('Project', function() {
         });
     });
     
-    
+    /**
+     * [TEST]
+     * Add a category to the project
+     */
+    it('should add a category to the project', function(done){
+       ProjectDummies.BasicProject().save(function(err, BasicProject) {
+           var category = new Category({ name: 'HSBC', project_ids: []});
+           category.save(function(err, category) {
+               BasicProject.setCategory('HSBC', function(err, project) {
+                  
+                  project.category.should.eql(category._id);
+                  
+                  Category.findOne({name: 'HSBC'})
+                    .populate({path: 'project_ids', model: 'Project'}).exec(function(err, category){
+                        category.project_ids.length.should.eql(1);
+                        
+                        category.project_ids[0]._id.should.eql(BasicProject._id);
+                        done(); 
+                    });
+                  });
+               });  
+       });
+    });
 
     // Run after each test
     afterEach(function(done) {

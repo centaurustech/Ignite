@@ -5,7 +5,7 @@ var Schema   = mongoose.Schema;
 // <---- Schema ---->
 var categorySchema = mongoose.Schema({
         name: 		 { type: String,            default: "" },
-		project_ids: { type: [Schema.ObjectId], ref:     'User' }
+		project_ids: { type: [Schema.ObjectId], ref:     'Project' }
 });
 
 // <---- Methods ---->
