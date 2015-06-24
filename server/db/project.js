@@ -2,8 +2,10 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var Backer  = require('./backer');
-var Comment = require('./comment');
+var Backer   = require('./backer');
+var Comment  = require('./comment');
+var User     = require('./user');
+var Resource = require('./resource')
 
 // <---- Schema ---->
 var projectSchema = mongoose.Schema({
@@ -84,7 +86,6 @@ projectSchema.methods.addComment = function(user_id, comment, callback) {
         }
     );
     
-
     newComment.save(function(err, result) {
         if(err) { callback(err); }
                         
@@ -95,6 +96,112 @@ projectSchema.methods.addComment = function(user_id, comment, callback) {
         });
     });     
 };
+
+
+projectSchema.methods.addFollower = function(user_id, callback) {
+    var project = this;
+    
+    // Check if the user has already backed the project
+    User.findOne({'_id': user_id}, function(err, user) {
+        if(err) { console.error(err); }
+        
+        // User not found
+        if(!user) {    
+            console.log("No User Found");
+            return callback(null, project);     
+        } 
+        
+        // User is already a follower
+        for(var i = 0; i < user.following.length; i++) {
+            if(user.following[i].equals(project._id)) {
+                return callback(null, project);
+            }
+        }
+        
+        // User is not a follower, add project_id to following
+        user.following.push(project._id);
+
+        user.save(function(err, resultUser) {
+            if(err) { callback(err); }      
+            // Add the user to the followers of project              
+            project.followers.push(resultUser._id);
+            project.save(function(err, proj) {
+                    if(err) { console.error(err); }
+                    return callback(null, proj);        
+            });
+        });
+    });
+};
+
+projectSchema.methods.removeFollower = function(user_id, callback) {
+    var project = this;
+    
+    // Check if the user has already backed the project
+    User.findOne({'_id': user_id}, function(err, user) {
+        if(err) { console.error(err); }
+        
+        // User not found
+        if(!user) {    
+            console.log("No User Found");
+            return callback(null, project);     
+        } 
+        
+        // User is a follower
+        for(var i = 0; i < user.following.length; i++) {
+            if(user.following[i].equals(project._id)) {
+                // Remove project id from following
+                user.following.splice(i, 1);
+            }
+        }
+        
+        
+
+        user.save(function(err, resultUser) {
+            if(err) { callback(err); }      
+            // Remove the user from the followers of project              
+            for(var i = 0; i < project.followers.length; i++) {
+                if(project.followers[i].equals(user._id)) {
+                    // Remove user id from followers
+                    project.followers.splice(i, 1);
+                }
+            }
+            
+            project.save(function(err, proj) {
+                    if(err) { console.error(err); }
+                    return callback(null, proj);        
+            });
+        });
+    });
+};
+
+
+/**
+ * Add a resource to the project
+ */
+projectSchema.methods.addResource = function(role, description, callback) {
+    var project = this;
+
+    // Create a new backer and add the _id to the project.
+    var newResource = new Resource(
+        {
+            project_id:    project._id,
+            role:          role,
+            description:   description
+        }
+    );
+    
+    newResource.save(function(err, result) {
+        if(err) { callback(err); }
+                        
+        project.resources.push(result._id);
+        project.save(function(err, proj) {
+                if(err) { console.error(err); }
+                return callback(null, proj);        
+        });
+    });     
+};
+
+
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('Project', projectSchema);

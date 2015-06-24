@@ -14,6 +14,7 @@ module.exports.BasicUser = function() {
 					location:	 	 "Test Folder",
 					email: 		 	 "test@me.com",
 					is_budget_owner: true,
-					is_approver: 	 true
+					is_approver: 	 true,
+					followers:		 []
             	});
-}
+};

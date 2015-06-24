@@ -1,5 +1,6 @@
 // <---- Required Modules ---->
 var mongoose = require('mongoose');
+var Schema   = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
 
 // <---- Schema ---->
@@ -13,7 +14,8 @@ var userSchema = mongoose.Schema({
 		location:	 	 { type: String,   default: ""    							        },
 		email: 		 	 { type: String,   default: ""    	       						    },
 		is_budget_owner: { type: Boolean,  default: false 		           					},
-		is_approver: 	 { type: Boolean,  default: false 							        }
+		is_approver: 	 { type: Boolean,  default: false 							        },
+		following:		 { type: [Schema.ObjectId], ref: 'Project'						    }
 });
 
 
