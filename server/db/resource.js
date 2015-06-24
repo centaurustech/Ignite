@@ -3,9 +3,9 @@ var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 // <---- Schema ---->
 var resourceSchema = mongoose.Schema({
-        project_id:  { type: Schema.ObjectId, ref: 'Project' },
-		role:		 { type: String,   default: "" },
-		description: { type: String,   default: "" }
+        project_id:  { type: Schema.ObjectId, ref:     'Project' },
+		role:		 { type: String,   	      default: "" },
+		description: { type: String,          default: "" }
 });
 
 // <---- Methods ---->

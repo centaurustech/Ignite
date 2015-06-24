@@ -39,31 +39,33 @@ projectSchema.methods.addBacker = function(backer_id, funded, callback) {
     var project = this;
     
     // Check if the user has already backed the project
-    Backer.find({}, function(err, backers) {
+    Backer.findOne({'user_id': backer_id, 'project_id': project._id}, function(err, backer) {
         if(err) { console.error(err); }
-        
-        backers.forEach(function(backer) {
-            if(backer.user_id === backer_id) {
-                // Update funded with new funded
-                backer.funded += +funded;
-            }
-            
-            return;
-            
-        }, this);
-        
-        // Create a new backer and add the _id to the project.
-        var backer = new Backer();
-        backer.user_id = backer_id;
-        backer.funded = funded;
-        
-        backer.save(function(err, backer) {
-            if(err) { callback(err); }
-            console.log("saved the new backer and adding backer_id to project");
-            project.backers.push(backer._id);
-            project.funded = Number(project.funded) + Number(funded);
-            callback(null);
-        });
+          
+        if(backer) {
+            // Update funded with new funded
+            backer.funded += +funded;
+            backer.save(function(err, result) {
+                return callback(null, project);    
+            }); 
+         } else {
+             // Create a new backer and add the _id to the project.
+            var newBacker = new Backer();
+            newBacker.user_id = backer_id;
+            newBacker.funded = funded;
+            newBacker.project_id = project._id;
+
+            newBacker.save(function(err, result) {
+                if(err) { callback(err); }
+                                
+                project.backers.push(result._id);
+                project.funded = Number(project.funded) + Number(funded);
+                project.save(function(err, proj) {
+                        if(err) { console.error(err); }
+                        return callback(null, proj);        
+                });
+            });
+         } 
     });
 };
 

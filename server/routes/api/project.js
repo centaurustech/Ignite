@@ -155,13 +155,10 @@ router.post('/project/:id/add_backer', function(req, res, next) {
         if(!project) {
             res.send("Not Found");
         } else {
-            project.addBacker(backer_id, funded, function(err) {
+            project.addBacker(backer_id, funded, function(err, project) {
                 if(err) { console.error(err); }
                 
-                project.save(function(err) {
-                    if(err) { next(err); }
-                    res.json(project); 
-                });
+                res.json(project); 
              });
         }
     });

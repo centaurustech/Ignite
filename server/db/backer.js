@@ -4,9 +4,9 @@ var Schema   = mongoose.Schema;
 
 // <---- Schema ---->
 var backerSchema = mongoose.Schema({
-        project_id: { type: Schema.ObjectId, ref:     'project' },
-		funded: 	{ type: Number,          default: 0     },
-		user_id: 	{ type: Schema.ObjectId, ref:     'user'    }
+        project_id: { type: Schema.ObjectId, ref:     'Project' },
+		funded: 	{ type: Number,          default: 0         },
+		user_id: 	{ type: Schema.ObjectId, ref:     'User'    }
 });
 
 // <---- Methods ---->

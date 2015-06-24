@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var Project = require("../../server/db/project.js");
 
 /** 
@@ -29,12 +30,12 @@ module.exports.BasicProject = function() {
                     challenges:         "Challenges",
                     value_proposition:  "Value Proposition",
                     is_approved:        false,
-                    category:           "",
+                    category:           mongoose.Types.ObjectId(),
                     backers:            [],
-                    creator:            "",
+                    creator:            mongoose.Types.ObjectId(),
                     comments:           [],
                     team_members:       [],
-                    city:               "",
+                    city:               mongoose.Types.ObjectId(),
                     followers:          [],
                     is_in_progress:     true
             	});
