@@ -45,4 +45,16 @@ for(var i = 1; i <= 20; i++) {
 		});	
 }
 
+// Populate categories
+var categories = ["Technology", "Customer Service", "Investment", "HR", "Environment", "Innovation", "Life", "Love", "HSBC"];
+
+for(var i = 0; i < categories.length; i++) {
+    db['categories'].insert(
+        {
+          "name": categories[i],
+          "project_ids": []  
+        }
+    );
+}
+
 print(db.getCollectionNames()[0]);
