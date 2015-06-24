@@ -2,7 +2,8 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var Backer = require('./backer');
+var Backer  = require('./backer');
+var Comment = require('./comment');
 
 // <---- Schema ---->
 var projectSchema = mongoose.Schema({
@@ -34,7 +35,6 @@ var projectSchema = mongoose.Schema({
  * Create a new backer, add it to the database, and add the backer id to the project.
  * If the backer already exists, update the fund.
  */
-
 projectSchema.methods.addBacker = function(backer_id, funded, callback) {
     var project = this;
     
@@ -67,6 +67,33 @@ projectSchema.methods.addBacker = function(backer_id, funded, callback) {
             });
          } 
     });
+};
+
+/**
+ * Add a comment to the project
+ */
+projectSchema.methods.addComment = function(user_id, comment, callback) {
+    var project = this;
+
+    // Create a new backer and add the _id to the project.
+    var newComment = new Comment(
+        {
+            user_id:    user_id,
+            comment:    comment,
+            project_id: project._id
+        }
+    );
+    
+
+    newComment.save(function(err, result) {
+        if(err) { callback(err); }
+                        
+        project.comments.push(result._id);
+        project.save(function(err, proj) {
+                if(err) { console.error(err); }
+                return callback(null, proj);        
+        });
+    });     
 };
 
 // create the model for users and expose it to our app

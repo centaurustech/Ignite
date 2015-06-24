@@ -4,9 +4,10 @@ var Schema   = mongoose.Schema;
 
 // <---- Schema ---->
 var commentSchema = mongoose.Schema({
-       project_id:  { type: Schema.ObjectId, ref:    'Project' },
-	   user_id: 	{ type: Schema.ObjectId, ref:    'User'    },
-	   comment: 	{ type: String,   		 default: "" }
+       project_id:  { type: Schema.ObjectId, ref:    'Project'   },
+	   user_id: 	{ type: Schema.ObjectId, ref:    'User'      },
+	   comment: 	{ type: String,   		 default: ""         },
+	   timestamp:	{ type: Date,			 default: new Date() }
 });
 
 // <---- Methods ---->
