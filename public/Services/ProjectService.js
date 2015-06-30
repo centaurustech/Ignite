@@ -11,6 +11,18 @@ angular.module('ProjectService', []).factory('Project', ['$http', function($http
             return $http.get('/api/project');
         },
         
+        post : function(project, image) {
+            
+            var formData = new FormData();
+            formData.append('file', image);
+            formData.append('project', angular.toJson(project));
+            
+	        return $http.post('/api/project', formData, {
+	            transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}    // required, in order to set to multipart
+	        });
+        },
+        
         getById : function(id) {
             return $http.get('/api/project/' + id);
         },
@@ -24,6 +36,11 @@ angular.module('ProjectService', []).factory('Project', ['$http', function($http
         // get all categories
         getCategories: function() {
             return $http.get('/api/project/categories');
+        },
+        
+        // get all categories
+        getCities: function() {
+            return $http.get('/api/project/cities');
         }
     };       
 

@@ -7,6 +7,7 @@ var Comment  = require('./comment');
 var User     = require('./user');
 var Resource = require('./resource');
 var Category = require('./category');
+var City     = require('./city');
 
 // <---- Schema ---->
 var projectSchema = mongoose.Schema({
@@ -227,6 +228,28 @@ projectSchema.methods.addResource = function(role, description, callback) {
      });
  };
 
+/**
+ * Set the city for the project
+ */
+ projectSchema.methods.setCity = function(cityName, callback) {
+     var project = this;
+     
+     City.findOne({"name": cityName}, function(err, city) {
+        if(err) { console.error(err); }
+        
+        project.city = city._id;                 // Add the category id to the project,
+        city.project_ids.push(project._id);      // Add the project id to the category.
+        
+        city.save(function(err, cityResult) {
+            if(err) {console.error(err); }
+            
+            project.save(function(err, projResult) {
+               if(err) {console.error(err); }
+               return callback(null, projResult); 
+            });
+        });
+     });
+ };
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('Project', projectSchema);

@@ -16,6 +16,7 @@ body {
 	border-color: green;
 }
 
+
 /* Use media inside of nav bar without starting a new line */
 .navbar-header > .media {
 	width: 170px;
@@ -127,6 +128,12 @@ body {
   height: 200px;
 }
 
+
+/* ========= Create Project Page ======= */
+#add-resource-button {
+  border-radius: 5px;
+  background-color: aqua;
+}
 
 
 

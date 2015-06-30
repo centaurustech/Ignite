@@ -7,6 +7,10 @@ var router = express.Router();
 var app = express();
 
 var Project = require('../../db/project');
+var Category = require('../../db/category');
+var City = require('../../db/city');
+
+var fs = require('fs');
 
 // Middleware to retrieve the id and attach it to the req object.
 router.param('id', function(req, res, next, id) {
@@ -21,9 +25,24 @@ router.param('id', function(req, res, next, id) {
  *      /api/project/categories
  */
 router.get('/project/categories', function(req, res) {
-    res.send('["Technology", "Customer Service", "Investment", "HR", "Environment", "Innovation", "Life", "Love", "HSBC"]');
+    Category.find({}, function(err, categories) {
+        if(err) console.error(err);
+        res.send(categories);
+    });
 });
 
+/**
+ * Retrieve all cities.
+ * 
+ * <Usage>
+ *      /api/project/cities
+ */
+router.get('/project/cities', function(req, res) {
+    City.find({}, function(err, cities) {
+        if(err) console.error(err);
+        res.send(cities);
+    });    
+});
 
 // ======================================================== //
 //                                                          //
@@ -40,7 +59,9 @@ router.get('/project/categories', function(req, res) {
  *  /api/project/[id] 
  */
 router.get('/project/:id', function(req, res) {
-    var query = Project.findOne({"_id": req.id});
+    var query = Project.findOne({"_id": req.id})
+        .populate({path: 'category', model: 'Category'})
+        .populate({path: 'city', model: 'City'});
     
     query.exec(function(err, project) {
         if(err) {
@@ -50,7 +71,6 @@ router.get('/project/:id', function(req, res) {
         if(!project) {
             res.send("Not Found");
         } else {
-            console.log(project);
             res.json(project);
         }
     });
@@ -76,21 +96,48 @@ router.get('/project', function(req, res, next) {
 
 /**
  * Route to create a project.
- * Project is a field in the request object.
+ * Project is a field in the request body.
+ * Multer (middleware) has already parsed the image, 
  * 
  * <Usage>
- *     /api/project/[id]
+ *     /api/project/
  */
 router.post('/project', function(req, res, next) {
+    var projectJSON = JSON.parse(req.body.project);
+    var resources = projectJSON.resources;
+    var city = projectJSON.city;
+    var category = projectJSON.category;
     
-    var project = new Project(req.body);
+    // Only include project image if it has been uploaded
+    if(req.files.file) {
+        projectJSON.image = "/assets/project_images/" + req.files.file.name;
+    }
     
-    project.save(function(err) {
-       if(err) { next(err); } 
+    // Remove these fields from the project since they will be referenced
+    // in mongodb directly to the object rather than the name.
+    delete projectJSON.resources;
+    delete projectJSON.city;
+    delete projectJSON.category;
+    
+    var project = new Project(projectJSON);
+    
+    // Add resources to the project
+    resources.forEach(function(resource) {
+        project.addResource(resource.role, resource.description, function(err, data) {
+            if(err) console.error(err);
+        });
     });
     
-    res.end();
-    
+    // Set the city for the project
+    project.setCity(city, function(err, project) {
+       if(err) console.error(err);
+       // Set the category for the project.
+       project.setCategory(category, function(err, data) {
+           if(err) console.error(err);
+           console.log(data._id);
+           res.end(String(data._id));           
+       }); 
+    });
 });
 
 /**

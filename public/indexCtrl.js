@@ -28,6 +28,10 @@
 					templateUrl: 'ProjectView/projectView.html',
 					controller: 'ProjectController'
 				})
+				.when('/createProject/', {
+					templateUrl: 'ProjectView/createProjectView.html',
+					controller: 'CreateProjectCtrl'
+				})
 				.otherwise({
 					redirectTo: '/homeView'
 				});
