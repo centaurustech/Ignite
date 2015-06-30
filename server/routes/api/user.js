@@ -38,7 +38,7 @@ router.get('/user/currentUser', function(req, res) {
  * Retrieve all projects associated to a user
  */
 router.get('/user/projects/:id', function(req, res) {
-    Project.find({creator: req.id}, function(err, projects){
+    Project.find({creator: req.id, is_approved: true}, function(err, projects){
         if(err) { console.error(err); }
         res.json(projects);
     });

@@ -78,13 +78,13 @@ router.get('/project/:id', function(req, res) {
 });
 
 /**
- * Retrieve all projects.
+ * Retrieve all projects that are approved.
  * 
  * <Usage>
  *     /api/project
  */
 router.get('/project', function(req, res, next) {
-    var query = Project.find()
+    var query = Project.find({is_approved: true})
         .populate({path: 'creator', model: 'User'})
         .populate({path: 'category', model: 'Category'})
         .populate({path: 'city', model: 'City'});
