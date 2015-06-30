@@ -59,10 +59,7 @@ router.get('/project/cities', function(req, res) {
  *  /api/project/[id] 
  */
 router.get('/project/:id', function(req, res) {
-    var query = Project.findOne({"_id": req.id})
-        .populate({path: 'creator', model: 'User'})
-        .populate({path: 'category', model: 'Category'})
-        .populate({path: 'city', model: 'City'});
+    var query = Project.findOne({"_id": req.id});
     
     query.exec(function(err, project) {
         if(err) {
@@ -72,7 +69,10 @@ router.get('/project/:id', function(req, res) {
         if(!project) {
             res.send("Not Found");
         } else {
-            res.json(project);
+            project.populateAll(function(err, project) {
+                res.json(project);    
+            });
+            
         }
     });
 });

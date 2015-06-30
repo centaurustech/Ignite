@@ -42,11 +42,24 @@ var projectSchema = mongoose.Schema({
  */
  
  projectSchema.methods.populateAll = function(callback) {
-      this.populate([{path:'creator',  model: 'User'},
+     var schema = this;
+      schema.populate([{path:'creator',  model: 'User'},
                      {path:'city',     model: 'City'},
-                     {path:'category', model: 'Category'}], 
+                     {path:'category', model: 'Category'},
+                     {path:'backers',  model: 'Backer'}], 
                      function(err, proj) {
-                        return callback(null, proj);                                        
+                        
+                        var options = {
+                          path: 'backers.user_id',
+                          model: 'User'
+                        };
+                        // Populate users within backers since it is nested.
+                        schema.populate(options, function (err, projects) {
+                            console.log(projects);
+                             return callback(null, projects);      
+                        });
+                         
+                                                         
                      });    
  }
 
