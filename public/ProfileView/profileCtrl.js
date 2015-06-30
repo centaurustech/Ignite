@@ -8,8 +8,12 @@
 			"ProjectService"
 		]);
 	
-	app.controller("ProfileController", ["$scope", function($scope, $routeParams, Project) {	
-		
+	app.controller("ProfileController", ["$scope", "$rootScope","User", function($scope, $rootScope, User) {	
+		$scope.projects;
+		User.getProjects($rootScope.user._id)
+			.success(function(data) {
+				$scope.projects = data;
+			});
 	}]);
 	
 	

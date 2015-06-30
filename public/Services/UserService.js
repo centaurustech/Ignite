@@ -35,6 +35,10 @@ angular.module('UserService', []).factory('User', ['$http', function($http) {
     			});
         },
         
+        getProjects : function(user_id) {
+            return $http.get('/api/user/projects/' + user_id);
+        },
+        
         // Logout the current user.
         logout : function() {
             return $http.post('/api/user/logout');

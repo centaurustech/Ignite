@@ -41,7 +41,7 @@ var projectSchema = mongoose.Schema({
  * These need to be populated for the html in order to show the actual values it is referring to.
  */
  
- projectSchema.methods.populateAll = function(callback) {
+projectSchema.methods.populateAll = function(callback) {
      var schema = this;
       schema.populate([{path:'creator',  model: 'User'},
                      {path:'city',     model: 'City'},

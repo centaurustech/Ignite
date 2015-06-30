@@ -7,7 +7,15 @@ var passport = require('passport');
 var router = express.Router();
 var app = express();
 
+var Project = require('../../db/project');
 var User = require('../../db/user');
+
+
+// Middleware to retrieve the id and attach it to the req object.
+router.param('id', function(req, res, next, id) {
+    req.id = id;
+    return next();
+});
 
 // ======================================================== //
 //                                                          //
@@ -24,6 +32,16 @@ router.get('/user/currentUser', function(req, res) {
     } else {
         res.json(null);
     }     
+});
+
+/**
+ * Retrieve all projects associated to a user
+ */
+router.get('/user/projects/:id', function(req, res) {
+    Project.find({creator: req.id}, function(err, projects){
+        if(err) { console.error(err); }
+        res.json(projects);
+    });
 });
 
 /**

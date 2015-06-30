@@ -5,7 +5,7 @@
 		<strong>{{project.title}}</strong><br/>
 		by {{ project.creator.first_name + " " + project.creator.last_name }}<br/><br/>
 		<div class="project-gallery-description">{{ project.description }}</div><br/>
-		<strong>Funded: {{ (project.budget / project.funded) * 100 | number: 0 }}%</strong><br/>
+		<strong>Funded Percent: {{ (project.funded / project.budget) * 100 | number: 0 }}%</strong><br/>
 		Start: {{ project.start_date | date }}<br/>
 		End: {{ project.end_date | date }}
 	</div>
