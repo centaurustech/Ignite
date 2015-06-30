@@ -9,6 +9,7 @@ var cookieParser    = require('cookie-parser');
 var bodyParser      = require('body-parser');
 var mongoose        = require('mongoose');
 var passport        = require('passport');
+var multer          = require('multer');
 var LocalStrategy   = require('passport-local').Strategy;
 
 // <---- User Defined Modules ---->
@@ -34,8 +35,8 @@ app.use(favicon(__dirname + '/public/assets/favicon.ico'));
 
 // <---- Middleware setup ---->
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(multer({ dest: './public/assets/project_images'}));
+app.use(bodyParser.json({limit: '5mb'}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
