@@ -11,6 +11,50 @@ var loremIpsum4 = "Ut enim ad minima veniam, quis nostrum exercitationem ullam c
 
 var projectImage = "/assets/images/default_project_image.jpg";
 
+var admin_id;
+
+var cursor = db['users'].find({username: "Alex"});
+while(cursor.hasNext()) {
+    admin_id = cursor.next()._id;
+}
+
+
+// Populate categories
+var categories = ["Technology", "Customer Service", "Investment", "HR", "Environment", "Innovation", "Life", "Love", "HSBC"];
+
+for(var i = 0; i < categories.length; i++) {
+    db['categories'].insert(
+        {
+          "name": categories[i],
+          "project_ids": []  
+        }
+    );
+}
+
+var categoryIDs = [];
+cursor = db['categories'].find();
+while(cursor.hasNext()) {
+    categoryIDs.push(cursor.next()._id);
+}
+
+
+var cities = ["Vancouver", "Seattle", "Cairo", "Burnaby"];
+
+for(var i = 0; i < cities.length; i++) {
+    db['cities'].insert(
+        {
+            "name": cities[i],
+            "project_ids": []
+        }
+    );
+}
+
+var cityIDs = [];
+cursor = db['cities'].find();
+while(cursor.hasNext()) {
+    cityIDs.push(cursor.next()._id);
+}
+
 
 
 for(var i = 1; i <= 20; i++) {
@@ -33,39 +77,15 @@ for(var i = 1; i <= 20; i++) {
           "challenges":         loremIpsum3,
           "value_proposition":  loremIpsum4,
           "is_approved":        (Math.random() < 0.5 ? true : false ),
-          "category":           (Math.random() * 10).toFixed(0),
+          "category":           categoryIDs[(Math.random(categoryIDs.length)).toFixed(0)],
           "backers":            [],
-          "creator":            "Employee #" + i,
+          "creator":            admin_id,
           "comments":           [],
           "team_members":       [],
-          "city":               "Vancouver",
+          "city":               cityIDs[(Math.random(cityIDs.length)).toFixed(0)],
           "followers":          [],
           "country":            "",
           "is_in_progress":     (Math.random() < 0.5 ? true : false ),
 		});	
 }
 
-// Populate categories
-var categories = ["Technology", "Customer Service", "Investment", "HR", "Environment", "Innovation", "Life", "Love", "HSBC"];
-
-for(var i = 0; i < categories.length; i++) {
-    db['categories'].insert(
-        {
-          "name": categories[i],
-          "project_ids": []  
-        }
-    );
-}
-
-var cities = ["Vancouver", "Seattle", "Cairo", "Burnaby"];
-
-for(var i = 0; i < cities.length; i++) {
-    db['cities'].insert(
-        {
-            "name": cities[i],
-            "project_ids": []
-        }
-    );
-}
-
-print(db.getCollectionNames()[0]);
