@@ -57,4 +57,15 @@ for(var i = 0; i < categories.length; i++) {
     );
 }
 
+var cities = ["Vancouver", "Seattle", "Cairo", "Burnaby"];
+
+for(var i = 0; i < cities.length; i++) {
+    db['cities'].insert(
+        {
+            "name": cities[i],
+            "project_ids": []
+        }
+    );
+}
+
 print(db.getCollectionNames()[0]);
