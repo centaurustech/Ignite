@@ -23,6 +23,6 @@
     "express-session": "^1.10.1",
     "mocha": "*",
     "should": "*",
-    "ejs": "*"
+    "multer": "*"
   }
 }
