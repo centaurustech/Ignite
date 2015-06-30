@@ -24,7 +24,7 @@
 		
 		$scope.fundProject = function() {
 			$scope.project.funded += +$scope.fundAmount;
-			Project.addBacker($scope.projectId, $rootScope.user._id, $scope.fundAmount).
+			Project.addBacker($scope.projectId, $rootScope._id, $scope.fundAmount).
 				success(function(data) {
 					$scope.project = data;
 				})
@@ -37,6 +37,7 @@
 	}]);
 	
 	app.controller("CreateProjectCtrl", ["$scope", "$rootScope", "Project", function($scope, $rootScope, Project) {
+		$scope.message;					// message to show the project is pending approval.
 		$scope.form = {}; 				// initialize a blank project
 		$scope.form.resources = [];		// initialize resources
 		
@@ -61,8 +62,7 @@
 			// Attach the project in the form and project_image to the POST request.
 			Project.post($scope.form, project_image)
 				.success(function(data) {
-					console.log("successfully created project");
-					
+					$scope.message = "Thank you, your project is now pending approval";
 				});
 		};
 		
