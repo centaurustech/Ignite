@@ -70,7 +70,7 @@ for(var i = 1; i <= 20; i++) {
           "start_date":         start_date,
           "end_date":           end_date,
           "budget":             (Math.random() * 100000).toFixed(0),
-          "funded":             (Math.random() * 100000).toFixed(0),
+          "funded":             0,
           "resources":          [],
           "description":        loremIpsum1,
           "budget_breakdown":   loremIpsum2,
