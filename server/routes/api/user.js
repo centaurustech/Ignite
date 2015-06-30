@@ -35,11 +35,23 @@ router.get('/user/currentUser', function(req, res) {
 });
 
 /**
- * Retrieve all projects associated to a user
+ * Retrieve all approved projects associated to a user
  */
 router.get('/user/projects/:id', function(req, res) {
-    Project.find({creator: req.id, is_approved: true}, function(err, projects){
+    Project.find({$and : [{creator: req.id}, {is_approved: true}]}, function(err, projects){
         if(err) { console.error(err); }
+        console.log("APPROVED LENGTH: %d", projects.length);
+        res.json(projects);
+    });
+});
+
+/**
+ * Retrieve all non approved projects associated to a user
+ */
+router.get('/user/pendingProjects/:id', function(req, res) {
+    Project.find({$and : [{creator: req.id}, {is_approved: false}]}, function(err, projects){
+        if(err) { console.error(err); }
+        console.log("PENDING LENGTH: %d", projects.length);
         res.json(projects);
     });
 });

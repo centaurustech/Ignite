@@ -39,6 +39,10 @@ angular.module('UserService', []).factory('User', ['$http', function($http) {
             return $http.get('/api/user/projects/' + user_id);
         },
         
+        getPendingProjects: function(user_id) {
+            return $http.get('/api/user/pendingProjects/' + user_id);  
+        },
+        
         // Logout the current user.
         logout : function() {
             return $http.post('/api/user/logout');
