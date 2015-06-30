@@ -6,13 +6,13 @@
 	<h3>End Date</h3>
 	{{ project.end_date | date }}<br/>
 	<h3>Budget</h3>
-	{{ project.budget }}<br/>
+	${{ project.budget | number }}<br/>
 	<h3>Funded</h3>
-	{{ project.funded }}<br/>
+	${{ project.funded | number }}<br/>
 	<h3>Description</h3>
 	{{ project.description }}<br/>
 	<h3>Creator</h3>
-	{{ project.creator }}<br/>
+	{{ project.creator.first_name + " " + project.creator.last_name }}<br/>
 	<h3>Challenges</h3>
 	{{ project.challenges }}<br/>
 	<h3>City</h3>
@@ -23,7 +23,7 @@
 	<h1>FundIT</h1>
 	<span style="color: red;">{{ message }} </span>
 	<form name="fundForm" ng-submit="fundForm.$valid && fundProject()" novalidate>
-		<input type='text' name='amount' ng-model="fundAmount" required/><br/>
+		<input type='number' name='amount' ng-model="fundAmount" required/><br/>
 		<button type='submit'>FundIT</button>
 	</form>
 </div>

@@ -36,21 +36,44 @@ var projectSchema = mongoose.Schema({
 // <---- Methods ---->
 
 /**
+ * Populate the project model with all of the fields that require populating
+ * There are fields that hold the id as a reference, such as creator.
+ * These need to be populated for the html in order to show the actual values it is referring to.
+ */
+ 
+ projectSchema.methods.populateAll = function(callback) {
+      this.populate([{path:'creator',  model: 'User'},
+                     {path:'city',     model: 'City'},
+                     {path:'category', model: 'Category'}], 
+                     function(err, proj) {
+                        return callback(null, proj);                                        
+                     });    
+ }
+
+/**
  * Create a new backer, add it to the database, and add the backer id to the project.
  * If the backer already exists, update the fund.
  */
 projectSchema.methods.addBacker = function(backer_id, funded, callback) {
     var project = this;
     
+    var query = Backer.findOne({'user_id': backer_id, 'project_id': project._id });
+                      
     // Check if the user has already backed the project
-    Backer.findOne({'user_id': backer_id, 'project_id': project._id}, function(err, backer) {
-        if(err) { console.error(err); }
-          
+    query.exec(function(err, backer) {
+        if(err) { console.error(err); return; }
         if(backer) {
             // Update funded with new funded
             backer.funded += +funded;
             backer.save(function(err, result) {
-                return callback(null, project);    
+                project.funded = Number(project.funded) + Number(funded);
+                project.save(function(err, proj) {
+                        if(err) { console.error(err); }
+                        
+                        proj.populateAll(function(err, project) {
+                            return callback(null, project);
+                        });     
+                });  
             }); 
          } else {
              // Create a new backer and add the _id to the project.
@@ -60,13 +83,16 @@ projectSchema.methods.addBacker = function(backer_id, funded, callback) {
             newBacker.project_id = project._id;
 
             newBacker.save(function(err, result) {
-                if(err) { callback(err); }
+                if(err) { console.error(err); }
                                 
                 project.backers.push(result._id);
                 project.funded = Number(project.funded) + Number(funded);
                 project.save(function(err, proj) {
                         if(err) { console.error(err); }
-                        return callback(null, proj);        
+                        
+                        proj.populateAll(function(err, project) {
+                            return callback(null, project);
+                        });
                 });
             });
          } 
@@ -109,7 +135,6 @@ projectSchema.methods.addFollower = function(user_id, callback) {
         
         // User not found
         if(!user) {    
-            console.log("No User Found");
             return callback(null, project);     
         } 
         
@@ -144,7 +169,6 @@ projectSchema.methods.removeFollower = function(user_id, callback) {
         
         // User not found
         if(!user) {    
-            console.log("No User Found");
             return callback(null, project);     
         } 
         
@@ -168,6 +192,27 @@ projectSchema.methods.removeFollower = function(user_id, callback) {
                 }
             }
             
+            project.save(function(err, proj) {
+                    if(err) { console.error(err); }
+                    return callback(null, proj);        
+            });
+        });
+    });
+};
+
+projectSchema.methods.addCreator = function(user_id, callback) {
+    var project = this;
+    
+    // Check if the user has already backed the project
+    User.findOne({'_id': user_id}, function(err, user) {
+        if(err) { console.error(err); }
+        
+        user.projects.push(project._id);
+
+        user.save(function(err, resultUser) {
+            if(err) { callback(err); }      
+            // Add the user to the followers of project              
+            project.creator = resultUser._id;
             project.save(function(err, proj) {
                     if(err) { console.error(err); }
                     return callback(null, proj);        

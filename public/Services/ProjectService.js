@@ -1,9 +1,10 @@
+/// <reference path="../../typings/angularjs/angular.d.ts"/>
 /**
  * Angular factory used for all CRUD operations for the MoProjectdel model.
  * This module can be included into any other module as a dependency, 
  * the factory associated with this module is used for the CRUD operations.
  */ 
-angular.module('ProjectService', []).factory('Project', ['$http', function($http) {
+angular.module('ProjectService', []).factory('Project', ['$http', '$rootScope', function($http, $rootScope) {
 
     return {
         // call to get all projects
@@ -14,6 +15,7 @@ angular.module('ProjectService', []).factory('Project', ['$http', function($http
         post : function(project, image) {
             
             var formData = new FormData();
+            formData.append('user', angular.toJson($rootScope.user));
             formData.append('file', image);
             formData.append('project', angular.toJson(project));
             

@@ -60,6 +60,7 @@ router.get('/project/cities', function(req, res) {
  */
 router.get('/project/:id', function(req, res) {
     var query = Project.findOne({"_id": req.id})
+        .populate({path: 'creator', model: 'User'})
         .populate({path: 'category', model: 'Category'})
         .populate({path: 'city', model: 'City'});
     
@@ -83,8 +84,12 @@ router.get('/project/:id', function(req, res) {
  *     /api/project
  */
 router.get('/project', function(req, res, next) {
-    
-    Project.find(function(err, projects) {
+    var query = Project.find()
+        .populate({path: 'creator', model: 'User'})
+        .populate({path: 'category', model: 'Category'})
+        .populate({path: 'city', model: 'City'});
+        
+    query.exec(function(err, projects) {
        if(err) { return next(err); } 
        
        res.json(projects);
@@ -103,6 +108,7 @@ router.get('/project', function(req, res, next) {
  *     /api/project/
  */
 router.post('/project', function(req, res, next) {
+    var userJSON    = JSON.parse(req.body.user);
     var projectJSON = JSON.parse(req.body.project);
     var resources = projectJSON.resources;
     var city = projectJSON.city;
@@ -132,10 +138,14 @@ router.post('/project', function(req, res, next) {
     project.setCity(city, function(err, project) {
        if(err) console.error(err);
        // Set the category for the project.
-       project.setCategory(category, function(err, data) {
+       project.setCategory(category, function(err, project) {
            if(err) console.error(err);
-           console.log(data._id);
-           res.end(String(data._id));           
+           // Set the creator for the project.
+           project.addCreator(userJSON._id, function(err, project) {
+                if(err) console.error(err);
+                  
+                res.end(String(project._id));    
+           });        
        }); 
     });
 });
@@ -192,19 +202,21 @@ router.post('/project/:id/add_backer', function(req, res, next) {
     var backer_id = req.query.backer_id;
     var funded = req.query.funded; 
     
+    console.log(req.query);
+    
     var query = Project.findOne({"_id": req.id});
     
     query.exec(function(err, project) {
         if(err) {
             console.error(err);
+            return;
         }
         
         if(!project) {
             res.send("Not Found");
         } else {
             project.addBacker(backer_id, funded, function(err, project) {
-                if(err) { console.error(err); }
-                
+                if(err) { console.error(err); return;}
                 res.json(project); 
              });
         }

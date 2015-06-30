@@ -15,7 +15,8 @@ var userSchema = mongoose.Schema({
 		email: 		 	 { type: String,   default: ""    	       						    },
 		is_budget_owner: { type: Boolean,  default: false 		           					},
 		is_approver: 	 { type: Boolean,  default: false 							        },
-		following:		 { type: [Schema.ObjectId], ref: 'Project'						    }
+		following:		 { type: [Schema.ObjectId], ref: 'Project'						    },
+		projects:		 { type: [Schema.ObjectId], ref: 'Project'							}
 });
 
 

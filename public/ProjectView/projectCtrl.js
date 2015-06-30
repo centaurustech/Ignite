@@ -24,7 +24,7 @@
 		
 		$scope.fundProject = function() {
 			$scope.project.funded += +$scope.fundAmount;
-			Project.addBacker($scope.projectId, $rootScope._id, $scope.fundAmount).
+			Project.addBacker($scope.projectId, $rootScope.user._id, $scope.fundAmount).
 				success(function(data) {
 					$scope.project = data;
 				})
@@ -48,19 +48,15 @@
 		$scope.categories;
 		Project.getCategories().success(function(categories) {
 			$scope.categories = categories;
-			console.log($scope.categories);
 		});
 		
 		// Retrieve the cities to select from
 		$scope.cities;
 		Project.getCities().success(function(cities) {
 			$scope.cities = cities;
-			console.log($scope.cities);
 		});
 		
-		// 
 		$scope.createProject = function() {
-			$scope.form.creator = $rootScope.user._id;
 			var project_image = $scope.project_image;
 			// Attach the project in the form and project_image to the POST request.
 			Project.post($scope.form, project_image)

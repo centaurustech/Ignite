@@ -55,7 +55,6 @@ router.post('/user/register', function(req, res) {
 
 /* POST login page to login */
 router.post('/user/login', passport.authenticate('local'), function(req, res) {
-    console.log(req.user);
     res.send(req.user);
 });
 

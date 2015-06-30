@@ -12,7 +12,6 @@
 	app.controller("RegisterController", ["$scope", "$http", "$window", "User", function($scope, $http, $window, User) {
 		$scope.form = {};
 		$scope.message;
-		console.log("register Controller");
 		
 		// TODO: Move to UserService
 		$scope.register = function(){
