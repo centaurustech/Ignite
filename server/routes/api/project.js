@@ -10,13 +10,32 @@ var Project = require('../../db/project');
 var Category = require('../../db/category');
 var City = require('../../db/city');
 
-var fs = require('fs');
-
 // Middleware to retrieve the id and attach it to the req object.
 router.param('id', function(req, res, next, id) {
     req.id = id;
     return next();
 });
+
+
+///**
+// * Retrieve all projects that are under a single category
+// * identified by the category name.
+// * 
+// * <Usage>
+// *      /api/project/byCategory?category=[name]
+// */
+//router.get('/project/byCategory', function(req, res) {
+//    var categoryName = req.query.category;
+//    
+//    var query = Category.find({name: categoryName}, 'projects')
+//                        .populate('projects');
+//    query.exec(function(err, projects) {
+//        if(err) { console.error(err); return; }
+//        
+//        
+//    });
+//});
+
 
 /**
  * Retrieve all categories.
@@ -94,7 +113,6 @@ router.get('/project', function(req, res, next) {
        
        res.json(projects);
     });
-    
 });
 
 

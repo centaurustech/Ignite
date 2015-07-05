@@ -21,13 +21,13 @@ var userSchema = mongoose.Schema({
 
 
 // <---- Methods ---->
-userSchema.methods.populateAll = function(callback) {
-     var schema = this;
-     schema.populate({path:'projects',  model: 'Project'}, 
-                     function(err, user) {
-                           return callback(err, user);
-                     });    
-};
+//userSchema.methods.populateAll = function(callback) {
+//     var schema = this;
+//     schema.populate({path:'projects',  model: 'Project'}, 
+//                     function(err, user) {
+//                           return callback(err, user);
+//                     });    
+//};
 
 // Include the passport plugin to allow this model to be used as the authentication model.
 userSchema.plugin(passportLocalMongoose);
