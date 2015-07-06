@@ -12,8 +12,8 @@
 		<span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-click="dropDownClick()"></span>
 	</div>
 	<div>
-		<div ng-repeat="project in (filteredProjects = ( projects | filter:categoryFilter | orderBy:orderByFilter ))" class="col-md-3 project-gallery project-filter-item">
-			<span ng-click="openProject(project._id)"><img ng-src="{{ project.image }}" class="project-gallery-image"/></span>
+		<div ng-repeat="project in (filteredProjects = ( projects | categoryFilter:categoryFilterId | orderBy:orderByFilter ))" class="col-md-3 project-gallery project-filter-item">
+			<span ng-click="openProject(project._id, $index)"><img ng-src="{{ project.image }}" class="project-gallery-image"/></span>
 			<strong>{{project.title}}</strong><br/>
 			by {{ project.creator.first_name + " " + project.creator.last_name }}<br/><br/>
 			<div class="project-gallery-description">{{ project.description }}</div><br/>

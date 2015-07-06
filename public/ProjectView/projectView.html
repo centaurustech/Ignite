@@ -1,39 +1,62 @@
-<div class="modal">
+<div class="modal project-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
-		<h1>{{ project.title }}</h1><br/>
-		<img class="project-image" ng-src="{{ project.image }}"/>
-		<h3>Start Date</h3>
-		{{ project.start_date | date }}<br/>
-		<h3>End Date</h3>
-		{{ project.end_date | date }}<br/>
-		<h3>Budget</h3>
-		${{ project.budget | number }}<br/>
-		<h3>Funded</h3>
-		${{ project.funded | number }}<br/>
-		<h3>Backers</h3>
-		<div ng-repeat="backer in project.backers">
-			{{backer.user_id.first_name + " " + backer.user_id.last_name }}<br/>
-			${{backer.funded | number}}
-		</div>
-		
-		<h3>Description</h3>
-		{{ project.description }}<br/>
-		<h3>Creator</h3>
-		{{ project.creator.first_name + " " + project.creator.last_name }}<br/>
-		<h3>Challenges</h3>
-		{{ project.challenges }}<br/>
-		<h3>City</h3>
-		{{ project.city.name }}<br/>
-		<h3>Category</h3>
-		{{ project.category.name }}<br/>
-		<hr/>
-		<h1>FundIT</h1>
-		<span style="color: red;">{{ message }} </span>
-		<form name="fundForm" ng-submit="fundForm.$valid && fundProject()" novalidate>
-			<input type='number' name='amount' ng-model="fundAmount" required/><br/>
-			<button type='submit'>FundIT</button>
-		</form>
+			  <div class="modal-header">
+		        <button type="button" class="close" ng-click="dismissModal()" data-dismiss="modal" aria-hidden="true">&times;</button>
+		      </div>
+			  <div class="modal-body">
+	    		  <div id="projectCarousel" class="carousel slide" data-interval="false" data-ride="carousel" class="row">
+				  <!-- Wrapper for slides -->
+				  <div class="carousel-inner" role="listbox">
+				    <div ng-repeat="project in filteredProjects" class="item row" ng-class="{active: $index==currentIndex}">
+			        <h1>{{ project.title }}</h1><br/>
+						<img class="project-image" ng-src="{{ project.image }}"/>
+						<h3>Start Date</h3>
+						{{ project.start_date | date }}<br/>
+						<h3>End Date</h3>
+						{{ project.end_date | date }}<br/>
+						<h3>Budget</h3>
+						${{ project.budget | number }}<br/>
+						<h3>Funded</h3>
+						${{ project.funded | number }}<br/>
+						<h3>Backers</h3>
+						<div ng-repeat="backer in project.backers">
+							{{backer.user_id.first_name + " " + backer.user_id.last_name }}<br/>
+							${{backer.funded | number}}
+						</div>
+						
+						<h3>Description</h3>
+						{{ project.description }}<br/>
+						<h3>Creator</h3>
+						{{ project.creator.first_name + " " + project.creator.last_name }}<br/>
+						<h3>Challenges</h3>
+						{{ project.challenges }}<br/>
+						<h3>City</h3>
+						{{ project.city.name }}<br/>
+						<h3>Category</h3>
+						{{ project.category.name }}<br/>
+						<hr/>
+						<h1>FundIT</h1>
+						<span style="color: red;">{{ message }} </span>
+						<form name="fundForm" ng-submit="fundForm.$valid && fundProject(project, $index)" novalidate>
+							<input type='number' name='amount' ng-model="project.fundAmount" required/><br/>
+							<button type='submit'>FundIT</button>
+						</form>
+				    </div>
+				  </div>
+				  <!-- Left and right controls -->
+				  <a class="left carousel-control" data-target="#projectCarousel" role="button" data-slide="prev" ng-click="slideLeft()" ng-hide="slideIndex === 0">
+				    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" ></span>
+				    <span class="sr-only">Previous</span>
+				  </a>
+				  <a class="right carousel-control" data-target="#projectCarousel" role="button" data-slide="next" ng-click="slideRight()" ng-hide="slideIndex === filteredProjects.length - 1">
+				    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" ></span>
+				    <span class="sr-only">Next</span>
+				  </a>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
+
+

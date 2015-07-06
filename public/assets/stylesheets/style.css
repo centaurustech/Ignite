@@ -117,14 +117,19 @@ body {
 
 
 
+/* Project Modal */
+.project-image {
+  width: 200px;
+}
 
-
+.project-modal > .modal-dialog {
+  width: 100%;
+  padding-top: 47px;
+}
 
 
 /* ======== Project Gallery ======== */
-.project-image {
-  height: 200px;
-}
+
 
 #down-button {
   position: absolute;

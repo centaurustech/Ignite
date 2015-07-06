@@ -9,6 +9,7 @@ var app = express();
 var Project = require('../../db/project');
 var Category = require('../../db/category');
 var City = require('../../db/city');
+var User = require('../../db/user');
 
 // Middleware to retrieve the id and attach it to the req object.
 router.param('id', function(req, res, next, id) {
@@ -105,12 +106,20 @@ router.get('/project/:id', function(req, res) {
 router.get('/project', function(req, res, next) {
     var query = Project.find({is_approved: true})
         .populate({path: 'creator', model: 'User'})
+        .populate({path: 'category', model: 'Category'})
+        .populate({path: 'backers', model: 'Backer'})
         .populate({path: 'city', model: 'City'});
         
     query.exec(function(err, projects) {
        if(err) { return next(err); } 
        
-       res.json(projects);
+       // Populate users inside of backers separately since 
+       // the original populate cannot populate nested refs.
+       User.populate(projects, {
+           path: 'backers.user_id',
+       }, function(err, projects) {
+           res.json(projects);
+       });
     });
 });
 
@@ -218,8 +227,6 @@ router.post('/project/:id/add_backer', function(req, res, next) {
     // Request objects
     var backer_id = req.query.backer_id;
     var funded = req.query.funded; 
-    
-    console.log(req.query);
     
     var query = Project.findOne({"_id": req.id});
     

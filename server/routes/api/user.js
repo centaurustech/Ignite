@@ -40,7 +40,6 @@ router.get('/user/currentUser', function(req, res) {
 router.get('/user/projects/:id', function(req, res) {
     Project.find({$and : [{creator: req.id}, {is_approved: true}]}, function(err, projects){
         if(err) { console.error(err); }
-        console.log("APPROVED LENGTH: %d", projects.length);
         res.json(projects);
     });
 });
@@ -51,7 +50,6 @@ router.get('/user/projects/:id', function(req, res) {
 router.get('/user/pendingProjects/:id', function(req, res) {
     Project.find({$and : [{creator: req.id}, {is_approved: false}]}, function(err, projects){
         if(err) { console.error(err); }
-        console.log("PENDING LENGTH: %d", projects.length);
         res.json(projects);
     });
 });

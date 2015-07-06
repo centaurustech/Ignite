@@ -8,34 +8,38 @@
 			"ProjectService"
 		]);
 	
-	app.controller("ProjectController", ["$scope", "$rootScope", "Project", "ProjectId", "FilteredProjects", "close", function($scope, $rootScope, Project, ProjectId, FilteredProjects, close) {	
-		// Retrieve the parameter /projectView/:id id
-		$scope.projectId = ProjectId;
-		$scope.project;
-		$scope.message;
+	app.controller("ProjectController", 
+		["$scope", "$rootScope", "Project", "FilteredProjects", "Index", "close", 
+		function($scope, $rootScope, Project, FilteredProjects, Index, close) {	
 		
+		$scope.filteredProjects = FilteredProjects;
+		$scope.message;
+		$scope.currentIndex = Index;
+		$scope.slideIndex = Index;
 		$scope.fundAmount;
 		
-		Project.getById($scope.projectId).success(function(data) {
-			$scope.project = data;
-		});
-		
-		alert(FilteredProjects.length);
-		
-		$scope.fundProject = function() {
-			$scope.project.funded += +$scope.fundAmount;
-			Project.addBacker($scope.projectId, $rootScope._id, $scope.fundAmount).
+		$scope.fundProject = function(project, index) {
+			
+			Project.addBacker(project._id, $rootScope.user._id, project.fundAmount).
 				success(function(data) {
-					$scope.project = data;
+					// Update this project.
+					$scope.filteredProjects[index] = data;
 				})
 				.error(function(data) {
 					$scope.message = data;
 				});
-			
 		};
 		
+		$scope.slideLeft = function() {
+			$scope.slideIndex === 0 ? $scope.filteredProjects.length - 1 : $scope.slideIndex--;
+		}
+		$scope.slideRight = function() {
+			$scope.slideIndex === $scope.filteredProjects.length - 1 ? 0 : $scope.slideIndex++;
+		}
+
+		
 		 $scope.dismissModal = function(result) {
-		    close(result, 200); // close, but give 200ms for bootstrap to animate
+		    close(result); 
 		 };
 		
 	}]);

@@ -16,7 +16,7 @@
 					{
 						paddingTop: '85px',
 						paddingBottom: '10px',
-						normalScrollElements: '#project-gallery'
+						normalScrollElements: '#project-gallery, .modal'
 					}
 				);
 		});
@@ -77,7 +77,7 @@
 		$scope.projects;
 		$scope.categories;
 		$scope.showFilters = false;
-		$scope.categoryFilter = {};
+		$scope.categoryFilterId = "";
 		$scope.orderByFilter = "";
 		
 		// Retrieve projects
@@ -95,7 +95,7 @@
 		});
 		
 		$scope.setCategoryFilter = function(category) {
-			$scope.categoryFilter = { category: category._id };
+			$scope.categoryFilterId = category._id;
 		};
 		
 		// Set the order filter on a property. If it is already selected, reverse the order.
@@ -117,13 +117,15 @@
 			$scope.showFilters = !$scope.showFilters;
 		};
 		
-		$scope.openProject = function(projectId) {
+		$scope.openProject = function(projectId, index) {
 		    ModalService.showModal({
 			    templateUrl: 'ProjectView/projectView.html',
 			    controller: 'ProjectController',
-				inputs: { ProjectId : projectId, FilteredProjects: $scope.filteredProjects }
+				inputs: { FilteredProjects: $scope.filteredProjects, Index: index }
 		    }).then(function(modal) {
-			    modal.element.modal();
+			    modal.element.modal({
+					backdrop: 'static'
+				});
 			    modal.close.then(function(result) {
 			   	    
 			    });
@@ -131,6 +133,22 @@
 		};
 		
 	}]);
+	
+	app.filter('categoryFilter', function() {
+		return function(projects, categoryId) {
+			if(categoryId === "") {
+				return projects;
+			}
+			
+			var resultProjects = [];
+			for(var i = 0; i < projects.length; i++) {
+				if(projects[i].category._id === categoryId) {
+					resultProjects.push(projects[i]);
+				}
+			}
+			return resultProjects;
+		};
+	})
 	
 	/* Footer directive */
 	app.directive('hsbcFooter', function() {
