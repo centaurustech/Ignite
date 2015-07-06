@@ -12,12 +12,15 @@
     <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/angular/angular.min.js"></script>
     <script type="text/javascript" src="/angular-route/angular-route.min.js"></script>
-      
-      
+    <script type="text/javascript" src="/fullpage/jquery.fullPage.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script> 
+     
+    
     <!-- CSS Style Sheets -->
     <link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
     <link rel="stylesheet" type="text/css" href="/assets/stylesheets/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/assets/stylesheets/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="/fullpage/jquery.fullPage.css" />
       
     <!-- User Defined Angular Modules -->
     <script type="text/javascript" src="/indexCtrl.js"></script>
@@ -85,37 +88,6 @@
     </header>
    
    <!-- View Container -->
-   <div ng-view autoscroll="true"></div>
-     
-     
-     <!-- Footer -->
-     <footer>
-      <hr/>
-      	 <div class="row">
-              <div class="col-md-2">
-                  <p class="text-left">&copy; Copyright HSBC Group 2015</p>
-              </div>
-              <div class="col-md-10">
-                  <img src="/assets/images/powered_by_innovate@HSBC.png" class="pull-right powered-by" width="300px"/>
-              </div>
-          </div>
-          
-          <div class="row">
-              <div class="col-md-12 text-left no-margin-top">
-                  <a href="http://home.global.hsbc/gc/home.nsf/gcms?open&ref=UKCM8TQ2BW091144PM04252012" target="_blank">HSBC Privacy Statement</a>
-              </div>
-          </div>
-          
-          <div class="row disclaimer">
-              <div class="col-md-12">
-                  <p class="text-left">DISCLAIMER: Information from this staff website should not be disseminated externally without the document owner's consent and should be treated as internal. Restricted or Highly Restricted information, including price or commercially sensitive information, should not be displayed on staff websites. All information must comply and be handled in accordance with published information Security Risk policies.</p>
-              </div>
-              
-              <div class="col-md-12">
-                  <p class="text-left">Produced by HSBC Global Publishing Services</p>
-              </div>
-          </div>
-      </footer>
-   
+   <div ng-view autoscroll="true"></div>   
   </body>
 </html>  

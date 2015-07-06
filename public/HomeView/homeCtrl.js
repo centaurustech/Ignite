@@ -9,7 +9,20 @@
 		]);
 	
 	app.controller("HomeController", ["$scope", "Project", function($scope, Project) {	
+		$scope.$on('$viewContentLoaded', function(){
+		    angular.element(document.querySelector('#fullpage'))
+				.fullpage(
+					{
+						paddingTop: '85px',
+						paddingBottom: '10px',
+						normalScrollElements: '#project-gallery'
+					}
+				);
+		});
 		
+		$scope.scrollDown = function() {
+			$.fn.fullpage.moveSectionDown();
+		};
 		
 	}]);
 	
@@ -50,69 +63,71 @@
 	}]);
 	
 	
-	/* Expires Soon Directive and Controller */
-	app.directive('expiresSoon', function() {
+	/* Project Gallery Directive and Controller */
+	app.directive('projectGallery', function() {
 		return {
 			restrict: 'E',
-    		templateUrl: 'HomeView/directives/expiresSoon.html',
-			controller: 'ExpiresSoonCtrl'
+    		templateUrl: 'HomeView/directives/projectGallery.html',
+			controller: 'ProjectGalleryCtrl'
   		};
 	});
 	
-	app.controller('ExpiresSoonCtrl', ["$scope", "Project", function($scope, Project) {
+	app.controller('ProjectGalleryCtrl', ["$scope", "Project", "$timeout", function($scope, Project, $timeout) {
 		$scope.projects;
-		$scope.displayNumber = 4;
+		$scope.categories;
+		$scope.showFilters = false;
+		$scope.asc = 'asc';
 		
+		// Retrieve projects
 		Project.get().success(function(data) {
 			$scope.projects = data;	
+			
+			$scope.projects.forEach(function(project) {
+				var days_left = (new Date(project.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
+				project.days_left = project.is_in_progress ? days_left : 0;
+			});
 		});
 		
-		$scope.incrementDisplayNumber = function() {
-			$scope.displayNumber += 4;	
+		Project.getCategories().success(function(data) {
+			$scope.categories = data;
+		});
+		
+		// Add delay in order to populate the projects.
+		$timeout(function() {
+			// Initialize mixitup container.
+			$('#mixitup-container').mixItUp({
+				animation: {
+					duration: 400,
+					effects: 'translateZ(-360px) fade scale(0.11) stagger(96ms)',
+					easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+				}
+			});	
+		}, 1500);
+		
+		$scope.dropDownClick = function() {
+			$scope.showFilters = !$scope.showFilters;
 		};
+		
+		$scope.openProject = function(projectId) {
+		    $modal.open({
+				animation: $scope.animationsEnabled,
+			    templateUrl: 'ProjectView/projectView.html',
+			    controller: 'ProjectController',
+				resolve: {
+					projectId : function() {
+						return projectId;
+					}
+				}
+		    });
+		};
+		
 	}]);
 	
-	/* Funded Directive and Controller */
-	app.directive('funding', function() {
+	/* Footer directive */
+	app.directive('hsbcFooter', function() {
 		return {
 			restrict: 'E',
-    		templateUrl: 'HomeView/directives/funding.html',
-			controller: 'FundingCtrl'
-  		};
-	});
-	
-	app.controller('FundingCtrl', ["$scope", "Project", function($scope, Project) {
-		$scope.projects;
-		$scope.displayNumber = 4;
-		
-		Project.get().success(function(data) {
-			$scope.projects = data;	
-		});
-		
-		$scope.incrementDisplayNumber = function() {
-			$scope.displayNumber += 4;	
+			templateUrl: 'HomeView/directives/hsbcFooter.html',
 		};
-	}]);
-	
-	/* Near Complete Directive and Controller */
-	app.directive('nearComplete', function() {
-		return {
-			restrict: 'E',
-    		templateUrl: 'HomeView/directives/nearComplete.html',
-			controller: 'NearCompleteCtrl'
-  		};
 	});
-	
-	app.controller('NearCompleteCtrl', ["$scope", "Project", function($scope, Project) {
-		$scope.projects;
-		$scope.displayNumber = 4;
-		
-		Project.get().success(function(data) {
-			$scope.projects = data;	
-		});
-		
-		$scope.incrementDisplayNumber = function() {
-			$scope.displayNumber += 4;	
-		};
-	}]);
 })();
