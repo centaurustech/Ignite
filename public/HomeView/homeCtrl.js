@@ -77,7 +77,8 @@
 		$scope.projects;
 		$scope.categories;
 		$scope.showFilters = false;
-		$scope.asc = 'asc';
+		$scope.categoryFilter = {};
+		$scope.orderByFilter = "";
 		
 		// Retrieve projects
 		Project.get().success(function(data) {
@@ -93,6 +94,25 @@
 			$scope.categories = data;
 		});
 		
+		$scope.setCategoryFilter = function(category) {
+			$scope.categoryFilter = { category: category._id };
+		};
+		
+		// Set the order filter on a property. If it is already selected, reverse the order.
+		$scope.setOrderFilter = function(orderBy) {
+			var orderField = orderBy;
+			var is_desc = false;
+			if($scope.orderByFilter != "" && $scope.orderByFilter[0] === '-') {
+				is_desc = true;
+				orderField = orderBy.slice(0);
+			}
+			if($scope.orderByFilter === orderField || $scope.orderByFilter === "-" + orderField) {
+				$scope.orderByFilter = is_desc ? orderField : "-" + orderField;
+			} else {
+				$scope.orderByFilter = "-" + orderBy;	
+			}
+		};
+		
 		$scope.dropDownClick = function() {
 			$scope.showFilters = !$scope.showFilters;
 		};
@@ -101,11 +121,11 @@
 		    ModalService.showModal({
 			    templateUrl: 'ProjectView/projectView.html',
 			    controller: 'ProjectController',
-				inputs: { ProjectId : projectId }
+				inputs: { ProjectId : projectId, FilteredProjects: $scope.filteredProjects }
 		    }).then(function(modal) {
 			    modal.element.modal();
 			    modal.close.then(function(result) {
-			   	    $scope.message = result ? "You said Yes" : "You said No";
+			   	    
 			    });
     		});
 		};

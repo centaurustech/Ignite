@@ -9,7 +9,8 @@
 		 "HomeControllers",
 		 "ProjectControllers",
 		 "ProfileControllers",
-		 "ProjectFilters"
+		 "ProjectFilters",
+		 "ngAnimate"
 		 ]);
 	
 	

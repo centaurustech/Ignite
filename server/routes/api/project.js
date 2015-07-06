@@ -105,7 +105,6 @@ router.get('/project/:id', function(req, res) {
 router.get('/project', function(req, res, next) {
     var query = Project.find({is_approved: true})
         .populate({path: 'creator', model: 'User'})
-        .populate({path: 'category', model: 'Category'})
         .populate({path: 'city', model: 'City'});
         
     query.exec(function(err, projects) {

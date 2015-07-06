@@ -45,7 +45,6 @@ projectSchema.methods.populateAll = function(callback) {
      var schema = this;
       schema.populate([{path:'creator',  model: 'User'},
                      {path:'city',     model: 'City'},
-                     {path:'category', model: 'Category'},
                      {path:'backers',  model: 'Backer'}], 
                      function(err, proj) {
                         

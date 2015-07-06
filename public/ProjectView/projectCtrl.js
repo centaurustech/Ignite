@@ -8,7 +8,7 @@
 			"ProjectService"
 		]);
 	
-	app.controller("ProjectController", ["$scope", "$rootScope", "Project", "ProjectId", "close", function($scope, $rootScope, Project, ProjectId, close) {	
+	app.controller("ProjectController", ["$scope", "$rootScope", "Project", "ProjectId", "FilteredProjects", "close", function($scope, $rootScope, Project, ProjectId, FilteredProjects, close) {	
 		// Retrieve the parameter /projectView/:id id
 		$scope.projectId = ProjectId;
 		$scope.project;
@@ -20,7 +20,7 @@
 			$scope.project = data;
 		});
 		
-		
+		alert(FilteredProjects.length);
 		
 		$scope.fundProject = function() {
 			$scope.project.funded += +$scope.fundAmount;
