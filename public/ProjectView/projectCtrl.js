@@ -8,9 +8,9 @@
 			"ProjectService"
 		]);
 	
-	app.controller("ProjectController", ["$scope", "$rootScope", "$routeParams", "Project", function($scope, $rootScope, $routeParams, Project) {	
+	app.controller("ProjectController", ["$scope", "$rootScope", "Project", "ProjectId", "close", function($scope, $rootScope, Project, ProjectId, close) {	
 		// Retrieve the parameter /projectView/:id id
-		$scope.projectId = $routeParams.projectId;
+		$scope.projectId = ProjectId;
 		$scope.project;
 		$scope.message;
 		
@@ -33,6 +33,10 @@
 				});
 			
 		};
+		
+		 $scope.dismissModal = function(result) {
+		    close(result, 200); // close, but give 200ms for bootstrap to animate
+		 };
 		
 	}]);
 	

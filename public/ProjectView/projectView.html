@@ -1,35 +1,39 @@
-<div ng-controller="ProjectController" class="row">
-	<h1>{{ project.title }}</h1><br/>
-	<img class="project-image" ng-src="{{ project.image }}"/>
-	<h3>Start Date</h3>
-	{{ project.start_date | date }}<br/>
-	<h3>End Date</h3>
-	{{ project.end_date | date }}<br/>
-	<h3>Budget</h3>
-	${{ project.budget | number }}<br/>
-	<h3>Funded</h3>
-	${{ project.funded | number }}<br/>
-	<h3>Backers</h3>
-	<div ng-repeat="backer in project.backers">
-		{{backer.user_id.first_name + " " + backer.user_id.last_name }}<br/>
-		${{backer.funded | number}}
+<div class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<h1>{{ project.title }}</h1><br/>
+		<img class="project-image" ng-src="{{ project.image }}"/>
+		<h3>Start Date</h3>
+		{{ project.start_date | date }}<br/>
+		<h3>End Date</h3>
+		{{ project.end_date | date }}<br/>
+		<h3>Budget</h3>
+		${{ project.budget | number }}<br/>
+		<h3>Funded</h3>
+		${{ project.funded | number }}<br/>
+		<h3>Backers</h3>
+		<div ng-repeat="backer in project.backers">
+			{{backer.user_id.first_name + " " + backer.user_id.last_name }}<br/>
+			${{backer.funded | number}}
+		</div>
+		
+		<h3>Description</h3>
+		{{ project.description }}<br/>
+		<h3>Creator</h3>
+		{{ project.creator.first_name + " " + project.creator.last_name }}<br/>
+		<h3>Challenges</h3>
+		{{ project.challenges }}<br/>
+		<h3>City</h3>
+		{{ project.city.name }}<br/>
+		<h3>Category</h3>
+		{{ project.category.name }}<br/>
+		<hr/>
+		<h1>FundIT</h1>
+		<span style="color: red;">{{ message }} </span>
+		<form name="fundForm" ng-submit="fundForm.$valid && fundProject()" novalidate>
+			<input type='number' name='amount' ng-model="fundAmount" required/><br/>
+			<button type='submit'>FundIT</button>
+		</form>
+		</div>
 	</div>
-	
-	<h3>Description</h3>
-	{{ project.description }}<br/>
-	<h3>Creator</h3>
-	{{ project.creator.first_name + " " + project.creator.last_name }}<br/>
-	<h3>Challenges</h3>
-	{{ project.challenges }}<br/>
-	<h3>City</h3>
-	{{ project.city.name }}<br/>
-	<h3>Category</h3>
-	{{ project.category.name }}<br/>
-	<hr/>
-	<h1>FundIT</h1>
-	<span style="color: red;">{{ message }} </span>
-	<form name="fundForm" ng-submit="fundForm.$valid && fundProject()" novalidate>
-		<input type='number' name='amount' ng-model="fundAmount" required/><br/>
-		<button type='submit'>FundIT</button>
-	</form>
 </div>

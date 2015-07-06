@@ -2,28 +2,20 @@
 	<div>
 		<div id="gallery-filters" class="btn-group btn-group-justified" role="group" aria-label="..." ng-show="showFilters">
 		  <div ng-repeat="category in categories" class="btn-group" role="group">
-		    <button type="button" class="filter btn btn-default" data-filter=".cat-{{category._id}}">{{category.name}}</button>
+		    <button type="button" class="btn btn-default" >{{category.name}}</button>
 		  </div>
 		  <div class="btn-group" role="group">
-		    <button type="button" class="filter btn btn-default" data-filter="all">All</button>
-		  </div>
-		  <div class="btn-group" role="group">
-		    <button type="button" class="sort btn btn-default" data-sort="days-left:desc">Days Left</button>
+		    <button type="button" class="btn btn-default">Days Left</button>
 		  </div>
   		  <div class="btn-group" role="group">
-		    <button type="button" class="sort btn btn-default" data-sort="funded:desc">Funded</button>
+		    <button type="button" class="btn btn-default">Funded</button>
 		  </div>
 		</div>
 		<span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-click="dropDownClick()"></span>
 	</div>
 	<h1 class="col-md-12">Projects!!</h1>
 	<div id="mixitup-container">
-		<!-- Classes to sort on -->
-		<div ng-repeat="project in projects" 
-			 class="mix col-md-3 project-gallery 
-			 		cat-{{ project.category._id }}"
-			 data-days-left="{{ project.days_left }}"
-			 data-funded="{{ project.funded / project.budget }}">
+		<div ng-repeat="project in (filteredProjects = ( projects | filter: 'Project'))" class="col-md-3 project-gallery">
 			<span ng-click="openProject(project._id)"><img ng-src="{{ project.image }}" class="project-gallery-image"/></span>
 			<strong>{{project.title}}</strong><br/>
 			by {{ project.creator.first_name + " " + project.creator.last_name }}<br/><br/>

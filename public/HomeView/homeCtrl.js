@@ -5,7 +5,8 @@
 	var app = angular.module('HomeControllers', 
 		[
 			"UserService",
-			"ProjectService"
+			"ProjectService",
+			"angularModalService"
 		]);
 	
 	app.controller("HomeController", ["$scope", "Project", function($scope, Project) {	
@@ -72,7 +73,7 @@
   		};
 	});
 	
-	app.controller('ProjectGalleryCtrl', ["$scope", "Project", "$timeout", function($scope, Project, $timeout) {
+	app.controller('ProjectGalleryCtrl', ["$scope", "Project", "$timeout", "ModalService", function($scope, Project, $timeout, ModalService) {
 		$scope.projects;
 		$scope.categories;
 		$scope.showFilters = false;
@@ -92,33 +93,21 @@
 			$scope.categories = data;
 		});
 		
-		// Add delay in order to populate the projects.
-		$timeout(function() {
-			// Initialize mixitup container.
-			$('#mixitup-container').mixItUp({
-				animation: {
-					duration: 400,
-					effects: 'translateZ(-360px) fade scale(0.11) stagger(96ms)',
-					easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-				}
-			});	
-		}, 1500);
-		
 		$scope.dropDownClick = function() {
 			$scope.showFilters = !$scope.showFilters;
 		};
 		
 		$scope.openProject = function(projectId) {
-		    $modal.open({
-				animation: $scope.animationsEnabled,
+		    ModalService.showModal({
 			    templateUrl: 'ProjectView/projectView.html',
 			    controller: 'ProjectController',
-				resolve: {
-					projectId : function() {
-						return projectId;
-					}
-				}
-		    });
+				inputs: { ProjectId : projectId }
+		    }).then(function(modal) {
+			    modal.element.modal();
+			    modal.close.then(function(result) {
+			   	    $scope.message = result ? "You said Yes" : "You said No";
+			    });
+    		});
 		};
 		
 	}]);
