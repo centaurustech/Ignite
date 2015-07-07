@@ -40,15 +40,19 @@
 		}
 	]);
 	
-	app.run(function() {
-			    angular.element(document.querySelector('#fullpage'))
-					.fullpage(
-						{
-							paddingTop: '85px',
-							paddingBottom: '10px',
-							normalScrollElements: '#project-gallery, .modal, #profileView'
-						}
-					);
+	app.run(function($rootScope) {
+	    angular.element(document.querySelector('#fullpage'))
+			.fullpage(
+				{
+					paddingTop: '85px',
+					paddingBottom: '10px',
+					normalScrollElements: '#project-gallery, .modal, #profileView'
+				}
+			);
+			
+			$rootScope.$on('$viewContentLoaded', function() {
+				$.fn.fullpage.moveTo(2, 0);
+			});
 	});
 	
 	app.controller("IndexController", ["$scope","$rootScope", "User", "$window", function($scope, $rootScope, User, $window) {
