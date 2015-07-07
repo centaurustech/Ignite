@@ -41,7 +41,6 @@
 	]);
 	
 	app.run(function() {
-			alert("ALSKJDA");
 			    angular.element(document.querySelector('#fullpage'))
 					.fullpage(
 						{

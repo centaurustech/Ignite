@@ -1,11 +1,4 @@
 <div id="profileView" class="row">
-	<div id="user-filters" ng-show="showFilters">
-		<div>
-   	      <input type="radio" name="order" ng-click="setOrderFilter('days_left')">Days Left
-		  <input type="radio" name="order" ng-click="setOrderFilter('funded')">Funded
-		</div>
-	</div>
-	<span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-click="dropDownClick()"></span>
 	<div class="col-md-3">
 		<img class="user-image" ng-src="{{$root.user.image}}"/>
 		<h1>Username</h1>
@@ -26,7 +19,30 @@
 		{{ $root.user.is_approver }}
 	</div>
 	<div id="user-projects" class="col-md-9">
-		<approved-projects></approved-projects>
-		<pending-projects></pending-projects>
+		<span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-click="dropDownClick()"></span>
+		<div id="user-filters" ng-show="showFilters">
+			<input type="radio" name="category" ng-click="setInProgress()">In Progress
+			<input type="radio" name="category" ng-click="setExpired()">Expired
+			<input type="radio" name="category" ng-click="setFullyFunded()">Fully Funded
+			<input type="radio" name="category" ng-click="setFollowing()">Following
+		</div>
+		<div ng-repeat="project in (filteredProjects = ( projects | projectFilter:filterBy ))" class="col-md-3 project-gallery project-filter-item" ng-show="showOwn">
+			<span ng-click="openProject(project._id, $index)"><img ng-src="{{ project.image }}" class="project-gallery-image"/></span>
+			<strong>{{project.title}}</strong><br/>
+			by {{ project.creator.first_name + " " + project.creator.last_name }}<br/><br/>
+			<div class="project-gallery-description">{{ project.description }}</div><br/>
+			<strong>Funded Percent: {{ (project.funded / project.budget) * 100 | number: 0 }}%</strong><br/>
+			Start: {{ project.start_date | date }}<br/>
+			End: {{ project.end_date | date }}
+		</div>
+		<div ng-repeat="project in following" class="col-md-3 project-gallery project-filter-item" ng-hide="showOwn">
+			<span ng-click="openProject(project._id, $index)"><img ng-src="{{ project.image }}" class="project-gallery-image"/></span>
+			<strong>{{project.title}}</strong><br/>
+			by {{ project.creator.first_name + " " + project.creator.last_name }}<br/><br/>
+			<div class="project-gallery-description">{{ project.description }}</div><br/>
+			<strong>Funded Percent: {{ (project.funded / project.budget) * 100 | number: 0 }}%</strong><br/>
+			Start: {{ project.start_date | date }}<br/>
+			End: {{ project.end_date | date }}
+		</div>
 	</div>
 </div>

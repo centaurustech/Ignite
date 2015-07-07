@@ -38,10 +38,54 @@ router.get('/user/currentUser', function(req, res) {
  * Retrieve all approved projects associated to a user
  */
 router.get('/user/projects/:id', function(req, res) {
-    Project.find({$and : [{creator: req.id}, {is_approved: true}]}, function(err, projects){
-        if(err) { console.error(err); }
-        res.json(projects);
+    var query = Project.find({$and : [{creator: req.id}, {is_approved: true}]})
+        .populate({path: 'creator', model: 'User'})
+        .populate({path: 'category', model: 'Category'})
+        .populate({path: 'backers', model: 'Backer'})
+        .populate({path: 'city', model: 'City'});
+    
+    query.exec(function(err, projects) {
+        if(err) { console.error(err); } 
+       
+       // Populate users inside of backers separately since 
+       // the original populate cannot populate nested refs.
+       User.populate(projects, {
+           path: 'backers.user_id',
+       }, function(err, projects) {
+           res.json(projects);
+       }); 
     });
+});
+
+/**
+ * Retrieve all project that the user is following
+ */
+router.get('/user/followedProjects/:id', function(req, res) {
+   User.findById( {_id: req.id}, function(err, user) {
+       if(err) { console.error(err); }
+       
+       var projectIds = user.following;
+       
+       var query = Project.find( { _id : { $in : projectIds } })
+        .populate({path: 'creator', model: 'User'})
+        .populate({path: 'category', model: 'Category'})
+        .populate({path: 'backers', model: 'Backer'})
+        .populate({path: 'city', model: 'City'});
+        
+           query.exec(function(err, projects) {
+           if(err) { console.error(err); } 
+           
+           // Populate users inside of backers separately since 
+           // the original populate cannot populate nested refs.
+           User.populate(projects, {
+               path: 'backers.user_id',
+           }, function(err, projects) {
+               console.log(projects);
+               res.json(projects);
+           });
+        });
+   });
+       
 });
 
 /**

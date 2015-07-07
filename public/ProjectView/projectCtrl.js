@@ -12,6 +12,7 @@
 		["$scope", "$rootScope", "Project", "FilteredProjects", "Index", "close", 
 		function($scope, $rootScope, Project, FilteredProjects, Index, close) {	
 		
+		
 		$scope.filteredProjects = FilteredProjects;
 		$scope.message;
 		$scope.currentIndex = Index;

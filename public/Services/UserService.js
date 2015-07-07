@@ -35,6 +35,10 @@ angular.module('UserService', []).factory('User', ['$http', function($http) {
     			});
         },
         
+        getFollowedProjects : function(user_id) {
+            return $http.get('/api/user/followedProjects/' + user_id);
+        },
+        
         getProjects : function(user_id) {
             return $http.get('/api/user/projects/' + user_id);
         },
