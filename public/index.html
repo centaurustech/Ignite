@@ -50,7 +50,7 @@
     		      </button>
     			  <!-- User Photo and FundIT Logo-->
     		  	<div class="media">
-    			  <a class="pull-left" href="#/profileView">
+    			  <a class="pull-left" href="#/profileView/{{$root.user._id}}">
     				  	<img id="profile-image" width="50px" class="media-object img-circle" ng-src="{{ $root.user.image }}" alt="Image" >
             </a>
     			  <div class="media-body">
@@ -86,8 +86,19 @@
     	  </div><!-- /.container-fluid -->
     	</nav>
     </header>
-   
+   <div id="fullpage" class="row">
+  	<div class="section">
+  		<carousel></carousel>
+  	</div>
+  	<div class="section">
+      <div ng-view autoscroll="true"></div>   
+  	</div>
+  	<div class="section">
+  	 	<hsbc-footer></hsbc-footer>
+  	</div>
+  </div>
+		
    <!-- View Container -->
-   <div ng-view autoscroll="true"></div>   
+   
   </body>
 </html>  

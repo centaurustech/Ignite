@@ -5,22 +5,10 @@
 	var app = angular.module('HomeControllers', 
 		[
 			"UserService",
-			"ProjectService",
-			"angularModalService"
+			"ProjectService"
 		]);
 	
 	app.controller("HomeController", ["$scope", "Project", function($scope, Project) {	
-		$scope.$on('$viewContentLoaded', function(){
-		    angular.element(document.querySelector('#fullpage'))
-				.fullpage(
-					{
-						paddingTop: '85px',
-						paddingBottom: '10px',
-						normalScrollElements: '#project-gallery, .modal'
-					}
-				);
-		});
-		
 		$scope.scrollDown = function() {
 			$.fn.fullpage.moveSectionDown();
 		};

@@ -1,21 +1,32 @@
-<div ng-controller="ProfileController" class="row">
-	<img class="user-image" ng-src="{{$root.user.image}}"/>
-	<h1>Username</h1>
-	{{ $root.user.first_name }}
-	<h3>Name</h3>
-	{{ $root.user.first_name  + " " +  $root.user.last_name }}
-	<h3>Title</h3>
-	{{ $root.user.title }}
-	<h3>Department</h3>
-	{{ $root.user.department }}
-	<h3>Location</h3>
-	{{ $root.user.location }}
-	<h3>Email</h3>
-	{{ $root.user.email }}
-	<h3>Is A Budget Owner?</h3>
-	{{ $root.user.is_budget_owner }}
-	<h3>Is An Approver?</h3>
-	{{ $root.user.is_approver }}
+<div id="profileView" class="row">
+	<div id="user-filters" ng-show="showFilters">
+		<div>
+   	      <input type="radio" name="order" ng-click="setOrderFilter('days_left')">Days Left
+		  <input type="radio" name="order" ng-click="setOrderFilter('funded')">Funded
+		</div>
+	</div>
+	<span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-click="dropDownClick()"></span>
+	<div class="col-md-3">
+		<img class="user-image" ng-src="{{$root.user.image}}"/>
+		<h1>Username</h1>
+		{{ $root.user.first_name }}
+		<h3>Name</h3>
+		{{ $root.user.first_name  + " " +  $root.user.last_name }}
+		<h3>Title</h3>
+		{{ $root.user.title }}
+		<h3>Department</h3>
+		{{ $root.user.department }}
+		<h3>Location</h3>
+		{{ $root.user.location }}
+		<h3>Email</h3>
+		{{ $root.user.email }}
+		<h3>Is A Budget Owner?</h3>
+		{{ $root.user.is_budget_owner }}
+		<h3>Is An Approver?</h3>
+		{{ $root.user.is_approver }}
+	</div>
+	<div id="user-projects" class="col-md-9">
+		<approved-projects></approved-projects>
+		<pending-projects></pending-projects>
+	</div>
 </div>
-<approved-projects></approved-projects>
-<pending-projects></pending-projects>

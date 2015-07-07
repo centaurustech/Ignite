@@ -8,7 +8,34 @@
 			"ProjectService"
 		]);
 	
-	app.controller("ProfileController", ["$scope", "$rootScope","User", function($scope, $rootScope, User) {	
+	app.controller("ProfileController", ["$scope", "$rootScope","User", "$routeParams", function($scope, $rootScope, User, $routeParams) {	
+		$scope.projects;
+		$scope.categories;
+		$scope.showFilters = false;
+		
+		User.getProjects($routeParams.userId)
+			.success(function(data) {
+				$scope.projects = data;
+		});
+		
+		$scope.dropDownClick = function() {
+			$scope.showFilters = !$scope.showFilters;
+		};
+		
+		$scope.openProject = function(projectId, index) {
+		    ModalService.showModal({
+			    templateUrl: 'ProjectView/projectView.html',
+			    controller: 'ProjectController',
+				inputs: { FilteredProjects: $scope.filteredProjects, Index: index }
+		    }).then(function(modal) {
+			    modal.element.modal({
+					backdrop: 'static'
+				});
+			    modal.close.then(function(result) {
+			   	    
+			    });
+    		});
+		};
 		
 	}]);
 	
