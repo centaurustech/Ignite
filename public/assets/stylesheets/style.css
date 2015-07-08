@@ -40,16 +40,25 @@ body {
 
 
 /* ========= Home Page ========= */
-#myCarousel img {
-  	width: 100%;
-    height: 694px;
+#myCarousel {
+  border-top: 2px #aacf37 solid;
+  border-bottom: 1px #aacf37 solid;
+  background-color: whitesmoke;
+}
+
+#myCarousel .item img {
+  	width: 80%;
+    height: 768px;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 #myCarousel .carousel-button {
-  height: 50px;
-  margin-top: 400%;
-  
+  margin-top: 370%;
+  height: 100px;
 }
+
 
 #myCarousel .carousel-title {
     position: absolute;
@@ -77,6 +86,10 @@ body {
     height:auto;
     margin: auto;
     text-align:center;
+}
+
+#gallery-filters {
+  background-color: orange;
 }
 
 /* Project Gallery Card */
@@ -195,7 +208,7 @@ body {
 
 
 .category-label {
-  background-color: lightgreen;
+  background-color: #aacf37;
   border-radius: 5px;
   text-align: center;
   color: gray;
@@ -207,16 +220,17 @@ body {
 
 .card-bar-section > .progress {
   margin: 0;
-  height: 10px;
+  height: 7px;
   background-image: none;
-  background-color: orange;
+  background-color: #da7226;
+  border-radius: 0px 4px 4px 0px;
   width: 80%;
 }
 
 .card-bar-section > .progress > .progress-bar {
-  height: 10px;
+  height: 7px;
   width: 80%;
-  background-color: limegreen;
+  background-color: #aacf37;
   background-image: none;
 }
 
@@ -226,7 +240,7 @@ body {
 
 .progress-bar-label {
   display: inline-block;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .progress-image {
