@@ -17,7 +17,7 @@
 				<div class="card-banner" style="background-color: {{project.background_color}};">
 					<img class="banner-icon" height="80%" ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg"/>
 					<p class="banner-text">
-						<span class="card-title">{{ project.title | uppercase}}</span><br/>
+						<span class="card-title" ng-click="openProject(project._id, $index)">{{ project.title | uppercase}}</span><br/>
 						<span class="card-creator">{{ project.creator.first_name + " " + project.creator.last_name  | uppercase}}</span>
 					</p>
 					<img height="15%" class="banner-follow" ng-src="/assets/icons/card-icons/starw.svg"/>
