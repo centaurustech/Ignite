@@ -21,7 +21,24 @@
 		User.getProjects($routeParams.userId)
 			.success(function(data) {
 				$scope.projects = data;
+				
+				$scope.projects.forEach(function(project) {
+				var days_left = (new Date(project.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
+				project.days_left = days_left > 0 ? days_left : 0;
+				project.background_color = $scope.selectColorByCategory(project.category.name);
+			});
 		});
+		
+		$scope.selectColorByCategory = function(category_name) {
+			var name_lower = String(category_name).toLowerCase();
+			switch(name_lower) {
+				case "technology": return "#b1b1a6";
+				case "business": return "#53a6be";
+				case "operations": return "#acadbf";
+				case "security": return "#6fbac0";
+				default: return "smokewhite";
+			}
+		}
 		
 		User.getFollowedProjects($routeParams.userId)
 			.success(function(data) {

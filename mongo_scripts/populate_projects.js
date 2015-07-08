@@ -20,7 +20,7 @@ while(cursor.hasNext()) {
 
 
 // Populate categories
-var categories = ["Technology", "Customer Service", "Investment", "HR", "Environment", "Innovation"];
+var categories = ["Technology", "Business", "Security", "Operations"];
 
 for(var i = 0; i < categories.length; i++) {
     db['categories'].insert(

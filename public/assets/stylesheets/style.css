@@ -1,6 +1,8 @@
 body {
   padding-top: 80px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
@@ -39,8 +41,14 @@ body {
 
 /* ========= Home Page ========= */
 #myCarousel img {
-  	min-width: 100%;
-  	height: 400px;
+  	width: 100%;
+    height: 694px;
+}
+
+#myCarousel .carousel-button {
+  height: 50px;
+  margin-top: 400%;
+  
 }
 
 #myCarousel .carousel-title {
@@ -71,6 +79,7 @@ body {
     text-align:center;
 }
 
+/* Project Gallery Card */
 .project-gallery-image {
   width: 100%;
 }
@@ -79,11 +88,6 @@ body {
   margin-bottom: 50px;  
 }
 
-.project-gallery-more-button {
-  width: 100px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 .project-gallery-description {
   height: 100px;
@@ -103,6 +107,93 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
 }
 
+.card-container {
+  font-family: 'Oxygen', sans-serif;
+  height: 280px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background: whitesmoke;
+  border-radius: 8px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border: 2px solid #b9bbbc;
+  
+  
+}
+
+.card-container > .card-banner {
+  width: 100%;
+  height: 28%;
+  border-radius: 5px;
+}
+
+.card-container > .card-bar-section {
+  float: left;
+  width: 30%;
+  height: 72%;
+  padding-top: 5px;
+  
+}
+
+.card-container > .card-info-section {
+  float: left;
+  width: 70%;
+  height: 72%;
+  padding: 10px;
+  border-left: 1px solid gray;
+}
+
+.card-container > .card-info-section > .card-description {
+  /*height: 62%;
+  text-overflow: ellipsis;
+  text-align: justify;
+  padding: 5px;*/
+  
+  
+   display: -webkit-box;
+   height: 58%; 
+   -webkit-line-clamp: 5;
+   -webkit-box-orient: vertical;
+   text-overflow: ellipsis;
+   overflow-y: hidden;
+}
+
+.banner-icon {
+  float: left;
+  margin-right: 10px;
+  margin-left: 25px;
+  margin-top: 8px;
+}
+
+.banner-text {
+  padding-top: 10px;
+  padding-left: 15px;
+  text-overflow: ellipsis;
+  width: 67%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.banner-follow {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.card-title {
+  font-size: 1.7em;
+  color: #484A4A;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.card-creator {
+  font-size: 1.1em;
+  color: white;
+  line-height: 0px;
+}
+
+
 .category-label {
   background-color: lightgreen;
   border-radius: 5px;
@@ -114,6 +205,35 @@ body {
   margin: 5px;
 }
 
+.card-bar-section > .progress {
+  margin: 0;
+  height: 10px;
+  background-image: none;
+  background-color: orange;
+  width: 80%;
+}
+
+.card-bar-section > .progress > .progress-bar {
+  height: 10px;
+  width: 80%;
+  background-color: limegreen;
+  background-image: none;
+}
+
+.progress > .progress-bar-section {
+  margin: 0;
+}
+
+.progress-bar-label {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.progress-image {
+  vertical-align: top;
+  margin-top: 5px;
+  margin-left: 6px;
+}
 
 
 
@@ -140,7 +260,9 @@ body {
 #project-gallery {
   max-height: 100%;
   height: 90vh;
-  width: 100%;
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
   
   overflow-y: scroll;
 }
