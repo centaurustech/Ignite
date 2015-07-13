@@ -8,8 +8,11 @@
     "bootstrap": "3.3.4",
     "angular-route": "1.4.1",
     "angular-modal-service": "~0.6.6",
-    "fullPage": "2.6.6",
+    "fullpage": "2.6.6",
     "jquery": "2.1.4",
     "jqueryui": "~1.11.4"
+  },
+  "resolutions": {
+    "angular": "1.4.1"
   }
 }
