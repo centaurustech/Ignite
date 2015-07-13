@@ -1,3 +1,11 @@
+<!-- Filters -->
+<div ng-mouseover="showFilters()" style="height: 10px;"></div>
+<div id="user-filters" ng-mouseover="showFilters()" ng-mouseenter="showFilters()" ng-mouseleave="hideFilters()">
+	<input type="radio" name="category" ng-click="setInProgress()">In Progress
+	<input type="radio" name="category" ng-click="setExpired()">Expired
+	<input type="radio" name="category" ng-click="setFullyFunded()">Fully Funded
+	<input type="radio" name="category" ng-click="setFollowing()">Following
+</div>
 <div id="profileView" class="row">
 	<div class="col-md-3">
 		<img class="user-image media-object img-circle" ng-src="{{ user.image }}"/>
@@ -19,13 +27,6 @@
 		{{ user.is_approver }}
 	</div>
 	<div id="user-projects" class="col-md-9">
-		<span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-click="dropDownClick()"></span>
-		<div id="user-filters" ng-show="showFilters">
-			<input type="radio" name="category" ng-click="setInProgress()">In Progress
-			<input type="radio" name="category" ng-click="setExpired()">Expired
-			<input type="radio" name="category" ng-click="setFullyFunded()">Fully Funded
-			<input type="radio" name="category" ng-click="setFollowing()">Following
-		</div>
 		<div ng-repeat="project in (filteredProjects = ( projects | projectFilter:filterBy ))" class="col-md-6 col-sm-12 col-lg-6 project-gallery project-filter-item" ng-show="showOwn">
 			<div class="card-container">
 				<div class="card-banner" style="background-color: {{project.background_color}};">

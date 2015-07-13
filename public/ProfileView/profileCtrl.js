@@ -8,8 +8,8 @@
 			"ProjectService"
 		]);
 	
-	app.controller("ProfileController", ["$scope", "$rootScope","User", "$routeParams", "ModalService",
-				   function($scope, $rootScope, User, $routeParams, ModalService) {	
+	app.controller("ProfileController", ["$scope", "$rootScope", "$timeout", "User", "$routeParams", "ModalService",
+				   function($scope, $rootScope, $timeout, User, $routeParams, ModalService) {	
 		$scope.filteredProjects;
 		$scope.projects;
 		$scope.following;
@@ -88,6 +88,32 @@
 		
 		$scope.setFollowing = function() {
 			$scope.showOwn = false;
+		}
+		
+		var isFilterVisible = true;
+		// Hide the filter after 6 seconds
+		var to = $timeout(function() {			
+			$('#user-filters').addClass("height-zero", 1000);
+			isFilterVisible = false;
+		}, 6000);
+		
+		// If the filters are hidden, display the filters
+		$scope.showFilters = function() {
+			$timeout.cancel(to);
+			if(!isFilterVisible) {
+				$('#user-filters').removeClass("height-zero", 10);
+				isFilterVisible = true;	
+			}
+		};
+		
+		// If the filters are shown, hide them after 2 seconds
+		$scope.hideFilters = function() {
+			if(isFilterVisible) {
+				to = $timeout(function() {
+					$('#user-filters').addClass("height-zero", 1000);
+					isFilterVisible = false;	
+				}, 2000);
+			}
 		}
 		
 	}]);

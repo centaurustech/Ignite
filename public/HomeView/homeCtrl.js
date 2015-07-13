@@ -106,9 +106,31 @@
 			}
 		};
 		
-		$scope.dropDownClick = function() {
-			$scope.showFilters = !$scope.showFilters;
+		var isFilterVisible = true;
+		// Hide the filter after 6 seconds
+		var to = $timeout(function() {			
+			$('#gallery-filters').addClass("height-zero", 1000);
+			isFilterVisible = false;
+		}, 6000);
+		
+		// If the filters are hidden, display the filters
+		$scope.showFilters = function() {
+			$timeout.cancel(to);
+			if(!isFilterVisible) {
+				$('#gallery-filters').removeClass("height-zero", 10);
+				isFilterVisible = true;	
+			}
 		};
+		
+		// If the filters are shown, hide them after 2 seconds
+		$scope.hideFilters = function() {
+			if(isFilterVisible) {
+				to = $timeout(function() {
+					$('#gallery-filters').addClass("height-zero", 1000);
+					isFilterVisible = false;	
+				}, 2000);
+			}
+		}
 		
 		$scope.openProject = function(projectId, index) {
 		    ModalService.showModal({

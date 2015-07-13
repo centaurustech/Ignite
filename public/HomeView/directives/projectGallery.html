@@ -1,6 +1,7 @@
 <div id="project-gallery" class="row">
 	<div>
-		<div id="gallery-filters" ng-show="showFilters">
+		<div ng-mouseover="showFilters()" style="height: 10px;"></div>
+		<div id="gallery-filters" ng-mouseover="showFilters()" ng-mouseenter="showFilters()" ng-mouseleave="hideFilters()">
 			<span ng-repeat="category in categories">
 		    		<input  type="radio" name="category" ng-click="setCategoryFilter(category)">{{category.name}}
 			</span>
@@ -9,7 +10,6 @@
 			  <input type="radio" name="order" ng-click="setOrderFilter('funded')">Funded
 			</div>
 		</div>
-		<span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-click="dropDownClick()"></span>
 	</div>
 	<div>
 		<div ng-repeat="project in (filteredProjects = ( projects | categoryFilter:categoryFilterId | orderBy:orderByFilter ))" class="col-md-6 col-sm-12 col-lg-4">

@@ -88,8 +88,27 @@ body {
     text-align:center;
 }
 
-#gallery-filters {
-  background-color: orange;
+#gallery-filters, #user-filters {
+  position: absolute;
+  top: 74px;
+  left: 0px;
+  
+  z-index: 1;
+    
+  background: #da7226;
+  height: 100px;
+  width: 100%;
+  
+}
+
+#gallery-filters.height-zero,
+#user-filters.height-zero {
+  height: 0px;
+  visibility: hidden;
+}
+
+.filters-hidden {
+  height: 2px;
 }
 
 /* Project Gallery Card */
