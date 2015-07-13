@@ -13,7 +13,7 @@ var projectImage = "/assets/images/default_project_image.jpg";
 
 var admin_id;
 
-var cursor = db['users'].find({username: "Alex"});
+var cursor = db['users'].find({username: "Employee1"});
 while(cursor.hasNext()) {
     admin_id = cursor.next()._id;
 }
@@ -36,7 +36,6 @@ cursor = db['categories'].find();
 while(cursor.hasNext()) {
     categoryIDs.push(cursor.next()._id);
 }
-
 
 var cities = ["Vancouver", "Seattle", "Cairo", "Burnaby"];
 
@@ -77,12 +76,12 @@ for(var i = 1; i <= 20; i++) {
           "challenges":         loremIpsum3,
           "value_proposition":  loremIpsum4,
           "is_approved":        (Math.random() < 0.5 ? true : false ),
-          "category":           categoryIDs[(Math.random(categoryIDs.length)).toFixed(0)],
+          "category":           categoryIDs[(Math.floor(Math.random() * ( 1 + (categoryIDs.length - 1) - 0 ) ) + 0)],
           "backers":            [],
           "creator":            admin_id,
           "comments":           [],
           "team_members":       [],
-          "city":               cityIDs[(Math.random(cityIDs.length)).toFixed(0)],
+          "city":               cityIDs[(Math.floor( Math.random() * ( 1 + (cityIDs.length - 1) - 0 ) ) + 0)],
           "followers":          [],
           "country":            "",
           "is_in_progress":     (Math.random() < 0.5 ? true : false ),

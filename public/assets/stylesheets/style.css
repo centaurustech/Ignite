@@ -196,6 +196,10 @@ body {
   margin-top: 15px;
 }
 
+.card-title:hover {
+  cursor: pointer;
+}
+
 .card-creator {
   font-size: 1.1em;
   color: white;
@@ -345,6 +349,10 @@ body {
   display: block;
   margin-left: -15px;
   margin-top: 20px;
+}
+
+.project-view-sidebar .creator-img:hover {
+  cursor: pointer;
 }
 
 .project-view-sidebar .side-cat-icon {
