@@ -24,6 +24,20 @@ router.param('id', function(req, res, next, id) {
 // ======================================================== //
 
 /**
+ * Retrieve a user by id
+ */
+router.get('/user/', function(req, res) {
+    var id = req.query.id;
+    var query = User.findById({_id : id});
+    
+    query.exec(function(err, data) {
+        if(err) { console.error(err); }
+        res.json(data);
+    })
+});
+
+
+/**
  * Retrieve the current user
  */
 router.get('/user/currentUser', function(req, res) {

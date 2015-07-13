@@ -5,7 +5,7 @@ body {
   padding: 0;
 }
 
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+.nav, .pagination, .panel-title a { cursor: pointer; }
 
 
 
@@ -157,10 +157,6 @@ body {
 }
 
 .card-container > .card-info-section > .card-description {
-  /*height: 62%;
-  text-overflow: ellipsis;
-  text-align: justify;
-  padding: 5px;*/
   
   
    display: -webkit-box;
@@ -251,15 +247,6 @@ body {
 
 
 
-/* Project Modal */
-.project-image {
-  width: 200px;
-}
-
-.project-modal > .modal-dialog {
-  width: 100%;
-  padding-top: 47px;
-}
 
 
 /* ======== Project Gallery ======== */
@@ -345,3 +332,138 @@ body {
   overflow-y: scroll;
   
 }
+
+/* Project View (Modal) */
+#projectCarousel {
+  margin-top: 2px;  
+}
+
+.project-view-slide > .project-view-container {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  
+  border: 1px solid #b9bbbc;
+  border-radius: 10px;
+  
+}
+
+.project-view-sidebar .creator-img {
+  width: 50px;
+  display: block;
+  margin-left: -15px;
+  margin-top: 20px;
+}
+
+.project-view-sidebar .side-cat-icon {
+  border-radius: 9px 0px 0px 0px;
+  background: #aacf37;
+  margin-left: -15px;
+  margin-right: -15px;
+  padding: 20px;
+}
+
+.project-view-sidebar .side-cat-icon img {
+  width: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  
+}
+
+.project-view-sidebar img.progress-image {
+  margin-left: -15px;
+  height: 35px;
+  margin-top: 10px;
+  
+}
+
+.project-view-sidebar .progress,
+.project-view-sidebar .progress-bar {
+  margin-left: -15px;
+  width: 100%;
+  border-radius: 0px;
+  margin-bottom: -10px;
+}
+
+.project-view-sidebar .progress {
+  background-color: #da7226;
+  background-image: none;
+}
+.project-view-sidebar .progress-bar {
+  background-color: #aacf37;
+  background-image: none;  
+}
+
+.project-view-container .image-numbers .col-md-5 h3 {
+  margin: 0;
+}
+
+.project-view-container .project-view-main .project-title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #aacf37;
+}
+
+.project-view-container .project-view-main .project-title h1 {
+  font-weight: 300;
+}
+
+.project-image {
+  width: 100%;
+}
+
+.project-view-main .row {
+  margin-bottom: 30px;
+}
+
+.project-view-main .details-section {
+    margin-bottom: 0px;
+}
+
+.project-view-main .summary-invite .col-md-6:nth-child(1) {
+  border-right: 1px solid #b9bbbc;
+}
+
+.project-view-main .details-section div:nth-child(1) {
+  border-right: 1px solid black;
+}
+
+.project-view-section-header {
+  font-size: 1.5em;
+}
+
+.project-view-main {
+  border-left: 1px solid #b9bbbc;
+}
+
+.project-view-main div p {
+  margin-top: 10px;
+  font-weight: lighter;
+}
+
+.project-view-main .progress, 
+.project-view-main .progress-bar {
+  height: 30px;
+  background-image: none;
+  border-radius: 0px;
+}
+
+.project-view-main .progress-bar {
+  background-color: #aacf37;
+  padding-top: 4px;
+}
+
+.project-view-main .progress {
+  background: none;
+  margin-left: -15px;
+  margin-top: 20px;
+}
+
+
+
+.project-modal > .modal-dialog {
+  width: 100%;
+  margin-top: 74px;
+}
+

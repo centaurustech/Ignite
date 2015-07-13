@@ -7,6 +7,11 @@
 angular.module('UserService', []).factory('User', ['$http', function($http) {
     
     return {
+        // Get a user's information by id
+        getUser : function(id) {
+            return $http.get('/api/user?id=' + id);
+        },
+        
         // Get the current logged in user
         getCurrentUser : function() {
             return $http.get('/api/user/currentUser');

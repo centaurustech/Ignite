@@ -1,22 +1,22 @@
 <div id="profileView" class="row">
 	<div class="col-md-3">
-		<img class="user-image" ng-src="{{$root.user.image}}"/>
+		<img class="user-image media-object img-circle" ng-src="{{ user.image }}"/>
 		<h1>Username</h1>
-		{{ $root.user.first_name }}
+		{{ user.first_name }}
 		<h3>Name</h3>
-		{{ $root.user.first_name  + " " +  $root.user.last_name }}
+		{{ user.first_name  + " " +  user.last_name }}
 		<h3>Title</h3>
-		{{ $root.user.title }}
+		{{ user.title }}
 		<h3>Department</h3>
-		{{ $root.user.department }}
+		{{ user.department }}
 		<h3>Location</h3>
-		{{ $root.user.location }}
+		{{ user.location }}
 		<h3>Email</h3>
-		{{ $root.user.email }}
+		{{ user.email }}
 		<h3>Is A Budget Owner?</h3>
-		{{ $root.user.is_budget_owner }}
+		{{ user.is_budget_owner }}
 		<h3>Is An Approver?</h3>
-		{{ $root.user.is_approver }}
+		{{ user.is_approver }}
 	</div>
 	<div id="user-projects" class="col-md-9">
 		<span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-click="dropDownClick()"></span>
@@ -31,7 +31,7 @@
 				<div class="card-banner" style="background-color: {{project.background_color}};">
 					<img class="banner-icon" height="80%" ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg"/>
 					<p class="banner-text">
-						<span class="card-title">{{ project.title | uppercase}}</span><br/>
+						<span class="card-title" ng-click="openProject(project._id, $index)">{{ project.title | uppercase}}</span><br/>
 						<span class="card-creator">{{ project.creator.first_name + " " + project.creator.last_name  | uppercase}}</span>
 					</p>
 					<img height="15%" class="banner-follow" ng-src="/assets/icons/card-icons/starw.svg"/>

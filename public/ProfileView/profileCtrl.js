@@ -18,6 +18,13 @@
 		$scope.showOwn = true;
 		$scope.filterBy = "";
 		
+		User.getUser($routeParams.userId)
+			.success(function(data) {
+				console.log(data);
+				$scope.user = data;
+			});
+		
+		
 		User.getProjects($routeParams.userId)
 			.success(function(data) {
 				$scope.projects = data;

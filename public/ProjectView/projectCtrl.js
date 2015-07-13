@@ -9,8 +9,8 @@
 		]);
 	
 	app.controller("ProjectController", 
-		["$scope", "$rootScope", "Project", "FilteredProjects", "Index", "close", 
-		function($scope, $rootScope, Project, FilteredProjects, Index, close) {	
+		["$scope", "$rootScope", "$location", "Project", "FilteredProjects", "Index", "close", 
+		function($scope, $rootScope, $location, Project, FilteredProjects, Index, close) {	
 		
 		
 		$scope.filteredProjects = FilteredProjects;
@@ -24,6 +24,9 @@
 			Project.addBacker(project._id, $rootScope.user._id, project.fundAmount).
 				success(function(data) {
 					// Update this project.
+					var days_left = (new Date(data.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
+					data.days_left = days_left > 0 ? days_left : 0;
+					
 					$scope.filteredProjects[index] = data;
 				})
 				.error(function(data) {
@@ -38,6 +41,11 @@
 			$scope.slideIndex === $scope.filteredProjects.length - 1 ? 0 : $scope.slideIndex++;
 		}
 
+		$scope.closeModalAndRedirect = function() {
+			var url = "/profileView/" + $scope.filteredProjects[$scope.currentIndex].creator._id;
+			$scope.dismissModal();
+			$location.url(url);
+		}
 		
 		 $scope.dismissModal = function(result) {
 		    close(result); 

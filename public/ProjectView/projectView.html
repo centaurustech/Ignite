@@ -1,48 +1,121 @@
 <div class="modal project-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			  <div class="modal-header">
-		        <button type="button" class="close" ng-click="dismissModal()" data-dismiss="modal" aria-hidden="true">&times;</button>
-		      </div>
-			  <div class="modal-body">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="dismissModal()" data-dismiss="modal" aria-hidden="true" style="z-index: 1000;">&times;</button>
+			</div>
+			<div class="modal-body">
+				  
 	    		  <div id="projectCarousel" class="carousel slide" data-interval="false" data-ride="carousel" class="row">
 				  <!-- Wrapper for slides -->
 				  <div class="carousel-inner" role="listbox">
-				    <div ng-repeat="project in filteredProjects" class="item row" ng-class="{active: $index==currentIndex}">
-			        <h1>{{ project.title }}</h1><br/>
-						<img class="project-image" ng-src="{{ project.image }}"/>
-						<h3>Start Date</h3>
-						{{ project.start_date | date }}<br/>
-						<h3>End Date</h3>
-						{{ project.end_date | date }}<br/>
-						<h3>Budget</h3>
-						${{ project.budget | number }}<br/>
-						<h3>Funded</h3>
-						${{ project.funded | number }}<br/>
-						<h3>Backers</h3>
-						<div ng-repeat="backer in project.backers">
-							{{backer.user_id.first_name + " " + backer.user_id.last_name }}<br/>
-							${{backer.funded | number}}
-						</div>
-						
-						<h3>Description</h3>
-						{{ project.description }}<br/>
-						<h3>Creator</h3>
-						{{ project.creator.first_name + " " + project.creator.last_name }}<br/>
-						<h3>Challenges</h3>
-						{{ project.challenges }}<br/>
-						<h3>City</h3>
-						{{ project.city.name }}<br/>
-						<h3>Category</h3>
-						{{ project.category.name }}<br/>
-						<hr/>
-						<h1>FundIT</h1>
-						<span style="color: red;">{{ message }} </span>
-						<form name="fundForm" ng-submit="fundForm.$valid && fundProject(project, $index)" novalidate>
-							<input type='number' name='amount' ng-model="project.fundAmount" required/><br/>
-							<button type='submit'>FundIT</button>
-						</form>
-				    </div>
+				    <div ng-repeat="project in filteredProjects" class="item row project-view-slide" ng-class="{active: $index==currentIndex}">
+			        	<div class="project-view-container row">
+							<!-- Left sidebar -->
+							<div class="project-view-sidebar col-md-2">
+								<div class="side-cat-icon">
+									<img ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg"/>
+								</div>
+								
+								<!-- Creator Image -->
+								<a ng-click="closeModalAndRedirect()"  data-dismiss="modal"><img class="creator-img media-object img-circle" ng-src="{{project.creator.image}}"/></a>
+								
+								<img class="progress-image" height="15px" src="/assets/icons/card-icons/star.svg" style="display: inline;"/>
+							    <p class="progress-bar-label">FOLLOWERS<br/>
+								{{ project.followers.length }} </p>
+								<div class="progress-bar-group">
+									<div class="progress">
+							   	    	<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.funded / project.budget }}%;"></div>
+									</div>
+									<img class="progress-image" height="15px" src="/assets/icons/card-icons/fund.svg"/>
+									<p class="progress-bar-label">FUNDED<br/>
+									{{ (project.funded / 1000) | number:0 }}k  / {{ (project.budget / 1000) | number:0}}k </p>
+								</div>
+								<div class="progress-bar-group">
+								    <div class="progress">
+								  		<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ ((30 - project.days_left) / 30) * 100 }}%;"></div>
+									</div>
+									<img class="progress-image" height="15px" src="/assets/icons/card-icons/clock.svg"/>
+									<p class="progress-bar-label">DAYS LEFT<br/>
+									{{ project.days_left | number:0  }} / 30 </p>
+								</div>
+							</div>
+							<!-- Main Information -->
+							<div class="project-view-main col-md-10">
+								<div class="row col-md-12 project-title">
+									<h1>{{ project.title }}</h1>
+								</div>
+								<!-- Image and Numbers -->
+								<div class="row image-numbers">
+									<div class="col-md-7">
+										<img class="project-image" ng-src="{{ project.image }}"/>
+									</div>
+									
+									<div class="col-md-5">
+										<h3>{{ project.followers.length }}</h3>
+										Followers<br/>
+										<h3>${{ project.funded | number }}</h3>
+										Commited of ${{ project.budget | number }}<br/>
+										<h3>{{ project.days_left | number:0 }}</h3>
+										Days left
+										<form class="fundit-form" name="fundForm" ng-submit="fundForm.$valid && fundProject(project, $index)" novalidate>
+											<input type='number' name='amount' ng-model="project.fundAmount" required/><br/>
+											<button type='submit'>FundIT</button>
+										</form>
+									</div>
+
+								</div>
+								<!-- Description and Invitation -->
+								<div class="row summary-invite">
+									<div class="col-md-6">
+										Summary of this project:
+										<p>{{ project.description }}</p>
+									</div>
+									<div class="col-md-6">
+										<div class="input-group">
+										  <span class="input-group-label">Invite to view:</span>
+										  <input type="email" class="form-control">
+										</div>
+										<div class="input-group">
+										  <span class="input-group-label">Rate this project:</span>
+										  <input type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+								<!-- Value Prop and Challenges -->
+								<div class="row details-section">
+									<div class="col-md-6">
+										<span class="project-view-section-header">Value Proposition:</span> <br/>
+										<p>{{ project.value_proposition }}</p>
+									</div>
+									<div class="col-md-6">
+										<span class="project-view-section-header">Challenges:</span><br/>
+										<p>{{ project.challenges }}</p>
+									</div>
+								</div>
+								<!-- Backers and Comments -->
+								<div class="row details-section">
+									<div class="col-md-6">
+										<span class="project-view-section-header">Backers:</span><br/>
+										<div ng-repeat="backer in project.backers">
+											{{backer.user_id.first_name + " " + backer.user_id.last_name }}<br/>
+											${{backer.funded | number}}
+										</div>
+									</div>
+									<div class="col-md-6">
+										<span class="project-view-section-header">Comments:</span> <br/>
+										{{ project.comments }}
+									</div>
+								</div>
+								<!-- Progress Bar -->
+								<div class="progress">
+								  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ (project.funded / project.budget) * 100 }}%;">
+								  {{ (project.funded / project.budget) * 100 | number:2 }}%
+								  </div>
+								</div>
+							</div>
+					    </div>
+					</div>
 				  </div>
 				  <!-- Left and right controls -->
 				  <a class="left carousel-control" data-target="#projectCarousel" role="button" data-slide="prev" ng-click="slideLeft()" ng-hide="slideIndex === 0">

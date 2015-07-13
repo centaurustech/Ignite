@@ -41,22 +41,11 @@
 				</div>
 				<div class="card-info-section">
 					<p class="card-description">{{project.description}}</p>
-					<img height="65px" src="/assets/images/f.svg"/>
-					<img height="65px" ng-src="{{ project.creator.image }}" style="float: right;"/>
+					<!--<img height="65px" src="/assets/images/f.svg"/>-->
+					<a href="/#/profileView/{{project.creator._id}}"><img height="65px" class="media-object img-circle" ng-src="{{ project.creator.image }}" style="float: right;"/></a>
 				</div>
 			</div>
 		</div>
 	</div>
 	<button id="down-button" class="button" ng-click="scrollDown()">Down</button>
 </div>
-
-
-<!--<div ng-repeat="project in (filteredProjects = ( projects | categoryFilter:categoryFilterId | orderBy:orderByFilter ))" class="col-md-4 project-gallery project-filter-item">
-	<span ng-click="openProject(project._id, $index)"><img ng-src="{{ project.image }}" class="project-gallery-image"/></span>
-	<strong>{{project.title}}</strong><br/>
-	by {{ project.creator.first_name + " " + project.creator.last_name }}<br/><br/>
-	<div class="project-gallery-description">{{ project.description }}</div><br/>
-	<strong>Funded Percent: {{ (project.funded / project.budget) * 100 | number: 0 }}%</strong><br/>
-	Start: {{ project.start_date | date }}<br/>
-	End: {{ project.end_date | date }}
-</div>-->
