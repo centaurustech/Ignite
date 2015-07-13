@@ -1,30 +1,42 @@
-<div class="row">
-	<h1>Create a Project</h1>
-	<form name="createProjectForm" ng-submit="createProjectForm.$valid && createProject()" novalidate>
-		<input type='text' 		name='title'       placeholder='Enter Title'      ng-model="form.title"      required/><br/>
-		<input type='date'      name='start_date'  placeholder='start date' 	     ng-model="form.start_date" required/><br/>
-		<input type='date' 		name='end_date'	   placeholder='end date'         ng-model="form.end_date"   required/><br/>
-		<input type='number' 	name='budget'      placeholder='budget'           ng-model="form.budget"     required/><br/>
-		<input type='text' 		name='description' placeholder='description' 	 ng-model="form.description" 	    required/><br/>
-		<input type='text' 		name='breakdown'  placeholder='breakdown ' ng-model="form.budget_breakdown" required/><br/>
-		<input type='text' 		name='challenges'    placeholder='challenges'   ng-model="form.challenges"   required/><br/>
-		<input type='text' 	name='value_proposition' 	   placeholder='value_proposition' 	 ng-model="form.value_proposition" 	    required/><br/>
-		<select ng-model="form.category" required>
-		  <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
-		</select>
-		<select ng-model="form.city" required>
-			<option ng-repeat="city in cities" value="{{city.name}}">{{city.name}}</option>
-		</select>
-		<br/>
-		Resources:<br/>
-		<div>
-			<input type='text' name='resource_role'  ng-model="resource_form_role" placeholder='role'/>
-			<input type='text' name='resource_description' ng-model="resource_form_description" placeholder='description'/>
-			<button id="add-resource-button" ng-click="addResource()">Add Resource</button>
+<div class="modal project-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="dismissModal()" data-dismiss="modal" aria-hidden="true" style="z-index: 1000;">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<h1>Create a Project</h1>
+					<form name="createProjectForm" ng-submit="createProjectForm.$valid && createProject()" novalidate>
+						<input type='text' 		name='title'       placeholder='Enter Title'      ng-model="form.title"      required/><br/>
+						<input type='date'      name='start_date'  placeholder='start date' 	     ng-model="form.start_date" required/><br/>
+						<input type='date' 		name='end_date'	   placeholder='end date'         ng-model="form.end_date"   required/><br/>
+						<input type='number' 	name='budget'      placeholder='budget'           ng-model="form.budget"     required/><br/>
+						<input type='text' 		name='description' placeholder='description' 	 ng-model="form.description" 	    required/><br/>
+						<input type='text' 		name='breakdown'  placeholder='breakdown ' ng-model="form.budget_breakdown" required/><br/>
+						<input type='text' 		name='challenges'    placeholder='challenges'   ng-model="form.challenges"   required/><br/>
+						<input type='text' 	name='value_proposition' 	   placeholder='value_proposition' 	 ng-model="form.value_proposition" 	    required/><br/>
+						<select ng-model="form.category" required>
+						  <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
+						</select>
+						<select ng-model="form.city" required>
+							<option ng-repeat="city in cities" value="{{city.name}}">{{city.name}}</option>
+						</select>
+						<br/>
+						Resources:<br/>
+						<div>
+							<input type='text' name='resource_role'  ng-model="resource_form_role" placeholder='role'/>
+							<input type='text' name='resource_description' ng-model="resource_form_description" placeholder='description'/>
+							<button id="add-resource-button" ng-click="addResource()">Add Resource</button>
+						</div>
+						Image: <br/>
+						<input name="file" type="file" id="file" file-model="project_image" />
+						<button type='submit'>Submit Project</button>
+					</form>
+					<h1 ng-model="message">{{message}}</h1>
+					<button ng-click="openSubModal()">OPEN</button>
+				</div>
+			</div>
 		</div>
-		Image: <br/>
-		<input name="file" type="file" id="file" file-model="project_image" />
-		<button type='submit'>Submit Project</button>
-	</form>
-	<h1 ng-model="message">{{message}}</h1>
+	</div>
 </div>

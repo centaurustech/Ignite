@@ -53,7 +53,7 @@
 		
 	}]);
 	
-	app.controller("CreateProjectCtrl", ["$scope", "$rootScope", "Project", function($scope, $rootScope, Project) {
+	app.controller("CreateProjectCtrl", ["$scope", "$rootScope", "Project", "ModalService", function($scope, $rootScope, Project, ModalService) {
 		$scope.message;					// message to show the project is pending approval.
 		$scope.form = {}; 				// initialize a blank project
 		$scope.form.resources = [];		// initialize resources
@@ -89,6 +89,18 @@
 			$scope.resource_form_role = "";
 			$scope.resource_form_description = "";
 													 
+		};
+		
+		$scope.openSubModal = function() {
+		    ModalService.showModal({
+			    templateUrl: 'ProjectView/submodal.html',
+				controller: 'CreateProjectCtrl'
+		    }).then(function(modal) {
+			    modal.element.modal();
+			    modal.close.then(function(result) {
+			   	    
+			    });
+    		});
 		};
 	}]);
 	
