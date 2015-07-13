@@ -250,14 +250,6 @@ body {
 
 
 /* ======== Project Gallery ======== */
-
-
-#down-button {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
-
 #project-gallery {
   max-height: 100%;
   height: 90vh;
@@ -411,6 +403,7 @@ body {
 
 .project-image {
   width: 100%;
+  max-width: 700px;
 }
 
 .project-view-main .row {
@@ -467,3 +460,39 @@ body {
   margin-top: 74px;
 }
 
+
+
+/* Footer */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  
+  height: 30px;
+  width: 100%;
+  
+  
+  background-color: #b9bbbc;
+  border-top: 2px solid #da7226;
+  padding-top: 4px;
+}
+
+.footer-left {
+  float: left;
+  display: block;
+  height: 20px;
+  margin-left: 25px;
+}
+
+.scroll-button {
+  float: right;
+  display: block;
+  margin-right: 25px;
+  background: none;
+  
+  color: white;
+}
+
+.scroll-button:hover {
+  cursor:  pointer;
+}

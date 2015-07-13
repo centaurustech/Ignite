@@ -53,7 +53,7 @@
     		      </button>
     			  <!-- User Photo and FundIT Logo-->
     		  	<div class="media">
-    			  <a class="pull-left" href="#/profileView/{{$root.user._id}}">
+    			  <a class="pull-left" ng-click="scrollDown()" href="#/profileView/{{$root.user._id}}" >
     				  	<img id="profile-image" width="50px" class="media-object img-circle" ng-src="{{ $root.user.image }}" alt="Image" >
             </a>
     			  <div class="media-body">
@@ -95,14 +95,14 @@
   		<carousel></carousel>
   	</div>
   	<div class="section">
+      <!-- View Container -->
       <div ng-view autoscroll="true"></div>   
   	</div>
-  	<div class="section">
-  	 	<hsbc-footer></hsbc-footer>
-  	</div>
   </div>
-		
-   <!-- View Container -->
-   
+  <div class="footer">
+    <img class="footer-left" src="/assets/images/powered_by_innovate@HSBC.png"/>
+    <div class="scroll-button" class="button" ng-click="scroll()">{{ screen }}</div>
+  </div>
+
   </body>
 </html>  

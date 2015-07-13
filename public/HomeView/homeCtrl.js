@@ -9,9 +9,6 @@
 		]);
 	
 	app.controller("HomeController", ["$scope", "Project", function($scope, Project) {	
-		$scope.scrollDown = function() {
-			$.fn.fullpage.moveSectionDown();
-		};
 		
 	}]);
 	
@@ -24,12 +21,8 @@
   		};
 	});
 	
-	app.controller('CarouselCtrl', ["$scope", "$location", "Project", function($scope, $location, Project) {
-		$scope.projects;
+	app.controller('CarouselCtrl', ["$scope", "$location", "Project", function($scope, $location) {
 		
-		Project.get().success(function(data) {
-			$scope.projects = data;	
-		});
 	}]);
 	
 	
@@ -131,7 +124,6 @@
 			    });
     		});
 		};
-		
 	}]);
 	
 	app.filter('categoryFilter', function() {

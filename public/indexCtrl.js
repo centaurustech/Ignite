@@ -46,12 +46,12 @@
 				{
 					paddingTop: '85px',
 					paddingBottom: '10px',
-					normalScrollElements: '#project-gallery, .modal, #profileView'
+					normalScrollElements: '#project-gallery, .modal, #profileView, .navbar, #fullpage, .footer',
 				}
 			);
 			
 			$rootScope.$on('$viewContentLoaded', function() {
-				$.fn.fullpage.moveTo(2, 0);
+				
 			});
 	});
 	
@@ -80,6 +80,23 @@
 			});
 		};
 		
+		// Scrolling for two main sections
+		$scope.screen = "down";
+		$scope.scroll = function() {
+			if($scope.screen === "down") {
+				$scope.screen = "up";
+				$.fn.fullpage.moveSectionDown();
+			} else {
+				$scope.screen = "down";
+				$.fn.fullpage.moveSectionUp();
+			}
+		};
+		
+		// Scroll Down 
+		$scope.scrollDown = function() {
+			$.fn.fullpage.moveSectionDown();
+			$scope.screen = "up";
+		}
 	}]);
 
 })();
