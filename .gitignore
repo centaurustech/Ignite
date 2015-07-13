@@ -4,3 +4,4 @@ config/*
 npm-debug.log
 public/assets/project_images/*
 bower_components/
+typings/
