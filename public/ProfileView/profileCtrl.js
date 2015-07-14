@@ -50,6 +50,12 @@
 		User.getFollowedProjects($routeParams.userId)
 			.success(function(data) {
 				$scope.following = data;
+				
+				$scope.following.forEach(function(project) {
+					var days_left = (new Date(project.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
+					project.days_left = days_left > 0 ? days_left : 0;
+					project.background_color = $scope.selectColorByCategory(project.category.name);
+				});
 		});
 		
 		$scope.dropDownClick = function() {
@@ -112,7 +118,7 @@
 				to = $timeout(function() {
 					$('#user-filters').addClass("height-zero", 1000);
 					isFilterVisible = false;	
-				}, 2000);
+				}, 1000);
 			}
 		}
 		

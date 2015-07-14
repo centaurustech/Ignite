@@ -54,7 +54,7 @@
   		};
 	});
 	
-	app.controller('ProjectGalleryCtrl', ["$scope", "Project", "$timeout", "ModalService", function($scope, Project, $timeout, ModalService) {
+	app.controller('ProjectGalleryCtrl', ["$scope", "$rootScope", "Project", "$timeout", "ModalService", function($scope, $rootScope, Project, $timeout, ModalService) {
 		$scope.projects;
 		$scope.categories;
 		$scope.showFilters = false;
@@ -110,6 +110,13 @@
 			}
 		}
 		
+		// Add the current user as a follower of the project at index.
+		$scope.followProject = function(index) {
+			Project.addFollower($scope.filteredProjects[index]._id, $rootScope.user._id)
+				   .success(function(data) {});
+		}
+		
+		
 		var isFilterVisible = true;
 		// Hide the filter after 6 seconds
 		var to = $timeout(function() {			
@@ -132,7 +139,7 @@
 				to = $timeout(function() {
 					$('#gallery-filters').addClass("height-zero", 1000);
 					isFilterVisible = false;	
-				}, 2000);
+				}, 1000);
 			}
 		}
 		

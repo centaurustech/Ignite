@@ -15,15 +15,15 @@
 			</div>
 			<div class="col-md-3">
 				<div class="col-md-4">	
-				  <img ng-src="/assets/icons/card-icons/star.svg" ng-click="setOrderFilter('follower_count')"/>
+				  <img ng-src="/assets/icons/card-icons/starw.svg" ng-click="setOrderFilter('follower_count')"/>
 		  		  <p>Followers</p>
 				</div>
 				<div class="col-md-4">
-		   	      	<img ng-src="/assets/icons/card-icons/clock.svg" ng-click="setOrderFilter('days_left')"/>
+		   	      	<img ng-src="/assets/icons/card-icons/clockw.svg" ng-click="setOrderFilter('days_left')"/>
 				  		<p>Days Left</p>
 			    </div>
 				<div class="col-md-4">	
-				  <img ng-src="/assets/icons/card-icons/fund.svg" ng-click="setOrderFilter('funded')"/>
+				  <img ng-src="/assets/icons/card-icons/fundw.svg" ng-click="setOrderFilter('funded')"/>
 		  		  <p>Funded</p>
 				</div>
 			</div>
@@ -42,12 +42,12 @@
 		<div ng-repeat="project in (filteredProjects = ( projects | categoryFilter:categoryFilterId | orderBy:orderByFilter ))" class="col-md-6 col-sm-12 col-lg-4">
 			<div class="card-container">
 				<div class="card-banner" style="background-color: {{project.background_color}};">
-					<img class="banner-icon" height="80%" ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg"/>
+					<img class="banner-icon" width="60px" ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg"/>
 					<p class="banner-text">
 						<span class="card-title" ng-click="openProject(project._id, $index)">{{ project.title | uppercase}}</span><br/>
 						<span class="card-creator">{{ project.creator.first_name + " " + project.creator.last_name  | uppercase}}</span>
 					</p>
-					<img height="15%" class="banner-follow" ng-src="/assets/icons/card-icons/starw.svg"/>
+					<img height="15%" class="banner-follow" ng-src="/assets/icons/card-icons/starw.svg" ng-click="followProject($index)"/>
 				</div>
 				<div class="card-bar-section">
 				    <img class="progress-image" height="35px" src="/assets/icons/card-icons/star.svg" style="display: inline;"/>

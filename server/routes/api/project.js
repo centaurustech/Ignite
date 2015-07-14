@@ -17,27 +17,6 @@ router.param('id', function(req, res, next, id) {
     return next();
 });
 
-
-///**
-// * Retrieve all projects that are under a single category
-// * identified by the category name.
-// * 
-// * <Usage>
-// *      /api/project/byCategory?category=[name]
-// */
-//router.get('/project/byCategory', function(req, res) {
-//    var categoryName = req.query.category;
-//    
-//    var query = Category.find({name: categoryName}, 'projects')
-//                        .populate('projects');
-//    query.exec(function(err, projects) {
-//        if(err) { console.error(err); return; }
-//        
-//        
-//    });
-//});
-
-
 /**
  * Retrieve all categories.
  * 
@@ -246,6 +225,38 @@ router.post('/project/:id/add_backer', function(req, res, next) {
         }
     });
 });
+
+/**
+ * Route to add a follower to a project
+ * <Usage>
+ *      /api/project/[project_id]/add_follower?user_id=[user_id]
+ * 
+ * <Query String Parameters>
+ *  user_id: The id of the user to follow the project
+ */
+ router.post('/project/:id/add_follower', function(req, res, next) {
+    var user_id = req.query.user_id;
+    
+    var query = Project.findOne({"_id": req.id});
+
+    query.exec(function(err, project) {
+       if(err) {
+           console.error(err);
+           return;
+       } 
+       
+       if(!project) {
+           res.send("Not Found");
+       } else {
+           project.addFollower(user_id, function(err, project) {
+               if(err) { console.error(err); return;}
+               console.log("added backer");
+               res.json(project);
+           });
+       }
+    });
+     
+ });
 
 
 module.exports = router;

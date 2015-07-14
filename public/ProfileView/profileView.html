@@ -1,10 +1,23 @@
 <!-- Filters -->
-<div ng-mouseover="showFilters()" style="height: 10px;"></div>
-<div id="user-filters" ng-mouseover="showFilters()" ng-mouseenter="showFilters()" ng-mouseleave="hideFilters()">
-	<input type="radio" name="category" ng-click="setInProgress()">In Progress
-	<input type="radio" name="category" ng-click="setExpired()">Expired
-	<input type="radio" name="category" ng-click="setFullyFunded()">Fully Funded
-	<input type="radio" name="category" ng-click="setFollowing()">Following
+<div id="user-filters" ng-mouseover="showFilters()" ng-mouseenter="showFilters()" ng-mouseleave="hideFilters()" class="row">
+	<div class="col-md-12">
+		<div class="col-md-3">	
+		  <img ng-src="/assets/icons/card-icons/Inprogressw.svg" ng-click="setInProgress()"/>
+  		  <p>IN PROGRESS</p>
+		</div>
+		<div class="col-md-3">
+   	      	<img ng-src="/assets/icons/card-icons/Expiredw.svg" ng-click="setExpired()"/>
+	  		<p>EXPIRED</p>
+	    </div>
+		<div class="col-md-3">	
+		  <img ng-src="/assets/icons/card-icons/Fullyfundw.svg" ng-click="setFullyFunded()"/>
+  		  <p>FULLY FUNDED</p>
+		</div>
+		<div class="col-md-3">	
+		  <img ng-src="/assets/icons/card-icons/Starw.svg" ng-click="setFollowing()"/>
+  		  <p>FOLLOWING</p>
+		</div>
+	</div>		
 </div>
 <div id="profileView" class="row">
 	<!-- Profile Information -->
@@ -41,6 +54,7 @@
 	
 	<!-- Projects -->
 	<div id="user-projects" class="col-md-9">
+		<div ng-mouseover="showFilters()" style="height: 10px;" class="row"></div>
 		<div ng-repeat="project in (filteredProjects = ( projects | projectFilter:filterBy ))" class="col-md-6 col-sm-12 col-lg-6 project-gallery project-filter-item" ng-show="showOwn">
 			<div class="card-container">
 				<div class="card-banner" style="background-color: {{project.background_color}};">
@@ -75,8 +89,8 @@
 			</div>
 		</div>
 		<div ng-repeat="project in following" class="col-md-6 col-sm-12 col-lg-12 project-gallery project-filter-item" ng-hide="showOwn">
-			<div class="card-container" style="background-color: {{project.background_color}};">
-				<div class="card-banner">
+			<div class="card-container">
+				<div class="card-banner"  style="background-color: {{project.background_color}};">
 					<img class="banner-icon" height="80%" ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg"/>
 					<p class="banner-text">
 						<span class="card-title">{{ project.title | uppercase}}</span><br/>

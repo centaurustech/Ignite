@@ -35,6 +35,11 @@ angular.module('ProjectService', []).factory('Project', ['$http', '$rootScope', 
                               '&funded=' + fundAmount);
         },
         
+        addFollower : function(projectId, userId) {
+            return $http.post('/api/project/' + projectId +
+                              '/add_follower?user_id=' + userId);
+        },
+        
         // get all categories
         getCategories: function() {
             return $http.get('/api/project/categories');
