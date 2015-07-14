@@ -1,15 +1,42 @@
 <div id="project-gallery" class="row">
 	<div>
 		<div ng-mouseover="showFilters()" style="height: 10px;"></div>
-		<div id="gallery-filters" ng-mouseover="showFilters()" ng-mouseenter="showFilters()" ng-mouseleave="hideFilters()">
-			<span ng-repeat="category in categories">
-		    		<input  type="radio" name="category" ng-click="setCategoryFilter(category)">{{category.name}}
-			</span>
-			<div>
-	   	      <input type="radio" name="order" ng-click="setOrderFilter('days_left')">Days Left
-			  <input type="radio" name="order" ng-click="setOrderFilter('funded')">Funded
+		<div id="gallery-filters" ng-mouseover="showFilters()" ng-mouseenter="showFilters()" ng-mouseleave="hideFilters()" class="row">
+			<div class="col-md-1">
+				<div class="col-md-6 col-md-offset-6">
+					<p class="filter-text">Filter:</p>
+				</div>
 			</div>
-		</div>
+			<div class="filter-category-section col-md-5">
+				<div class="col-md-3" ng-repeat="category in categories">
+			    		<img ng-src="/assets/icons/category-icons/{{category.name}}w.svg" ng-click="setCategoryFilter(category)"/>
+						<p>{{category.name}}</p>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="col-md-4">	
+				  <img ng-src="/assets/icons/card-icons/star.svg" ng-click="setOrderFilter('follower_count')"/>
+		  		  <p>Followers</p>
+				</div>
+				<div class="col-md-4">
+		   	      	<img ng-src="/assets/icons/card-icons/clock.svg" ng-click="setOrderFilter('days_left')"/>
+				  		<p>Days Left</p>
+			    </div>
+				<div class="col-md-4">	
+				  <img ng-src="/assets/icons/card-icons/fund.svg" ng-click="setOrderFilter('funded')"/>
+		  		  <p>Funded</p>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="col-md-6">	
+				  <img ng-src="/assets/icons/category-icons/Ascendingw.svg" ng-click="setOrder('ascending')"/>
+		  		  <p>Ascending</p>
+				</div>
+				<div class="col-md-6">	
+				  <img ng-src="/assets/icons/category-icons/Descendingw.svg" ng-click="setOrder('descending')"/>
+		  		  <p>Descending</p>
+				</div>
+			</div>
 	</div>
 	<div>
 		<div ng-repeat="project in (filteredProjects = ( projects | categoryFilter:categoryFilterId | orderBy:orderByFilter ))" class="col-md-6 col-sm-12 col-lg-4">
@@ -41,7 +68,6 @@
 				</div>
 				<div class="card-info-section">
 					<p class="card-description">{{project.description}}</p>
-					<!--<img height="65px" src="/assets/images/f.svg"/>-->
 					<a href="/#/profileView/{{project.creator._id}}"><img height="65px" class="media-object img-circle" ng-src="{{ project.creator.image }}" style="float: right;"/></a>
 				</div>
 			</div>

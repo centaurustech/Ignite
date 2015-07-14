@@ -60,6 +60,7 @@
 		$scope.showFilters = false;
 		$scope.categoryFilterId = "";
 		$scope.orderByFilter = "";
+		$scope.isAscending = false;
 		
 		// Retrieve projects
 		Project.get().success(function(data) {
@@ -68,6 +69,7 @@
 			$scope.projects.forEach(function(project) {
 				var days_left = (new Date(project.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
 				project.days_left = days_left > 0 ? days_left : 0;
+				project.follower_count = project.followers.length;
 				project.background_color = $scope.selectColorByCategory(project.category.name);
 			});
 		});
@@ -93,18 +95,20 @@
 		
 		// Set the order filter on a property. If it is already selected, reverse the order.
 		$scope.setOrderFilter = function(orderBy) {
-			var orderField = orderBy;
-			var is_desc = false;
-			if($scope.orderByFilter != "" && $scope.orderByFilter[0] === '-') {
-				is_desc = true;
-				orderField = orderBy.slice(0);
-			}
-			if($scope.orderByFilter === orderField || $scope.orderByFilter === "-" + orderField) {
-				$scope.orderByFilter = is_desc ? orderField : "-" + orderField;
-			} else {
-				$scope.orderByFilter = "-" + orderBy;	
-			}
+			$scope.orderByFilter = $scope.isAscending ? "-" + orderBy : orderBy;
 		};
+		
+		// Set either ascending or descending order
+		$scope.setOrder = function(order) {
+			if(order === 'ascending' && !$scope.isAscending) {
+				$scope.orderByFilter = $scope.orderByFilter.replace('-', '');
+				$scope.isAscending = true;
+			} else 
+			if(order === 'descending' && $scope.isAscending) {
+				$scope.orderByFilter = "-" + $scope.orderByFilter;
+				$scope.isAscending = false;
+			}
+		}
 		
 		var isFilterVisible = true;
 		// Hide the filter after 6 seconds
