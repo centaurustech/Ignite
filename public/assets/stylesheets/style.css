@@ -95,7 +95,7 @@ body {
   
   z-index: 1;
     
-  background: #da7226;
+  background: lightgrey;
   border-radius: 10px;
   height: auto;
   width: 100%;
@@ -130,11 +130,6 @@ body {
 .project-gallery-image {
   width: 100%;
 }
-
-.project-gallery {
-  margin-bottom: 50px;  
-}
-
 
 .project-gallery-description {
   height: 100px;
@@ -379,7 +374,7 @@ body {
 .profile-info-border {
   background-color: whitesmoke;
   border-radius: 10px;
-  padding: 100px;
+  padding: 140px;
   height: 100%;
 }
 
@@ -390,6 +385,11 @@ body {
 
 #profileView #profile-info .profile-info-border .profile-details div {
   padding: 0px;
+  font-size: 18px;
+}
+
+#profileView #profile-info .profile-info-border .profile-details h3 {
+  font-size: 20px;
 }
 
 #profile-info div:nth-child(1) p {
@@ -397,6 +397,10 @@ body {
   margin-bottom: 20px;
   font-size: 2em;
   text-align: center;
+}
+
+.profile-details div:nth-child(1) {
+  margin-top: 10px;
 }
 
 /* Project View (Modal) */
@@ -461,6 +465,7 @@ body {
   background-image: none;
 }
 .project-view-sidebar .progress-bar {
+  margin-left: 0px;
   background-color: #aacf37;
   background-image: none;  
 }
