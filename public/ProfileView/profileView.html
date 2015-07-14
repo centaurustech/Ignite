@@ -7,25 +7,39 @@
 	<input type="radio" name="category" ng-click="setFollowing()">Following
 </div>
 <div id="profileView" class="row">
-	<div class="col-md-3">
-		<img class="user-image media-object img-circle" ng-src="{{ user.image }}"/>
-		<h1>Username</h1>
-		{{ user.first_name }}
-		<h3>Name</h3>
-		{{ user.first_name  + " " +  user.last_name }}
-		<h3>Title</h3>
-		{{ user.title }}
-		<h3>Department</h3>
-		{{ user.department }}
-		<h3>Location</h3>
-		{{ user.location }}
-		<h3>Email</h3>
-		{{ user.email }}
-		<h3>Is A Budget Owner?</h3>
-		{{ user.is_budget_owner }}
-		<h3>Is An Approver?</h3>
-		{{ user.is_approver }}
+	<!-- Profile Information -->
+	<div id="profile-info" class="col-md-3 col-sm-12">
+		<div class="profile-info-border col-md-12">
+			<div class="col-sm-2 col-md-12">
+				<img class="user-image media-object img-circle" ng-src="{{ user.image }}"/>
+				<p>{{ user.first_name  + " " +  user.last_name }}</p>
+			</div>
+			<div class="profile-details col-md-10 col-md-offset-1">
+				<div class="col-sm-2 col-md-12">
+					<h3>Username:</h3>
+					{{ user.username }}
+				</div>
+				<div class="col-sm-2 col-md-12">
+					<h3>Title:</h3>
+					{{ user.title }}
+				</div>
+				<div class="col-sm-2 col-md-12">
+					<h3>Department:</h3>
+					{{ user.department }}
+				</div>
+				<div class="col-sm-2 col-md-12">
+					<h3>Location:</h3>
+					{{ user.location }}
+				</div>
+				<div class="col-sm-2 col-md-12">
+					<h3>Email:</h3>
+					{{ user.email }}
+				</div>
+			</div>
+		</div>
 	</div>
+	
+	<!-- Projects -->
 	<div id="user-projects" class="col-md-9">
 		<div ng-repeat="project in (filteredProjects = ( projects | projectFilter:filterBy ))" class="col-md-6 col-sm-12 col-lg-6 project-gallery project-filter-item" ng-show="showOwn">
 			<div class="card-container">
