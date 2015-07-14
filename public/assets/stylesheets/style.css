@@ -181,16 +181,14 @@ body {
   float: left;
   width: 70%;
   height: 72%;
-  padding: 10px;
+  padding: 27px;
   border-left: 1px solid gray;
 }
 
 .card-container > .card-info-section > .card-description {
-  
-  
    display: -webkit-box;
    height: 58%; 
-   -webkit-line-clamp: 5;
+   -webkit-line-clamp: 4;
    -webkit-box-orient: vertical;
    text-overflow: ellipsis;
    overflow-y: hidden;
@@ -205,7 +203,7 @@ body {
 
 .banner-text {
   padding-top: 10px;
-  padding-left: 15px;
+  padding-left: 18.5%;
   text-overflow: ellipsis;
   width: 67%;
   white-space: nowrap;
@@ -214,8 +212,8 @@ body {
 
 .banner-follow {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 30px;
+  right: 35px;
 }
 
 .card-title {
