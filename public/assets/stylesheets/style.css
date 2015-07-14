@@ -109,14 +109,14 @@ body {
   visibility: hidden;
 }
 
-#gallery-filters img {
+#gallery-filters img, #user-filters img {
   display: block;
   width: 70px;
   margin-left: auto;
   margin-right: auto;
 }
 
-#gallery-filters p {
+#gallery-filters p, #user-filters p {
   text-align: center;
   font-size: 1.5em;
   margin-top: 5px;
@@ -353,7 +353,7 @@ body {
 }
 
 #user-projects { 
-  height: 87vh;
+  height: 92vh;
   overflow-y: scroll;
   
 }
@@ -366,12 +366,14 @@ body {
   
   overflow-y: scroll;
   font-family: 'Oxygen', sans-serif;
+  
+  margin-top: -28px;
 }
 
 #profile-info {
   background-color: gray;
   padding: 20px;
-  height: 90vh;
+  height: 100%;
 }
 
 .profile-info-border {
