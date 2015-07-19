@@ -19,6 +19,7 @@
 								
 								<!-- Creator Image -->
 								<a ng-click="closeModalAndRedirect()"  data-dismiss="modal"><img class="creator-img media-object img-circle" ng-src="{{project.creator.image}}"/></a>
+								<p class="project-view-creator-name">{{project.creator.first_name + " " + project.creator.last_name | uppercase }}</p>
 								
 								<img class="progress-image" height="15px" src="/assets/icons/card-icons/star.svg" style="display: inline;"/>
 							    <p class="progress-bar-label">FOLLOWERS<br/>
@@ -56,6 +57,8 @@
 										Followers<br/>
 										<h3>${{ project.funded | number }}</h3>
 										Commited of ${{ project.budget | number }}<br/>
+										<h3>{{ project.backers.length }}</h3>
+										Funders<br/>
 										<h3>{{ project.days_left | number:0 }}</h3>
 										Days left
 										<form class="fundit-form" name="fundForm" ng-submit="fundForm.$valid && fundProject(project, $index)" novalidate>
@@ -68,7 +71,7 @@
 								<!-- Description and Invitation -->
 								<div class="row summary-invite">
 									<div class="col-md-6">
-										Summary of this project:
+										<span class="project-view-section-header">Summary:</span> <br/>
 										<p>{{ project.description }}</p>
 									</div>
 									<div class="col-md-6">
@@ -76,10 +79,7 @@
 										  <span class="input-group-label">Invite to view:</span>
 										  <input type="email" class="form-control">
 										</div>
-										<div class="input-group">
-										  <span class="input-group-label">Rate this project:</span>
-										  <input type="text" class="form-control">
-										</div>
+										<button> Follow This Project </button>
 									</div>
 								</div>
 								<!-- Value Prop and Challenges -->
@@ -93,7 +93,7 @@
 										<p>{{ project.challenges }}</p>
 									</div>
 								</div>
-								<!-- Backers and Comments -->
+								<!-- Backers and Comments
 								<div class="row details-section">
 									<div class="col-md-6">
 										<span class="project-view-section-header">Backers:</span><br/>
@@ -107,6 +107,7 @@
 										{{ project.comments }}
 									</div>
 								</div>
+								 -->
 								<!-- Progress Bar -->
 								<div class="progress">
 								  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ (project.funded / project.budget) * 100 }}%;">

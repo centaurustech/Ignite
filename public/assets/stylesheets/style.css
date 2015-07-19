@@ -250,7 +250,7 @@ body {
   margin: 0;
   height: 7px;
   background-image: none;
-  background-color: #da7226;
+  background-color: #b9bbbc;
   border-radius: 0px 4px 4px 0px;
   width: 80%;
 }
@@ -408,36 +408,39 @@ body {
 }
 
 .project-view-slide > .project-view-container {
-  width: 85%;
-  margin-left: auto;
-  margin-right: auto;
-  
-  border: 1px solid #b9bbbc;
-  border-radius: 10px;
-  
+  width: 100%;
 }
 
 .project-view-sidebar .creator-img {
-  width: 50px;
+  width: 80px;
   display: block;
-  margin-left: -15px;
-  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  
 }
 
 .project-view-sidebar .creator-img:hover {
   cursor: pointer;
 }
 
+.project-view-sidebar .project-view-creator-name {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
 .project-view-sidebar .side-cat-icon {
-  border-radius: 9px 0px 0px 0px;
+  border-radius: 5px 0px 0px 0px;
   background: #aacf37;
   margin-left: -15px;
   margin-right: -15px;
-  padding: 20px;
+  padding: 50px;
 }
 
 .project-view-sidebar .side-cat-icon img {
-  width: 40px;
+  width: 70px;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -454,19 +457,25 @@ body {
 .project-view-sidebar .progress,
 .project-view-sidebar .progress-bar {
   margin-left: -15px;
-  width: 100%;
+  width: 50%;
   border-radius: 0px;
   margin-bottom: -10px;
+  
+  border-radius: 0px 5px 5px 0px;
 }
 
 .project-view-sidebar .progress {
-  background-color: #da7226;
+  background-color: #b9bbbc;
   background-image: none;
+  
+  height: 10px;
 }
 .project-view-sidebar .progress-bar {
   margin-left: 0px;
   background-color: #aacf37;
-  background-image: none;  
+  background-image: none;
+  
+  height: 10px;  
 }
 
 .project-view-container .image-numbers .col-md-5 h3 {
@@ -485,7 +494,7 @@ body {
 
 .project-image {
   width: 100%;
-  max-width: 700px;
+  max-height: 400px;
 }
 
 .project-view-main .row {
@@ -535,14 +544,40 @@ body {
   margin-top: 20px;
 }
 
-
+.project-modal .modal-header {
+  border-bottom: none;
+  min-height: 0px;
+  height: 0px;
+  padding: 0px;
+}
 
 .project-modal > .modal-dialog {
-  width: 100%;
+  width: 85%;
   margin-top: 74px;
 }
 
+.project-modal .modal-body {
+  padding: 0;
+}
 
+#projectCarousel .carousel-inner {
+  top: -26px;
+}
+
+#projectCarousel .carousel-control.right {
+  right: -85px;
+}
+
+#projectCarousel .carousel-control.left {
+  left: -85px;
+}
+
+.project-modal .modal-header button.close {
+  position: relative;
+  top: 30px;
+  right: 30px;
+  font-size: 2em;
+}
 
 /* Footer */
 
