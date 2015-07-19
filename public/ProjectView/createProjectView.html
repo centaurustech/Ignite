@@ -1,40 +1,75 @@
-<div class="modal project-modal">
+<div class="modal project-modal create-project">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" ng-click="dismissModal()" data-dismiss="modal" aria-hidden="true" style="z-index: 1000;">&times;</button>
 			</div>
-			<div class="modal-body">
-				<div class="row">
-					<h1>Create a Project</h1>
-					<form name="createProjectForm" ng-submit="createProjectForm.$valid && createProject()" novalidate>
-						<input type='text' 		name='title'       placeholder='Enter Title'      ng-model="form.title"      required/><br/>
-						<input type='date'      name='start_date'  placeholder='start date' 	     ng-model="form.start_date" required/><br/>
-						<input type='date' 		name='end_date'	   placeholder='end date'         ng-model="form.end_date"   required/><br/>
-						<input type='number' 	name='budget'      placeholder='budget'           ng-model="form.budget"     required/><br/>
-						<input type='text' 		name='description' placeholder='description' 	 ng-model="form.description" 	    required/><br/>
-						<input type='text' 		name='breakdown'  placeholder='breakdown ' ng-model="form.budget_breakdown" required/><br/>
-						<input type='text' 		name='challenges'    placeholder='challenges'   ng-model="form.challenges"   required/><br/>
-						<input type='text' 	name='value_proposition' 	   placeholder='value_proposition' 	 ng-model="form.value_proposition" 	    required/><br/>
-						<select ng-model="form.category" required>
-						  <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
-						</select>
-						<select ng-model="form.city" required>
-							<option ng-repeat="city in cities" value="{{city.name}}">{{city.name}}</option>
-						</select>
-						<br/>
-						Resources:<br/>
-						<div>
-							<input type='text' name='resource_role'  ng-model="resource_form_role" placeholder='role'/>
-							<input type='text' name='resource_description' ng-model="resource_form_description" placeholder='description'/>
-							<button id="add-resource-button" ng-click="addResource()">Add Resource</button>
+			<div class="modal-body row">
+				<h1 class="col-md-10 col-md-offset-1">CREATE A PROJECT</h1>
+				<div class="col-md-10 col-md-offset-1">
+					IN
+					<select ng-model="form.category" required>
+					    <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
+					</select>
+				</div>
+				<div class="col-md-10 col-md-offset-1">
+					<form class="form-container" name="createProjectForm" ng-submit="createProjectForm.$valid && createProject()" novalidate>
+						<div class="row">
+							<div class="col-md-4">
+								<p> PROJECT TITLE: </p>
+							</div>
+							<input class="col-md-8 col-sm-12" type='text' name='title' ng-model="form.title" required/><br/>
 						</div>
-						Image: <br/>
-						<input name="file" type="file" id="file" file-model="project_image" />
-						<button type='submit'>Submit Project</button>
+						<!-- Upload Image Or Video -->
+						<div class="row">
+							<div class="col-md-4">
+								<p> PROJECT IMAGE OR VIDEO </p>
+							</div>
+							<input class="col-md-8 col-sm-12" name="file" type="file" id="file" file-model="project_image" />
+						</div>
+						
+						<!--Project Summary -->
+						<div class="row">
+							<div class="col-md-4">
+								PROJECT SUMMARY:
+							</div>
+							<textarea class="col-md-8 col-sm-12" type='text' rows='4' name='summary' ng-model="form.summary" required/><br/>
+						</div>
+						<!-- Project Details-->
+						<div class="row">
+							<div class="col-md-4">
+								PROJECT DETAILS:
+							</div>
+							<textarea class="col-md-8 col-sm-12" type='text' rows='8' name='description' ng-model="form.description" required/><br/>
+						</div>
+						<!-- Campaign Start Date-->
+						<div class="row">
+							<div class="col-md-4">
+								CAMPAIGN START DATE:
+							</div>
+							<input class="col-md-8 col-sm-12" type='date' name='start_date' ng-model="form.start_date" required/><br/>
+						</div>
+						<!-- Funding Goal-->
+						<div class="row">
+							<div class="col-md-4">
+								FUNDING GOAL:
+							</div>
+							<input class="col-md-8 col-sm-12" type='number' name='budget' ng-model="form.budget" required/><br/>
+						</div>
+						<!-- Value Proposition-->
+						<div class="row">
+							<div class="col-md-4">
+								VALUE PROPOSITION:
+							</div>
+							<textarea class="col-md-8 col-sm-12" type='text' rows='8' name='value_proposition' ng-model="form.value_proposition" required/><br/>
+						</div>
 					</form>
-					<h1 ng-model="message">{{message}}</h1>
-					<button ng-click="openSubModal()">OPEN</button>
+					<div class="create-project-buttons">
+						<button class="btn green" type='submit' ng-click="createProjectForm.$valid && createProject()">SUBMIT THE PROJECT</button>
+						<button class="btn" ng-click="openSubModal()">PREVIEW</button>
+						<button class="btn green">SAVE</button>
+					</div>
+
 				</div>
 			</div>
 		</div>

@@ -9,15 +9,29 @@
 		]);
 	
 	app.controller("ProjectController", 
-		["$scope", "$rootScope", "$location", "Project", "FilteredProjects", "Index", "close", 
-		function($scope, $rootScope, $location, Project, FilteredProjects, Index, close) {	
+		["$scope", "$rootScope", "$location", "Project", "FilteredProjects", "Index", "IsPreview", "close", 
+		function($scope, $rootScope, $location, Project, FilteredProjects, Index, IsPreview, close) {	
 		
+		// If it is a preview, it must be prepopulated with default values.
+		if(IsPreview === true) {
+			FilteredProjects[0].category = (FilteredProjects[0].category ? {name: String(FilteredProjects[0].category)} : {name: "Technology"});
+			FilteredProjects[0].funded = 0;
+			FilteredProjects[0].days_left = 0;
+			FilteredProjects[0].followers = [];
+			FilteredProjects[0].backers = [];
+			FilteredProjects[0].image = "/assets/images/default_project_image.jpg";
+			FilteredProjects[0].budget = (FilteredProjects[0].budget ? FilteredProjects[0].budget : 0);
+			FilteredProjects[0].start_date = (FilteredProjects[0].start_date ? new Date() : 0);
+		}
 		
 		$scope.filteredProjects = FilteredProjects;
 		$scope.message;
 		$scope.currentIndex = Index;
 		$scope.slideIndex = Index;
 		$scope.fundAmount;
+		
+		
+		
 		
 		$scope.fundProject = function(project, index) {
 			
@@ -58,7 +72,7 @@
 		
 	}]);
 	
-	app.controller("CreateProjectCtrl", ["$scope", "$rootScope", "Project", "ModalService", function($scope, $rootScope, Project, ModalService) {
+	app.controller("CreateProjectCtrl", ["$scope", "$rootScope", "Project", "ModalService", "close", function($scope, $rootScope, Project, ModalService, close) {
 		$scope.message;					// message to show the project is pending approval.
 		$scope.form = {}; 				// initialize a blank project
 		$scope.form.resources = [];		// initialize resources
@@ -98,15 +112,20 @@
 		
 		$scope.openSubModal = function() {
 		    ModalService.showModal({
-			    templateUrl: 'ProjectView/submodal.html',
-				controller: 'CreateProjectCtrl'
+			    templateUrl: 'ProjectView/projectView.html',
+				controller: 'ProjectController',
+				inputs: { FilteredProjects: [$scope.form], Index: 0, IsPreview: true }
 		    }).then(function(modal) {
-			    modal.element.modal();
+			    modal.element.modal({});
 			    modal.close.then(function(result) {
 			   	    
 			    });
     		});
 		};
+		
+		$scope.dismissModal = function(result) {
+		    close(result); 
+		 };
 	}]);
 	
 	// App directive in order to parse the file uploaded.

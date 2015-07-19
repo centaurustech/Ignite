@@ -1,6 +1,5 @@
 body {
   padding-top: 80px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -337,8 +336,56 @@ body .carousel-control {
 }
 
 
+.project-modal.create-project .modal-dialog {
+  width: 60%;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.project-modal.create-project .modal-body {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.create-project .form-container {
+  background: #E2E2E2;
+  border-left: 10px solid #aacf37;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.create-project .form-container .row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
 
+.create-project .form-container textarea,
+.create-project .form-container input {
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+
+#file {
+  padding-left: 0px;
+}
+
+.create-project .create-project-buttons button {
+  display: block;
+  float: right;
+  margin-left: 10px;
+  
+  color: white;
+}
+
+button.green {
+  background-color: #aacf37;
+}
+
+.create-project h1 {
+  color: #aacf37;
+}
 
 /* ========= User Page ======= */
 .user-image {

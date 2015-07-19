@@ -116,18 +116,18 @@ router.post('/project', function(req, res, next) {
     var userJSON    = JSON.parse(req.body.user);
     var projectJSON = JSON.parse(req.body.project);
     var resources = projectJSON.resources;
-    var city = projectJSON.city;
     var category = projectJSON.category;
     
     // Only include project image if it has been uploaded
     if(req.files.file) {
         projectJSON.image = "/assets/project_images/" + req.files.file.name;
+    } else {
+        projectJSON.image = "/assets/project_images/default_project_image.jpg";
     }
     
     // Remove these fields from the project since they will be referenced
     // in mongodb directly to the object rather than the name.
     delete projectJSON.resources;
-    delete projectJSON.city;
     delete projectJSON.category;
     
     var project = new Project(projectJSON);
@@ -139,20 +139,18 @@ router.post('/project', function(req, res, next) {
         });
     });
     
-    // Set the city for the project
-    project.setCity(city, function(err, project) {
+
+   // Set the category for the project.
+   project.setCategory(category, function(err, project) {
        if(err) console.error(err);
-       // Set the category for the project.
-       project.setCategory(category, function(err, project) {
-           if(err) console.error(err);
-           // Set the creator for the project.
-           project.addCreator(userJSON._id, function(err, project) {
-                if(err) console.error(err);
-                  
-                res.end(String(project._id));    
-           });        
-       }); 
-    });
+       // Set the creator for the project.
+       project.addCreator(userJSON._id, function(err, project) {
+            if(err) console.error(err);
+              
+            res.end(String(project._id));    
+       });        
+   }); 
+
 });
 
 /**

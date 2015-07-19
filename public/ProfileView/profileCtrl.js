@@ -66,7 +66,7 @@
 		    ModalService.showModal({
 			    templateUrl: 'ProjectView/projectView.html',
 			    controller: 'ProjectController',
-				inputs: { FilteredProjects: $scope.showOwn ? $scope.filteredProjects : $scope.following, Index: index }
+				inputs: { FilteredProjects: $scope.showOwn ? $scope.filteredProjects : $scope.following, Index: index, IsPreview: false }
 		    }).then(function(modal) {
 			    modal.element.modal({
 					//backdrop: 'static'

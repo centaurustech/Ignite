@@ -147,7 +147,7 @@
 			    controller: 'CreateProjectCtrl'
 		    }).then(function(modal) {
 			    modal.element.modal({
-					backdrop: 'static'
+					//backdrop: 'static'
 				});
 			    modal.close.then(function(result) {
 			   	    
