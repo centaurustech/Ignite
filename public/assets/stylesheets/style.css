@@ -30,7 +30,9 @@ body {
   margin-bottom: 10px;
 }
 
-
+body .carousel-control {
+  opacity: 1;
+}
 
 
 
@@ -55,8 +57,8 @@ body {
 }
 
 #myCarousel .carousel-button {
-  margin-top: 370%;
   height: 100px;
+  margin-top: 30vh;
 }
 
 
@@ -505,12 +507,27 @@ body {
     margin-bottom: 0px;
 }
 
-.project-view-main .summary-invite .col-md-6:nth-child(1) {
+.project-view-main .text .col-md-6:nth-child(1) {
   border-right: 1px solid #b9bbbc;
 }
 
+.project-view-main .text .col-md-6 p {
+  margin-bottom: 50px;
+}
+
+.project-view-main .project-follow {
+  margin-top: 30px;
+}
+
+.
+
 .project-view-main .details-section div:nth-child(1) {
   border-right: 1px solid black;
+}
+
+#projectCarousel .carousel-button {
+  height: 50px;
+  margin-top: 50vh;
 }
 
 .project-view-section-header {

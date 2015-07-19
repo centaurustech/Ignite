@@ -50,6 +50,11 @@
 		 $scope.dismissModal = function(result) {
 		    close(result); 
 		 };
+		 
+ 		$scope.followProject = function(projectId) {
+			Project.addFollower(projectId, $rootScope.user._id)
+				   .success(function(data) {});
+		}
 		
 	}]);
 	

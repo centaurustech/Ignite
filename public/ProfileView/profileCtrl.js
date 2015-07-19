@@ -69,7 +69,7 @@
 				inputs: { FilteredProjects: $scope.showOwn ? $scope.filteredProjects : $scope.following, Index: index }
 		    }).then(function(modal) {
 			    modal.element.modal({
-					backdrop: 'static'
+					//backdrop: 'static'
 				});
 			    modal.close.then(function(result) {
 			   	    
