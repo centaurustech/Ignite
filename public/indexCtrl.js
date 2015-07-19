@@ -92,7 +92,9 @@
 
                  });
 
-        
+        $rootScope.showNotImplemented = function() {
+			swal("Sorry This Feature Is Not Yet Complete. Please Try Again Later :)");
+		}
 
 	});
 	
