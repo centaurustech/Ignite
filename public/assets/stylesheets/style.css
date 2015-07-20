@@ -337,7 +337,7 @@ body .carousel-control {
 
 
 .project-modal.create-project .modal-dialog {
-  width: 60%;
+  width: 85%;
   font-family: 'Oxygen', sans-serif;
 }
 
@@ -565,8 +565,6 @@ button.green {
 .project-view-main .project-follow {
   margin-top: 30px;
 }
-
-.
 
 .project-view-main .details-section div:nth-child(1) {
   border-right: 1px solid black;
