@@ -56,37 +56,33 @@
     		      </button>
     			  <!-- User Photo and FundIT Logo-->
     		  	<div class="media">
-    			  <a class="pull-left" ng-click="scrollDown()" href="#/profileView/{{$root.user._id}}" >
-    				  	<img id="profile-image" width="50px" class="media-object img-circle" ng-src="{{ $root.user.image }}" alt="Image" >
-            </a>
-    			  <div class="media-body">
-    				<a href="#/homeView" class="header-logo"><img width="100px" src="/assets/images/FundIT_logo.png"></a>
-    					<p>Welcome, {{ $root.user.first_name }} </p>
+      			  <a class="pull-left" ng-click="scrollDown()" href="#/profileView/{{$root.user._id}}" >
+      				  	<img id="profile-image" width="70px" class="media-object img-circle" ng-src="{{ $root.user.image }}" alt="Image" >
+                  <p style="text-decoration: none;">Welcome, {{ $root.user.first_name }} </p>
+              </a>
+              <a class="header-notification header-logo" ng-click="$root.showNotImplemented()" id="dash-notification">
+                  <img width="30px" src="/assets/icons/misc-icon/notificationB.svg"/>
+                  DASHBOARD
+              </a>
+              <a href="#/homeView" class="fundit-logo header-logo">
+                <img width="250px" src="/assets/images/F_Advance_Logo.svg">
+              </a>
     			  </div>
-    			</div>
     	    </div>
     	
     	    <!-- Content in the nav bar, also shown in the button for smaller screens -->
     	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    			<!-- Search Bar -->
-    	      <form class="navbar-form navbar-right" role="search">
-    	        <div class="form-group">
-    	          <input type="text" class="form-control" placeholder="Search">
-    	        </div>
-    	        <button type="submit" ng-click="$root.showNotImplemented()" class="btn btn-default">Search</button>
-    	      </form>
     	      <div class="nav navbar-nav">
-    	        <li class="dropdown">
-    	          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboard<span class="caret"></span></a>
-    	          <ul class="dropdown-menu">
-    	            <li><a ng-click="$root.showNotImplemented()">You're Great</a></li>
-    	            <li><a ng-click="$root.showNotImplemented()">Way To Go!</a></li>
-    	            <li><a ng-click="$root.showNotImplemented()">Wowee</a></li>
-    	            <li role="separator" class="divider"></li>
-    	            <li><a ng-click="logout()">Logout</a></li>
-    	          </ul>
-    	        </li>
-    			<li><a ng-click="openCreateProjectModal()"><div id="create-project-button">Create Project</div></a></li>
+             <li>
+               <a ng-click="explore()"><div class="header-button">EXPLORE
+                 <div class="header-underline"></div>
+               </div></a>
+             </li>  
+    			   <li>
+               <a ng-click="openCreateProjectModal()"><div class="header-button">CREATE
+                 <div class="header-underline"></div>
+               </div></a>
+             </li>
     	      </ul>
     	    </div><!-- /.navbar-collapse -->
     	  </div><!-- /.container-fluid -->
@@ -104,7 +100,7 @@
   </div>
   <div class="footer">
     <img class="footer-left" src="/assets/images/powered_by_innovate@HSBC.png"/>
-    <div class="scroll-button" class="button" ng-click="scroll()">{{ screen }}</div>
+    <div class="scroll-button" class="button" ng-click="scroll()"><img height="20px" ng-src="/assets/images/{{screen}}.svg"</div>
   </div>
 
   </body>

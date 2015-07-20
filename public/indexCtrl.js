@@ -44,7 +44,7 @@
 	    angular.element(document.querySelector('#fullpage'))
 			.fullpage(
 				{
-					paddingTop: '85px',
+					paddingTop: '120px',
 					paddingBottom: '10px',
 					normalScrollElements: '#project-gallery, .modal, #profileView, .navbar, #fullpage, .footer',
 				}
@@ -156,6 +156,11 @@
 			    });
     		});
 		};
+		
+		// Navigate to Gallery
+		$scope.explore = function() {
+			$scope.scrollDown();
+		}
 	}]);
 
 })();
