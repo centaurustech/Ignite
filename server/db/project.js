@@ -98,11 +98,21 @@ projectSchema.methods.addBacker = function(backer_id, funded, callback) {
                 project.backers.push(result._id);
                 project.funded = Number(project.funded) + Number(funded);
                 project.save(function(err, proj) {
-                        if(err) { console.error(err); }
+                    if(err) { console.error(err); }
+                    
+                    proj.populateAll(function(err, project) {
                         
-                        proj.populateAll(function(err, project) {
-                            return callback(null, project);
+                        User.findOne({"_id" : backer_id}, function(err, user) {
+                           user.funded.push(project._id);
+                           
+                           user.save(function(err, result) {
+                                if(err) { console.error(err); return; }
+                                return callback(null, project);       
+                           }) 
                         });
+                        
+                        
+                    });
                 });
             });
          } 

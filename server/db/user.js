@@ -16,7 +16,8 @@ var userSchema = mongoose.Schema({
 		is_budget_owner: { type: Boolean,  default: false 		           					},
 		is_approver: 	 { type: Boolean,  default: false 							        },
 		following:		 { type: [Schema.ObjectId], ref: 'Project'						    },
-		projects:		 { type: [Schema.ObjectId], ref: 'Project'							}
+		projects:		 { type: [Schema.ObjectId], ref: 'Project'							},
+		funded:          { type: [Schema.ObjectId], ref: 'Project'							}
 });
 
 

@@ -8,7 +8,8 @@ var router = express.Router();
 var app = express();
 
 var Project = require('../../db/project');
-var User = require('../../db/user');
+var User    = require('../../db/user');
+var Backer  = require('../../db/backer');
 
 
 // Middleware to retrieve the id and attach it to the req object.
@@ -83,8 +84,7 @@ router.get('/user/followedProjects/:id', function(req, res) {
        var query = Project.find( { _id : { $in : projectIds } })
         .populate({path: 'creator', model: 'User'})
         .populate({path: 'category', model: 'Category'})
-        .populate({path: 'backers', model: 'Backer'})
-        .populate({path: 'city', model: 'City'});
+        .populate({path: 'backers', model: 'Backer'});
         
            query.exec(function(err, projects) {
            if(err) { console.error(err); } 
@@ -101,6 +101,27 @@ router.get('/user/followedProjects/:id', function(req, res) {
    });
        
 });
+
+/**
+ * Retrieve all projects that the user has funded
+ */
+ router.get('/user/fundedProjects/:id', function(req, res) {
+    User.findById({ "_id" : req.id }, function(err, user) {
+         if(err) { console.error(err); }
+         var projectIds = user.funded;
+         console.log(user);
+         var query = Project.find( { _id : { $in : projectIds } })
+          .populate({path: 'creator', model: 'User'})
+          .populate({path: 'category', model: 'Category'})
+          .populate({path: 'backers', model: 'Backer'});
+            
+         query.exec(function(err, projects) {
+            if(err) { console.error(err); } 
+            res.json(projects);
+         });
+    });
+ });
+
 
 /**
  * Retrieve all non approved projects associated to a user

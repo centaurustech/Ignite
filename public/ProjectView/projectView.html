@@ -21,6 +21,40 @@
 								<a ng-click="closeModalAndRedirect()"  data-dismiss="modal"><img class="creator-img media-object img-circle" ng-src="{{project.creator.image}}"/></a>
 								<p class="project-view-creator-name">{{project.creator.first_name + " " + project.creator.last_name | uppercase }}</p>
 								
+								<div class="col-md-12">
+									<div class="col-md-10 col-md-offset-1">
+										<div class="col-sm-2 col-md-12">
+											<h3>TITLE:</h3>
+											{{ user.title }}
+										</div>
+										<div class="col-sm-2 col-md-12">
+											<h3>DEPARTMENT:</h3>
+											{{ user.department }}
+										</div>
+										<div class="col-sm-2 col-md-12">
+											<h3>LOCATION:</h3>
+											{{ user.location }}
+										</div>
+										<div class="col-sm-2 col-md-12">
+											<h3>EMAIL:</h3>
+											{{ user.email }}
+										</div>
+										<div class="col-sm-2 col-md-12">
+											<h3>PROJECTS FUNDED:</h3>
+											{{ user.email }}
+										</div>
+										<div class="col-sm-2 col-md-12">
+											<h3>PROJECTS CREATED:</h3>
+											{{ user.projects.length }}
+										</div>
+										<div class="col-sm-2 col-md-12">
+											<h3>PROJECTS ENDORSED:</h3>
+											{{ user.following.length }}
+										</div>
+									</div>
+								</div>
+								
+								<!--								
 								<img class="progress-image" height="15px" src="/assets/icons/card-icons/star.svg" style="display: inline;"/>
 							    <p class="progress-bar-label">FOLLOWERS<br/>
 								{{ project.followers.length }} </p>
@@ -39,7 +73,7 @@
 									<img class="progress-image" height="15px" src="/assets/icons/card-icons/clock.svg"/>
 									<p class="progress-bar-label">DAYS LEFT<br/>
 									{{ project.days_left | number:0  }} / 30 </p>
-								</div>
+								</div>-->
 							</div>
 							<!-- Main Information -->
 							<div class="project-view-main col-md-10">
