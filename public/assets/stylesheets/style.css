@@ -395,7 +395,7 @@ header .navbar-header {
 
 
 .project-modal.create-project .modal-dialog {
-  width: 85%;
+  width: 80%;
   font-family: 'Oxygen', sans-serif;
 }
 
@@ -512,6 +512,7 @@ button.green {
 
 .project-view-slide > .project-view-container {
   width: 100%;
+  font-family: 'Oxygen', sans-serif;
 }
 
 .project-view-sidebar .creator-img {
@@ -550,36 +551,86 @@ button.green {
   
 }
 
-.project-view-sidebar img.progress-image {
-  margin-left: -15px;
-  height: 35px;
-  margin-top: 10px;
-  
+.project-view-sidebar .project-sidebar-user-info {
+  color: #979797;
 }
 
-.project-view-sidebar .progress,
-.project-view-sidebar .progress-bar {
-  margin-left: -15px;
-  width: 50%;
+.project-view-sidebar .project-sidebar-user-info p {
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  color: black;
+}
+
+
+
+/* Progress bar and Overview Section of Project View*/
+.project-view-main img.progress-image {
+  display: block;
+  float: left;
+  height: 55px;
+  margin-top: 10px;
+}
+
+.project-view-main .progress,
+.project-view-main .progress-bar {
+  width: 100%;
+  height: 10px;
+  background-image: none;  
   border-radius: 0px;
   margin-bottom: -10px;
   
   border-radius: 0px 5px 5px 0px;
 }
 
-.project-view-sidebar .progress {
+.project-view-main .progress {
   background-color: #b9bbbc;
-  background-image: none;
-  
-  height: 10px;
 }
-.project-view-sidebar .progress-bar {
+.project-view-main .progress-bar {
   margin-left: 0px;
   background-color: #aacf37;
-  background-image: none;
-  
-  height: 10px;  
+
 }
+
+.progress-bar-label > .progress-bar-label-name {
+  float: left;
+  margin-top: 15px;
+  font-size: 1.2em;
+  margin-left: 10px;
+}
+
+.progress-bar-label > .progress-bar-label-value {
+  float: right;
+}
+
+.progress-bar-label > .progress-bar-label-value div:nth-child(1) {
+  
+  text-align: right;
+  font-size: 2em;
+}
+
+.progress-bar-label > .progress-bar-label-value div:nth-child(2) {
+  font-size: 1.5em;
+}
+
+.image-numbers .progress-bar-label {
+  display: block;
+  float: left;
+  width: 83%;
+}
+
+.project-progress-group {
+ clear: left; 
+}
+
+.project-progress-group, .progress-bar-group {
+  margin-bottom: 20px;
+}
+.fundit-form {
+  clear: left;
+}
+
 
 .project-view-container .image-numbers .col-md-5 h3 {
   margin: 0;
@@ -630,7 +681,14 @@ button.green {
 }
 
 .project-view-section-header {
-  font-size: 1.5em;
+  font-size: 2em;
+  margin-top: 35px;
+  
+}
+
+.project-view-section-text {
+  font-size: 1.2em;
+  width: 90%;
 }
 
 .project-view-main {
@@ -642,24 +700,6 @@ button.green {
   font-weight: lighter;
 }
 
-.project-view-main .progress, 
-.project-view-main .progress-bar {
-  height: 30px;
-  background-image: none;
-  border-radius: 0px;
-}
-
-.project-view-main .progress-bar {
-  background-color: #aacf37;
-  padding-top: 4px;
-}
-
-.project-view-main .progress {
-  background: none;
-  margin-left: -15px;
-  margin-top: 20px;
-}
-
 .project-modal .modal-header {
   border-bottom: none;
   min-height: 0px;
@@ -668,7 +708,7 @@ button.green {
 }
 
 .project-modal > .modal-dialog {
-  width: 85%;
+  width: 80%;
   margin-top: 74px;
 }
 
@@ -677,7 +717,7 @@ button.green {
 }
 
 #projectCarousel .carousel-inner {
-  top: -26px;
+  top: -2px;
 }
 
 #projectCarousel .carousel-control.right {
@@ -689,10 +729,10 @@ button.green {
 }
 
 .project-modal .modal-header button.close {
-  position: relative;
+  position: absolute;
   top: 30px;
   right: 30px;
-  font-size: 2em;
+  font-size: 4em;
 }
 
 /* Footer */

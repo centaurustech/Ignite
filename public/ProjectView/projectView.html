@@ -21,59 +21,38 @@
 								<a ng-click="closeModalAndRedirect()"  data-dismiss="modal"><img class="creator-img media-object img-circle" ng-src="{{project.creator.image}}"/></a>
 								<p class="project-view-creator-name">{{project.creator.first_name + " " + project.creator.last_name | uppercase }}</p>
 								
-								<div class="col-md-12">
-									<div class="col-md-10 col-md-offset-1">
+								<div class="project-sidebar-user-info">
+									
 										<div class="col-sm-2 col-md-12">
-											<h3>TITLE:</h3>
+											<p>TITLE:</p>
 											{{ user.title }}
 										</div>
 										<div class="col-sm-2 col-md-12">
-											<h3>DEPARTMENT:</h3>
+											<p>DEPARTMENT:</p>
 											{{ user.department }}
 										</div>
 										<div class="col-sm-2 col-md-12">
-											<h3>LOCATION:</h3>
+											<p>LOCATION:</p>
 											{{ user.location }}
 										</div>
 										<div class="col-sm-2 col-md-12">
-											<h3>EMAIL:</h3>
+											<p>EMAIL:</p>
 											{{ user.email }}
 										</div>
 										<div class="col-sm-2 col-md-12">
-											<h3>PROJECTS FUNDED:</h3>
-											{{ user.email }}
+											<p>PROJECTS FUNDED:</p>
+											{{ user.funded.length }}
 										</div>
 										<div class="col-sm-2 col-md-12">
-											<h3>PROJECTS CREATED:</h3>
+											<p>PROJECTS CREATED:</p>
 											{{ user.projects.length }}
 										</div>
 										<div class="col-sm-2 col-md-12">
-											<h3>PROJECTS ENDORSED:</h3>
+											<p>PROJECTS ENDORSED:</p>
 											{{ user.following.length }}
 										</div>
-									</div>
+									
 								</div>
-								
-								<!--								
-								<img class="progress-image" height="15px" src="/assets/icons/card-icons/star.svg" style="display: inline;"/>
-							    <p class="progress-bar-label">FOLLOWERS<br/>
-								{{ project.followers.length }} </p>
-								<div class="progress-bar-group">
-									<div class="progress">
-							   	    	<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.funded / project.budget }}%;"></div>
-									</div>
-									<img class="progress-image" height="15px" src="/assets/icons/card-icons/fund.svg"/>
-									<p class="progress-bar-label">FUNDED<br/>
-									{{ (project.funded / 1000) | number:0 }}k  / {{ (project.budget / 1000) | number:0}}k </p>
-								</div>
-								<div class="progress-bar-group">
-								    <div class="progress">
-								  		<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ ((30 - project.days_left) / 30) * 100 }}%;"></div>
-									</div>
-									<img class="progress-image" height="15px" src="/assets/icons/card-icons/clock.svg"/>
-									<p class="progress-bar-label">DAYS LEFT<br/>
-									{{ project.days_left | number:0  }} / 30 </p>
-								</div>-->
 							</div>
 							<!-- Main Information -->
 							<div class="project-view-main col-md-10">
@@ -86,39 +65,81 @@
 										<img class="project-image" ng-src="{{ project.image }}"/>
 									</div>
 									
-									<div class="col-md-5">
-										<h3>{{ project.followers.length }}</h3>
-										Followers<br/>
-										<h3>${{ project.funded | number }}</h3>
-										Commited of ${{ project.budget | number }}<br/>
-										<h3>{{ project.backers.length }}</h3>
-										Funders<br/>
-										<h3>{{ project.days_left | number:0 }}</h3>
-										Days left
-										<form class="fundit-form" name="fundForm" ng-submit="fundForm.$valid && fundProject(project, $index)" novalidate>
+									<div class="col-md-4">
+										<!-- Funded -->
+										<div class="progress-bar-group">
+											<img class="progress-image" src="/assets/icons/card-icons/fund.svg"/>
+											<div class="progress-bar-label">
+												<div class="progress-bar-label-name">FUNDED</div>
+												<div class="progress-bar-label-value">
+													<div>$ {{ project.funded | number }}</div>
+													<div>out of $ {{ project.budget | number }}</div>
+												</div>
+											</div>
+											<div class="progress">
+									   	    	<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.funded / project.budget }}%;"></div>
+											</div>
+										</div>
+										<!-- Days Left-->
+										<div class="progress-bar-group">
+										    <img class="progress-image" src="/assets/icons/card-icons/clock.svg"/>
+											<div class="progress-bar-label">
+												<div class="progress-bar-label-name">DAYS LEFT</div>
+												<div class="progress-bar-label-value">
+													<div>{{ project.days_left }}</div>
+													<div>out of 30</div>
+												</div>
+											</div>
+											<div class="progress">
+										  		<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ ((30 - project.days_left) / 30) * 100 }}%;"></div>
+											</div>
+										</div>
+										<!-- Endorsers-->
+										<div class="project-progress-group">
+											<img class="progress-image" src="/assets/icons/card-icons/star.svg"/>
+										    <div class="progress-bar-label">
+												<div class="progress-bar-label-name">ENDORSED</div>
+												<div class="progress-bar-label-value">
+													<div>{{ project.followers.length }}</div>
+													<div>times</div> 
+											</div>
+										</div>
+										<!-- Backers -->
+										<div class="project-progress-group">
+											<img class="progress-image" src="/assets/icons/card-icons/star.svg"/>
+										    <div class="progress-bar-label">
+												<div class="progress-bar-label-name">BACKERS</div>
+												<div class="progress-bar-label-value">
+													<div>{{ project.backers.length }}</div>
+													<div>Budget Owners</div>
+												</div> 
+											</div>
+										</div>
+										
+										<!--<form class="fundit-form" name="fundForm" ng-submit="fundForm.$valid && fundProject(project, $index)" novalidate>
 											<input type='number' name='amount' ng-model="project.fundAmount" required/><br/>
 											<button type='submit'>FundIT</button>
-										</form>
+										</form>-->
 									</div>
-
+		
 								</div>
 								<!-- Description and Invitation -->
 								<div class="row text">
-									<div class="col-md-6">
-										<span class="project-view-section-header">Summary:</span> <br/>
-										<p>{{ project.summary }}</p>
-										<span class="project-view-section-header">Project Details:</span> <br/>
-										<p>{{ project.description }}</p>
-										<span class="project-view-section-header">Value Proposition:</span> <br/>
-										<p>{{ project.value_proposition }}</p>
+									<div class="col-md-12">
+										<div class="project-view-section-header">Summary:</div>
+										<p class="project-view-section-text">{{ project.summary }}</p>
+										<div class="project-view-section-header">Project Details:</div>
+										<p class="project-view-section-text">{{ project.description }}</p>
+										<div class="project-view-section-header">Value Proposition:</div>
+										<p class="project-view-section-text">{{ project.value_proposition }}</p>
 									</div>
-									<div class="col-md-6">
+									<!--<div class="col-md-6">
 										<div class="input-group">
 										  <span class="input-group-label">Invite to view:</span>
 										  <input type="email" class="form-control">
 										</div>
 										<button class="button project-follow" ng-click="followProject(project._id)"> Follow </button>
-									</div>
+									</div>-->
 								</div>
 								<!-- Backers and Comments
 								<div class="row details-section">
@@ -135,12 +156,6 @@
 									</div>
 								</div>
 								 -->
-								<!-- Progress Bar -->
-								<div class="progress">
-								  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ (project.funded / project.budget) * 100 }}%;">
-								  {{ (project.funded / project.budget) * 100 | number:0 }}%
-								  </div>
-								</div>
 							</div>
 					    </div>
 					</div>
