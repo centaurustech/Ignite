@@ -44,7 +44,7 @@
 	    angular.element(document.querySelector('#fullpage'))
 			.fullpage(
 				{
-					paddingTop: '120px',
+					paddingTop: '125px',
 					paddingBottom: '10px',
 					normalScrollElements: '#project-gallery, .modal, #profileView, .navbar, #fullpage, .footer',
 				}

@@ -224,7 +224,7 @@ header .navbar-header {
 
 .card-container > .card-bar-section {
   float: left;
-  width: 30%;
+  width: 25%;
   height: 72%;
   padding-top: 5px;
   
@@ -232,15 +232,17 @@ header .navbar-header {
 
 .card-container > .card-info-section {
   float: left;
-  width: 70%;
+  width: 75%;
   height: 72%;
-  padding: 27px;
+  padding: 21px;
   border-left: 1px solid gray;
+  background-color: white;
+  border-radius: 0 0 8px 0;
 }
 
 .card-container > .card-info-section > .card-description {
    display: -webkit-box;
-   height: 58%; 
+   height: 54%; 
    -webkit-line-clamp: 4;
    -webkit-box-orient: vertical;
    text-overflow: ellipsis;
@@ -250,13 +252,13 @@ header .navbar-header {
 .banner-icon {
   float: left;
   margin-right: 10px;
-  margin-left: 25px;
+  margin-left: 40px;
   margin-top: 8px;
 }
 
 .banner-text {
   padding-top: 10px;
-  padding-left: 18.5%;
+  padding-left: 60px;
   text-overflow: ellipsis;
   width: 67%;
   white-space: nowrap;
@@ -341,7 +343,7 @@ header .navbar-header {
 /* ======== Project Gallery ======== */
 #project-gallery {
   max-height: 100%;
-  height: 90vh;
+  height: 83vh;
   width: 98%;
   margin-left: auto;
   margin-right: auto;
@@ -452,7 +454,7 @@ button.green {
 }
 
 #user-projects { 
-  height: 92vh;
+  height: 85vh;
   overflow-y: scroll;
   
 }
@@ -461,11 +463,8 @@ button.green {
 #profileView { 
   max-height: 100%; 
   width: 100%;
-  
   overflow-y: scroll;
   font-family: 'Oxygen', sans-serif;
-  
-  margin-top: 11px;
 }
 
 #profile-info {

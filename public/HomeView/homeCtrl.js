@@ -84,7 +84,7 @@
 				case "technology": return "#b1b1a6";
 				case "business": return "#53a6be";
 				case "operations": return "#acadbf";
-				case "security": return "#6fbac0";
+				case "security": return "#c59079";
 				default: return "smokewhite";
 			}
 		}
