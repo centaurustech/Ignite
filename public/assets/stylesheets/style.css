@@ -388,6 +388,7 @@ header .navbar-header {
 
 
 /* ========= Create Project Page ======= */
+
 #add-resource-button {
   border-radius: 5px;
   background-color: aqua;
@@ -395,7 +396,7 @@ header .navbar-header {
 
 
 .project-modal.create-project .modal-dialog {
-  width: 80%;
+  width: 60%;
   font-family: 'Oxygen', sans-serif;
 }
 
@@ -406,10 +407,10 @@ header .navbar-header {
 
 .create-project .form-container {
   background: #E2E2E2;
-  border-left: 10px solid #aacf37;
-  padding: 20px;
+  padding: 40px;
   margin-top: 10px;
   margin-bottom: 10px;
+  border: 1px solid #979797;
 }
 
 .create-project .form-container .row {
@@ -420,9 +421,14 @@ header .navbar-header {
 
 .create-project .form-container textarea,
 .create-project .form-container input {
-  border-radius: 5px;
+  border-radius: 8px;
   outline: none;
-  border: none;
+  border: 1px solid #b9bbbc;
+  margin-bottom: 20px;
+}
+
+.create-project .form-container textarea {
+  resize: none;
 }
 
 #file {
@@ -432,10 +438,22 @@ header .navbar-header {
 .create-project .create-project-buttons button {
   display: block;
   float: right;
-  margin-left: 10px;
-  
+  margin-top: 20px;
   color: white;
+  height: 50px;
+  min-width: 150px;
+  border-radius: 10px;
 }
+
+.create-project .create-project-buttons button.left {
+  float: left;
+  margin-right: 30px;
+}
+.create-project .create-project-buttons button.right {
+  float: right;
+  margin-left: 30px;
+}
+
 
 button.green {
   background-color: #aacf37;
@@ -443,6 +461,58 @@ button.green {
 
 .create-project h1 {
   color: #aacf37;
+}
+
+.create-project-sidebar-user-info {
+  border-right: 1px solid black;
+}
+
+#create-project-main {
+  border-left: 1px solid #b9bbbc;
+  padding: 30px;
+}
+
+#create-project-category-icon {
+  height: 150px;
+  background: black;
+  margin: 0px;
+}
+
+.create-project .modal-body .create-user-info {
+  padding: 0px;
+}
+
+.create-project .modal-dialog .modal-content .modal-body {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.create-user-info .col-md-12 p {
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.create-user-info .col-md-12 {
+  margin-left: 30px;
+}
+
+.create-project .form-container input[type=text],
+.create-project .form-container input[type=number] {
+  height: 40px;
+  line-height: 40px;
+  
+  font-size: 24px;
+}
+
+.create-project .form-container input[type=file] {
+  border: none;
+}
+
+.create-project .form-container textarea {
+  line-height: 30px;
+  font-size: 24px;
 }
 
 /* ========= User Page ======= */
@@ -515,7 +585,7 @@ button.green {
   font-family: 'Oxygen', sans-serif;
 }
 
-.project-view-sidebar .creator-img {
+.creator-img {
   width: 80px;
   display: block;
   margin-left: auto;
