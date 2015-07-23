@@ -224,7 +224,7 @@ header .navbar-header {
 
 .card-container > .card-bar-section {
   float: left;
-  width: 25%;
+  width: 30%;
   height: 72%;
   padding-top: 5px;
   
@@ -232,8 +232,8 @@ header .navbar-header {
 
 .card-container > .card-info-section {
   float: left;
-  width: 75%;
-  height: 72%;
+  width: 70%;
+
   padding: 21px;
   border-left: 1px solid gray;
   background-color: white;
