@@ -47,24 +47,24 @@
 						<span class="card-title" ng-click="openProject(project._id, $index)">{{ project.title | uppercase}}</span><br/>
 						<span class="card-creator">{{ project.creator.first_name + " " + project.creator.last_name  | uppercase}}</span>
 					</p>
-					<img height="15%" class="banner-follow" ng-src="/assets/icons/card-icons/starw.svg" ng-click="followProject($index)"/>
+					<img height="15%" class="banner-follow" ng-src="/assets/icons/card-icons/Starw.svg" ng-click="followProject($index)"/>
 				</div>
 				<div class="card-bar-section">
 				    
 					
-					  <img class="progress-image" height="35px" src="/assets/icons/card-icons/fund.svg"/>
+					  <img class="progress-image" height="35px" src="/assets/icons/card-icons/Fund.svg"/>
 					  <p class="progress-bar-label">FUNDED<br/>
 					  {{ (project.funded / 1000) | number:0 }}k  / {{ (project.budget / 1000) | number:0}}k </p>
 				  <div class="progress">
 					  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.funded / project.budget }}%;"></div>
 					</div>
 					
-					  <img class="progress-image" height="35px" src="/assets/icons/card-icons/clock.svg"/>
+					  <img class="progress-image" height="35px" src="/assets/icons/card-icons/Slock.svg"/>
 					  <p class="progress-bar-label">DAYS LEFT<br/>
 					  {{ project.days_left | number:0  }} / 30 </p>
 					  <div class="progress">
 					  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ ((30 - project.days_left) / 30) * 100 }}%;"></div></div>
-					  <img class="progress-image" height="35px" src="/assets/icons/card-icons/star.svg" style="display: inline;"/>
+					  <img class="progress-image" height="35px" src="/assets/icons/card-icons/Star.svg" style="display: inline;"/>
 				      <p class="progress-bar-label">ENDORSED<br/>
 					  {{ project.followers.length }} times </p>
 				</div>
