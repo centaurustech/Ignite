@@ -131,6 +131,7 @@ router.post('/project', function(req, res, next) {
     delete projectJSON.category;
     
     var project = new Project(projectJSON);
+    project.is_approved = true;
     
     // Add resources to the project
     resources.forEach(function(resource) {
