@@ -110,6 +110,20 @@
 													 
 		};
 		
+		$scope.categoryColor = "#aacf37";
+		
+		$scope.selectedCategory = function() {
+			var name_lower = String($scope.form.category).toLowerCase();
+			switch(name_lower) {
+				case "technology":  $scope.categoryColor =  "#b1b1a6"; break;
+				case "business":    $scope.categoryColor = "#53a6be"; break;
+				case "operations":  $scope.categoryColor = "#acadbf"; break;
+				case "security":    $scope.categoryColor = "#c59079"; break;
+				default: 		    $scope.categoryColor = "#aacf37"; break;
+			}	
+			console.log($scope.categoryColor);
+		}
+		
 		$scope.openSubModal = function() {
 		    ModalService.showModal({
 			    templateUrl: 'ProjectView/projectView.html',

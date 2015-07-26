@@ -13,7 +13,7 @@
 			        	<div class="project-view-container row">
 							<!-- Left sidebar -->
 							<div class="project-view-sidebar col-md-2">
-								<div class="side-cat-icon">
+								<div class="side-cat-icon" style="background: {{project.background_color}}">
 									<img ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg"/>
 								</div>
 								
@@ -116,10 +116,10 @@
 											</div>
 										</div>
 										
-										<!--<form class="fundit-form" name="fundForm" ng-submit="fundForm.$valid && fundProject(project, $index)" novalidate>
+										<form class="fundit-form" name="fundForm" ng-submit="fundForm.$valid && fundProject(project, $index)" novalidate>
 											<input type='number' name='amount' ng-model="project.fundAmount" required/><br/>
-											<button type='submit'>FundIT</button>
-										</form>-->
+											<button id="fundit-button" type='submit'></button>
+										</form>
 									</div>
 		
 								</div>
