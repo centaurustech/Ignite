@@ -6,7 +6,8 @@
 			</div>
 			<div class="modal-body row">
 				<div class="col-md-3 create-user-info">
-					<div id="create-project-category-icon">
+					<div id="create-project-category-icon" style="background: {{ categoryColor }};">
+						<img ng-src="/assets/icons/category-icons/{{form.category}}w.svg"/>
 					</div>
 					<a ng-click="closeModalAndRedirect()"  data-dismiss="modal">
 						<img class="creator-img media-object img-circle" ng-src="{{$root.user.image}}"/>
@@ -49,7 +50,8 @@
 					<h1 class="col-md-12">CREATE A PROJECT</h1>
 					<div class="col-md-12">
 						IN
-						<select ng-model="form.category" required>
+						<select id="create-project-category" ng-model="form.category" ng-change="selectedCategory()" required>
+							<option value="" default selected>Choose Category...        </option>
 						    <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
 						</select>
 					</div>
@@ -60,7 +62,8 @@
 							</div>
 							<!-- Upload Image Or Video -->
 							<div class="row">
-								<input class="col-md-12 col-sm-12" name="file" type="file" id="file" file-model="project_image" />
+								<input id="upload-project-image" class="col-md-12 col-sm-12" name="file" type="file" id="file" file-model="project_image"/>
+								<p class="upload-project-image-text">Drag and Drop file here</p>
 							</div>
 							
 							<!--Project Summary -->
@@ -73,6 +76,7 @@
 							</div>
 							<!-- Campaign Start Date-->
 							<div class="row">
+								<p id="create-project-date-text"> Campaign Start Date: </p>
 								<input class="col-md-12 col-sm-12" placeholder="Campaign Start Date" type='date' name='start_date' ng-model="form.start_date" required/><br/>
 							</div>
 							<!-- Funding Goal-->
@@ -82,6 +86,12 @@
 							<!-- Value Proposition-->
 							<div class="row">
 								<textarea class="col-md-12 col-sm-12" placeholder="Value Proposition" type='text' rows='6' name='value_proposition' ng-model="form.value_proposition" required/><br/>
+							</div>
+							<div class="row">
+								<input class="col-md-12 col-sm-12 resource" type='text' name='resource_role'  ng-model="resource_form_role" placeholder='Resource Name'/>
+		                        <input class="col-md-12 col-sm-12 resource" type='text' name='resource_description' ng-model="resource_form_description" placeholder='Resource Link'/>
+								<img class="resource-link-icon" src="/assets/icons/misc-icon/link.svg"/>
+        		                <button id="add-resource-button" ng-click="addResource()">Add more <img class="resource-icon" src="/assets/icons/misc-icon/attachment.svg"></button>
 							</div>
 						</form>
 						<div class="create-project-buttons">

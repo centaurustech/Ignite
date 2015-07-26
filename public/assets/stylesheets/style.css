@@ -389,10 +389,26 @@ header .navbar-header {
 /* ========= Create Project Page ======= */
 
 #add-resource-button {
-  border-radius: 5px;
-  background-color: aqua;
+  display: block;
+  float: right;
+  background: none;
+  border: none;
 }
 
+.resource-link-icon {
+  position: relative;
+  float: right;
+  right: 10px;
+  top: -44px;
+  
+  height: 40px;
+  
+}
+
+.resource-icon {
+  height: 40px;
+  margin-right: -36px;
+}
 
 .project-modal.create-project .modal-dialog {
   width: 60%;
@@ -430,8 +446,55 @@ header .navbar-header {
   resize: none;
 }
 
+.create-project .form-container input[type=date] {
+  font-size: 1.5em;
+  
+}
+
+#create-project-category {
+  height: 40px;
+  border: 1px solid #b9bbbc;
+  font-size: 1.5em;
+  color: #979797;
+  width: 300px;
+  margin-left: 25px; 
+}
+
+#create-project-category.create-category {
+  color: black;
+}
+
 #file {
   padding-left: 0px;
+}
+
+#upload-project-image {
+  height: 200px;
+  width: 70%;
+  border-radius: 0px;
+  border: 5px dotted #979797;
+  
+  padding-top: 60px;
+  padding-left: 55px;
+  color: #979797;
+}
+
+.upload-project-image-text {
+  position: absolute;
+  top: 225px;
+  left: 20%;
+  font-size: 1.5em;
+  color: #979797;
+  
+}
+
+#create-project-date-text {
+  font-size: 1.5em;
+  color: #979797;
+}
+
+.create-project .form-container .resource {
+  margin-bottom: 5px;
 }
 
 .create-project .create-project-buttons button {
@@ -442,6 +505,7 @@ header .navbar-header {
   height: 50px;
   min-width: 150px;
   border-radius: 10px;
+  font-size: 1.5em;
 }
 
 .create-project .create-project-buttons button.left {
@@ -473,8 +537,15 @@ button.green {
 
 #create-project-category-icon {
   height: 150px;
-  background: #aacf37;
   margin: 0px;
+  padding: 25px;
+}
+
+#create-project-category-icon img {
+  display: block;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .create-project .modal-body .create-user-info {
@@ -608,7 +679,6 @@ button.green {
 
 .project-view-sidebar .side-cat-icon {
   border-radius: 5px 0px 0px 0px;
-  background: #aacf37;
   margin-left: -15px;
   margin-right: -15px;
   padding: 50px;
@@ -743,6 +813,21 @@ button.green {
 
 .project-view-main .details-section div:nth-child(1) {
   border-right: 1px solid black;
+}
+
+#fundit-button {
+  background-image: url("/assets/images/Fundit_Button.svg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  margin-left: -11px;
+  background-color: white;
+  height: 50px;
+  width: 200px;
+  border: none;
+}
+
+.fundit-form {
+  margin-top: 50px;
 }
 
 #projectCarousel .carousel-button {
