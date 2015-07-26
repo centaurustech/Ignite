@@ -410,6 +410,21 @@ header .navbar-header {
   margin-right: -36px;
 }
 
+.create-project .added-resource {
+  padding: 0px;
+}
+
+.added-resource p {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #b9bbbc;
+    padding-left: 16px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 24px;
+    color: black;
+}
+
 .project-modal.create-project .modal-dialog {
   width: 60%;
   font-family: 'Oxygen', sans-serif;
@@ -560,8 +575,25 @@ button.green {
 .create-user-info .col-md-12 p {
   margin-bottom: 0px;
   margin-top: 10px;
+  margin-right: 5px;
   font-size: 1.2em;
-  font-weight: 700;
+  font-weight: 700; 
+}
+
+#create-tool-tip {
+  margin-top: 80px;
+}
+
+#create-tool-tip img {
+  display: block;
+  width: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#create-tool-tip p {
+  font-size: 1em;
+  font-weight: 500;
 }
 
 .create-user-info .col-md-12 {

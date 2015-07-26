@@ -95,6 +95,12 @@
 		
 		$scope.createProject = function() {
 			var project_image = $scope.project_image;
+			
+			// Ensure that the last resource has been added
+			if($scope.resource_form_role !== "" && $scope.resource_form_description !== "") {
+				$scope.addResource();
+			}
+			
 			// Attach the project in the form and project_image to the POST request.
 			Project.post($scope.form, project_image)
 				.success(function(data) {
@@ -140,6 +146,39 @@
 		$scope.dismissModal = function(result) {
 		    close(result); 
 		 };
+		 
+		 
+		 $scope.toolTipText = "";
+		 $scope.setToolTip = function(inputName) {
+			 switch(inputName) {
+				 case "summary": $scope.toolTipText = 	
+				  	"Just a brief summary on what your project is";
+					break;
+				 case "title": $scope.toolTipText = 
+				 	"Title.";
+					 break;
+				 case "details": $scope.toolTipText = 
+				 	"Additional details not mentioned in the summary";
+					break;
+				 case "startDate": $scope.toolTipText = 
+				 	"When would you like to start the campaign?";
+					break;
+				 case "fundGoal": $scope.toolTipText = 
+				 	"How much will your project require in funds?";
+				 	break;
+				 case "valueProposition": $scope.toolTipText = 
+				 	"How will this project bring value to HSBC?";
+					 break;
+				 case "resourceRole": $scope.toolTipText = 
+				 	"Name of this resource"; 
+					break;
+				 case "resourceDescription": $scope.toolTipText = 
+				 	"Link to this resource";
+					 break;
+				 default: $scope.toolTipText = "";
+			 }
+		 }
+		 
 	}]);
 	
 	// App directive in order to parse the file uploaded.

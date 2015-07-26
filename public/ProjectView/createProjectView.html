@@ -43,7 +43,11 @@
 						<p>PROJECTS ENDORSED:</p>
 						{{ user.following.length }}
 					</div>
-					<div class="col-sm-2 col-md-12"></div>
+					<!-- Tool Tip -->
+					<div class="col-sm-2 col-md-12" id="create-tool-tip">
+						<img src="/assets/images/light-bulb.png">
+						<p>{{ toolTipText }}</p>
+					</div>
 				</div>
 				
 				<div class="col-md-9" id="create-project-main">
@@ -58,7 +62,7 @@
 					<div class="col-md-12">
 						<form class="form-container" name="createProjectForm" ng-submit="createProjectForm.$valid && createProject()" novalidate>
 							<div class="row">
-								<input class="col-md-12 col-sm-12 create-input" placeholder="PROJECT TITLE" type='text' name='title' ng-model="form.title" required/><br/>
+								<input ng-click="setToolTip('title')" class="col-md-12 col-sm-12 create-input" placeholder="PROJECT TITLE" type='text' name='title' ng-model="form.title" required/><br/>
 							</div>
 							<!-- Upload Image Or Video -->
 							<div class="row">
@@ -68,28 +72,35 @@
 							
 							<!--Project Summary -->
 							<div class="row">
-								<textarea class="col-md-12 col-sm-12" placeholder="Project Summary" type='text' rows='3' name='summary' ng-model="form.summary" required/><br/>
+								<textarea ng-click="setToolTip('summary')" class="col-md-12 col-sm-12" placeholder="Project Summary" type='text' rows='3' name='summary' ng-model="form.summary" required/><br/>
 							</div>
 							<!-- Project Details-->
 							<div class="row">
-								<textarea class="col-md-12 col-sm-12" placeholder="Project Details" type='text' rows='6' name='description' ng-model="form.description" required/><br/>
+								<textarea ng-click="setToolTip('details')" class="col-md-12 col-sm-12" placeholder="Project Details" type='text' rows='6' name='description' ng-model="form.description" required/><br/>
 							</div>
 							<!-- Campaign Start Date-->
 							<div class="row">
 								<p id="create-project-date-text"> Campaign Start Date: </p>
-								<input class="col-md-12 col-sm-12" placeholder="Campaign Start Date" type='date' name='start_date' ng-model="form.start_date" required/><br/>
+								<input ng-click="setToolTip('startDate')" class="col-md-12 col-sm-12" placeholder="Campaign Start Date" type='date' name='start_date' ng-model="form.start_date" required/><br/>
 							</div>
 							<!-- Funding Goal-->
 							<div class="row">
-								<input class="col-md-12 col-sm-12 create-input"  placeholder="Funding Goal" type='number' name='budget' ng-model="form.budget" required/><br/>
+								<input ng-click="setToolTip('fundGoal')" class="col-md-12 col-sm-12 create-input"  placeholder="Funding Goal" type='number' name='budget' ng-model="form.budget" required/><br/>
 							</div>
 							<!-- Value Proposition-->
 							<div class="row">
-								<textarea class="col-md-12 col-sm-12" placeholder="Value Proposition" type='text' rows='6' name='value_proposition' ng-model="form.value_proposition" required/><br/>
+								<textarea ng-click="setToolTip('valueProposition')" class="col-md-12 col-sm-12" placeholder="Value Proposition" type='text' rows='6' name='value_proposition' ng-model="form.value_proposition" required/><br/>
 							</div>
 							<div class="row">
-								<input class="col-md-12 col-sm-12 resource" type='text' name='resource_role'  ng-model="resource_form_role" placeholder='Resource Name'/>
-		                        <input class="col-md-12 col-sm-12 resource" type='text' name='resource_description' ng-model="resource_form_description" placeholder='Resource Link'/>
+								<!-- Added Resources -->
+								<div ng-repeat="resource in form.resources" class="col-md-12 col-sm-12 added-resource">
+									Resource #{{ $index + 1 }}
+									<input ng-click="setToolTip('resourceRole')" class="col-md-12 col-sm-12 resource" type='text' name='resource_role'  ng-model="resource.role" placeholder='Resource Name'/>
+		                        	<input ng-click="setToolTip('resourceDescription')"class="col-md-12 col-sm-12 resource" type='text' name='resource_description' ng-model="resource.description" placeholder='Resource Link'/>
+								</div>
+								<!-- New Resource -->
+								<input ng-click="setToolTip('resourceRole')" class="col-md-12 col-sm-12 resource" type='text' name='resource_role'  ng-model="resource_form_role" placeholder='Resource Name'/>
+		                        <input ng-click="setToolTip('resourceDescription')"class="col-md-12 col-sm-12 resource" type='text' name='resource_description' ng-model="resource_form_description" placeholder='Resource Link'/>
 								<img class="resource-link-icon" src="/assets/icons/misc-icon/link.svg"/>
         		                <button id="add-resource-button" ng-click="addResource()">Add more <img class="resource-icon" src="/assets/icons/misc-icon/attachment.svg"></button>
 							</div>
