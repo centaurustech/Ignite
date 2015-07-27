@@ -10,6 +10,10 @@ body {
     cursor: pointer;
 }
 
+.create-project.modal {
+    overflow: scroll;
+}
+
 
 /* ======= Forms ======== */
 
@@ -513,9 +517,9 @@ header .navbar-header {
 .create-project .create-project-buttons button {
     display: block;
     float: right;
-    margin-top: 20px;
+    margin-top: 10px;
     color: white;
-    height: 50px;
+    padding: 10px;
     min-width: 150px;
     border-radius: 10px;
     font-size: 1.5em;
@@ -523,12 +527,12 @@ header .navbar-header {
 
 .create-project .create-project-buttons button.left {
     float: left;
-    margin-right: 30px;
+    margin-right: 20px;
 }
 
 .create-project .create-project-buttons button.right {
     float: right;
-    margin-left: 30px;
+    margin-left: -5px;
 }
 
 button.green {
