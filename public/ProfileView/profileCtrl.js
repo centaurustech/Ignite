@@ -113,12 +113,12 @@
             }
 
             var isFilterVisible = true;
-            // Hide the filter after 6 seconds
+            // Hide the filter after 4 seconds
             var to = $timeout(function() {
                 $('#user-filters').addClass("height-zero", 1000);
                 $('#user-filters').children().hide();
                 isFilterVisible = false;
-            }, 6000);
+            }, 4000);
 
             // If the filters are hidden, display the filters
             $scope.showFilters = function() {
