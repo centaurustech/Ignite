@@ -132,15 +132,20 @@
                                 </div>
                                 <!-- Separation Bar -->
                                 <div id="main-section-separator" class="col-md-12 col-sm-12">
+                                    <!-- Endorse Button -->
+                                    <div class="col-md-2 separator-button">
+                                        <img ng-click="followProject(project._id)" src="/assets/icons/card-icons/Star.svg" />
+                                        <p>Endorse</p>
+                                    </div>
                                     <!-- Comment Button -->
                                     <div class="col-md-2 separator-button">
                                         <img ng-click="showComments()" src="/assets/buttons/project-view/comment.svg" />
                                         <p>Comment</p>
                                     </div>
-                                    <!-- Endorse Button -->
+                                    <!-- Backer Button -->
                                     <div class="col-md-2 separator-button">
-                                        <img ng-click="followProject(project._id)" src="/assets/icons/card-icons/Star.svg" />
-                                        <p>Endorse</p>
+                                        <img ng-click="showBackers()" src="/assets/icons/misc-icon/backer.svg" />
+                                        <p>Backers</p>
                                     </div>
                                     <!-- Share Button -->
                                     <div class="col-md-2 separator-button">
@@ -148,11 +153,6 @@
                                             <img src="/assets/buttons/project-view/share.svg"/>
                                         </a>
                                         <p>Share</p>
-                                    </div>
-                                    <!-- Backer Button -->
-                                    <div class="col-md-2 separator-button">
-                                        <img ng-click="showBackers()" src="/assets/icons/misc-icon/backer.svg" />
-                                        <p>Backers</p>
                                     </div>
                                     <!-- FundIT Button -->
                                     <div class="col-md-4 separator-button">
