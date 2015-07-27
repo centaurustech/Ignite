@@ -125,6 +125,7 @@
         // Hide the filter after 6 seconds
         var to = $timeout(function() {
             $('#gallery-filters').addClass("height-zero", 1000);
+            $('#gallery-filters').children().hide();
             isFilterVisible = false;
         }, 6000);
 
@@ -133,6 +134,7 @@
             $timeout.cancel(to);
             if (!isFilterVisible) {
                 $('#gallery-filters').removeClass("height-zero", 10);
+                $('#gallery-filters').children().show();
                 isFilterVisible = true;
             }
         };
@@ -142,6 +144,7 @@
             if (isFilterVisible) {
                 to = $timeout(function() {
                     $('#gallery-filters').addClass("height-zero", 1000);
+                    $('#gallery-filters').children().hide();
                     isFilterVisible = false;
                 }, 1000);
             }

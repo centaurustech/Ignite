@@ -145,7 +145,7 @@ header .navbar-header {
 
 #gallery-filters,
 #user-filters {
-    position: absolute;
+    
     top: 120px;
     left: 0px;
     z-index: 1;
