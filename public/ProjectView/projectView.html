@@ -58,7 +58,7 @@
                                     <div class="row image-numbers">
                                         <div class="col-md-7">
                                             <img class="project-image" ng-src="{{ project.image }}" />
-                                            <p class="project-launch">Launched: {{ project.start_date | date }}</p>
+                                            <p class="project-launch">Funding Start Date: {{ project.start_date | date }}</p>
                                             <p class="project-id">Project ID: {{ (project._id).substring(18,24) }}</p>
                                         </div>
                                         <div class="col-md-4">
@@ -139,7 +139,7 @@
                                     </div>
                                     <!-- Endorse Button -->
                                     <div class="col-md-2 separator-button">
-                                        <img ng-click="followProject(project._id)" src="/assets/buttons/project-view/endorse.svg" />
+                                        <img ng-click="followProject(project._id)" src="/assets/buttons/project-view/Star.svg" />
                                         <p>Endorse</p>
                                     </div>
                                     <!-- Share Button -->
