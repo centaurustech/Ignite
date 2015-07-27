@@ -46,7 +46,7 @@
 						   return false;  
 					   }      
 					   $scope.fundProject($scope.filteredProjects[$scope.currentIndex], $scope.currentIndex, inputValue);
-					   swal("Nice!", "You just funded the project for: $" + inputValue, "success"); 
+					   swal("Really?", "That's all that you've got?  $" + inputValue, "success"); 
 				   });
 		}
 

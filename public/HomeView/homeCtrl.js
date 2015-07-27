@@ -74,7 +74,7 @@
                 
                 project.followers.forEach(function(follower) {
                     if(follower === $rootScope.user._id) {
-                        project.starImage = "/assets/icons/card-icons/Starg.svg";  
+                        project.starImage = "/assets/icons/card-icons/Star.svg";  
                     }
                 });
                 
@@ -126,7 +126,8 @@
         $scope.followProject = function(index) {
             Project.addFollower($scope.filteredProjects[index]._id, $rootScope.user._id)
                 .success(function(data) {
-                    $scope.filteredProjects[index].starImage = "/assets/icons/card-icons/Starg.svg";
+                    $scope.filteredProjects[index].starImage = "/assets/icons/card-icons/Star.svg";
+                    swal("Thanks for the support!", "You just endorsed this project!", "success");
                 });
         }
 

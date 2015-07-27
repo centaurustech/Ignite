@@ -52,7 +52,7 @@
                     <div class="media">
                         <a class="pull-left" ng-click="scrollDown()" href="#/profileView/{{$root.user._id}}">
                             <img id="profile-image" width="70px" class="media-object img-circle" ng-src="{{ $root.user.image }}" alt="Image">
-                            <p style="text-decoration: none;">Welcome, {{ $root.user.first_name }} </p>
+                            <p style="max-width: 125px; min-width: 100px; text-decoration: none;">Welcome, {{ $root.user.first_name }} </p>
                         </a>
                         <a class="header-notification header-logo" ng-click="$root.showNotImplemented()" id="dash-notification">
                             <img width="30px" src="/assets/icons/misc-icon/notificationB.svg" /> DASHBOARD
