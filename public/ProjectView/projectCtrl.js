@@ -93,6 +93,16 @@
 			$scope.cities = cities;
 		});
 		
+		
+		$scope.submitProject = function() {
+			if($scope.createProjectForm.$valid) {
+				$('#submit-project').click();	
+			} else {
+				swal("The Project Is Not Yet Complete!");
+			}
+			
+		}
+		
 		$scope.createProject = function() {
 			var project_image = $scope.project_image;
 			
