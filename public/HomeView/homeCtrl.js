@@ -70,6 +70,14 @@
                 project.days_left = days_left > 0 ? days_left : 0;
                 project.follower_count = project.followers.length;
                 project.background_color = $scope.selectColorByCategory(project.category.name);
+                project.starImage = "/assets/icons/card-icons/Starw.svg";
+                
+                project.followers.forEach(function(follower) {
+                    if(follower === $rootScope.user._id) {
+                        project.starImage = "/assets/icons/card-icons/Starg.svg";  
+                    }
+                });
+                
             });
         });
 
@@ -117,7 +125,9 @@
         // Add the current user as a follower of the project at index.
         $scope.followProject = function(index) {
             Project.addFollower($scope.filteredProjects[index]._id, $rootScope.user._id)
-                .success(function(data) {});
+                .success(function(data) {
+                    $scope.filteredProjects[index].starImage = "/assets/icons/card-icons/Starg.svg";
+                });
         }
 
 

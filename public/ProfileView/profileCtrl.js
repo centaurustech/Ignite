@@ -32,6 +32,14 @@
                         var days_left = (new Date(project.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
                         project.days_left = days_left > 0 ? days_left : 0;
                         project.background_color = $scope.selectColorByCategory(project.category.name);
+                        
+                        project.starImage = "/assets/icons/card-icons/Starw.svg";
+                
+                        project.followers.forEach(function(follower) {
+                            if(follower === $rootScope.user._id) {
+                                project.starImage = "/assets/icons/card-icons/Starg.svg";  
+                            }
+                        });
                     });
                 });
 

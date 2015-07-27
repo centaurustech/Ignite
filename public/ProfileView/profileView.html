@@ -58,7 +58,7 @@
                         <br/>
                         <span class="card-creator">{{ project.creator.first_name + " " + project.creator.last_name  | uppercase}}</span>
                     </p>
-                    <img height="15%" class="banner-follow" ng-src="/assets/icons/card-icons/Starw.svg" />
+                    <img height="15%" class="banner-follow" ng-src="{{project.starImage}}" />
                 </div>
                 <div class="card-bar-section">
                     <img class="progress-image" height="35px" src="/assets/icons/card-icons/Star.svg" style="display: inline;" />
@@ -93,7 +93,7 @@
                         <br/>
                         <span class="card-creator">{{ project.creator.first_name + " " + project.creator.last_name  | uppercase}}</span>
                     </p>
-                    <img height="15%" class="banner-follow" ng-src="/assets/icons/card-icons/Starw.svg" />
+                    <img height="15%" class="banner-follow" ng-src="{{project.starImage}}" />
                 </div>
                 <div class="card-bar-section">
                     <img class="progress-image" height="35px" src="/assets/icons/card-icons/Star.svg" style="display: inline;" />

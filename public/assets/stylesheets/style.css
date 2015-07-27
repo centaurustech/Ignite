@@ -158,7 +158,7 @@ header .navbar-header {
 #gallery-filters.height-zero,
 #user-filters.height-zero {
     height: 0px;
-    visibility: hidden;
+    visibility: hidden; 
 }
 
 #gallery-filters img,
@@ -283,6 +283,9 @@ header .navbar-header {
     position: absolute;
     top: 30px;
     right: 35px;
+}
+.banner-follow:hover {
+    cursor: pointer;
 }
 
 .card-title {
