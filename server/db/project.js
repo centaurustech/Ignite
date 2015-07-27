@@ -44,13 +44,14 @@ projectSchema.methods.populateAll = function(callback) {
       schema.populate([{path:'creator',  model: 'User'},
                      {path:'city',     model: 'City'},
                      {path:'category', model: 'Category'},
-                     {path:'backers',  model: 'Backer'}], 
+                     {path:'backers',  model: 'Backer'},
+                     {path: 'resources', model: 'Resource'},
+                     {path: 'comments', model: 'Comment'}], 
                      function(err, proj) {
                         
-                        var options = {
-                          path: 'backers.user_id',
-                          model: 'User'
-                        };
+                        var options = [
+                            { path: 'backers.user_id', model: 'User' }, { path: 'comments.user_id', model: 'User' }
+                        ];
                         // Populate users within backers since it is nested.
                         schema.populate(options, function (err, projects) {
                              return callback(null, projects);      

@@ -144,6 +144,7 @@
 		}
 		
 		$scope.openProject = function(projectId, index) {
+			console.log($scope.filteredProjects[index]);
 		    ModalService.showModal({
 			    templateUrl: 'ProjectView/projectView.html',
 			    controller: 'ProjectController',

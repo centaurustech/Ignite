@@ -395,6 +395,10 @@ header .navbar-header {
   border: none;
 }
 
+#add-resource-button:hover {
+  cursor: pointer;
+}
+
 .resource-link-icon {
   position: relative;
   float: right;
@@ -709,7 +713,7 @@ button.green {
 .project-view-sidebar .project-view-creator-name {
   text-align: center;
   font-size: 1.5em;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   margin-top: 10px;
 }
 
@@ -733,13 +737,20 @@ button.green {
 }
 
 .project-view-sidebar .project-sidebar-user-info p {
-  font-size: 1.2em;
+  font-size: 0.9em;
   font-weight: 700;
   margin-bottom: 0px;
   margin-top: 10px;
   color: black;
 }
 
+.project-view-sidebar {
+  border-right: 1px solid #979797;
+}
+
+.project-view-sidebar {
+  padding-bottom: 20px;
+}
 
 
 /* Progress bar and Overview Section of Project View*/
@@ -828,7 +839,7 @@ button.green {
 }
 
 .project-view-main .row {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 
 .project-view-main .details-section {
@@ -851,17 +862,6 @@ button.green {
   border-right: 1px solid black;
 }
 
-#fundit-button {
-  background-image: url("/assets/images/Fundit_Button.svg");
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  margin-left: -11px;
-  background-color: white;
-  height: 50px;
-  width: 200px;
-  border: none;
-}
-
 .fundit-form {
   margin-top: 50px;
 }
@@ -882,8 +882,9 @@ button.green {
   width: 90%;
 }
 
-.project-view-main {
-  border-left: 1px solid #b9bbbc;
+.main-second {
+  border-left: 1px solid #979797;
+  padding-bottom: 30px;
 }
 
 .project-view-main div p {
@@ -924,6 +925,70 @@ button.green {
   top: 30px;
   right: 30px;
   font-size: 4em;
+}
+
+.project-view-main div .summary {
+  margin-top: 70px;
+}
+
+#main-section-separator {
+  border-top: 1px solid #979797;
+  border-bottom: 1px solid #979797;
+}
+
+#main-section-separator .separator-button {
+  padding: 10px;
+}
+
+#main-section-separator .separator-button img {
+  display: block;
+  width: 75px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#main-section-separator .separator-button img:hover {
+  cursor: pointer;
+}
+
+#main-section-separator .separator-button p {
+  text-align: center;
+}
+
+#main-section-separator .separator-button #fundit-button { 
+  width: 250px;
+  margin-top: 20px;
+}
+
+#main-section-separator .separator-button #fundit-button:hover {
+  cursor: pointer;
+}
+
+.project-resource {
+  color: #aacf37;
+}
+
+.project-resource:hover {
+  text-decoration: none;
+  color: #aacf37;
+}
+
+.project-comment {
+  margin-top: 20px;
+  border-top: 1px solid #979797;
+  height: 50px;
+}
+
+.project-comment img {
+  display: block;
+  float: left;
+
+  height: 50px;
+}
+
+.project-comment p {
+  float: left;
+  margin-left: 20px;
 }
 
 /* Footer */

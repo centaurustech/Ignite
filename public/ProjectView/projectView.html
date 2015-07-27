@@ -115,23 +115,12 @@
 												</div> 
 											</div>
 										</div>
-										
-										<form class="fundit-form" name="fundForm" ng-submit="fundForm.$valid && fundProject(project, $index)" novalidate>
-											<input type='number' name='amount' ng-model="project.fundAmount" required/><br/>
-											<button id="fundit-button" type='submit'></button>
-										</form>
 									</div>
-		
 								</div>
 								<!-- Description and Invitation -->
 								<div class="row text">
 									<div class="col-md-12">
-										<div class="project-view-section-header">Summary:</div>
-										<p class="project-view-section-text">{{ project.summary }}</p>
-										<div class="project-view-section-header">Project Details:</div>
-										<p class="project-view-section-text">{{ project.description }}</p>
-										<div class="project-view-section-header">Value Proposition:</div>
-										<p class="project-view-section-text">{{ project.value_proposition }}</p>
+										<p class="project-view-section-text summary">{{ project.summary }}</p>
 									</div>
 									<!--<div class="col-md-6">
 										<div class="input-group">
@@ -158,6 +147,53 @@
 								 -->
 							</div>
 					    </div>
+						
+						<!-- Separation Bar -->
+						<div id="main-section-separator" class="col-md-12 col-sm-12">
+							<div class="col-md-2 separator-button">
+								<img ng-click="addComment()" src="/assets/buttons/project-view/comment.svg"/>
+								<p>Comment</p>
+							</div>
+							<div class="col-md-2 separator-button">
+								<img ng-click="followProject(project._id)" src="/assets/buttons/project-view/endorse.svg"/>
+								<p>Endorse</p>
+							</div>
+							<div class="col-md-2 separator-button">
+								<img ng-click="$root.showNotImplemented()" src="/assets/buttons/project-view/share.svg"/>
+								<p>Share</p>
+							</div>
+							<div class="col-md-4 col-md-offset-2 separator-button">
+								<img id="fundit-button" ng-click="fund()" src="/assets/images/Fundit_Button.svg" />
+							</div>
+						</div>
+						
+						<!-- Continuation of Main Section -->
+						<div class="project-view-main main-second col-md-10 col-md-offset-2">
+								<div class="row text">
+									<div class="col-md-12">
+										<!-- Value Proposition -->
+										<div class="project-view-section-header">Value Proposition:</div>
+										<p class="project-view-section-text">{{ project.value_proposition }}</p>
+										<!-- Project Details -->
+										<div class="project-view-section-header">Project Details:</div>
+										<p class="project-view-section-text">{{ project.description }}</p>
+										<!-- Resources -->
+										<div class="project-view-section-header">Resources:</div>
+										<a ng-repeat="resource in project.resources" class="project-resource" target="_blank" ng-href="{{ resource.description | link }}">{{ resource.role }}<br/></a>
+										<p class="project-view-section-text" ng-show="project.resources.length === 0">No Resources</p>
+										<!-- Comments -->
+										<div class="project-view-section-header">Comments:</div>
+										<div ng-repeat="comment in project.comments" class="project-comment">
+											<img class="media-object img-circle" ng-src="{{comment.user_id.image}}"/><p>{{comment.user_id.first_name + " " + comment.user_id.last_name}} : {{ comment.comment }}</p>
+											<p>@ {{comment.timestamp | date:'MM/dd/yyyy at h:mma'}}</p>
+										</div>
+										<p class="project-view-section-text" ng-show="project.comments.length === 0">No Comments</p>
+									</div>
+								</div>
+						</div>
+						
+						
+						
 					</div>
 				  </div>
 				  <!-- Left and right controls -->

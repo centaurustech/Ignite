@@ -40,6 +40,12 @@ angular.module('ProjectService', []).factory('Project', ['$http', '$rootScope', 
                               '/add_follower?user_id=' + userId);
         },
         
+        addComment : function(projectId, userId, comment) {
+            return $http.post('/api/project/' + projectId + 
+                              '/add_comment?user_id=' + userId + 
+                              '&comment=' + comment);
+        },
+        
         // get all categories
         getCategories: function() {
             return $http.get('/api/project/categories');

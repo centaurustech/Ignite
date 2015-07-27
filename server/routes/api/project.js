@@ -10,6 +10,7 @@ var Project = require('../../db/project');
 var Category = require('../../db/category');
 var City = require('../../db/city');
 var User = require('../../db/user');
+var Resource = require('../../db/resource');
 
 // Middleware to retrieve the id and attach it to the req object.
 router.param('id', function(req, res, next, id) {
@@ -87,7 +88,9 @@ router.get('/project', function(req, res, next) {
         .populate({path: 'creator', model: 'User'})
         .populate({path: 'category', model: 'Category'})
         .populate({path: 'backers', model: 'Backer'})
-        .populate({path: 'city', model: 'City'});
+        .populate({path: 'city', model: 'City'})
+        .populate({path: 'resources', model: 'Resource'})
+        .populate({path: 'comments', model: 'Comment'});
         
     query.exec(function(err, projects) {
        if(err) { return next(err); } 
@@ -95,9 +98,13 @@ router.get('/project', function(req, res, next) {
        // Populate users inside of backers separately since 
        // the original populate cannot populate nested refs.
        User.populate(projects, {
-           path: 'backers.user_id',
+           path: 'backers.user_id'
        }, function(err, projects) {
-           res.json(projects);
+           User.populate(projects, {
+               path: 'comments.user_id'
+           }, function(err, projects) {
+                res.json(projects);    
+           });
        });
     });
 });
@@ -257,5 +264,39 @@ router.post('/project/:id/add_backer', function(req, res, next) {
      
  });
 
+/**
+ * Route to add a comment to a project
+ * <Usage>
+ *      /api/project/[project_id]/add_comment?user_id=[user_id]&comment=[comment]
+ * 
+ * <Query String Parameters>
+ *  user_id: The id of the user to follow the project
+ *  comment: The comment to add.
+ */
+ 
+ router.post('/project/:id/add_comment', function(req, res) {
+     var user_id = req.query.user_id;
+     var comment = req.query.comment;
+     
+     var query = Project.findOne({"_id": req.id});
+     
+     query.exec(function(err, project) {
+         if(err) {
+             console.error(err);
+             return;
+         }
+         
+         if(!project) {
+             res.send("Not Found");
+         } else {
+             project.addComment(user_id, comment, function(err, project) {
+                if(err) { console.error(err); return;}
+                project.populateAll(function(err, project) {
+                    res.json(project.comments);
+                }); 
+             });
+         }
+     })
+ })
 
 module.exports = router;

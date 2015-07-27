@@ -31,11 +31,29 @@
 		$scope.fundAmount;
 		
 		
+		$scope.fund = function() {
+			swal({ title: "FUNDIT",
+				   text: "How Much Would You Like To Fund?",
+				   type: "input",   
+				   showCancelButton: true,   
+				   closeOnConfirm: false,   
+				   animation: "slide-from-top",   
+				   inputPlaceholder: "Fund Amount" }, 
+				   function(inputValue) {   
+					   if (inputValue === false) return false;      
+					   if (isNaN(inputValue) || inputValue == "") {     
+						   swal.showInputError("Please Enter a Dollar Value");     
+						   return false;  
+					   }      
+					   $scope.fundProject($scope.filteredProjects[$scope.currentIndex], $scope.currentIndex, inputValue);
+					   swal("Nice!", "You just funded the project for: $" + inputValue, "success"); 
+				   });
+		}
+
 		
-		
-		$scope.fundProject = function(project, index) {
+		$scope.fundProject = function(project, index, fundAmount) {
 			
-			Project.addBacker(project._id, $rootScope.user._id, project.fundAmount).
+			Project.addBacker(project._id, $rootScope.user._id, fundAmount).
 				success(function(data) {
 					// Update this project.
 					var days_left = (new Date(data.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
@@ -47,6 +65,28 @@
 					$scope.message = data;
 				});
 		};
+		
+		$scope.addComment = function() {
+			swal({ title: "Add a Comment",
+			   text: "What would you like to say?",
+			   type: "input",   
+			   showCancelButton: true,   
+			   closeOnConfirm: false,   
+			   animation: "slide-from-top",   
+			   inputPlaceholder: "Comment" }, 
+			   function(inputValue) {   
+				   if (inputValue === false) return false;      
+				   if (inputValue == "") {     
+					   swal.showInputError("Please Enter a Message");     
+					   return false;  
+				   }      
+				   Project.addComment($scope.filteredProjects[$scope.currentIndex]._id, $rootScope.user._id, inputValue)
+				     .success(function(data) {
+						$scope.filteredProjects[$scope.currentIndex].comments = data;
+					    swal("Nice!", "You just added a comment!", "success"); 
+				     });
+			   });
+		}
 		
 		$scope.slideLeft = function() {
 			$scope.slideIndex === 0 ? $scope.filteredProjects.length - 1 : $scope.slideIndex--;
@@ -67,7 +107,10 @@
 		 
  		$scope.followProject = function(projectId) {
 			Project.addFollower(projectId, $rootScope.user._id)
-				   .success(function(data) {});
+				   .success(function(data) {
+					   swal("Thanks for the support!", "You just endorsed this project!", "success");
+					   $scope.filteredProjects[$scope.currentIndex].followers = data.followers;
+				   });
 		}
 		
 	}]);
@@ -95,7 +138,8 @@
 		
 		
 		$scope.submitProject = function() {
-			if($scope.createProjectForm.$valid) {
+			if($scope.createProjectForm.$valid && $scope.form.category !== undefined) {
+				$scope.createProject();
 				$('#submit-project').click();	
 			} else {
 				swal("The Project Is Not Yet Complete!");
@@ -110,7 +154,7 @@
 			if($scope.resource_form_role !== "" && $scope.resource_form_description !== "") {
 				$scope.addResource();
 			}
-			
+
 			// Attach the project in the form and project_image to the POST request.
 			Project.post($scope.form, project_image)
 				.success(function(data) {
@@ -215,5 +259,22 @@
 	        }
 	    };
 	}]);
+	
+	app.filter("link", function () {
+		return function (link) {
+    		var result;
+		    var startingUrl = "http://";
+		    if (link.startsWith("www")) {
+		        result = startingUrl + link;
+		    } else {
+		        result = link;
+		    }
+		    return result;
+		}
+	});
+	
+	String.prototype.startWith = function (str) {
+		return this.indexOf(str) == 0;
+	};
 	
 })();

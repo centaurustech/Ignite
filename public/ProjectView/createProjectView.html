@@ -54,8 +54,8 @@
 					<h1 class="col-md-12">CREATE A PROJECT</h1>
 					<div class="col-md-12">
 						IN
-						<select id="create-project-category" ng-model="form.category" ng-change="selectedCategory()" required>
-							<option value="" default selected>Choose Category...        </option>
+						<select id="create-project-category" form="createProjectForm" ng-model="form.category" ng-change="selectedCategory()" required>
+							<option value="" disabled selected>Choose Category...</option>
 						    <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
 						</select>
 					</div>
@@ -102,13 +102,13 @@
 								<input ng-click="setToolTip('resourceRole')" class="col-md-12 col-sm-12 resource resource-input-role" type='text' name='resource_role'  ng-model="resource_form_role" placeholder='Resource Name'/>
 		                        <input ng-click="setToolTip('resourceDescription')"class="col-md-12 col-sm-12 resource" type='text' name='resource_description' ng-model="resource_form_description" placeholder='Resource Link'/>
 								<img class="resource-link-icon" src="/assets/icons/misc-icon/link.svg"/>
-        		                <button id="add-resource-button" ng-click="addResource()">Add more <img class="resource-icon" src="/assets/icons/misc-icon/attachment.svg"></button>
+        		                <div id="add-resource-button" ng-click="addResource()">Add more <img class="resource-icon" src="/assets/icons/misc-icon/attachment.svg"></div>
 							</div>
 						</form>
 						<div class="create-project-buttons">
 							<button class="btn green left" ng-click="$root.showNotImplemented()">Save</button>
 							<button class="btn left " ng-click="openSubModal()">Preview</button>
-							<button ng-hide="true" class="btn green right" id="submit-project" type='submit' ng-click="createProjectForm.$valid && createProject()" data-dismiss="modal">Submit Project</button>
+							<button ng-hide="true" class="btn green right" id="submit-project" type='submit' data-dismiss="modal">Submit Project</button>
 							<button class="btn green right" ng-click="submitProject()">Submit Project</button>
 						</div>
 					</div>
