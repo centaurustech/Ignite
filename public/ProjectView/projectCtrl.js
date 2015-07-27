@@ -60,6 +60,7 @@
 					data.days_left = days_left > 0 ? days_left : 0;
 					
 					$scope.filteredProjects[index].funded = data.funded;
+					$scope.filteredProjects[index].backers = data.backers;
 				})
 				.error(function(data) {
 					$scope.message = data;
