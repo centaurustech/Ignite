@@ -755,6 +755,10 @@ button.green {
     padding-bottom: 20px;
 }
 
+.project-sidebar-user-info .col-sm-2 {
+    padding-right: 0px;
+}
+
 
 /* Progress bar and Overview Section of Project View*/
 
