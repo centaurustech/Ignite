@@ -108,7 +108,15 @@
 				});
 		};
 		
+		$scope.resource_form_role = "";
+		$scope.resource_form_description = "";
+		
 		$scope.addResource = function() {
+			if($scope.resource_form_role === "" || $scope.resource_form_description === "") {
+				swal("Please fill out the resource name or link");
+				return;
+			}
+			
 			$scope.form.resources.push({ role: $scope.resource_form_role, 
 										 description: $scope.resource_form_description });
 			$scope.resource_form_role = "";

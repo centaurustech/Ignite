@@ -512,6 +512,10 @@ header .navbar-header {
   margin-bottom: 5px;
 }
 
+.create-project .form-container .resource-input-role {
+  margin-top: 20px;
+}
+
 .create-project .create-project-buttons button {
   display: block;
   float: right;
