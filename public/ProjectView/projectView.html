@@ -58,6 +58,8 @@
                                     <div class="row image-numbers">
                                         <div class="col-md-7">
                                             <img class="project-image" ng-src="{{ project.image }}" />
+                                            <p class="project-launch">Launched: {{ project.start_date | date }}</p>
+                                            <p class="project-id">Project ID: {{ project._id }}</p>
                                         </div>
                                         <div class="col-md-4">
                                             <!-- Funded -->

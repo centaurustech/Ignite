@@ -979,6 +979,18 @@ button.green {
     margin-left: 20px;
 }
 
+.project-launch {
+    float: left;
+    font-size: 1em;
+    color: #979797;
+}
+
+.project-id {
+    float: right;
+    font-size: 1em;
+    color: #979797;
+}
+
 
 /* Footer */
 
