@@ -4,6 +4,10 @@ body {
     padding: 0;
 }
 
+.sweet-alert {
+    font-family: 'Oxygen', sans-serif !important;
+}
+
 .nav,
 .pagination,
 .panel-title a {
