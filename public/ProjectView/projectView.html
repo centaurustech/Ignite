@@ -139,7 +139,7 @@
                                     </div>
                                     <!-- Endorse Button -->
                                     <div class="col-md-2 separator-button">
-                                        <img ng-click="followProject(project._id)" src="/assets/buttons/project-view/Star.svg" />
+                                        <img ng-click="followProject(project._id)" src="/assets/icons/card-icons/Star.svg" />
                                         <p>Endorse</p>
                                     </div>
                                     <!-- Share Button -->
@@ -178,7 +178,7 @@
                                     </div>
                                     <!-- Comments Section -->
                                     <div ng-show="showSection.showComments" class="row text">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 comments-area">
                                             <!-- Comments -->
                                             <div class="project-view-section-header">Comments:</div>
                                             <div ng-repeat="comment in project.comments" class="project-comment">
@@ -188,7 +188,7 @@
                                             </div>
                                             <p class="project-view-section-text" ng-show="project.comments.length === 0">No Comments</p>
                                             <div id="add-comment" ng-click="addComment()">Add Comment</div>
-                                            <div class="go-details" ng-click="showDetails()">Go Back To Details</div>
+                                            <div class="go-details" ng-click="showDetails()">Back To Project</div>
                                         </div>
                                     </div>
                                     <!-- Backers Section -->
@@ -198,9 +198,10 @@
                                                 <a ng-click="closeModalAndRedirect('/profileView/' + backer.user_id._id)" data-dismiss="modal"><img class="media-object img-circle" ng-src="{{backer.user_id.image}}" /></a>
                                                 <p>{{backer.user_id.first_name + " " + backer.user_id.last_name}} : ${{ backer.funded | number }}</p>
                                             </div>
+                                            <p class="project-view-section-text" ng-show="project.backers.length === 0">No Backers</p>
+                                            <div class="go-details" ng-click="showDetails()">Back To Project</div>
                                         </div>
-                                        <p class="project-view-section-text" ng-show="project.backers.length === 0">No Backers</p>
-                                        <div class="go-details" ng-click="showDetails()">Go Back To Details</div>
+                                       
                                     </div>
                                 </div>
                             </div>

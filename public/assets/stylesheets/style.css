@@ -1037,6 +1037,10 @@ button.green {
     cursor: pointer;
 }
 
+.main-second .col-md-12 {
+    padding-right: 65px;
+}
+
 /* Footer */
 
 .footer {
