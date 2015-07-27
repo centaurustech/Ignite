@@ -8,7 +8,7 @@ var userSchema = mongoose.Schema({
         username: 	 	 { type: String,   default: ""    								    },
 		first_name:  	 { type: String,   default: ""    							        },
 		last_name: 	 	 { type: String,   default: ""    							        },
-		image:			 { type: String,   default: "/assets/images/default_user_image.png" },
+		image:			 { type: String,   default: "http://api.adorable.io/avatars/100/" + String(Math.random() * 100) },
 		title: 		 	 { type: String,   default: ""    							        },
 		department:  	 { type: String,   default: "" 	  							        },
 		location:	 	 { type: String,   default: ""    							        },
