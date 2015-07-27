@@ -169,6 +169,7 @@
 		$scope.submitProject = function() {
 			if($scope.createProjectForm.$valid && $scope.form.category !== undefined) {
 				$scope.createProject();
+				swal("", "Your Project Will Be Reviewed Soon!", "success")
 				$('#submit-project').click();	
 			} else {
 				swal("The Project Is Not Yet Complete!");
