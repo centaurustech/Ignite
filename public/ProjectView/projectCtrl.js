@@ -243,7 +243,7 @@
 		 $scope.setToolTip = function(inputName) {
 			 switch(inputName) {
 				 case "summary": $scope.toolTipText = 	
-				  	"Just a brief summary on what your project is";
+				  	"One or two sentences on what your project is all about";
 					break;
 				 case "title": $scope.toolTipText = 
 				 	"Title.";
