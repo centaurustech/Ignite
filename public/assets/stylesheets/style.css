@@ -991,6 +991,37 @@ button.green {
     color: #979797;
 }
 
+#add-comment {
+    display: block;
+    float: right;
+    padding: 10px;
+    
+    background-color: #aacf37;
+    border-radius: 5px;
+    color: white;  
+}
+
+#add-comment:hover {
+    cursor: pointer;
+}
+
+.project-backer a img {
+    height: 65px;
+}
+
+.go-details {
+    display: block;
+    float: right;
+    margin-right: 20px;
+    padding: 10px;
+    background-color: #979797;
+    border-radius: 5px;
+    color: white;
+}
+
+.go-details:hover {
+    cursor: pointer;
+}
 
 /* Footer */
 

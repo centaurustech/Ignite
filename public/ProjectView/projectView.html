@@ -16,7 +16,7 @@
                                         <img ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg" />
                                     </div>
                                     <!-- Creator Image -->
-                                    <a ng-click="closeModalAndRedirect()" data-dismiss="modal"><img class="creator-img media-object img-circle" ng-src="{{project.creator.image}}" /></a>
+                                    <a ng-click="closeModalAndRedirect('/profileView/' + project.creator._id)" data-dismiss="modal"><img class="creator-img media-object img-circle" ng-src="{{project.creator.image}}" /></a>
                                     <p class="project-view-creator-name">{{project.creator.first_name + " " + project.creator.last_name | uppercase }}</p>
                                     <div class="project-sidebar-user-info">
                                         <div class="col-sm-2 col-md-12">
@@ -132,27 +132,37 @@
                                 </div>
                                 <!-- Separation Bar -->
                                 <div id="main-section-separator" class="col-md-12 col-sm-12">
+                                    <!-- Comment Button -->
                                     <div class="col-md-2 separator-button">
-                                        <img ng-click="addComment()" src="/assets/buttons/project-view/comment.svg" />
+                                        <img ng-click="showComments()" src="/assets/buttons/project-view/comment.svg" />
                                         <p>Comment</p>
                                     </div>
+                                    <!-- Endorse Button -->
                                     <div class="col-md-2 separator-button">
                                         <img ng-click="followProject(project._id)" src="/assets/buttons/project-view/endorse.svg" />
                                         <p>Endorse</p>
                                     </div>
+                                    <!-- Share Button -->
                                     <div class="col-md-2 separator-button">
                                         <a href="mailto:%20?&subject=Check%20Out%20This%20Project%20On%20FundIT!&body={{project.title}}%0A%0A{{project.summary}}%0A%0Awww.fundit.com">
                                             <img src="/assets/buttons/project-view/share.svg"/>
                                         </a>
                                         <p>Share</p>
                                     </div>
-                                    <div class="col-md-4 col-md-offset-2 separator-button">
+                                    <!-- Backer Button -->
+                                    <div class="col-md-2 separator-button">
+                                        <img ng-click="showBackers()" src="/assets/icons/misc-icon/backer.svg" />
+                                        <p>Backers</p>
+                                    </div>
+                                    <!-- FundIT Button -->
+                                    <div class="col-md-4 separator-button">
                                         <img id="fundit-button" ng-click="fund()" src="/assets/images/Fundit_Button.svg" />
                                     </div>
                                 </div>
                                 <!-- Continuation of Main Section -->
                                 <div class="project-view-main main-second col-md-10 col-md-offset-2">
-                                    <div class="row text">
+                                    <!-- Project Details Section -->
+                                    <div ng-show="showSection.showDetails" class="row text">
                                         <div class="col-md-12">
                                             <!-- Value Proposition -->
                                             <div class="project-view-section-header">Value Proposition:</div>
@@ -164,15 +174,33 @@
                                             <div class="project-view-section-header">Resources:</div>
                                             <a ng-repeat="resource in project.resources" class="project-resource" target="_blank" ng-href="{{ resource.description | link }}">{{ resource.role }}<br/></a>
                                             <p class="project-view-section-text" ng-show="project.resources.length === 0">No Resources</p>
+                                        </div>
+                                    </div>
+                                    <!-- Comments Section -->
+                                    <div ng-show="showSection.showComments" class="row text">
+                                        <div class="col-md-12">
                                             <!-- Comments -->
                                             <div class="project-view-section-header">Comments:</div>
                                             <div ng-repeat="comment in project.comments" class="project-comment">
-                                                <img class="media-object img-circle" ng-src="{{comment.user_id.image}}" />
+                                                <a href="" ng-click="closeModalAndRedirect('/profileView/' + comment.user_id._id)" data-dismiss="modal"> <img class="media-object img-circle" ng-src="{{comment.user_id.image}}" /></a>
                                                 <p>{{comment.user_id.first_name + " " + comment.user_id.last_name}} : {{ comment.comment }}</p>
                                                 <p>@ {{comment.timestamp | date:'MM/dd/yyyy at h:mma'}}</p>
                                             </div>
                                             <p class="project-view-section-text" ng-show="project.comments.length === 0">No Comments</p>
+                                            <div id="add-comment" ng-click="addComment()">Add Comment</div>
+                                            <div class="go-details" ng-click="showDetails()">Go Back To Details</div>
                                         </div>
+                                    </div>
+                                    <!-- Backers Section -->
+                                    <div ng-show="showSection.showBackers" class="row text">
+                                        <div class="col-md-12">
+                                            <div ng-repeat="backer in project.backers" class="project-backer">
+                                                <a ng-click="closeModalAndRedirect('/profileView/' + backer.user_id._id)" data-dismiss="modal"><img class="media-object img-circle" ng-src="{{backer.user_id.image}}" /></a>
+                                                <p>{{backer.user_id.first_name + " " + backer.user_id.last_name}} : ${{ backer.funded | number }}</p>
+                                            </div>
+                                        </div>
+                                        <p class="project-view-section-text" ng-show="project.backers.length === 0">No Backers</p>
+                                        <div class="go-details" ng-click="showDetails()">Go Back To Details</div>
                                     </div>
                                 </div>
                             </div>

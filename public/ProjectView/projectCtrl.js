@@ -89,6 +89,35 @@
 			   });
 		}
 		
+		$scope.showSection = {
+			showDetails: true,
+			showBackers: false,
+			showComments: false,
+		}
+		
+		$scope.hideAllSections = function() {
+			for (var key in $scope.showSection) {
+			  if ($scope.showSection.hasOwnProperty(key)) {
+				$scope.showSection[key] = false;
+			  }
+			}
+		}
+		
+		$scope.showBackers = function(project) {
+			$scope.hideAllSections();
+			$scope.showSection["showBackers"] = true;
+		}
+		
+		$scope.showDetails = function(project) {
+			$scope.hideAllSections();
+			$scope.showSection["showDetails"] = true;
+		}
+		
+		$scope.showComments = function(project) {
+			$scope.hideAllSections();
+			$scope.showSection["showComments"] = true;
+		}
+		
 		$scope.slideLeft = function() {
 			$scope.slideIndex === 0 ? $scope.filteredProjects.length - 1 : $scope.slideIndex--;
 		}
@@ -96,8 +125,7 @@
 			$scope.slideIndex === $scope.filteredProjects.length - 1 ? 0 : $scope.slideIndex++;
 		}
 
-		$scope.closeModalAndRedirect = function() {
-			var url = "/profileView/" + $scope.filteredProjects[$scope.currentIndex].creator._id;
+		$scope.closeModalAndRedirect = function(url) {
 			$scope.dismissModal();
 			$location.url(url);
 		}
