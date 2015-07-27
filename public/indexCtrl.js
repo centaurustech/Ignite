@@ -155,6 +155,12 @@
         // Navigate to Gallery
         $scope.explore = function() {
             $scope.scrollDown();
+            $window.location.href = "/#/homeView";
+        }
+        
+        $scope.moveToSearchScreen = function() {
+            $scope.scrollDown();
+            $window.location.href = "/#/homeView";
         }
     }]);
 

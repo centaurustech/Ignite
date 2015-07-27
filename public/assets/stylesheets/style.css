@@ -39,6 +39,9 @@ header .navbar .media p {
 
 #dash-notification {
     margin-left: -40px;
+    display: inline-block;
+    padding-top: 20px;
+    vertical-align: top;
 }
 
 #profile-image {
@@ -64,8 +67,8 @@ header .navbar .navbar-nav .a {
 
 header .navbar .header-button {
     position: relative;
-    top: 60px;
-    margin-left: 70px;
+    top: 22px;
+    margin-left: 10px;
     font-weight: 500;
     font-size: 1.5em;
     color: #979797;
@@ -84,7 +87,7 @@ header .navbar .header-button {
 }
 
 header .navbar-header {
-    width: 590px;
+    width: 515px;
 }
 
 .header-underline {
@@ -93,6 +96,10 @@ header .navbar-header {
     height: 5px;
     margin-top: 5px;
     border-radius: 5px;
+}
+
+#nav-search {
+    margin-top: 40px;
 }
 
 
