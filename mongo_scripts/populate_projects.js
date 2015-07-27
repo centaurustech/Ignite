@@ -13,8 +13,10 @@ var projectImage = "/assets/images/default_project_image.jpg";
 
 var admin_id;
 
-var cursor = db['users'].find({username: "Employee1"});
-while(cursor.hasNext()) {
+var cursor = db['users'].find({
+    username: "Employee1"
+});
+while (cursor.hasNext()) {
     admin_id = cursor.next()._id;
 }
 
@@ -22,69 +24,64 @@ while(cursor.hasNext()) {
 // Populate categories
 var categories = ["Technology", "Business", "Security", "Operations"];
 
-for(var i = 0; i < categories.length; i++) {
-    db['categories'].insert(
-        {
-          "name": categories[i],
-          "project_ids": []  
-        }
-    );
+for (var i = 0; i < categories.length; i++) {
+    db['categories'].insert({
+        "name": categories[i],
+        "project_ids": []
+    });
 }
 
 var categoryIDs = [];
 cursor = db['categories'].find();
-while(cursor.hasNext()) {
+while (cursor.hasNext()) {
     categoryIDs.push(cursor.next()._id);
 }
 
 var cities = ["Vancouver", "Seattle", "Cairo", "Burnaby"];
 
-for(var i = 0; i < cities.length; i++) {
-    db['cities'].insert(
-        {
-            "name": cities[i],
-            "project_ids": []
-        }
-    );
+for (var i = 0; i < cities.length; i++) {
+    db['cities'].insert({
+        "name": cities[i],
+        "project_ids": []
+    });
 }
 
 var cityIDs = [];
 cursor = db['cities'].find();
-while(cursor.hasNext()) {
+while (cursor.hasNext()) {
     cityIDs.push(cursor.next()._id);
 }
 
 
 
-for(var i = 1; i <= 20; i++) {
+for (var i = 1; i <= 20; i++) {
     var start_date = new Date();
-        start_date.setDate(i);
-        
-    var end_date = new Date();
-        end_date.setDate(i + 1);
-        
-	db['projects'].insert(
-		{ "image":              projectImage,
-          "title":              "Project #" + i,
-          "start_date":         start_date,
-          "end_date":           end_date,
-          "budget":             (Math.random() * 100000).toFixed(0),
-          "funded":             0,
-          "resources":          [],
-          "summary":            loremIpsum1,
-          "description":        loremIpsum1,
-          "challenges":         loremIpsum3,
-          "value_proposition":  loremIpsum4,
-          "is_approved":        (Math.random() < 0.5 ? true : false ),
-          "category":           categoryIDs[(Math.floor(Math.random() * ( 1 + (categoryIDs.length - 1) - 0 ) ) + 0)],
-          "backers":            [],
-          "creator":            admin_id,
-          "comments":           [],
-          "team_members":       [],
-          "city":               cityIDs[(Math.floor( Math.random() * ( 1 + (cityIDs.length - 1) - 0 ) ) + 0)],
-          "followers":          [],
-          "country":            "",
-          "is_in_progress":     (Math.random() < 0.5 ? true : false ),
-		});	
-}
+    start_date.setDate(i);
 
+    var end_date = new Date();
+    end_date.setDate(i + 1);
+
+    db['projects'].insert({
+        "image": projectImage,
+        "title": "Project #" + i,
+        "start_date": start_date,
+        "end_date": end_date,
+        "budget": (Math.random() * 100000).toFixed(0),
+        "funded": 0,
+        "resources": [],
+        "summary": loremIpsum1,
+        "description": loremIpsum1,
+        "challenges": loremIpsum3,
+        "value_proposition": loremIpsum4,
+        "is_approved": (Math.random() < 0.5 ? true : false),
+        "category": categoryIDs[(Math.floor(Math.random() * (1 + (categoryIDs.length - 1) - 0)) + 0)],
+        "backers": [],
+        "creator": admin_id,
+        "comments": [],
+        "team_members": [],
+        "city": cityIDs[(Math.floor(Math.random() * (1 + (cityIDs.length - 1) - 0)) + 0)],
+        "followers": [],
+        "country": "",
+        "is_in_progress": (Math.random() < 0.5 ? true : false),
+    });
+}

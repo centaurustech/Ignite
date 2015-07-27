@@ -1,47 +1,58 @@
 <doctype HTML>
-<html lang="en" ng-app="LoginControllers">
-<head>
-	<link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
-	
-	<script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/angular/angular.min.js"></script>
-	<script type="text/javascript" src="/Services/UserService.js"></script>
-	<script type="text/javascript" src="/LoginPageControllers/loginCtrl.js"></script>
-	<script type="text/javascript" src="/LoginPageControllers/registerCtrl.js"></script>
-</head>
-<body>	
-	<!-- Login Form -->
-	<div ng-controller="LoginController" class="row">
-		<h1> Login Page </h1>
-		<p>Please Login</p>
-		{{ message }}
-		<form name="loginForm" ng-submit="loginForm.$valid && login()" novalidate>
-			<input type='text' 	   name='username' placeholder='Enter Username' ng-model="form.username" required/>
-			<input type='password' name='password' placeholder='Password' 	    ng-model="form.password" required/>
-			<button type='submit'>Submit</button>
-		</form>
-	</div>
-	
-	<!-- Register Form-->
-	<div ng-controller="RegisterController" class="row">
-	<h1> Register Page </h1>
-	<p>Please Register</p>
-	<h3 style="color: red"> {{ message }} </h3>
-	<form name="registerForm" ng-submit="registerForm.$valid && register()" novalidate>
-		<input type='text' 		name='username'   placeholder='Enter Username'   ng-model="form.username"   required/><br/>
-		<input type='password', name='password',  placeholder='Password' 	     ng-model="form.password"   required/><br/>
-		<input type='text' 		name='first_name' placeholder='Enter First Name' ng-model="form.first_name" required/><br/>
-		<input type='text' 		name='last_name'  placeholder='Enter Last Name'  ng-model="form.last_name"  required/><br/>
-		<input type='text' 		name='title' 	  placeholder='Enter Title' 	 ng-model="form.title" 	    required/><br/>
-		<input type='text' 		name='department' placeholder='Enter Department' ng-model="form.department" required/><br/>
-		<input type='text' 		name='location'   placeholder='Enter location'   ng-model="form.location"   required/><br/>
-		<input type='email' 	name='email' 	  placeholder='Enter Email' 	 ng-model="form.email" 	    required/><br/>
-		<input type="checkbox"  name="is_budget_owner" value="Budget Owner" 	 ng-model="form.is_budget_owner">Budget Owner<br>
-		<input type="checkbox"  name="is_approver"     value="Project Approver"  ng-model="form.is_approver">Project Approver<br>
-		<button type='submit'>Register</button>
-	</form>
-</div>
-</body>
-</html>
+    <html lang="en" ng-app="LoginControllers">
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
+        <script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/angular/angular.min.js"></script>
+        <script type="text/javascript" src="/Services/UserService.js"></script>
+        <script type="text/javascript" src="/LoginPageControllers/loginCtrl.js"></script>
+        <script type="text/javascript" src="/LoginPageControllers/registerCtrl.js"></script>
+    </head>
+
+    <body>
+        <!-- Login Form -->
+        <div ng-controller="LoginController" class="row">
+            <h1> Login Page </h1>
+            <p>Please Login</p>
+            {{ message }}
+            <form name="loginForm" ng-submit="loginForm.$valid && login()" novalidate>
+                <input type='text' name='username' placeholder='Enter Username' ng-model="form.username" required/>
+                <input type='password' name='password' placeholder='Password' ng-model="form.password" required/>
+                <button type='submit'>Submit</button>
+            </form>
+        </div>
+        <!-- Register Form-->
+        <div ng-controller="RegisterController" class="row">
+            <h1> Register Page </h1>
+            <p>Please Register</p>
+            <h3 style="color: red"> {{ message }} </h3>
+            <form name="registerForm" ng-submit="registerForm.$valid && register()" novalidate>
+                <input type='text' name='username' placeholder='Enter Username' ng-model="form.username" required/>
+                <br/>
+                <input type='password' , name='password' , placeholder='Password' ng-model="form.password" required/>
+                <br/>
+                <input type='text' name='first_name' placeholder='Enter First Name' ng-model="form.first_name" required/>
+                <br/>
+                <input type='text' name='last_name' placeholder='Enter Last Name' ng-model="form.last_name" required/>
+                <br/>
+                <input type='text' name='title' placeholder='Enter Title' ng-model="form.title" required/>
+                <br/>
+                <input type='text' name='department' placeholder='Enter Department' ng-model="form.department" required/>
+                <br/>
+                <input type='text' name='location' placeholder='Enter location' ng-model="form.location" required/>
+                <br/>
+                <input type='email' name='email' placeholder='Enter Email' ng-model="form.email" required/>
+                <br/>
+                <input type="checkbox" name="is_budget_owner" value="Budget Owner" ng-model="form.is_budget_owner">Budget Owner
+                <br>
+                <input type="checkbox" name="is_approver" value="Project Approver" ng-model="form.is_approver">Project Approver
+                <br>
+                <button type='submit'>Register</button>
+            </form>
+        </div>
+    </body>
+
+    </html>
 </doctype>

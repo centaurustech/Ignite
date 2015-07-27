@@ -57,18 +57,23 @@ router.get('/user/projects/:id', function(req, res) {
         .populate({path: 'creator', model: 'User'})
         .populate({path: 'category', model: 'Category'})
         .populate({path: 'backers', model: 'Backer'})
-        .populate({path: 'city', model: 'City'});
+        .populate({path: 'city', model: 'City'})
+        .populate({path: 'comments', model: 'Comment'});
     
     query.exec(function(err, projects) {
         if(err) { console.error(err); } 
        
-       // Populate users inside of backers separately since 
+ // Populate users inside of backers separately since 
        // the original populate cannot populate nested refs.
        User.populate(projects, {
-           path: 'backers.user_id',
+           path: 'backers.user_id'
        }, function(err, projects) {
-           res.json(projects);
-       }); 
+           User.populate(projects, {
+               path: 'comments.user_id'
+           }, function(err, projects) {
+                res.json(projects);    
+           });
+       });
     });
 });
 

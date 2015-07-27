@@ -59,7 +59,7 @@
 					var days_left = (new Date(data.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
 					data.days_left = days_left > 0 ? days_left : 0;
 					
-					$scope.filteredProjects[index] = data;
+					$scope.filteredProjects[index].funded = data.funded;
 				})
 				.error(function(data) {
 					$scope.message = data;

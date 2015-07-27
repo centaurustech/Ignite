@@ -1,136 +1,130 @@
 <div class="modal project-modal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" ng-click="dismissModal()" data-dismiss="modal" aria-hidden="true" style="z-index: 1000;">&times;</button>
-			</div>
-			<div class="modal-body">
-				  
-	    		  <div id="projectCarousel" class="carousel slide" data-interval="false" data-ride="carousel" class="row">
-				  <!-- Wrapper for slides -->
-				  <div class="carousel-inner" role="listbox">
-				    <div ng-repeat="project in filteredProjects" class="item row project-view-slide" ng-class="{active: $index==currentIndex}">
-			        	<div class="project-view-container row">
-							<!-- Left sidebar -->
-							<div class="project-view-sidebar col-md-2">
-								<div class="side-cat-icon" style="background: {{project.background_color}}">
-									<img ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg"/>
-								</div>
-								
-								<!-- Creator Image -->
-								<a ng-click="closeModalAndRedirect()"  data-dismiss="modal"><img class="creator-img media-object img-circle" ng-src="{{project.creator.image}}"/></a>
-								<p class="project-view-creator-name">{{project.creator.first_name + " " + project.creator.last_name | uppercase }}</p>
-								
-								<div class="project-sidebar-user-info">
-									
-										<div class="col-sm-2 col-md-12">
-											<p>TITLE:</p>
-											{{ user.title }}
-										</div>
-										<div class="col-sm-2 col-md-12">
-											<p>DEPARTMENT:</p>
-											{{ user.department }}
-										</div>
-										<div class="col-sm-2 col-md-12">
-											<p>LOCATION:</p>
-											{{ user.location }}
-										</div>
-										<div class="col-sm-2 col-md-12">
-											<p>EMAIL:</p>
-											{{ user.email }}
-										</div>
-										<div class="col-sm-2 col-md-12">
-											<p>PROJECTS FUNDED:</p>
-											{{ user.funded.length }}
-										</div>
-										<div class="col-sm-2 col-md-12">
-											<p>PROJECTS CREATED:</p>
-											{{ user.projects.length }}
-										</div>
-										<div class="col-sm-2 col-md-12">
-											<p>PROJECTS ENDORSED:</p>
-											{{ user.following.length }}
-										</div>
-									
-								</div>
-							</div>
-							<!-- Main Information -->
-							<div class="project-view-main col-md-10">
-								<div class="row col-md-12 project-title">
-									<h1>{{ project.title }}</h1>
-								</div>
-								<!-- Image and Numbers -->
-								<div class="row image-numbers">
-									<div class="col-md-7">
-										<img class="project-image" ng-src="{{ project.image }}"/>
-									</div>
-									
-									<div class="col-md-4">
-										<!-- Funded -->
-										<div class="progress-bar-group">
-											<img class="progress-image" src="/assets/icons/card-icons/Fund.svg"/>
-											<div class="progress-bar-label">
-												<div class="progress-bar-label-name">FUNDED</div>
-												<div class="progress-bar-label-value">
-													<div>$ {{ project.funded | number }}</div>
-													<div>out of $ {{ project.budget | number }}</div>
-												</div>
-											</div>
-											<div class="progress">
-									   	    	<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.funded / project.budget }}%;"></div>
-											</div>
-										</div>
-										<!-- Days Left-->
-										<div class="progress-bar-group">
-										    <img class="progress-image" src="/assets/icons/card-icons/Clock.svg"/>
-											<div class="progress-bar-label">
-												<div class="progress-bar-label-name">DAYS LEFT</div>
-												<div class="progress-bar-label-value">
-													<div>{{ project.days_left }}</div>
-													<div>out of 30</div>
-												</div>
-											</div>
-											<div class="progress">
-										  		<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ ((30 - project.days_left) / 30) * 100 }}%;"></div>
-											</div>
-										</div>
-										<!-- Endorsers-->
-										<div class="project-progress-group">
-											<img class="progress-image" src="/assets/icons/card-icons/Star.svg"/>
-										    <div class="progress-bar-label">
-												<div class="progress-bar-label-name">ENDORSED</div>
-												<div class="progress-bar-label-value">
-													<div>{{ project.followers.length }}</div>
-													<div>times</div> 
-											</div>
-										</div>
-										<!-- Backers -->
-										<div class="project-progress-group">
-											<img class="progress-image" src="/assets/icons/card-icons/Star.svg"/>
-										    <div class="progress-bar-label">
-												<div class="progress-bar-label-name">BACKERS</div>
-												<div class="progress-bar-label-value">
-													<div>{{ project.backers.length }}</div>
-													<div>Budget Owners</div>
-												</div> 
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Description and Invitation -->
-								<div class="row text">
-									<div class="col-md-12">
-										<p class="project-view-section-text summary">{{ project.summary }}</p>
-									</div>
-									<!--<div class="col-md-6">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="dismissModal()" data-dismiss="modal" aria-hidden="true" style="z-index: 1000;">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="projectCarousel" class="carousel slide" data-interval="false" data-ride="carousel" class="row">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div ng-repeat="project in filteredProjects" class="item row project-view-slide" ng-class="{active: $index==currentIndex}">
+                            <div class="project-view-container row">
+                                <!-- Left sidebar -->
+                                <div class="project-view-sidebar col-md-2">
+                                    <div class="side-cat-icon" style="background: {{project.background_color}}">
+                                        <img ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg" />
+                                    </div>
+                                    <!-- Creator Image -->
+                                    <a ng-click="closeModalAndRedirect()" data-dismiss="modal"><img class="creator-img media-object img-circle" ng-src="{{project.creator.image}}" /></a>
+                                    <p class="project-view-creator-name">{{project.creator.first_name + " " + project.creator.last_name | uppercase }}</p>
+                                    <div class="project-sidebar-user-info">
+                                        <div class="col-sm-2 col-md-12">
+                                            <p>TITLE:</p>
+                                            {{ user.title }}
+                                        </div>
+                                        <div class="col-sm-2 col-md-12">
+                                            <p>DEPARTMENT:</p>
+                                            {{ user.department }}
+                                        </div>
+                                        <div class="col-sm-2 col-md-12">
+                                            <p>LOCATION:</p>
+                                            {{ user.location }}
+                                        </div>
+                                        <div class="col-sm-2 col-md-12">
+                                            <p>EMAIL:</p>
+                                            {{ user.email }}
+                                        </div>
+                                        <div class="col-sm-2 col-md-12">
+                                            <p>PROJECTS FUNDED:</p>
+                                            {{ user.funded.length }}
+                                        </div>
+                                        <div class="col-sm-2 col-md-12">
+                                            <p>PROJECTS CREATED:</p>
+                                            {{ user.projects.length }}
+                                        </div>
+                                        <div class="col-sm-2 col-md-12">
+                                            <p>PROJECTS ENDORSED:</p>
+                                            {{ user.following.length }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Main Information -->
+                                <div class="project-view-main col-md-10">
+                                    <div class="row col-md-12 project-title">
+                                        <h1>{{ project.title }}</h1>
+                                    </div>
+                                    <!-- Image and Numbers -->
+                                    <div class="row image-numbers">
+                                        <div class="col-md-7">
+                                            <img class="project-image" ng-src="{{ project.image }}" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <!-- Funded -->
+                                            <div class="progress-bar-group">
+                                                <img class="progress-image" src="/assets/icons/card-icons/Fund.svg" />
+                                                <div class="progress-bar-label">
+                                                    <div class="progress-bar-label-name">FUNDED</div>
+                                                    <div class="progress-bar-label-value">
+                                                        <div>$ {{ project.funded | number }}</div>
+                                                        <div>out of $ {{ project.budget | number }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.funded / project.budget }}%;"></div>
+                                                </div>
+                                            </div>
+                                            <!-- Days Left-->
+                                            <div class="progress-bar-group">
+                                                <img class="progress-image" src="/assets/icons/card-icons/Clock.svg" />
+                                                <div class="progress-bar-label">
+                                                    <div class="progress-bar-label-name">DAYS LEFT</div>
+                                                    <div class="progress-bar-label-value">
+                                                        <div>{{ project.days_left }}</div>
+                                                        <div>out of 30</div>
+                                                    </div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ ((30 - project.days_left) / 30) * 100 }}%;"></div>
+                                                </div>
+                                            </div>
+                                            <!-- Endorsers-->
+                                            <div class="project-progress-group">
+                                                <img class="progress-image" src="/assets/icons/card-icons/Star.svg" />
+                                                <div class="progress-bar-label">
+                                                    <div class="progress-bar-label-name">ENDORSED</div>
+                                                    <div class="progress-bar-label-value">
+                                                        <div>{{ project.followers.length }}</div>
+                                                        <div>times</div>
+                                                    </div>
+                                                </div>
+                                                <!-- Backers -->
+                                                <div class="project-progress-group">
+                                                    <img class="progress-image" src="/assets/icons/card-icons/Star.svg" />
+                                                    <div class="progress-bar-label">
+                                                        <div class="progress-bar-label-name">BACKERS</div>
+                                                        <div class="progress-bar-label-value">
+                                                            <div>{{ project.backers.length }}</div>
+                                                            <div>Budget Owners</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Description and Invitation -->
+                                        <div class="row text">
+                                            <div class="col-md-12">
+                                                <p class="project-view-section-text summary">{{ project.summary }}</p>
+                                            </div>
+                                            <!--<div class="col-md-6">
 										<div class="input-group">
 										  <span class="input-group-label">Invite to view:</span>
 										  <input type="email" class="form-control">
 										</div>
 										<button class="button project-follow" ng-click="followProject(project._id)"> Follow </button>
 									</div>-->
-								</div>
-								<!-- Backers and Comments
+                                        </div>
+                                        <!-- Backers and Comments
 								<div class="row details-section">
 									<div class="col-md-6">
 										<span class="project-view-section-header">Backers:</span><br/>
@@ -145,70 +139,64 @@
 									</div>
 								</div>
 								 -->
-							</div>
-					    </div>
-						
-						<!-- Separation Bar -->
-						<div id="main-section-separator" class="col-md-12 col-sm-12">
-							<div class="col-md-2 separator-button">
-								<img ng-click="addComment()" src="/assets/buttons/project-view/comment.svg"/>
-								<p>Comment</p>
-							</div>
-							<div class="col-md-2 separator-button">
-								<img ng-click="followProject(project._id)" src="/assets/buttons/project-view/endorse.svg"/>
-								<p>Endorse</p>
-							</div>
-							<div class="col-md-2 separator-button">
-								<img ng-click="$root.showNotImplemented()" src="/assets/buttons/project-view/share.svg"/>
-								<p>Share</p>
-							</div>
-							<div class="col-md-4 col-md-offset-2 separator-button">
-								<img id="fundit-button" ng-click="fund()" src="/assets/images/Fundit_Button.svg" />
-							</div>
-						</div>
-						
-						<!-- Continuation of Main Section -->
-						<div class="project-view-main main-second col-md-10 col-md-offset-2">
-								<div class="row text">
-									<div class="col-md-12">
-										<!-- Value Proposition -->
-										<div class="project-view-section-header">Value Proposition:</div>
-										<p class="project-view-section-text">{{ project.value_proposition }}</p>
-										<!-- Project Details -->
-										<div class="project-view-section-header">Project Details:</div>
-										<p class="project-view-section-text">{{ project.description }}</p>
-										<!-- Resources -->
-										<div class="project-view-section-header">Resources:</div>
-										<a ng-repeat="resource in project.resources" class="project-resource" target="_blank" ng-href="{{ resource.description | link }}">{{ resource.role }}<br/></a>
-										<p class="project-view-section-text" ng-show="project.resources.length === 0">No Resources</p>
-										<!-- Comments -->
-										<div class="project-view-section-header">Comments:</div>
-										<div ng-repeat="comment in project.comments" class="project-comment">
-											<img class="media-object img-circle" ng-src="{{comment.user_id.image}}"/><p>{{comment.user_id.first_name + " " + comment.user_id.last_name}} : {{ comment.comment }}</p>
-											<p>@ {{comment.timestamp | date:'MM/dd/yyyy at h:mma'}}</p>
-										</div>
-										<p class="project-view-section-text" ng-show="project.comments.length === 0">No Comments</p>
-									</div>
-								</div>
-						</div>
-						
-						
-						
-					</div>
-				  </div>
-				  <!-- Left and right controls -->
-				  <a class="left carousel-control" data-target="#projectCarousel" role="button" data-slide="prev" ng-click="slideLeft()" ng-hide="slideIndex === 0">
-				     <img class="carousel-button" src="/assets/buttons/back.svg"/>
-    				 <span class="sr-only">Previous</span>
-				  </a>
-				  <a class="right carousel-control" data-target="#projectCarousel" role="button" data-slide="next" ng-click="slideRight()" ng-hide="slideIndex === filteredProjects.length - 1">
-				    <img class="carousel-button" src="/assets/buttons/forward.svg"/>
-				    <span class="sr-only">Next</span>
-				  </a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-
+                                    </div>
+                                </div>
+                                <!-- Separation Bar -->
+                                <div id="main-section-separator" class="col-md-12 col-sm-12">
+                                    <div class="col-md-2 separator-button">
+                                        <img ng-click="addComment()" src="/assets/buttons/project-view/comment.svg" />
+                                        <p>Comment</p>
+                                    </div>
+                                    <div class="col-md-2 separator-button">
+                                        <img ng-click="followProject(project._id)" src="/assets/buttons/project-view/endorse.svg" />
+                                        <p>Endorse</p>
+                                    </div>
+                                    <div class="col-md-2 separator-button">
+                                        <img ng-click="$root.showNotImplemented()" src="/assets/buttons/project-view/share.svg" />
+                                        <p>Share</p>
+                                    </div>
+                                    <div class="col-md-4 col-md-offset-2 separator-button">
+                                        <img id="fundit-button" ng-click="fund()" src="/assets/images/Fundit_Button.svg" />
+                                    </div>
+                                </div>
+                                <!-- Continuation of Main Section -->
+                                <div class="project-view-main main-second col-md-10 col-md-offset-2">
+                                    <div class="row text">
+                                        <div class="col-md-12">
+                                            <!-- Value Proposition -->
+                                            <div class="project-view-section-header">Value Proposition:</div>
+                                            <p class="project-view-section-text">{{ project.value_proposition }}</p>
+                                            <!-- Project Details -->
+                                            <div class="project-view-section-header">Project Details:</div>
+                                            <p class="project-view-section-text">{{ project.description }}</p>
+                                            <!-- Resources -->
+                                            <div class="project-view-section-header">Resources:</div>
+                                            <a ng-repeat="resource in project.resources" class="project-resource" target="_blank" ng-href="{{ resource.description | link }}">{{ resource.role }}<br/></a>
+                                            <p class="project-view-section-text" ng-show="project.resources.length === 0">No Resources</p>
+                                            <!-- Comments -->
+                                            <div class="project-view-section-header">Comments:</div>
+                                            <div ng-repeat="comment in project.comments" class="project-comment">
+                                                <img class="media-object img-circle" ng-src="{{comment.user_id.image}}" />
+                                                <p>{{comment.user_id.first_name + " " + comment.user_id.last_name}} : {{ comment.comment }}</p>
+                                                <p>@ {{comment.timestamp | date:'MM/dd/yyyy at h:mma'}}</p>
+                                            </div>
+                                            <p class="project-view-section-text" ng-show="project.comments.length === 0">No Comments</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" data-target="#projectCarousel" role="button" data-slide="prev" ng-click="slideLeft()" ng-hide="slideIndex === 0">
+                            <img class="carousel-button" src="/assets/buttons/back.svg" />
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" data-target="#projectCarousel" role="button" data-slide="next" ng-click="slideRight()" ng-hide="slideIndex === filteredProjects.length - 1">
+                            <img class="carousel-button" src="/assets/buttons/forward.svg" />
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

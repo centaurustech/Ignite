@@ -1,10 +1,10 @@
 <div class="row">
-	<h3>Pending Projects</h3>
-	<div ng-repeat="project in pendingProjects"" class="col-md-3 project-gallery">
-				<a href="/#/projectView/{{ project._id }}"><img ng-src="{{ project.image }}" class="project-gallery-image"/></a>
+    <h3>Pending Projects</h3>
+    <div ng-repeat="project in pendingProjects" " class="col-md-3 project-gallery ">
+				<a href="/#/projectView/{{ project._id }} "><img ng-src="{{ project.image }} " class="project-gallery-image "/></a>
 		<strong>{{project.title}}</strong><br/>
 		by {{ project.creator.first_name + " " + project.creator.last_name }}<br/><br/>
-		<div class="project-gallery-description">{{ project.description }}</div><br/>
+		<div class="project-gallery-description ">{{ project.description }}</div><br/>
 		<strong>Funded Percent: {{ (project.funded / project.budget) * 100 | number: 0 }}%</strong><br/>
 		<strong>Funded: ${{ project.funded | number }}</strong><br/>
 		Start: {{ project.start_date | date }}<br/>
