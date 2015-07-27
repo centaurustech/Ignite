@@ -65,7 +65,7 @@
                     <p class="progress-bar-label">SUPPORT
                         <br/> {{ project.followers.length }} </p>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.funded / project.budget }}%;"></div>
+                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ (project.funded / project.budget) * 100 }}%;"></div>
                     </div>
                     <img class="progress-image" height="35px" src="/assets/icons/card-icons/Fund.svg" />
                     <p class="progress-bar-label">FUNDED
@@ -83,6 +83,7 @@
                 </div>
             </div>
         </div>
+        <!-- Following Projects -->
         <div ng-repeat="project in following" class="col-md-6 col-sm-12 col-lg-12 project-gallery project-filter-item" ng-hide="showOwn">
             <div class="card-container">
                 <div class="card-banner" style="background-color: {{project.background_color}};">
@@ -99,7 +100,7 @@
                     <p class="progress-bar-label">SUPPORT
                         <br/> {{ project.followers.length }} </p>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.funded / project.budget }}%;"></div>
+                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ (project.funded / project.budget) * 100 }}%;"></div>
                     </div>
                     <img class="progress-image" height="35px" src="/assets/icons/card-icons/Fund.svg" />
                     <p class="progress-bar-label">FUNDED
