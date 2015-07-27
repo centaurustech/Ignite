@@ -62,7 +62,7 @@
                         <p class="progress-bar-label">DAYS LEFT
                             <br/> {{ project.days_left | number:0 }} / 30 </p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ (project.days_left / 30) * 100 }}%;"></div>
+                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ ((30 - project.days_left) / 30) * 100 }}%;"></div>
                         </div>
                         <img class="progress-image" height="35px" src="/assets/icons/card-icons/Star.svg" style="display: inline;" />
                         <p class="progress-bar-label">ENDORSED
