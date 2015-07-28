@@ -11,7 +11,7 @@
                         <div ng-repeat="project in filteredProjects" class="item row project-view-slide" ng-class="{active: $index==currentIndex}">
                             <div class="project-view-container row">
                                 <!-- Left sidebar -->
-                                <div class="project-view-sidebar col-md-2">
+                                <div class="project-view-sidebar col-md-3">
                                     <div class="side-cat-icon" style="background: {{project.background_color}}">
                                         <img ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg" />
                                     </div>
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <!-- Main Information -->
-                                <div class="project-view-main col-md-10">
+                                <div class="project-view-main col-md-9">
                                     <div class="row col-md-12 project-title">
                                         <h1>{{ project.title }}</h1>
                                     </div>
@@ -160,7 +160,7 @@
                                     </div>
                                 </div>
                                 <!-- Continuation of Main Section -->
-                                <div class="project-view-main main-second col-md-10 col-md-offset-2">
+                                <div class="project-view-main main-second col-md-9 col-md-offset-3">
                                     <!-- Project Details Section -->
                                     <div ng-show="showSection.showDetails" class="row text">
                                         <div class="col-md-12">
