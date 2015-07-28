@@ -208,6 +208,18 @@ header .navbar-header {
     width: 100%;
 }
 
+.filter-bar {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    
+    height: 80%;
+    width: 5px;
+    
+    border-radius: 10px;
+    background-color: #aacf37;
+}
+
 /* Project Gallery Card */
 
 .project-gallery-image {

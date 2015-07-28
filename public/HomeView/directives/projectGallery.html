@@ -8,13 +8,16 @@
                     <p>{{category.name}}</p>
                 </div>
             </div>
+            
             <div class="col-md-4 col-sm-4 col-xs-6">
+                <div class="filter-bar"></div>
                 <div class="col-md-4 col-sm-4 col-xs-4" ng-repeat="orderBy in orderByFilters">
                     <img ng-src="{{orderBy.image}}" ng-click="setOrderFilter(orderBy.filter_name, $index)" />
                     <p>{{orderBy.display_name}}</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="filter-bar"></div>
                 <div class="col-md-6 col-sm-6 col-xs-6" ng-repeat="filterOrder in filterOrders">
                     <img ng-src="{{filterOrder.image}}" ng-click="setOrder(filterOrder.order_name, $index)" />
                     <p>{{filterOrder.display_name}}</p>
