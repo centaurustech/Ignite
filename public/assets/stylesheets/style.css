@@ -508,18 +508,18 @@ header .navbar-header {
 
 #upload-project-image {
     height: 200px;
-    width: 70%;
+    width: 100%;
     border-radius: 0px;
     border: 5px dotted #979797;
     padding-top: 60px;
-    padding-left: 55px;
+    padding-left: 35%;
     color: #979797;
 }
 
 .upload-project-image-text {
     position: absolute;
     top: 225px;
-    left: 20%;
+    left: 28%;
     font-size: 1.5em;
     color: #979797;
 }
