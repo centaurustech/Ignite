@@ -114,7 +114,7 @@
             $scope.setFollowing = function() {
                 $scope.showOwn = false;
             }
-
+            /*
             var isFilterVisible = true;
             // Hide the filter after 4 seconds
             var to = $timeout(function() {
@@ -143,7 +143,7 @@
                     }, 1000);
                 }
             }
-            
+            */
             
             $scope.followProject = function(index) {
                 if($scope.filteredProjects[index].isFollowed) {

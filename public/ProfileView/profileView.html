@@ -1,5 +1,5 @@
 <!-- Filters -->
-<div id="user-filters" ng-mouseover="showFilters()" ng-mouseenter="showFilters()" ng-mouseleave="hideFilters()" class="row">
+<div id="user-filters" class="row">
     <div class="col-md-12">
         <div class="col-md-3">
             <img ng-src="/assets/icons/card-icons/Inprogressw.svg" ng-click="setInProgress()" />
@@ -48,7 +48,6 @@
     </div>
     <!-- Projects -->
     <div id="user-projects" class="col-md-9">
-        <div ng-mouseover="showFilters()" style="height: 10px;" class="row"></div>
         <div ng-repeat="project in (filteredProjects = ( projects | projectFilter:filterBy ))" class="col-md-12 col-sm-12 col-lg-6 project-gallery project-filter-item" ng-show="showOwn">
             <div class="card-container">
                 <div class="card-banner" style="background-color: {{project.background_color}};">
