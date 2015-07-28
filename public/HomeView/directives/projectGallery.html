@@ -3,11 +3,6 @@
         <div ng-mouseover="showFilters()" class="filter-hidden"></div>
         <!-- Filter Bar -->
         <div id="gallery-filters" ng-mouseover="showFilters()" ng-mouseenter="showFilters()" ng-mouseleave="hideFilters()" class="row">
-            <div class="col-md-1">
-                <div class="col-md-6 col-md-offset-6">
-                    <p class="filter-text">Filter:</p>
-                </div>
-            </div>
             <div class="filter-category-section col-md-5">
                 <div class="col-md-3" ng-repeat="category in categories">
                     <img ng-src="/assets/icons/category-icons/{{category.name}}w.svg" ng-click="setCategoryFilter(category)" />
