@@ -371,6 +371,12 @@ header .navbar-header {
     margin-left: 6px;
 }
 
+#card-user-photo {
+    position: absolute;
+    display: block;
+    bottom: 25px;
+    right: 25px;
+}
 
 /* ======== Project Gallery ======== */
 
