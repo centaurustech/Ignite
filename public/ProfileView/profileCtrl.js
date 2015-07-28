@@ -95,7 +95,48 @@
                     });
                 });
             };
-
+            
+            $scope.filters = [
+                { 
+                    display_name: "In Progress",
+                    image: "/assets/icons/card-icons/Inprogressw.svg",
+                    svg_name: "Inprogress",
+                    filter_name: "in_progress"
+                },
+                { 
+                    display_name: "Expired",
+                    image: "/assets/icons/card-icons/Expiredw.svg",
+                    svg_name: "Expired",
+                    filter_name: "expired"
+                },
+                { 
+                    display_name: "Fully Funded",
+                    image: "/assets/icons/card-icons/Fullyfundw.svg",
+                    svg_name: "Fullyfund",
+                    filter_name: "fully_funded"
+                },
+                { 
+                    display_name: "Endorsed",
+                    image: "/assets/icons/card-icons/Starw.svg",
+                    svg_name: "Star",
+                    filter_name: "endorsed"
+                }
+            ]
+            
+            $scope.setFilter = function(filter_name, index) {
+                $scope.filters.forEach(function(filter) {
+                   filter.image =  "/assets/icons/card-icons/" + filter.svg_name + "w.svg";
+                });
+                
+                if(filter_name === "endorsed") {
+                    $scope.showOwn = false;
+                } else {
+                    $scope.showOwn = true;
+                } 
+                $scope.filterBy = filter_name;
+                $scope.filters[index].image =  "/assets/icons/card-icons/" + $scope.filters[index].svg_name + ".svg";
+            }
+            
             $scope.setInProgress = function() {
                 $scope.showOwn = true;
                 $scope.filterBy = "inProgress";
@@ -166,7 +207,7 @@
             var resultProjects = [];
 
             switch (filterBy) {
-                case 'inProgress':
+                case 'in_progress':
                     for (var i = 0; i < projects.length; i++) {
                         if ((new Date(projects[i].end_date)) >= (new Date)) {
                             resultProjects.push(projects[i]);
@@ -180,7 +221,7 @@
                         }
                     }
                     break;
-                case 'fullyFunded':
+                case 'fully_funded':
                     for (var i = 0; i < projects.length; i++) {
 
                         if (projects[i].funded >= projects[i].budget) {

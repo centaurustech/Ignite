@@ -1,21 +1,9 @@
 <!-- Filters -->
 <div id="user-filters" class="row">
     <div class="col-md-12">
-        <div class="col-md-3">
-            <img ng-src="/assets/icons/card-icons/Inprogressw.svg" ng-click="setInProgress()" />
-            <p>IN PROGRESS</p>
-        </div>
-        <div class="col-md-3">
-            <img ng-src="/assets/icons/card-icons/Expiredw.svg" ng-click="setExpired()" />
-            <p>EXPIRED</p>
-        </div>
-        <div class="col-md-3">
-            <img ng-src="/assets/icons/card-icons/Fullyfundw.svg" ng-click="setFullyFunded()" />
-            <p>FULLY FUNDED</p>
-        </div>
-        <div class="col-md-3">
-            <img ng-src="/assets/icons/card-icons/Starw.svg" ng-click="setFollowing()" />
-            <p>FOLLOWING</p>
+        <div class="col-md-3" ng-repeat="filter in filters">
+            <img ng-src="{{filter.image}}" ng-click="setFilter(filter.filter_name, $index)" />
+            <p>{{filter.display_name}}</p>
         </div>
     </div>
 </div>
