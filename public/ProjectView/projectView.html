@@ -21,31 +21,31 @@
                                     <div class="project-sidebar-user-info">
                                         <div class="col-sm-2 col-md-12">
                                             <p>TITLE:</p>
-                                            {{ user.title }}
+                                            {{ project.creator.title }}
                                         </div>
                                         <div class="col-sm-2 col-md-12">
                                             <p>DEPARTMENT:</p>
-                                            {{ user.department }}
+                                            {{ project.creator.department }}
                                         </div>
                                         <div class="col-sm-2 col-md-12">
                                             <p>LOCATION:</p>
-                                            {{ user.location }}
+                                            {{ project.creator.location }}
                                         </div>
                                         <div class="col-sm-2 col-md-12">
                                             <p>EMAIL:</p>
-                                            {{ user.email }}
+                                            {{ project.creator.email }}
                                         </div>
                                         <div class="col-sm-2 col-md-12">
                                             <p>PROJECTS FUNDED:</p>
-                                            {{ user.funded.length }}
+                                            {{ project.creator.funded.length }}
                                         </div>
                                         <div class="col-sm-2 col-md-12">
                                             <p>PROJECTS CREATED:</p>
-                                            {{ user.projects.length }}
+                                            {{ project.creator.projects.length }}
                                         </div>
                                         <div class="col-sm-2 col-md-12">
                                             <p>PROJECTS ENDORSED:</p>
-                                            {{ user.following.length }}
+                                            {{ project.creator.following.length }}
                                         </div>
                                     </div>
                                 </div>
