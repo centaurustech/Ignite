@@ -37,7 +37,7 @@
                 
                         project.followers.forEach(function(follower) {
                             if(follower === $rootScope.user._id) {
-                                project.starImage = "/assets/icons/card-icons/Starg.svg";  
+                                project.starImage = "/assets/icons/card-icons/Star.svg";  
                             }
                         });
                     });
