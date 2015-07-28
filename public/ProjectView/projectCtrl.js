@@ -221,10 +221,10 @@
 		$scope.selectedCategory = function() {
 			var name_lower = String($scope.form.category).toLowerCase();
 			switch(name_lower) {
-				case "technology":  $scope.categoryColor =  "#b1b1a6"; break;
-				case "business":    $scope.categoryColor = "#53a6be"; break;
-				case "operations":  $scope.categoryColor = "#acadbf"; break;
-				case "security":    $scope.categoryColor = "#c59079"; break;
+				case "technology":  $scope.categoryColor =  "#A796B8"; break;
+				case "business":    $scope.categoryColor = "#69A9BC"; break;
+				case "operations":  $scope.categoryColor = "#C5AA8B"; break;
+				case "security":    $scope.categoryColor = "#8ABD9B"; break;
 				default: 		    $scope.categoryColor = "#aacf37"; break;
 			}	
 			console.log($scope.categoryColor);

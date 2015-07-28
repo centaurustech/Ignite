@@ -91,16 +91,11 @@
         $scope.selectColorByCategory = function(category_name) {
             var name_lower = String(category_name).toLowerCase();
             switch (name_lower) {
-                case "technology":
-                    return "#b1b1a6";
-                case "business":
-                    return "#53a6be";
-                case "operations":
-                    return "#acadbf";
-                case "security":
-                    return "#c59079";
-                default:
-                    return "smokewhite";
+				case "technology":  return "#A796B8";
+				case "business":    return "#69A9BC";
+				case "operations":  return "#C5AA8B";
+				case "security":    return "#8ABD9B";
+                default: return "smokewhite";
             }
         }
 
