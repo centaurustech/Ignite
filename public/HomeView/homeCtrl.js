@@ -58,7 +58,6 @@
         $scope.categories;
         $scope.showFilters = false;
         $scope.categoryFilterId = "";
-        $scope.orderByFilter = "";
         
 
         // Retrieve projects
@@ -86,6 +85,9 @@
 
         Project.getCategories().success(function(data) {
             $scope.categories = data;
+            $scope.categories.forEach(function(category) {
+                category.image = "/assets/icons/category-icons/" + category.name + "w.svg";
+            });
         });
 
         $scope.selectColorByCategory = function(category_name) {
@@ -99,25 +101,93 @@
             }
         }
 
-        $scope.setCategoryFilter = function(category) {
-            $scope.categoryFilterId = category._id;
+        $scope.setCategoryFilter = function(category, index) {
+            $scope.categories.forEach(function(category) {
+                category.image = "/assets/icons/category-icons/" + category.name + "w.svg";
+            });
+            if(category._id === $scope.categoryFilterId) {
+                $scope.categoryFilterId = "";
+            } else {
+                $scope.categoryFilterId = category._id;
+                $scope.categories[index].image = "/assets/icons/category-icons/" + category.name + ".svg";
+            }
         };
+        
+        
+        $scope.orderByFilter = "";
+        $scope.orderByFilters = [
+            { 
+                filter_name : 'follower_count',
+                display_name: 'Endorsers',
+                svg_name: "Star",
+                image   : "/assets/icons/card-icons/Starw.svg"  
+            },
+            { 
+                filter_name : 'days_left',
+                display_name: 'Days Left',
+                svg_name: "Clock",
+                image   : "/assets/icons/card-icons/Clockw.svg"  
+            },
+            { 
+                filter_name : 'funded',
+                display_name: 'Funded',
+                svg_name: "Fund",
+                image   : "/assets/icons/card-icons/Fundw.svg"  
+            }
+        ];
 
         // Set the order filter on a property. If it is already selected, reverse the order.
-        $scope.setOrderFilter = function(orderBy) {
-            $scope.orderByFilter = $scope.isAscending ? "-" + orderBy : orderBy;
+        $scope.setOrderFilter = function(orderBy, index) {
+            $scope.orderByFilters.forEach(function(orderBy) {
+                orderBy.image = "/assets/icons/card-icons/" + orderBy.svg_name + "w.svg";
+            });
+            
+            if(orderBy === $scope.orderByFilter || "-" + orderBy == $scope.orderByFilter) {
+                $scope.orderByFilter = "";
+            } else {
+                $scope.orderByFilter = $scope.isAscending ? "-" + orderBy : orderBy;                
+                $scope.orderByFilters[index].image = "/assets/icons/card-icons/" + $scope.orderByFilters[index].svg_name + ".svg";  
+            }
         };
 
         $scope.isAscending = true;
+        $scope.filterOrders = [ 
+            {
+                display_name: "Ascending",
+                svg_name: "Ascending",
+                order_name: 'ascending',
+                image : "/assets/icons/category-icons/Ascendingw.svg"
+            },
+            {
+                display_name: "Descending",
+                svg_name: "Descending",
+                order_name: 'descending',
+                image : "/assets/icons/category-icons/Descending.svg"
+            }
+        ]
         // Set either ascending or descending order
-        $scope.setOrder = function(order) {
+        $scope.setOrder = function(order, index) {
+            // Clicking the same one.
+            if( (order === 'descending' && $scope.isAscending) || (order === 'ascending' && !$scope.isAscending) ) {
+                return;
+            }
+            
+            $scope.filterOrders.forEach(function(filterOrder) {
+                filterOrder.image = "/assets/icons/category-icons/" + filterOrder.svg_name + "w.svg";
+            });
+            // Currently in Descending
             if (order === 'descending' && !$scope.isAscending) {
                 $scope.orderByFilter = $scope.orderByFilter.replace('-', '');
                 $scope.isAscending = true;
+                $scope.filterOrders[index].image = "/assets/icons/category-icons/" + $scope.filterOrders[index].svg_name + ".svg";
             } else
+            // Currently in Ascending
             if (order === 'ascending' && $scope.isAscending) {
                 $scope.orderByFilter = "-" + $scope.orderByFilter;
                 $scope.isAscending = false;
+                $scope.filterOrders[index].image = "/assets/icons/category-icons/" + $scope.filterOrders[index].svg_name + ".svg";
+            } else {
+
             }
         }
 

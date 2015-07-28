@@ -4,32 +4,20 @@
         <div id="gallery-filters" class="row">
             <div class="filter-category-section col-md-5 col-sm-5 col-xs-12">
                 <div class="col-md-3 col-sm-3 col-xs-3" ng-repeat="category in categories">
-                    <img ng-src="/assets/icons/category-icons/{{category.name}}w.svg" ng-click="setCategoryFilter(category)" />
+                    <img ng-src="{{category.image}}" ng-click="setCategoryFilter(category, $index)" />
                     <p>{{category.name}}</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-6">
-                <div class="col-md-4 col-sm-4 col-xs-4">
-                    <img ng-src="/assets/icons/card-icons/Starw.svg" ng-click="setOrderFilter('follower_count')" />
-                    <p>Followers</p>
-                </div>
-                <div class="col-md-5 col-sm-5 col-xs-5">
-                    <img ng-src="/assets/icons/card-icons/Clockw.svg" ng-click="setOrderFilter('days_left')" />
-                    <p>Days Left</p>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-3">
-                    <img ng-src="/assets/icons/card-icons/Fundw.svg" ng-click="setOrderFilter('funded')" />
-                    <p>Funded</p>
+                <div class="col-md-4 col-sm-4 col-xs-4" ng-repeat="orderBy in orderByFilters">
+                    <img ng-src="{{orderBy.image}}" ng-click="setOrderFilter(orderBy.filter_name, $index)" />
+                    <p>{{orderBy.display_name}}</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                    <img ng-src="/assets/icons/category-icons/Ascendingw.svg" ng-click="setOrder('ascending')" />
-                    <p>Ascending</p>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                    <img ng-src="/assets/icons/category-icons/Descendingw.svg" ng-click="setOrder('descending')" />
-                    <p>Descending</p>
+                <div class="col-md-6 col-sm-6 col-xs-6" ng-repeat="filterOrder in filterOrders">
+                    <img ng-src="{{filterOrder.image}}" ng-click="setOrder(filterOrder.order_name, $index)" />
+                    <p>{{filterOrder.display_name}}</p>
                 </div>
             </div>
         </div>
