@@ -71,10 +71,11 @@
                 project.follower_count = project.followers.length;
                 project.background_color = $scope.selectColorByCategory(project.category.name);
                 project.starImage = "/assets/icons/card-icons/Starw.svg";
-                
+                project.viewStarImage = "/assets/buttons/project-view/endorse.svg";// the outline 
                 project.followers.forEach(function(follower) {
                     if(follower === $rootScope.user._id) {
-                        project.starImage = "/assets/icons/card-icons/Star.svg";  
+                        project.starImage = "/assets/icons/card-icons/Star.svg";
+                        project.viewStarImage = "/assets/icons/card-icons/Star.svg";
                     }
                 });
                 

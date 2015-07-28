@@ -138,6 +138,7 @@
 			Project.addFollower(projectId, $rootScope.user._id)
 				   .success(function(data) {
 					   swal("Thanks for the support!", "You just endorsed this project!", "success");
+					   $scope.filteredProjects[$scope.currentIndex].viewStarImage = "/assets/icons/card-icons/Star.svg";
 					   $scope.filteredProjects[$scope.currentIndex].followers = data.followers;
 				   });
 		}
