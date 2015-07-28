@@ -59,7 +59,7 @@
         $scope.showFilters = false;
         $scope.categoryFilterId = "";
         $scope.orderByFilter = "";
-        $scope.isAscending = false;
+        
 
         // Retrieve projects
         Project.get().success(function(data) {
@@ -108,13 +108,14 @@
             $scope.orderByFilter = $scope.isAscending ? "-" + orderBy : orderBy;
         };
 
+        $scope.isAscending = true;
         // Set either ascending or descending order
         $scope.setOrder = function(order) {
-            if (order === 'ascending' && !$scope.isAscending) {
+            if (order === 'descending' && !$scope.isAscending) {
                 $scope.orderByFilter = $scope.orderByFilter.replace('-', '');
                 $scope.isAscending = true;
             } else
-            if (order === 'descending' && $scope.isAscending) {
+            if (order === 'ascending' && $scope.isAscending) {
                 $scope.orderByFilter = "-" + $scope.orderByFilter;
                 $scope.isAscending = false;
             }
