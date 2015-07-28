@@ -673,6 +673,7 @@ button.green {
 #user-projects {
     height: 85vh;
     overflow-y: scroll;
+    border-left: 1px solid #b9bbbc;
 }
 
 #profileView {
@@ -683,7 +684,6 @@ button.green {
 }
 
 #profile-info {
-    border-right: 1px solid #b9bbbc;
     padding: 20px;
     height: 100%;
 }
