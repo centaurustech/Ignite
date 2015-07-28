@@ -54,7 +54,7 @@
                             <img id="profile-image" width="70px" class="media-object img-circle" ng-src="{{ $root.user.image }}" alt="Image">
                             <p style="max-width: 200px; min-width: 100px; text-decoration: none;">Welcome, {{ $root.user.first_name }} </p>
                         </a>
-                        <a class="header-notification header-logo" ng-click="$root.showNotImplemented()" id="dash-notification">
+                        <a class="header-notification header-logo" ng-click="scrollDown()" id="dash-notification" href="#/profileView/{{$root.user._id}}">
                             <img width="30px" src="/assets/icons/misc-icon/notificationB.svg" /> DASHBOARD
                         </a>
                         <a href="#/homeView" class="fundit-logo header-logo">
