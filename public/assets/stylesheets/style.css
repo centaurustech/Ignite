@@ -647,6 +647,14 @@ button.green {
 }
 
 
+.create-project .creator-img {
+    width: 120px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+}
+
 /* ========= User Page ======= */
 
 .user-image {
@@ -720,7 +728,7 @@ button.green {
     font-family: 'Oxygen', sans-serif;
 }
 
-.creator-img {
+.project-view-sidebar .creator-img {
     width: 80px;
     display: block;
     margin-left: auto;
