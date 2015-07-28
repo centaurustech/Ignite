@@ -58,6 +58,7 @@ router.get('/user/projects/:id', function(req, res) {
         .populate({path: 'category', model: 'Category'})
         .populate({path: 'backers', model: 'Backer'})
         .populate({path: 'city', model: 'City'})
+        .populate({path: 'resources', model: 'Resource'})
         .populate({path: 'comments', model: 'Comment'});
     
     query.exec(function(err, projects) {
@@ -89,7 +90,9 @@ router.get('/user/followedProjects/:id', function(req, res) {
        var query = Project.find( { _id : { $in : projectIds } })
         .populate({path: 'creator', model: 'User'})
         .populate({path: 'category', model: 'Category'})
-        .populate({path: 'backers', model: 'Backer'});
+        .populate({path: 'backers', model: 'Backer'})
+        .populate({path: 'resources', model: 'Resource'})
+        .populate({path: 'comments', model: 'Comment'});
         
            query.exec(function(err, projects) {
            if(err) { console.error(err); } 
@@ -99,8 +102,11 @@ router.get('/user/followedProjects/:id', function(req, res) {
            User.populate(projects, {
                path: 'backers.user_id',
            }, function(err, projects) {
-               console.log(projects);
-               res.json(projects);
+               User.populate(projects, {
+                       path: 'comments.user_id'
+                   }, function(err, projects) {
+                        res.json(projects);    
+                   });
            });
         });
    });
@@ -118,11 +124,22 @@ router.get('/user/followedProjects/:id', function(req, res) {
          var query = Project.find( { _id : { $in : projectIds } })
           .populate({path: 'creator', model: 'User'})
           .populate({path: 'category', model: 'Category'})
-          .populate({path: 'backers', model: 'Backer'});
+          .populate({path: 'backers', model: 'Backer'})
+          .populate({path: 'resources', model: 'Resource'})
+          .populate({path: 'comments', model: 'Comment'});
             
          query.exec(function(err, projects) {
             if(err) { console.error(err); } 
-            res.json(projects);
+            
+            User.populate(projects, {
+                   path: 'backers.user_id'
+               }, function(err, projects) {
+                   User.populate(projects, {
+                       path: 'comments.user_id'
+                   }, function(err, projects) {
+                        res.json(projects);    
+                   });
+            });
          });
     });
  });

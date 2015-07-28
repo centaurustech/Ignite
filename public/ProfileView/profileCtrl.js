@@ -7,8 +7,8 @@
         "ProjectService"
     ]);
 
-    app.controller("ProfileController", ["$scope", "$rootScope", "$timeout", "User", "$routeParams", "ModalService",
-        function($scope, $rootScope, $timeout, User, $routeParams, ModalService) {
+    app.controller("ProfileController", ["$scope", "$rootScope", "Project", "$timeout", "User", "$routeParams", "ModalService",
+        function($scope, $rootScope, Project, $timeout, User, $routeParams, ModalService) {
             $scope.filteredProjects;
             $scope.projects;
             $scope.following;
@@ -34,10 +34,13 @@
                         project.background_color = $scope.selectColorByCategory(project.category.name);
                         
                         project.starImage = "/assets/icons/card-icons/Starw.svg";
-                
+                        project.viewStarImage = "/assets/buttons/project-view/endorse.svg";
+                        project.isFollowed = false;
                         project.followers.forEach(function(follower) {
                             if(follower === $rootScope.user._id) {
-                                project.starImage = "/assets/icons/card-icons/Star.svg";  
+                                project.isFollowed = true;
+                                project.starImage = "/assets/icons/card-icons/Star.svg";
+                                project.viewStarImage = "/assets/icons/card-icons/Star.svg";
                             }
                         });
                     });
@@ -138,6 +141,20 @@
                         $('#user-filters').children().hide();
                         isFilterVisible = false;
                     }, 1000);
+                }
+            }
+            
+            
+            $scope.followProject = function(index) {
+                if($scope.filteredProjects[index].isFollowed) {
+                    swal("You've already endorsed this project!");
+                } else {
+                    Project.addFollower($scope.filteredProjects[index]._id, $rootScope.user._id)
+                        .success(function(data) {
+                            $scope.filteredProjects[index].isFollowed = true;
+                            $scope.filteredProjects[index].starImage = "/assets/icons/card-icons/Star.svg";
+                            swal("Thanks for the support!", "You just endorsed this project!", "success");
+                        });
                 }
             }
 
