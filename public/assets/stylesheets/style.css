@@ -657,7 +657,7 @@ button.green {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 80px;
+    margin-top: 30px;
 }
 
 /* ========= User Page ======= */
@@ -691,7 +691,7 @@ button.green {
 .profile-info-border {
     background-color: white;
     border-radius: 10px;
-    padding: 120px;
+    padding: 30px;
     height: 100%;
 }
 
@@ -738,7 +738,7 @@ button.green {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 .project-view-sidebar .creator-img:hover {
