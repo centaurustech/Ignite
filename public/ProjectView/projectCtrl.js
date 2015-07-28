@@ -32,7 +32,7 @@
 		
 		
 		$scope.fund = function() {
-			swal({ title: "FUNDIT",
+			swal({ title: "FundIT",
 				   text: "How Much Would You Like To Fund?",
 				   type: "input",   
 				   showCancelButton: true,   
