@@ -71,9 +71,11 @@
                 project.follower_count = project.followers.length;
                 project.background_color = $scope.selectColorByCategory(project.category.name);
                 project.starImage = "/assets/icons/card-icons/Starw.svg";
-                project.viewStarImage = "/assets/buttons/project-view/endorse.svg";// the outline 
+                project.viewStarImage = "/assets/buttons/project-view/endorse.svg";
+                project.isFollowed = false;
                 project.followers.forEach(function(follower) {
                     if(follower === $rootScope.user._id) {
+                        project.isFollowed = true;
                         project.starImage = "/assets/icons/card-icons/Star.svg";
                         project.viewStarImage = "/assets/icons/card-icons/Star.svg";
                     }
@@ -125,11 +127,16 @@
 
         // Add the current user as a follower of the project at index.
         $scope.followProject = function(index) {
-            Project.addFollower($scope.filteredProjects[index]._id, $rootScope.user._id)
-                .success(function(data) {
-                    $scope.filteredProjects[index].starImage = "/assets/icons/card-icons/Star.svg";
-                    swal("Thanks for the support!", "You just endorsed this project!", "success");
-                });
+            if($scope.filteredProjects[index].isFollowed) {
+                swal("You've already endorsed this project!");
+            } else {
+                Project.addFollower($scope.filteredProjects[index]._id, $rootScope.user._id)
+                    .success(function(data) {
+                        $scope.filteredProjects[index].isFollowed = true;
+                        $scope.filteredProjects[index].starImage = "/assets/icons/card-icons/Star.svg";
+                        swal("Thanks for the support!", "You just endorsed this project!", "success");
+                    });
+            }
         }
 
 
