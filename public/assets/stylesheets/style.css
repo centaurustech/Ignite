@@ -168,7 +168,7 @@ header .navbar-header {
     padding: 0px;
     z-index: 1;
     background: lightgrey;
-    border-radius: 10px;
+    
     height: auto;
     width: 100%;
 }
@@ -182,7 +182,7 @@ header .navbar-header {
 #gallery-filters img,
 #user-filters img {
     display: block;
-    width: 70px;
+    width: 30px;
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
@@ -192,7 +192,7 @@ header .navbar-header {
 #gallery-filters p,
 #user-filters p {
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1em;
     margin-top: 5px;
 }
 

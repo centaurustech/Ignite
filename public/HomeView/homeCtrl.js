@@ -134,7 +134,7 @@
             }
         }
 
-
+        /*
         var isFilterVisible = true;
         // Hide the filter after 6 seconds
         var to = $timeout(function() {
@@ -163,6 +163,7 @@
                 }, 1000);
             }
         }
+        */
 
         $scope.openProject = function(projectId, index) {
             console.log($scope.filteredProjects[index]);

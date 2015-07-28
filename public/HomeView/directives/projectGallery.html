@@ -1,15 +1,14 @@
 <div id="project-gallery" class="row">
     <div>
-        <div ng-mouseover="showFilters()" class="filter-hidden"></div>
         <!-- Filter Bar -->
-        <div id="gallery-filters" ng-mouseover="showFilters()" ng-mouseenter="showFilters()" ng-mouseleave="hideFilters()" class="row">
+        <div id="gallery-filters" class="row">
             <div class="filter-category-section col-md-5">
                 <div class="col-md-3" ng-repeat="category in categories">
                     <img ng-src="/assets/icons/category-icons/{{category.name}}w.svg" ng-click="setCategoryFilter(category)" />
                     <p>{{category.name}}</p>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="col-md-4">
                     <img ng-src="/assets/icons/card-icons/Starw.svg" ng-click="setOrderFilter('follower_count')" />
                     <p>Followers</p>
