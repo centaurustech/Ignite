@@ -45,7 +45,7 @@ header .navbar {
 header .navbar .container-fluid {
     padding-top: 25px;
     padding-right: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 20px;
 }
 
 header .navbar .media p {
@@ -162,7 +162,7 @@ header .navbar .header-button {
 #gallery-filters,
 #user-filters { 
     position: absolute;
-    top: 110px;
+    top: 105px;
     left: 0px;
     padding: 0px;
     z-index: 1;
@@ -209,11 +209,11 @@ header .navbar .header-button {
 
 .filter-bar {
     position: absolute;
-    top: 10%;
+    top: 25%;
     left: 0;
     
-    height: 80%;
-    width: 5px;
+    height: 50%;
+    width: 7px;
     
     border-radius: 10px;
     background-color: #aacf37;

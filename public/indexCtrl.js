@@ -42,7 +42,7 @@
     app.run(function($rootScope) {
         angular.element(document.querySelector('#fullpage'))
             .fullpage({
-                paddingTop: '110px',
+                paddingTop: '105px',
                 paddingBottom: '10px',
                 normalScrollElements: '#project-gallery, .modal, #profileView, .navbar, #fullpage, .footer',
             });
