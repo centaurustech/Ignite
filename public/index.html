@@ -49,22 +49,33 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!-- User Photo and FundIT Logo-->
-                    <div class="media">
-                        <a class="pull-left" ng-click="scrollDown()" href="#/profileView/{{$root.user._id}}">
+                    <div class="brand">
+                        <!-- Profile Image -->
+                        <a class="brand-profile-image pull-left" ng-click="scrollDown()" href="#/profileView/{{$root.user._id}}">
                             <img id="profile-image" width="70px" class="media-object img-circle" ng-src="{{ $root.user.image }}" alt="Image">
-                            <p style="max-width: 200px; min-width: 100px; text-decoration: none;">Welcome, {{ $root.user.first_name }} </p>
-                        </a>
-                        <a class="header-notification header-logo" ng-click="scrollDown()" id="dash-notification" href="#/profileView/{{$root.user._id}}">
-                            <img width="30px" src="/assets/icons/misc-icon/notificationB.svg" /> DASHBOARD
-                        </a>
-                        <a href="#/homeView" class="fundit-logo header-logo">
+                        </a>    
+                                  
+                        <!-- Fundit Logo -->                        
+                        <a href="#/homeView" class="fundit-logo pull-left">
                             <img width="200px" src="/assets/images/F_Advance_Logo.svg">
-                        </a>
+                        </a>             
                     </div>
                 </div>
                 <!-- Content in the nav bar, also shown in the button for smaller screens -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <div class="nav navbar-nav button-section">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                   <!-- Dashboard -->
+                            <a class="header-notification pull-left" ng-click="scrollDown()" href="#/profileView/{{$root.user._id}}">
+                                <img width="30px" src="/assets/icons/misc-icon/notificationB.svg" /> DASHBOARD
+                                <!-- Welcome Message -->
+                                <p style="text-decoration: none;">Welcome, {{ $root.user.first_name }} </p>
+                            </a>  
+                        </li>
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#/homeView" ng-click="explore()">
                                 <div class="header-button">EXPLORE
@@ -79,20 +90,21 @@
                                 </div>
                             </a>
                         </li>
-                        <li>
+                        <li>                        
                             <!-- Search Bar -->
-                            <form id="nav-search" class="navbar-form navbar-left" role="search">
+                            <form id="nav-search" class="navbar-form" role="search">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Search" ng-model="$root.searchQuery" ng-click="moveToSearchScreen()">
                                 </div>
                                 <!--<button type="submit" class="btn btn-default">Submit</button>-->
                             </form>
-                        <li>
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
+                        </li>
+                    </ul>
+                    
                 </div>
-                <!-- /.container-fluid -->
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
         </nav>
     </header>
     <div id="fullpage" class="row">
