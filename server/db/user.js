@@ -5,17 +5,18 @@ var passportLocalMongoose = require('passport-local-mongoose');
 
 // <---- Schema ---->
 var userSchema = mongoose.Schema({
-        username: 	 	 { type: String,   default: ""    								    },
-		first_name:  	 { type: String,   default: ""    							        },
-		last_name: 	 	 { type: String,   default: ""    							        },
-		image:			 { type: String,   default: "http://api.adorable.io/avatars/100/" + String(Math.random() * 100) },
-		title: 		 	 { type: String,   default: ""    							        },
-		department:  	 { type: String,   default: "" 	  							        },
-		location:	 	 { type: String,   default: ""    							        },
-		email: 		 	 { type: String,   default: ""    	       						    },
-		is_budget_owner: { type: Boolean,  default: false 		           					},
-		is_approver: 	 { type: Boolean,  default: false 							        },
-		following:		 { type: [Schema.ObjectId], ref: 'Project'						    },
+		employee_id:     { type: String,   default: ""     									}, // new
+        username: 	 	 { type: String,   default: ""    								    }, // remove
+		first_name:  	 { type: String,   default: ""    							        }, // keep
+		last_name: 	 	 { type: String,   default: ""    							        }, // keep
+		image:			 { type: String,   default: "http://api.adorable.io/avatars/100/" + String(Math.random() * 100) }, // keep
+		title: 		 	 { type: String,   default: ""    							        }, // keep (job_role)
+		department:  	 { type: String,   default: "" 	  							        }, // keep
+		location:	 	 { type: String,   default: ""    							        }, // keep (country)
+		email: 		 	 { type: String,   default: ""    	       						    }, // keep
+		is_budget_owner: { type: Boolean,  default: false 		           					}, // keep
+		is_approver: 	 { type: Boolean,  default: false 							        }, // keep
+		following:		 { type: [Schema.ObjectId], ref: 'Project'						    }, 
 		projects:		 { type: [Schema.ObjectId], ref: 'Project'							},
 		funded:          { type: [Schema.ObjectId], ref: 'Project'							}
 });
