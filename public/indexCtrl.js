@@ -95,21 +95,34 @@
 
     app.controller("IndexController", ["$scope", "$rootScope", "User", "$window", "ModalService", function($scope, $rootScope, User, $window, ModalService) {
         $rootScope.user = null;
-
-        // Check if the visitor is logged in.
-        User.getCurrentUser().success(function(data) {
-            if (data) {
-                // If there is a currentUser, then assign it to the root scope user
-                // to be used in child scopes.
-                $rootScope.user = data;
-            }
-            // Redirect to login page if they are not logged in.
-            if (!$rootScope.user) {
-                $window.location.href = "/login.html";
-            }
-        });
-
-
+        
+        // staffDetails_name = "Alex Tang";
+        // staffDetails_empid = "d";  // change this for new simulate HSBC user.	 
+        // staffDetails_extphone = "1234"; 
+        // staffDetails_country = "CA";
+        // staffDetails_jobrole = "SDE";
+        // staffDetails_dept = "CDM";							
+        // staffDetails_photourl = "api.adorable.io/avatars/100/" + Math.floor(String(Math.random() * 100));
+        // staffDetails_extemail = "tang.alex.93@gmail.com";
+            
+            
+        User.getDummyUser().success(function(data) {
+           if(data) {
+               // get dummy user first if we've logged in with local authentication.
+               $rootScope.user = data;
+           } else if(typeof staffDetails_empid === 'undefined') {
+               // if it does not exist, then we check if we have hsbc auth.
+               // redirect to login if not.
+                $window.location.href="/login.html";
+           } else {
+               var employeeInfo = User.getEmployeeInfo();
+               if(employeeInfo) {
+                   User.getCurrentUser(employeeInfo).success(function(data) {
+                       $rootScope.user = data; 
+                   });
+                }
+           }
+        });           
 
         // logout function for the logout button
         $scope.logout = function() {

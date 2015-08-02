@@ -41,12 +41,51 @@ router.get('/user/', function(req, res) {
 /**
  * Retrieve the current user
  */
-router.get('/user/currentUser', function(req, res) {
+router.get('/user/currentDummyUser', function(req, res) {
     if(req.user) {
         res.json(req.user);    
     } else {
         res.json(null);
     }     
+});
+
+/**
+ * Retrieve the current user from their employee ID.
+ * If they are not registered in the database, add them.
+ */
+router.post('/user/currentUser', function(req, res) {
+    var employeeInfo = req.body;
+
+    var query = User.findOne({"employee_id": employeeInfo.empId});
+    
+    query.exec(function(err, user) {
+        if(err) {
+            console.error(err); return;
+        }
+        
+        if(user) {
+            // the user exists, return from database.
+            res.json(user);
+        } else {
+            // the user doesn't exist. register and then return.
+            var newUser = new User();
+            
+            newUser.employee_id = employeeInfo.empId;
+            newUser.first_name  = employeeInfo.given_name;
+            newUser.last_name   = employeeInfo.family_name;
+            newUser.image       = employeeInfo.picture;
+            newUser.title       = employeeInfo.job_role;
+            newUser.department  = employeeInfo.dept;
+            newUser.location    = employeeInfo.country;
+            newUser.email       = employeeInfo.email;
+            
+            newUser.save(function(err, registeredUser) {
+               if(err) { console.error(err); return; }
+               res.json(registeredUser); 
+            });
+        }
+        
+    });   
 });
 
 /**
@@ -64,7 +103,7 @@ router.get('/user/projects/:id', function(req, res) {
     query.exec(function(err, projects) {
         if(err) { console.error(err); } 
        
- // Populate users inside of backers separately since 
+       // Populate users inside of backers separately since 
        // the original populate cannot populate nested refs.
        User.populate(projects, {
            path: 'backers.user_id'

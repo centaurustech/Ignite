@@ -11,10 +11,43 @@ angular.module('UserService', []).factory('User', ['$http', function($http) {
         getUser: function(id) {
             return $http.get('/api/user?id=' + id);
         },
+        
+        getDummyUser: function() {
+            return $http.get('/api/user/currentDummyUser');
+        },
 
         // Get the current logged in user
-        getCurrentUser: function() {
-            return $http.get('/api/user/currentUser');
+        getCurrentUser: function(employeeInfo) {
+            return $http({
+                method: 'POST',
+                url: '/api/user/currentUser',
+                data: employeeInfo}
+            );
+        },
+        
+        // Retrieve the user's HSBC Employee Information.
+        // Return null if the ID is not defined (not accessed from within HSBC)
+        getEmployeeInfo: function() {
+           var user = {};
+            
+           if (staffDetails_name.split(" ").length == 2) {
+                user.family_name = staffDetails_name.split(" ")[1];
+                user.given_name = staffDetails_name.split(" ")[0];
+            } else {
+                user.family_name = "";
+                user.given_name = "";
+            }
+            
+            user.name = staffDetails_name;							// name
+            user.empId = staffDetails_empid;										// employee UID 
+            user.phone = staffDetails_extphone;										// full phone number 
+            user.country = staffDetails_country.toUpperCase();						// country
+            user.job_role = staffDetails_jobrole;									// Title
+            user.dept = staffDetails_dept;										
+            user.picture = "http://" + staffDetails_photourl;
+            user.email = staffDetails_extemail;
+            console.log(user);
+            return user;
         },
 
         // Login with credentials
