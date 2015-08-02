@@ -52,33 +52,33 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <!-- User Photo and FundIT Logo-->
-                    <div class="brand">
-                        <!-- Profile Image -->
-                        <a class="brand-profile-image pull-left" ng-click="scrollDown()" href="#/profileView/{{$root.user._id}}">
-                            <img id="profile-image" width="70px" class="media-object img-circle" ng-src="{{ $root.user.image }}" alt="Image">
-                        </a>    
-                                  
-                        <!-- Fundit Logo -->                        
-                        <a href="#/homeView" class="fundit-logo pull-left">
-                            <img width="200px" src="/assets/images/F_Advance_Logo.svg">
-                        </a>             
-                    </div>
                 </div>
                 <!-- Content in the nav bar, also shown in the button for smaller screens -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <!-- Items on the left side of the nav bar -->
                     <ul class="nav navbar-nav navbar-left">
+                        <li> 
+                            <!-- Profile Image -->
+                            <a class="brand-profile-image pull-left" ng-click="scrollDown()" href="#/profileView/{{$root.user._id}}">
+                                <img id="profile-image" width="70px" class="media-object img-circle" ng-src="{{ $root.user.image }}" alt="Image">
+                            </a> 
+                        </li>
                         <li>
-                   <!-- Dashboard -->
-                            <a class="header-notification pull-left" ng-click="scrollDown()" href="#/profileView/{{$root.user._id}}">
+                            <!-- Dashboard -->
+                            <a class="pull-left" ng-click="scrollDown()" href="#/profileView/{{$root.user._id}}">
                                 <img width="30px" src="/assets/icons/misc-icon/notificationB.svg" /> DASHBOARD
                                 <!-- Welcome Message -->
                                 <p style="text-decoration: none;">Welcome, {{ $root.user.first_name }} </p>
                             </a>  
                         </li>
-
+                        <li>
+                            <!-- Fundit Logo -->                        
+                            <a href="#/homeView" class="pull-left">
+                                <img width="200px" src="/assets/images/F_Advance_Logo.svg">
+                            </a>   
+                        </li>
                     </ul>
-
+                     <!-- Items on the right side of the nav bar -->
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#/homeView" ng-click="explore()">
