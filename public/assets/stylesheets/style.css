@@ -1114,3 +1114,94 @@ button.green {
 .scroll-button:hover {
     cursor: pointer;
 }
+
+
+/* Admin */
+
+.adm-btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    min-width: 150px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    background-color: red;
+}
+
+.adm-btn:hover {
+    cursor: pointer;
+}
+
+.password-input {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#projects-to-approve {
+    max-height: 100%;
+    height: 83vh;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: scroll;
+    padding-top: 70px;
+}
+
+
+/* All Users View */
+#users-view {
+    max-height: 100%;
+    height: 83vh;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: scroll;
+    padding-top: 70px;
+}
+
+.users-user img {
+    display: block;
+    width: 75px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.users-user p {
+    text-align: center;
+}
+
+.users-user {
+    padding: 10px;
+}
+
+.users-user .name {
+    font-size: 1.5em;
+}
+
+.users-user .inner {
+    padding: 10px;
+    background-color: #E2E2E2;
+}
+
+.adm-btn.gold {
+    background-color: gold;
+}
+
+.adm-btn.green {
+    background-color: #aacf37;
+}
+
+#user-search {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#user-search input {
+    width: 200px;
+}

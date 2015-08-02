@@ -25,6 +25,45 @@ router.param('id', function(req, res, next, id) {
 // ======================================================== //
 
 /**
+ * Route to retrieve all user
+ * query string parameter p must match the password.
+ */
+router.get('/user/getAll', function(req, res) {
+    var password = req.query.p;
+    
+    if(password !== "admin") {
+        res.status(400).send(null);
+        return;
+    }
+    
+    User.find({}, function(err, users){
+        if(err) { console.error(err); return; }
+        
+        res.json(users);
+    });
+});
+
+
+/**
+ * Route to set a user as a budget owner.
+ */
+router.post('/user/makeBudgetOwner', function(req, res) {
+   var user_id = req.query.id;
+   
+   User.findOne({_id : user_id}, function(err, user) {
+       if(err) { console.error(err); return;}
+       if(user) {
+           user.is_budget_owner = true;
+           
+           user.save(function(err, data) {
+               if(err) { console.error(err); return;}
+               res.json(data);
+           })
+       }
+   });
+});
+
+/**
  * Retrieve a user by id
  */
 router.get('/user/', function(req, res) {
@@ -73,6 +112,7 @@ router.post('/user/currentUser', function(req, res) {
             newUser.employee_id = employeeInfo.empId;
             newUser.first_name  = employeeInfo.given_name;
             newUser.last_name   = employeeInfo.family_name;
+            newUser.full_name   = employeeInfo.given_name + " " + employeeInfo.family_name,
             newUser.image       = employeeInfo.picture;
             newUser.phone       = employeeInfo.phone;
             newUser.title       = employeeInfo.job_role;
@@ -202,6 +242,7 @@ router.get('/user/pendingProjects/:id', function(req, res) {
 router.post('/user/register', function(req, res) {
     User.register(new User(
                         { username          : req.body.username,
+                          full_name         : req.body.first_name + " " + req.body.last_name,
                           first_name        : req.body.first_name,
                           last_name         : req.body.last_name,
                           title             : req.body.title,

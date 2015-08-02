@@ -82,7 +82,7 @@
                                                 <div class="progress-bar-label">
                                                     <div class="progress-bar-label-name">DAYS LEFT</div>
                                                     <div class="progress-bar-label-value">
-                                                        <div>{{ project.days_left }}</div>
+                                                        <div>{{ project.days_left | number: 0}}</div>
                                                         <div>out of 30</div>
                                                     </div>
                                                 </div>
@@ -155,7 +155,7 @@
                                         <p>Share</p>
                                     </div>
                                     <!-- FundIT Button -->
-                                    <div class="col-md-4 separator-button">
+                                    <div ng-show="$root.user.is_budget_owner" class="col-md-4 separator-button">
                                         <img id="fundit-button" ng-click="fund()" src="/assets/images/Fundit_Button.svg" />
                                     </div>
                                 </div>

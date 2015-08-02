@@ -7,6 +7,17 @@
 angular.module('UserService', []).factory('User', ['$http', function($http) {
 
     return {
+        
+        // get all users
+        getAllUsers: function(p) {
+            return $http.get('/api/user/getAll?p=' + p);
+        },
+        
+        // set the user by user_id to be a budget owner if they are not already.
+        makeBudgetOwner: function(user_id) {
+            return $http.post('/api/user/makeBudgetOwner?id=' + user_id);
+        },
+        
         // Get a user's information by id
         getUser: function(id) {
             return $http.get('/api/user?id=' + id);
@@ -91,5 +102,6 @@ angular.module('UserService', []).factory('User', ['$http', function($http) {
         logout: function() {
             return $http.post('/api/user/logout');
         }
+        
     };
 }]);

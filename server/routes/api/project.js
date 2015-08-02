@@ -50,6 +50,83 @@ router.get('/project/cities', function(req, res) {
 //                                                          //
 // ======================================================== //
 
+/**
+ * Route to approve a project 
+ */
+router.post('/project/approveProject', function(req, res) {
+   var id = req.query.id;
+   var start_date = req.query.start_date;
+   
+   var startDate = new Date(start_date);
+   
+   var dbDate = new Date();
+   var dbEndDate = new Date();
+   
+   // Add the in the date, month, and year
+   dbDate.setDate(startDate.getDate());
+   dbDate.setMonth(startDate.getMonth());
+   dbDate.setFullYear(startDate.getFullYear());
+   dbDate.setHours(0);
+   dbDate.setMinutes(0);
+   dbDate.setSeconds(0);
+   // set the end date as the start date + 30.
+   dbEndDate.setDate(dbDate.getDate() + 30);
+   
+   Project.findOne({_id: id}, function(err, project) {
+       if(err) { console.error(err); return; }
+       
+       project.is_approved = true;
+       project.start_date = dbDate;
+       project.end_date = dbEndDate;
+       
+       project.save(function(err, savedProject) {
+           savedProject.populateAll(function(err, project) {
+               if(err) { console.error(err); return; }
+               
+               res.json(project);
+           });
+       });
+   }) 
+});
+
+
+/**
+ * Route to retrieve all projects that have not been approved.
+ * query string parameter p must match the password.
+ */
+router.get('/project/nonApproved', function(req, res) {
+    var password = req.query.p;
+    
+    if(password !== "admin") {
+        res.status(400).send(null);
+        return;
+    } 
+    
+    var query = Project.find({is_approved: false})
+        .populate({path: 'creator', model: 'User'})
+        .populate({path: 'category', model: 'Category'})
+        .populate({path: 'backers', model: 'Backer'})
+        .populate({path: 'city', model: 'City'})
+        .populate({path: 'resources', model: 'Resource'})
+        .populate({path: 'comments', model: 'Comment'});
+        
+    query.exec(function(err, projects) {
+       if(err) { console.error(err); return; } 
+       
+       // Populate users inside of backers separately since 
+       // the original populate cannot populate nested refs.
+       User.populate(projects, {
+           path: 'backers.user_id'
+       }, function(err, projects) {
+           User.populate(projects, {
+               path: 'comments.user_id'
+           }, function(err, projects) {
+                res.json(projects);    
+           });
+       });
+    });
+    
+});
 
 /**
  * Route to retrieve a single project by it's id.
@@ -138,7 +215,7 @@ router.post('/project', function(req, res, next) {
     delete projectJSON.category;
     
     var project = new Project(projectJSON);
-    project.is_approved = true;
+    project.is_approved = false;
     
     // Add resources to the project
     resources.forEach(function(resource) {

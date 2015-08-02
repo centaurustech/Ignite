@@ -8,6 +8,7 @@
         "HomeControllers",
         "ProjectControllers",
         "ProfileControllers",
+        "AdminControllers",
         "ProjectFilters",
         "ngAnimate",
         "angularModalService"
@@ -32,6 +33,14 @@
                 .when('/createProject/', {
                     templateUrl: 'ProjectView/createProjectView.html',
                     controller: 'CreateProjectCtrl'
+                })
+                .when('/usersView', {
+                    templateUrl: 'AdminViews/usersView.html',
+                    controller: 'UsersViewCtrl'
+                })
+                .when('/approveView', {
+                    templateUrl: 'AdminViews/approveView.html',
+                    controller: 'ApproveCtrl'
                 })
                 .otherwise({
                     redirectTo: '/homeView'

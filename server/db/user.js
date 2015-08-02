@@ -7,6 +7,7 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var userSchema = mongoose.Schema({
 		employee_id:     { type: String,   default: ""     									}, 
         username: 	 	 { type: String,   default: ""    								    }, 
+		full_name:		 { type: String,   default: "" 										},
 		first_name:  	 { type: String,   default: ""    							        }, 
 		last_name: 	 	 { type: String,   default: ""    							        }, 
 		image:			 { type: String,   default: "http://api.adorable.io/avatars/100/" + String(Math.random() * 100) }, 
