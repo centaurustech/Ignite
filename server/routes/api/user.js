@@ -74,6 +74,7 @@ router.post('/user/currentUser', function(req, res) {
             newUser.first_name  = employeeInfo.given_name;
             newUser.last_name   = employeeInfo.family_name;
             newUser.image       = employeeInfo.picture;
+            newUser.phone       = employeeInfo.phone;
             newUser.title       = employeeInfo.job_role;
             newUser.department  = employeeInfo.dept;
             newUser.location    = employeeInfo.country;
