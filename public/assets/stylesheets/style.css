@@ -110,6 +110,7 @@ header .navbar .header-button {
 }
 
 .brand-profile-image {
+    margin-top: 10px;
     margin-left: 0px;
 }
 /* ========= Home Page ========= */
@@ -129,7 +130,11 @@ header .navbar .header-button {
 
 #myCarousel .carousel-button {
     height: 100px;
-    margin-top: 30vh;
+    
+}
+
+#myCarousel .carousel-control {
+    top: 45%;
 }
 
 #myCarousel .carousel-title {
