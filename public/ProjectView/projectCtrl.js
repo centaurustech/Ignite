@@ -14,7 +14,8 @@
 		
 		// If it is a preview, it must be prepopulated with default values.
 		if(IsPreview === true) {
-			FilteredProjects[0].category = (FilteredProjects[0].category ? {name: String(FilteredProjects[0].category)} : "Technology");
+			FilteredProjects[0].category = (FilteredProjects[0].category ? {name: String(FilteredProjects[0].category.name)} : {name :"Technology"} );
+			FilteredProjects[0].background_color = "#A796B8";
 			FilteredProjects[0].funded = 0;
 			FilteredProjects[0].days_left = 0;
 			FilteredProjects[0].followers = [];
@@ -22,6 +23,9 @@
 			FilteredProjects[0].image = "/assets/images/default_project_image.jpg";
 			FilteredProjects[0].budget = (FilteredProjects[0].budget ? FilteredProjects[0].budget : 0);
 			FilteredProjects[0].start_date = (FilteredProjects[0].start_date ? new Date() : 0);
+			FilteredProjects[0].creator = $rootScope.user;
+			FilteredProjects[0].starImage = "/assets/icons/card-icons/Star.svg";
+            FilteredProjects[0].viewStarImage = "/assets/icons/card-icons/Star.svg";
 		}
 		
 		$scope.filteredProjects = FilteredProjects;

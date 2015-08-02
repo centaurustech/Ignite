@@ -7,7 +7,7 @@
             <div class="modal-body row">
                 <div class="col-md-3 create-user-info">
                     <div id="create-project-category-icon" style="background: {{ categoryColor }};">
-                        <img ng-src="/assets/icons/category-icons/{{form.category}}w.svg" />
+                        <img ng-src="/assets/icons/category-icons/{{form.category.name}}w.svg" />
                     </div>
                     <a ng-click="closeModalAndRedirect()" data-dismiss="modal">
                         <img class="creator-img media-object img-circle" ng-src="{{$root.user.image}}" />
@@ -41,7 +41,7 @@
                     <h1 class="col-md-12">CREATE A PROJECT</h1>
                     <div class="col-md-12">
                         IN
-                        <select id="create-project-category" form="createProjectForm" ng-model="form.category" ng-change="selectedCategory()" required>
+                        <select id="create-project-category" form="createProjectForm" ng-model="form.category.name" ng-change="selectedCategory()" required>
                             <option value="" disabled selected>Choose Category...</option>
                             <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
                         </select>

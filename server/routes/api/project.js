@@ -200,7 +200,7 @@ router.post('/project', function(req, res, next) {
     var userJSON    = JSON.parse(req.body.user);
     var projectJSON = JSON.parse(req.body.project);
     var resources = projectJSON.resources;
-    var category = projectJSON.category;
+    var category = projectJSON.category.name;
     
     // Only include project image if it has been uploaded
     if(req.files.file) {
