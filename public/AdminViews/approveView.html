@@ -35,7 +35,10 @@
             </div>
             <div class="card-info-section">
                 <p class="card-description">{{project.description}}</p>
-                <a id="card-user-photo" href="/#/profileView/{{project.creator._id}}"><img height="65px" class="media-object img-circle" ng-src="{{ project.creator.image }}"/></a>
+                <a id="card-user-photo" href="/#/profileView/{{project.creator._id}}">
+                    <p class="card-user-name">{{ project.creator.first_name + " " + project.creator.last_name  | uppercase}}</p>
+                    <img height="65px" class="media-object img-circle" ng-src="{{ project.creator.image }}"/>
+                </a>
             </div>
         </div>
     </div>

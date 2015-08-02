@@ -333,19 +333,58 @@ header .navbar .header-button {
 }
 
 .banner-icon {
-    float: left;
-    margin-right: 10px;
-    margin-left: 40px;
+    display: block;
     margin-top: 8px;
+    width: 60px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
-.banner-text {
+.card-container .card-banner .banner-text {
+    margin-top: 0px;
     padding-top: 10px;
-    padding-left: 45px;
+    padding-left: 31px;
     text-overflow: ellipsis;
-    width: 67%;
-    white-space: nowrap;
-    overflow: hidden;
+    width: 57%;
+    font-size: 1.5em;
+}
+
+
+.banner-text.module {
+  overflow: hidden;
+  margin: 10px;
+}
+
+.banner-text.line-clamp {
+      max-height: 5.6em;
+    }
+.banner-text.line-clamp:after {
+      content: "";
+      text-align: right;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 70%;
+      height: 1.2em;
+ }
+
+@supports(-webkit-line-clamp: 3) {
+    .banner-text.line-clamp {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;  
+        max-height:5.6em; /* I needed this to get it to work */
+        height: auto;
+    }
+    .banner-text.line-clamp:after {
+        display: none;
+    }
+}
+
+.card-image-container {
+    min-width: 30%;
+    float: left;
+    
 }
 
 .banner-follow {
@@ -424,6 +463,19 @@ header .navbar .header-button {
     display: block;
     bottom: 25px;
     right: 25px;
+}
+
+#card-user-photo img {
+    float: left;
+}
+
+.card-user-name {
+    position: relative;
+    top: 45px;
+    right: 10px;
+    float: left;
+    text-decoration: none;
+    color: black;
 }
 
 /* ======== Project Gallery ======== */

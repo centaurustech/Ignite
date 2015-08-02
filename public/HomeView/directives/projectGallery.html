@@ -28,11 +28,11 @@
             <div ng-repeat="project in (filteredProjects = ( projects | filter:$root.searchQuery | categoryFilter:categoryFilterId | orderBy:orderByFilter ))" class="gallery-card col-md-6 col-sm-12 col-lg-4">
                 <div class="card-container">
                     <div class="card-banner" style="background-color: {{project.background_color}};">
-                        <img class="banner-icon" width="60px" ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg" />
-                        <p class="banner-text">
-                            <span class="card-title" ng-click="openProject(project._id, $index)">{{ project.title | uppercase}}</span>
-                            <br/>
-                            <span class="card-creator">{{ project.creator.first_name + " " + project.creator.last_name  | uppercase}}</span>
+                        <div class="card-image-container">
+                            <img class="banner-icon" ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg" />
+                        </div>
+                        <p ng-click="openProject(project._id, $index)" class="banner-text module line-clamp">
+                            {{ project.title | uppercase}}
                         </p>
                         <img height="15%" class="banner-follow" ng-src="{{project.starImage}}" ng-click="followProject($index)" />
                     </div>
@@ -55,7 +55,11 @@
                     </div>
                     <div class="card-info-section">
                         <p class="card-description module line-clamp">{{project.description}}</p>
-                        <a id="card-user-photo" href="/#/profileView/{{project.creator._id}}"><img height="65px" class="media-object img-circle" ng-src="{{ project.creator.image }}"/></a>
+                        
+                        <a id="card-user-photo" href="/#/profileView/{{project.creator._id}}">
+                            <p class="card-user-name">{{ project.creator.first_name + " " + project.creator.last_name  | uppercase}}</p>
+                            <img height="65px" class="media-object img-circle" ng-src="{{ project.creator.image }}"/>
+                        </a>
                     </div>
                 </div>
             </div>
