@@ -301,6 +301,37 @@ header .navbar .header-button {
     overflow-y: hidden;
 }
 
+.module {
+  overflow: hidden;
+  margin: 10px;
+}
+
+.line-clamp {
+      max-height: 5.6em;
+    }
+.line-clamp:after {
+      content: "";
+      text-align: right;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 70%;
+      height: 1.2em;
+ }
+
+@supports(-webkit-line-clamp: 3) {
+    .line-clamp {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;  
+        max-height:5.6em; /* I needed this to get it to work */
+        height: auto;
+    }
+    .line-clamp:after {
+        display: none;
+    }
+}
+
 .banner-icon {
     float: left;
     margin-right: 10px;
