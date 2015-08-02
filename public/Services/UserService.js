@@ -31,14 +31,13 @@ angular.module('UserService', []).factory('User', ['$http', function($http) {
            var user = {};
             
            if (staffDetails_name.split(" ").length == 2) {
-                user.family_name = staffDetails_name.split(" ")[1];
-                user.given_name = staffDetails_name.split(" ")[0];
+                user.family_name = staffDetails_name.properCase().split(" ")[1];
+                user.given_name = staffDetails_name.properCase().split(" ")[0];
             } else {
                 user.family_name = "";
                 user.given_name = "";
             }
             
-            user.name = staffDetails_name;							// name
             user.empId = staffDetails_empid;										// employee UID 
             user.phone = staffDetails_extphone;										// full phone number 
             user.country = staffDetails_country.toUpperCase();						// country
@@ -46,7 +45,6 @@ angular.module('UserService', []).factory('User', ['$http', function($http) {
             user.dept = staffDetails_dept;										
             user.picture = "http://" + staffDetails_photourl;
             user.email = staffDetails_extemail;
-            console.log(user);
             return user;
         },
 

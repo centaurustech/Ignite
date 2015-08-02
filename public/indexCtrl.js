@@ -96,8 +96,8 @@
     app.controller("IndexController", ["$scope", "$rootScope", "User", "$window", "ModalService", function($scope, $rootScope, User, $window, ModalService) {
         $rootScope.user = null;
         
-        // staffDetails_name = "Alex Tang";
-        // staffDetails_empid = "d";  // change this for new simulate HSBC user.	 
+        // staffDetails_name = "alex tang";
+        // staffDetails_empid = "e";  // change this for new simulate HSBC user.	 
         // staffDetails_extphone = "1234"; 
         // staffDetails_country = "CA";
         // staffDetails_jobrole = "SDE";
@@ -176,5 +176,9 @@
             $window.location.href = "/#/homeView";
         }
     }]);
+    
+    String.prototype.properCase = function (str) {
+		return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	};
 
 })();
