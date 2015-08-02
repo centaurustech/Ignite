@@ -349,6 +349,10 @@ header .navbar .header-button {
     font-size: 1.5em;
 }
 
+.banner-text:hover {
+    cursor: pointer;
+}
+
 
 .banner-text.module {
   overflow: hidden;
