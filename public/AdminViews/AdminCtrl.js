@@ -61,6 +61,9 @@
 				   animation: "slide-from-top"
                    }, 
 				   function(start_date) {   
+                      if(start_date === false) {
+                          return false;
+                      }
                       if(start_date === "") {
                           alert("C'mon, insert a date.");
                       } else {
