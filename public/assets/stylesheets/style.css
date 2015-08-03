@@ -834,6 +834,10 @@ button.green {
 
 
 /* Project View (Modal) */
+#project-modal.modal {
+    overflow: scroll;
+}
+
 
 #projectCarousel {
     margin-top: 2px;
@@ -1325,7 +1329,7 @@ button.green {
 
 
 /* Fund Project */
-.fund-modal {
+#fund-modal {
     z-index: 2000 !important;
 }
 
