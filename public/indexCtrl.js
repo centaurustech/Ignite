@@ -5,8 +5,9 @@
     var app = angular.module('Ignite', [
         "ngRoute",
         "UserService",
-        "HomeControllers",
+        "IndexControllers",
         "ProjectControllers",
+        "GalleryControllers",
         "ProfileControllers",
         "AdminControllers",
         "angularModalService"
@@ -16,9 +17,9 @@
     app.config(["$routeProvider",
         function($routeProvider) {
             $routeProvider
-                .when('/homeView', {
-                    templateUrl: 'HomeView/homeView.html',
-                    controller: 'HomeController'
+                .when('/', {
+                    templateUrl: 'GalleryView/ProjectGallery.html',
+                    controller: 'ProjectGalleryCtrl'
                 })
                 .when('/profileView/:userId', {
                     templateUrl: 'ProfileView/profileView.html',
@@ -41,7 +42,7 @@
                     controller: 'ApproveCtrl'
                 })
                 .otherwise({
-                    redirectTo: '/homeView'
+                    redirectTo: '/'
                 });
         }
     ]);
