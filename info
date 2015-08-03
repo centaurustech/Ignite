@@ -20,25 +20,44 @@ Ignite/
 - bower_components/		    > front end dependencies (angular, bootstrap, etc).
 - node_modules/			    > node dependency modules
 - public/					> static files served to the client
----- images/
----- javascripts/
------- controllers/			> angular modules/controllers for web pages
------- directives/			> all directives pertaining to the web pages
------- services/			> angular factories used in controllers for RESTful calls to the server
+---- AdminViews/			
+---- assets/
+---- CreateProjectView/
+---- GalleryView/
+---- HomeView/				> Folder to hold all directives to be placed in dex.html
+---- LoadUser/				> Registration and log in for users that are not signed in with Single Sign On at HSBC
+---- ProfileView/
+---- ProjectView/			
+---- Services/				> angular factories used in controllers for RESTful calls to the server
+---- index.html 			> Home Page
+---- indexCtrl.js			> Home Page Controller
 - server/
 ---- db/					> user defined modules for mongodb operations and schemas
 ---- routes/					
 ------ api/					> routing for all api server calls 
 - typings/					> typescript files for Visual Studio Code Intellisense
-- views/					> all html files pertaining to the website
 - app.js					> initialization code for express.js
 
 
 // ==================================================================
 //			 				Authentication
 // ==================================================================
+The application will use single sign on and not require authentication
+when the user is logged in.
+
+For testing purposes outside of the HSBC intranet, the application will
+detect and allow users to register and create an account. The authentication
+process for this can be found at:
 http://mherman.org/blog/2015/01/31/local-authentication-with-passport-and-express-4/#.VYCZCxNViko
 
+// ==================================================================
+//			 					Tests
+// ==================================================================
+Tests can be run found in the test folder at the root level. Currently
+tests are written for server side model methods.
+
+Run by typing in the command line:
+	make test
 
 // ==================================================================
 //			 				MongoDB Scripts
