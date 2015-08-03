@@ -4,10 +4,9 @@
  * Angular Module and Controller for /users/register
  */
 (function() {
-    var app = angular.module('LoadUserControllers', 
-        [
-            'UserService'        
-        ]);
+    var app = angular.module('LoadUserControllers', [
+        'UserService'
+    ]);
 
 
     app.controller("LoginController", ["$scope", "$http", "$window", 'User', function($scope, $http, $window, User) {
@@ -27,8 +26,8 @@
                 });
         };
     }]);
-    
-     app.controller("RegisterController", ["$scope", "$http", "$window", "User", function($scope, $http, $window, User) {
+
+    app.controller("RegisterController", ["$scope", "$http", "$window", "User", function($scope, $http, $window, User) {
         $scope.form = {};
         $scope.message;
 

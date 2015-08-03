@@ -1,10 +1,10 @@
 <div id="projects-to-approve" class="row">
-	<div ng-show="!verified" class="password-input">
-		Password: <input type="password" ng-model="password"></input>
-		<br/>
-		<div class="adm-btn" ng-click="tryPassword()">Show</div>
-	</div>
-
+    <div ng-show="!verified" class="password-input">
+        Password:
+        <input type="password" ng-model="password"></input>
+        <br/>
+        <div class="adm-btn" ng-click="tryPassword()">Show</div>
+    </div>
     <div ng-repeat="project in projects" class="gallery-card col-md-6 col-sm-12 col-lg-4">
         <div class="adm-btn" ng-click="approveProject($index)">APPROVE IT</div>
         <div class="card-container">
@@ -36,8 +36,8 @@
             <div class="card-info-section">
                 <p class="card-description">{{project.summary}}</p>
                 <a id="card-user-photo" href="/#/profileView/{{project.creator._id}}">
-                    <p class="card-user-name">{{ project.creator.first_name + " " + project.creator.last_name  | uppercase}}</p>
-                    <img height="65px" class="media-object img-circle" ng-src="{{ project.creator.image }}"/>
+                    <p class="card-user-name">{{ project.creator.first_name + " " + project.creator.last_name | uppercase}}</p>
+                    <img height="65px" class="media-object img-circle" ng-src="{{ project.creator.image }}" />
                 </a>
             </div>
         </div>

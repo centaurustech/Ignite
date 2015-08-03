@@ -8,7 +8,6 @@
                     <p>{{category.name}}</p>
                 </div>
             </div>
-            
             <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="filter-bar"></div>
                 <div class="col-md-4 col-sm-4 col-xs-4" ng-repeat="orderBy in orderByFilters">
@@ -56,8 +55,8 @@
                     <div class="card-info-section">
                         <p class="card-description module line-clamp">{{project.summary}}</p>
                         <a id="card-user-photo" href="/#/profileView/{{project.creator._id}}">
-                            <p class="card-user-name">{{ project.creator.first_name + " " + project.creator.last_name  | uppercase}}</p>
-                            <img height="65px" class="media-object img-circle" ng-src="{{ project.creator.image }}"/>
+                            <p class="card-user-name">{{ project.creator.first_name + " " + project.creator.last_name | uppercase}}</p>
+                            <img height="65px" class="media-object img-circle" ng-src="{{ project.creator.image }}" />
                         </a>
                     </div>
                 </div>

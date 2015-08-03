@@ -37,7 +37,6 @@
     <script type="text/javascript" src="/AdminViews/AdminCtrl.js"></script>
     <script type="text/javascript" src="/GalleryView/GalleryCtrl.js"></script>
     <script type="text/javascript" src="/CreateProjectView/createProjectCtrl.js"></script>
-    
 </head>
 
 <body ng-controller="IndexController" class="container-fluid">
@@ -58,11 +57,11 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <!-- Items on the left side of the nav bar -->
                     <ul class="nav navbar-nav navbar-left">
-                        <li> 
+                        <li>
                             <!-- Profile Image -->
                             <a class="brand-profile-image pull-left" ng-click="scrollDown()" href="#/profileView/{{$root.user._id}}">
                                 <img id="profile-image" width="70px" class="media-object img-circle" ng-src="{{ $root.user.image }}" alt="Image">
-                            </a> 
+                            </a>
                         </li>
                         <li>
                             <!-- Dashboard -->
@@ -70,16 +69,16 @@
                                 <img width="30px" src="/assets/icons/misc-icon/notificationB.svg" /> DASHBOARD
                                 <!-- Welcome Message -->
                                 <p style="text-decoration: none;">Welcome, {{ $root.user.first_name }} </p>
-                            </a>  
+                            </a>
                         </li>
                         <li>
-                            <!-- Fundit Logo -->                        
+                            <!-- Fundit Logo -->
                             <a href="#/homeView" class="pull-left">
                                 <img width="200px" src="/assets/images/F_Advance_Logo.svg">
-                            </a>   
+                            </a>
                         </li>
                     </ul>
-                     <!-- Items on the right side of the nav bar -->
+                    <!-- Items on the right side of the nav bar -->
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#/homeView" ng-click="explore()">
@@ -95,7 +94,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li>                        
+                        <li>
                             <!-- Search Bar -->
                             <form id="nav-search" class="navbar-form" role="search">
                                 <div class="form-group">
@@ -105,7 +104,6 @@
                             </form>
                         </li>
                     </ul>
-                    
                 </div>
                 <!-- /.navbar-collapse -->
             </div>

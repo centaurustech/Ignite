@@ -1,18 +1,19 @@
 /**
- * Angular Module and Controller for HomeView Partial
+ * Angularjs module for the all the directives respective controllers that will
+ * be placed into the home page.
  */
 (function() {
     var app = angular.module('IndexControllers', [
         "UserService",
         "ProjectService"
     ]);
-    
-    /* Carousel Directive and Controller */
+
+    /* Featured Projects Carousel Directive */
     app.directive('carousel', function() {
         return {
             restrict: 'E',
             templateUrl: 'HomeDirectives/directives/carousel.html'
         };
     });
-    
+
 })();

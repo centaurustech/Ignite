@@ -2,14 +2,14 @@
  * All urls that start with '/api/user' will route to this module.
  * 
  */
-var express = require('express');
+var express  = require('express');
 var passport = require('passport');
-var router = express.Router();
-var app = express();
+var router   = express.Router();
+var app      = express();
 
-var Project = require('../../db/project');
-var User    = require('../../db/user');
-var Backer  = require('../../db/backer');
+var Project  = require('../../db/project');
+var User     = require('../../db/user');
+var Backer   = require('../../db/backer');
 
 
 // Middleware to retrieve the id and attach it to the req object.

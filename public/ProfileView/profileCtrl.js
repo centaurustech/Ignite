@@ -32,12 +32,12 @@
                         var days_left = (new Date(project.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
                         project.days_left = days_left > 0 ? days_left : 0;
                         project.background_color = $scope.selectColorByCategory(project.category.name);
-                        
+
                         project.starImage = "/assets/icons/card-icons/Starw.svg";
                         project.viewStarImage = "/assets/buttons/project-view/endorse.svg";
                         project.isFollowed = false;
                         project.followers.forEach(function(follower) {
-                            if(follower === $rootScope.user._id) {
+                            if (follower === $rootScope.user._id) {
                                 project.isFollowed = true;
                                 project.starImage = "/assets/icons/card-icons/Star.svg";
                                 project.viewStarImage = "/assets/icons/card-icons/Star.svg";
@@ -60,7 +60,7 @@
                     default:
                         return "smokewhite";
                 }
-            }   
+            }
 
             User.getFollowedProjects($routeParams.userId)
                 .success(function(data) {
@@ -96,48 +96,43 @@
                     });
                 });
             };
-            
-            $scope.filters = [
-                { 
-                    display_name: "In Progress",
-                    image: "/assets/icons/card-icons/Inprogressw.svg",
-                    svg_name: "Inprogress",
-                    filter_name: "in_progress"
-                },
-                { 
-                    display_name: "Expired",
-                    image: "/assets/icons/card-icons/Expiredw.svg",
-                    svg_name: "Expired",
-                    filter_name: "expired"
-                },
-                { 
-                    display_name: "Fully Funded",
-                    image: "/assets/icons/card-icons/Fullyfundw.svg",
-                    svg_name: "Fullyfund",
-                    filter_name: "fully_funded"
-                },
-                { 
-                    display_name: "Endorsed",
-                    image: "/assets/icons/card-icons/Starw.svg",
-                    svg_name: "Star",
-                    filter_name: "endorsed"
-                }
-            ]
-            
+
+            $scope.filters = [{
+                display_name: "In Progress",
+                image: "/assets/icons/card-icons/Inprogressw.svg",
+                svg_name: "Inprogress",
+                filter_name: "in_progress"
+            }, {
+                display_name: "Expired",
+                image: "/assets/icons/card-icons/Expiredw.svg",
+                svg_name: "Expired",
+                filter_name: "expired"
+            }, {
+                display_name: "Fully Funded",
+                image: "/assets/icons/card-icons/Fullyfundw.svg",
+                svg_name: "Fullyfund",
+                filter_name: "fully_funded"
+            }, {
+                display_name: "Endorsed",
+                image: "/assets/icons/card-icons/Starw.svg",
+                svg_name: "Star",
+                filter_name: "endorsed"
+            }]
+
             $scope.setFilter = function(filter_name, index) {
                 $scope.filters.forEach(function(filter) {
-                   filter.image =  "/assets/icons/card-icons/" + filter.svg_name + "w.svg";
+                    filter.image = "/assets/icons/card-icons/" + filter.svg_name + "w.svg";
                 });
-                
-                if(filter_name === "endorsed") {
+
+                if (filter_name === "endorsed") {
                     $scope.showOwn = false;
                 } else {
                     $scope.showOwn = true;
-                } 
+                }
                 $scope.filterBy = filter_name;
-                $scope.filters[index].image =  "/assets/icons/card-icons/" + $scope.filters[index].svg_name + ".svg";
+                $scope.filters[index].image = "/assets/icons/card-icons/" + $scope.filters[index].svg_name + ".svg";
             }
-            
+
             $scope.setInProgress = function() {
                 $scope.showOwn = true;
                 $scope.filterBy = "inProgress";
@@ -154,41 +149,41 @@
             }
 
             $scope.setFollowing = function() {
-                $scope.showOwn = false;
-            }
-            /*
-            var isFilterVisible = true;
-            // Hide the filter after 4 seconds
-            var to = $timeout(function() {
-                $('#user-filters').addClass("height-zero", 1000);
-                $('#user-filters').children().hide();
-                isFilterVisible = false;
-            }, 4000);
-
-            // If the filters are hidden, display the filters
-            $scope.showFilters = function() {
-                $timeout.cancel(to);
-                if (!isFilterVisible) {
-                    $('#user-filters').removeClass("height-zero", 10);
-                    $('#user-filters').children().show();
-                    isFilterVisible = true;
+                    $scope.showOwn = false;
                 }
-            };
+                /*
+                var isFilterVisible = true;
+                // Hide the filter after 4 seconds
+                var to = $timeout(function() {
+                    $('#user-filters').addClass("height-zero", 1000);
+                    $('#user-filters').children().hide();
+                    isFilterVisible = false;
+                }, 4000);
 
-            // If the filters are shown, hide them after 2 seconds
-            $scope.hideFilters = function() {
-                if (isFilterVisible) {
-                    to = $timeout(function() {
-                        $('#user-filters').addClass("height-zero", 1000);
-                        $('#user-filters').children().hide();
-                        isFilterVisible = false;
-                    }, 1000);
+                // If the filters are hidden, display the filters
+                $scope.showFilters = function() {
+                    $timeout.cancel(to);
+                    if (!isFilterVisible) {
+                        $('#user-filters').removeClass("height-zero", 10);
+                        $('#user-filters').children().show();
+                        isFilterVisible = true;
+                    }
+                };
+
+                // If the filters are shown, hide them after 2 seconds
+                $scope.hideFilters = function() {
+                    if (isFilterVisible) {
+                        to = $timeout(function() {
+                            $('#user-filters').addClass("height-zero", 1000);
+                            $('#user-filters').children().hide();
+                            isFilterVisible = false;
+                        }, 1000);
+                    }
                 }
-            }
-            */
-            
+                */
+
             $scope.followProject = function(index) {
-                if($scope.filteredProjects[index].isFollowed) {
+                if ($scope.filteredProjects[index].isFollowed) {
                     swal("You've already endorsed this project!");
                 } else {
                     Project.addFollower($scope.filteredProjects[index]._id, $rootScope.user._id)

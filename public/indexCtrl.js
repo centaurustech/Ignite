@@ -65,7 +65,7 @@
             $('body').data('fv_open_modals', $('body').data('fv_open_modals') - 1);
         });
 
-        
+
         // Allow showing of multiple modals 
         $('.modal').on('shown.bs.modal', function(event) {
 
@@ -103,34 +103,34 @@
 
     app.controller("IndexController", ["$scope", "$rootScope", "User", "$window", "ModalService", function($scope, $rootScope, User, $window, ModalService) {
         $rootScope.user = null;
-        
+
         // staffDetails_name = "alex tang";
-        // staffDetails_empid = "e";  // change this for new simulate HSBC user.	 
+        // staffDetails_empid = "e";  // change this for new simulate HSBC user.     
         // staffDetails_extphone = "1234"; 
         // staffDetails_country = "CA";
         // staffDetails_jobrole = "SDE";
-        // staffDetails_dept = "CDM";							
+        // staffDetails_dept = "CDM";                           
         // staffDetails_photourl = "api.adorable.io/avatars/100/" + Math.floor(String(Math.random() * 100));
         // staffDetails_extemail = "tang.alex.93@gmail.com";
-            
-            
+
+
         User.getDummyUser().success(function(data) {
-           if(data) {
-               // get dummy user first if we've logged in with local authentication.
-               $rootScope.user = data;
-           } else if(typeof staffDetails_empid === 'undefined') {
-               // if it does not exist, then we check if we have hsbc auth.
-               // redirect to login if not.
+            if (data) {
+                // get dummy user first if we've logged in with local authentication.
+                $rootScope.user = data;
+            } else if (typeof staffDetails_empid === 'undefined') {
+                // if it does not exist, then we check if we have hsbc auth.
+                // redirect to login if not.
                 $window.location.href = "/LoadUser/loadUserView.html";
-           } else {
-               var employeeInfo = User.getEmployeeInfo();
-               if(employeeInfo) {
-                   User.getCurrentUser(employeeInfo).success(function(data) {
-                       $rootScope.user = data; 
-                   });
+            } else {
+                var employeeInfo = User.getEmployeeInfo();
+                if (employeeInfo) {
+                    User.getCurrentUser(employeeInfo).success(function(data) {
+                        $rootScope.user = data;
+                    });
                 }
-           }
-        });           
+            }
+        });
 
         // logout function for the logout button
         $scope.logout = function() {
@@ -178,15 +178,17 @@
             $scope.scrollDown();
             $window.location.href = "/#/homeView";
         }
-        
+
         $scope.moveToSearchScreen = function() {
             $scope.scrollDown();
             $window.location.href = "/#/homeView";
         }
     }]);
-    
-    String.prototype.properCase = function (str) {
-		return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-	};
+
+    String.prototype.properCase = function(str) {
+        return this.replace(/\w\S*/g, function(txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    };
 
 })();

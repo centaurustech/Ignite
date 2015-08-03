@@ -120,14 +120,14 @@
                                             </div>
                                         </div>
                                         <!-- Backers
-										<span class="project-view-section-header">Backers:</span><br/>
-										<div ng-repeat="backer in project.backers">
-											{{backer.user_id.first_name + " " + backer.user_id.last_name }}<br/>
-											${{backer.funded | number}}
-										</div>
-									</div>
+                                        <span class="project-view-section-header">Backers:</span><br/>
+                                        <div ng-repeat="backer in project.backers">
+                                            {{backer.user_id.first_name + " " + backer.user_id.last_name }}<br/>
+                                            ${{backer.funded | number}}
+                                        </div>
+                                    </div>
 
-								 -->
+                                 -->
                                     </div>
                                 </div>
                                 <!-- Separation Bar -->
@@ -150,7 +150,7 @@
                                     <!-- Share Button -->
                                     <div class="col-md-2 separator-button">
                                         <a href="mailto:%20?&subject=Check%20Out%20This%20Project%20On%20FundIT!&body={{project.title}}%0A%0A{{project.summary}}%0A%0Awww.fundit.com">
-                                            <img src="/assets/buttons/project-view/share.svg"/>
+                                            <img src="/assets/buttons/project-view/share.svg" />
                                         </a>
                                         <p>Share</p>
                                     </div>
@@ -201,7 +201,6 @@
                                             <p class="project-view-section-text" ng-show="project.backers.length === 0">No Backers</p>
                                             <div class="go-details" ng-click="showDetails()">Back To Project</div>
                                         </div>
-                                       
                                     </div>
                                 </div>
                             </div>

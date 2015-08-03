@@ -1,6 +1,6 @@
 // <---- Required Modules ---->
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema   = mongoose.Schema;
 
 var Backer   = require('./backer');
 var Comment  = require('./comment');

@@ -57,11 +57,11 @@ angular.module('ProjectService', []).factory('Project', ['$http', '$rootScope', 
         getCities: function() {
             return $http.get('/api/project/cities');
         },
-        
+
         getNonApproved: function(p) {
             return $http.get('/api/project/nonApproved?p=' + p);
         },
-        
+
         approveProject: function(project_id, start_date) {
             console.log('/api/project/approveProject?id=' + project_id + "&start_date=" + start_date);
             return $http.post('/api/project/approveProject?id=' + project_id + "&start_date=" + start_date);

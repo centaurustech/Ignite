@@ -1,24 +1,24 @@
 <div id="users-view" class="row">
-	<div ng-show="!verified" class="password-input">
-		Password: <input type="password" ng-model="password"></input>
-		<br/>
-		<div class="adm-btn" ng-click="tryPassword()">Show</div>
-	</div>
-		
-	<div ng-show="verified" id="user-search">
-		<input type="text" placeholder="Search Users!" ng-model="query"></input>
-	</div>
-	<div ng-repeat="user in users | filter: query" class="users-user col-md-3">
-		<div class="inner">
-		<img ng-src="{{user.image}}"/>
-		<p class="name">{{ user.first_name + " " + user.last_name }}</p>
-		<p>Job Role: {{ user.title }}</p>
-		<p>Department: {{ user.department }}</p>
-		<p>Country: {{ user.location }}</p>
-		<p>Email: {{ user.email }}</p>
-		<p>Phone: {{ user.phone }}</p>
-		<div ng-show="!user.is_budget_owner" class="adm-btn green" ng-click="makeBudgetOwner($index)">Make Budget Owner</div>
-		<div ng-show="user.is_budget_owner" class="adm-btn gold" ng-click="makeBudgetOwner($index)">Is A Budget Owner</div>
-		</div>
-	</div>
+    <div ng-show="!verified" class="password-input">
+        Password:
+        <input type="password" ng-model="password"></input>
+        <br/>
+        <div class="adm-btn" ng-click="tryPassword()">Show</div>
+    </div>
+    <div ng-show="verified" id="user-search">
+        <input type="text" placeholder="Search Users!" ng-model="query"></input>
+    </div>
+    <div ng-repeat="user in users | filter: query" class="users-user col-md-3">
+        <div class="inner">
+            <img ng-src="{{user.image}}" />
+            <p class="name">{{ user.first_name + " " + user.last_name }}</p>
+            <p>Job Role: {{ user.title }}</p>
+            <p>Department: {{ user.department }}</p>
+            <p>Country: {{ user.location }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Phone: {{ user.phone }}</p>
+            <div ng-show="!user.is_budget_owner" class="adm-btn green" ng-click="makeBudgetOwner($index)">Make Budget Owner</div>
+            <div ng-show="user.is_budget_owner" class="adm-btn gold" ng-click="makeBudgetOwner($index)">Is A Budget Owner</div>
+        </div>
+    </div>
 </div>

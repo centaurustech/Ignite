@@ -7,22 +7,22 @@
 angular.module('UserService', []).factory('User', ['$http', function($http) {
 
     return {
-        
+
         // get all users
         getAllUsers: function(p) {
             return $http.get('/api/user/getAll?p=' + p);
         },
-        
+
         // set the user by user_id to be a budget owner if they are not already.
         makeBudgetOwner: function(user_id) {
             return $http.post('/api/user/makeBudgetOwner?id=' + user_id);
         },
-        
+
         // Get a user's information by id
         getUser: function(id) {
             return $http.get('/api/user?id=' + id);
         },
-        
+
         getDummyUser: function() {
             return $http.get('/api/user/currentDummyUser');
         },
@@ -32,28 +32,28 @@ angular.module('UserService', []).factory('User', ['$http', function($http) {
             return $http({
                 method: 'POST',
                 url: '/api/user/currentUser',
-                data: employeeInfo}
-            );
+                data: employeeInfo
+            });
         },
-        
+
         // Retrieve the user's HSBC Employee Information.
         // Return null if the ID is not defined (not accessed from within HSBC)
         getEmployeeInfo: function() {
-           var user = {};
-            
-           if (staffDetails_name.split(" ").length == 2) {
+            var user = {};
+
+            if (staffDetails_name.split(" ").length == 2) {
                 user.family_name = staffDetails_name.properCase().split(" ")[1];
                 user.given_name = staffDetails_name.properCase().split(" ")[0];
             } else {
                 user.family_name = "";
                 user.given_name = "";
             }
-            
-            user.empId = staffDetails_empid;										// employee UID 
-            user.phone = staffDetails_extphone;										// full phone number 
-            user.country = staffDetails_country.toUpperCase();						// country
-            user.job_role = staffDetails_jobrole;									// Title
-            user.dept = staffDetails_dept;										
+
+            user.empId = staffDetails_empid; // employee UID 
+            user.phone = staffDetails_extphone; // full phone number 
+            user.country = staffDetails_country.toUpperCase(); // country
+            user.job_role = staffDetails_jobrole; // Title
+            user.dept = staffDetails_dept;
             user.picture = "http://" + staffDetails_photourl;
             user.email = staffDetails_extemail;
             return user;
@@ -102,6 +102,6 @@ angular.module('UserService', []).factory('User', ['$http', function($http) {
         logout: function() {
             return $http.post('/api/user/logout');
         }
-        
+
     };
 }]);

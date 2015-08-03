@@ -39,76 +39,76 @@
                 </div>
                 <div class="col-md-9 col-sm-12 col-xs-12" id="create-project-main">
                     <div class="row">
-                    <div class="col-md-12 col-xs-12 col-sm-12">
-                        <h1>CREATE A PROJECT</h1>
-                        <div>
-                            IN
-                            <select id="create-project-category" form="createProjectForm" ng-model="form.category.name" ng-change="selectedCategory()" required>
-                                <option value="" disabled selected>Choose Category...</option>
-                                <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
-                            </select>
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>CREATE A PROJECT</h1>
+                            <div>
+                                IN
+                                <select id="create-project-category" form="createProjectForm" ng-model="form.category.name" ng-change="selectedCategory()" required>
+                                    <option value="" disabled selected>Choose Category...</option>
+                                    <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
                     </div>
                     <div class="row">
-                    <div class="col-md-12">
-                        <form class="form-container" name="createProjectForm" ng-submit="createProjectForm.$valid && createProject()" novalidate>
-                            <div class="row">
-                                <input ng-click="setToolTip('title')" class="col-xs-12 col-md-12 col-sm-12 create-input" placeholder="Title" type='text' name='title' ng-model="form.title" required/>
-                                <br/>
-                            </div>
-                            <!-- Upload Image Or Video -->
-                            <div id="upload-project-file" class="row">
-                                <input id="upload-project-image" class="col-xs-12 col-md-12 col-sm-12" name="file" type="file" id="file" file-model="project_image" accept="image/*" />
-                                <p class="col-xs-12 col-md-12 col-sm-12 upload-project-image-text">Drag and Drop Project Image Here</p>
-                            </div>
-                            <!--Project Summary -->
-                            <div class="row">
-                                <textarea ng-click="setToolTip('summary')" class="col-xs-12 col-md-12 col-sm-12" placeholder="Short Summary" type='text' rows='3' name='summary' ng-model="form.summary" required/>
-                                <br/>
-                            </div>
-                            <!-- Project Details-->
-                            <div class="row">
-                                <textarea ng-click="setToolTip('details')" class="col-xs-12 col-md-12 col-sm-12" placeholder="Details" type='text' rows='6' name='description' ng-model="form.description" required/>
-                                <br/>
-                            </div>
-                            <!-- Campaign Start Date-->
-                            <div class="row">
-                                <p id="create-project-date-text"> Campaign Start Date: </p>
-                                <input ng-click="setToolTip('startDate')" class="col-xs-12 col-md-12 col-sm-12" placeholder="Funding Start Date" type='date' name='start_date' ng-model="form.start_date" required/>
-                                <br/>
-                            </div>
-                            <!-- Funding Goal-->
-                            <div class="row">
-                                <input ng-click="setToolTip('fundGoal')" class="col-xs-12 col-md-12 col-sm-12 create-input" placeholder="Funding Goal" type='number' name='budget' ng-model="form.budget" required/>
-                                <br/>
-                            </div>
-                            <!-- Value Proposition-->
-                            <div class="row">
-                                <textarea ng-click="setToolTip('valueProposition')" class="col-xs-12 col-md-12 col-sm-12" placeholder="Value Proposition" type='text' rows='6' name='value_proposition' ng-model="form.value_proposition" required/>
-                                <br/>
-                            </div>
-                            <div class="row">
-                                <!-- Added Resources -->
-                                <div ng-repeat="resource in form.resources" class="col-xs-12 col-md-12 col-sm-12 added-resource">
-                                    Resource #{{ $index + 1 }}
-                                    <input ng-click="setToolTip('resourceRole')" class="col-xs-12 col-md-12 col-sm-12 resource" type='text' name='resource_role' ng-model="resource.role" placeholder='Resource Name' />
-                                    <input ng-click="setToolTip('resourceDescription')" class="col-xs-12 col-md-12 col-sm-12 resource" type='text' name='resource_description' ng-model="resource.description" placeholder='Resource Link' />
+                        <div class="col-md-12">
+                            <form class="form-container" name="createProjectForm" ng-submit="createProjectForm.$valid && createProject()" novalidate>
+                                <div class="row">
+                                    <input ng-click="setToolTip('title')" class="col-xs-12 col-md-12 col-sm-12 create-input" placeholder="Title" type='text' name='title' ng-model="form.title" required/>
+                                    <br/>
                                 </div>
-                                <!-- New Resource -->
-                                <input ng-click="setToolTip('resourceRole')" class="col-xs-12 col-md-12 col-sm-12 resource resource-input-role" type='text' name='resource_role' ng-model="resource_form_role" placeholder='Resource Name' />
-                                <input ng-click="setToolTip('resourceDescription')" class="col-xs-12 col-md-12 col-sm-12 resource" type='text' name='resource_description' ng-model="resource_form_description" placeholder='Resource Link' />
-                                <img class="resource-link-icon" src="/assets/icons/misc-icon/link.svg" />
-                                <div id="add-resource-button" ng-click="addResource()">Add more <img class="resource-icon" src="/assets/icons/misc-icon/add.svg"></div>
+                                <!-- Upload Image Or Video -->
+                                <div id="upload-project-file" class="row">
+                                    <input id="upload-project-image" class="col-xs-12 col-md-12 col-sm-12" name="file" type="file" id="file" file-model="project_image" accept="image/*" />
+                                    <p class="col-xs-12 col-md-12 col-sm-12 upload-project-image-text">Drag and Drop Project Image Here</p>
+                                </div>
+                                <!--Project Summary -->
+                                <div class="row">
+                                    <textarea ng-click="setToolTip('summary')" class="col-xs-12 col-md-12 col-sm-12" placeholder="Short Summary" type='text' rows='3' name='summary' ng-model="form.summary" required/>
+                                    <br/>
+                                </div>
+                                <!-- Project Details-->
+                                <div class="row">
+                                    <textarea ng-click="setToolTip('details')" class="col-xs-12 col-md-12 col-sm-12" placeholder="Details" type='text' rows='6' name='description' ng-model="form.description" required/>
+                                    <br/>
+                                </div>
+                                <!-- Campaign Start Date-->
+                                <div class="row">
+                                    <p id="create-project-date-text"> Campaign Start Date: </p>
+                                    <input ng-click="setToolTip('startDate')" class="col-xs-12 col-md-12 col-sm-12" placeholder="Funding Start Date" type='date' name='start_date' ng-model="form.start_date" required/>
+                                    <br/>
+                                </div>
+                                <!-- Funding Goal-->
+                                <div class="row">
+                                    <input ng-click="setToolTip('fundGoal')" class="col-xs-12 col-md-12 col-sm-12 create-input" placeholder="Funding Goal" type='number' name='budget' ng-model="form.budget" required/>
+                                    <br/>
+                                </div>
+                                <!-- Value Proposition-->
+                                <div class="row">
+                                    <textarea ng-click="setToolTip('valueProposition')" class="col-xs-12 col-md-12 col-sm-12" placeholder="Value Proposition" type='text' rows='6' name='value_proposition' ng-model="form.value_proposition" required/>
+                                    <br/>
+                                </div>
+                                <div class="row">
+                                    <!-- Added Resources -->
+                                    <div ng-repeat="resource in form.resources" class="col-xs-12 col-md-12 col-sm-12 added-resource">
+                                        Resource #{{ $index + 1 }}
+                                        <input ng-click="setToolTip('resourceRole')" class="col-xs-12 col-md-12 col-sm-12 resource" type='text' name='resource_role' ng-model="resource.role" placeholder='Resource Name' />
+                                        <input ng-click="setToolTip('resourceDescription')" class="col-xs-12 col-md-12 col-sm-12 resource" type='text' name='resource_description' ng-model="resource.description" placeholder='Resource Link' />
+                                    </div>
+                                    <!-- New Resource -->
+                                    <input ng-click="setToolTip('resourceRole')" class="col-xs-12 col-md-12 col-sm-12 resource resource-input-role" type='text' name='resource_role' ng-model="resource_form_role" placeholder='Resource Name' />
+                                    <input ng-click="setToolTip('resourceDescription')" class="col-xs-12 col-md-12 col-sm-12 resource" type='text' name='resource_description' ng-model="resource_form_description" placeholder='Resource Link' />
+                                    <img class="resource-link-icon" src="/assets/icons/misc-icon/link.svg" />
+                                    <div id="add-resource-button" ng-click="addResource()">Add more <img class="resource-icon" src="/assets/icons/misc-icon/add.svg"></div>
+                                </div>
+                            </form>
+                            <div class="create-project-buttons">
+                                <button class="btn green left" ng-click="$root.showNotImplemented()">Save</button>
+                                <button class="btn left " ng-click="openSubModal()">Preview</button>
+                                <button ng-hide="true" class="close" id="submit-project" type='submit' data-dismiss="modal">Submit Project</button>
+                                <button class="btn green right" ng-click="submitProject()">SUBMIT</button>
                             </div>
-                        </form>
-                        <div class="create-project-buttons">
-                            <button class="btn green left" ng-click="$root.showNotImplemented()">Save</button>
-                            <button class="btn left " ng-click="openSubModal()">Preview</button>
-                            <button ng-hide="true" class="close" id="submit-project" type='submit' data-dismiss="modal">Submit Project</button>
-                            <button class="btn green right" ng-click="submitProject()">SUBMIT</button>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
