@@ -7,6 +7,7 @@
         "UserService",
         "IndexControllers",
         "ProjectControllers",
+        "CreateProjectControllers",
         "GalleryControllers",
         "ProfileControllers",
         "AdminControllers",
@@ -121,7 +122,7 @@
            } else if(typeof staffDetails_empid === 'undefined') {
                // if it does not exist, then we check if we have hsbc auth.
                // redirect to login if not.
-                $window.location.href = "/LoadUser/login.html";
+                $window.location.href = "/LoadUser/loadUserView.html";
            } else {
                var employeeInfo = User.getEmployeeInfo();
                if(employeeInfo) {
@@ -135,7 +136,7 @@
         // logout function for the logout button
         $scope.logout = function() {
             User.logout().success(function(data) {
-                $window.location.href = "/LoadUser/login.html";
+                $window.location.href = "/LoadUser/loadUserView.html";
             });
         };
 
@@ -161,7 +162,7 @@
         // Navbar - Create Project
         $scope.openCreateProjectModal = function() {
             ModalService.showModal({
-                templateUrl: 'ProjectView/createProjectView.html',
+                templateUrl: 'CreateProjectView/createProjectView.html',
                 controller: 'CreateProjectCtrl'
             }).then(function(modal) {
                 modal.element.modal({

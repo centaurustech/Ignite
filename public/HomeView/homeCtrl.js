@@ -11,8 +11,7 @@
     app.directive('carousel', function() {
         return {
             restrict: 'E',
-            templateUrl: 'HomeView/directives/carousel.html',
-            controller: 'CarouselCtrl'
+            templateUrl: 'HomeView/directives/carousel.html'
         };
     });
     
