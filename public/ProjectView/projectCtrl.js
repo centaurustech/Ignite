@@ -152,7 +152,7 @@
 		
 	}]);
 	
-	app.controller("CreateProjectCtrl", ["$scope", "$rootScope", "Project", "ModalService", "close", function($scope, $rootScope, Project, ModalService, close) {
+	app.controller("CreateProjectCtrl", ["$scope", "$rootScope", "$window", "Project", "ModalService", "close", function($scope, $rootScope, $window, Project, ModalService, close) {
 		$scope.message;					// message to show the project is pending approval.
 		$scope.form = {}; 				// initialize a blank project
 		$scope.form.resources = [];		// initialize resources
@@ -211,6 +211,8 @@
 			Project.post($scope.form, project_image)
 				.success(function(data) {
 					$scope.message = "Thank you, your project is now pending approval";
+					$.fn.fullpage.moveSectionDown();
+            		$window.location.href = "/#/homeView";
 				});
 		};
 		
