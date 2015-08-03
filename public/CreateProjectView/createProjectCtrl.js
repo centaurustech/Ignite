@@ -70,7 +70,7 @@
 					$scope.message = "Thank you, your project is now pending approval";
 					$scope.dismissModal();
 					$.fn.fullpage.moveSectionDown();
-            		$window.location.href = "/#/homeView";
+            		$window.location.href = "/#/";
 				});
 		};
 		
