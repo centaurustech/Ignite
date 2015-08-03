@@ -165,6 +165,15 @@ header .navbar .header-button {
     text-align: center;
 }
 
+#myCarousel .carousel-control.right {
+    right: 15px;
+}
+
+#myCarousel .carousel-control.left {
+    left: 15px;
+}
+
+
 #gallery-filters,
 #user-filters { 
     position: absolute;
