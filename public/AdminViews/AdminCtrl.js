@@ -99,7 +99,8 @@
                     inputs: {
                         FilteredProjects: $scope.projects,
                         Index: index,
-                        IsPreview: false
+                        IsPreview: false,
+                        Image: null
                     }
                 }).then(function(modal) {
                     modal.element.modal({

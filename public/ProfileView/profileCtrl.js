@@ -84,7 +84,8 @@
                     inputs: {
                         FilteredProjects: $scope.showOwn ? $scope.filteredProjects : $scope.following,
                         Index: index,
-                        IsPreview: false
+                        IsPreview: false,
+                        Image: null
                     }
                 }).then(function(modal) {
                     modal.element.modal({

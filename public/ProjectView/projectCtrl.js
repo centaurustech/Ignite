@@ -9,8 +9,8 @@
 		]);
 	
 	app.controller("ProjectController", 
-		["$scope", "$rootScope", "$location", "Project", "FilteredProjects", "Index", "IsPreview", "close", 
-		function($scope, $rootScope, $location, Project, FilteredProjects, Index, IsPreview, close) {	
+		["$scope", "$rootScope", "$location", "Project", "FilteredProjects", "Index", "IsPreview", "Image", "close", 
+		function($scope, $rootScope, $location, Project, FilteredProjects, Index, IsPreview, Image, close) {	
 		
 		// If it is a preview, it must be prepopulated with default values.
 		if(IsPreview === true) {
@@ -20,12 +20,12 @@
 			FilteredProjects[0].days_left = 0;
 			FilteredProjects[0].followers = [];
 			FilteredProjects[0].backers = [];
-			FilteredProjects[0].image = "/assets/images/default_project_image.jpg";
 			FilteredProjects[0].budget = (FilteredProjects[0].budget ? FilteredProjects[0].budget : 0);
 			FilteredProjects[0].start_date = (FilteredProjects[0].start_date ? new Date() : 0);
 			FilteredProjects[0].creator = $rootScope.user;
 			FilteredProjects[0].starImage = "/assets/icons/card-icons/Star.svg";
             FilteredProjects[0].viewStarImage = "/assets/icons/card-icons/Star.svg";
+			FilteredProjects[0].image = URL.createObjectURL(Image);	
 		}
 		
 		$scope.filteredProjects = FilteredProjects;
@@ -250,7 +250,7 @@
 		    ModalService.showModal({
 			    templateUrl: 'ProjectView/projectView.html',
 				controller: 'ProjectController',
-				inputs: { FilteredProjects: [$scope.form], Index: 0, IsPreview: true }
+				inputs: { FilteredProjects: [$scope.form], Index: 0, IsPreview: true, Image: $scope.project_image }
 		    }).then(function(modal) {
 			    modal.element.modal({});
 			    modal.close.then(function(result) {
