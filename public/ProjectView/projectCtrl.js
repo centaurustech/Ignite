@@ -37,7 +37,7 @@
 		
 		$scope.fund = function() {
 		    ModalService.showModal({
-			    templateUrl: 'ProjectView/FundModal.html',
+			    templateUrl: 'ProjectView/modals/FundModal.html',
 				controller: 'FundCtrl',
 				inputs: { ProjectToFund: $scope.filteredProjects[$scope.currentIndex] }
 		    }).then(function(modal) {
@@ -50,23 +50,6 @@
 			    });
     		});
 		};
-			// swal({ title: "FundIT",
-			// 	   text: "How Much Would You Like To Fund?",
-			// 	   type: "input",   
-			// 	   showCancelButton: true,   
-			// 	   closeOnConfirm: false,   
-			// 	   animation: "slide-from-top",   
-			// 	   inputPlaceholder: "Fund Amount" }, 
-			// 	   function(inputValue) {   
-			// 		   if (inputValue === false) return false;      
-			// 		   if (isNaN(inputValue) || inputValue == "") {     
-			// 			   swal.showInputError("Please Enter a Dollar Value");     
-			// 			   return false;  
-			// 		   }      
-			// 		   $scope.fundProject($scope.filteredProjects[$scope.currentIndex], $scope.currentIndex, inputValue);
-			// 		   swal("Really?", "That's all that you've got?  $" + inputValue, "success"); 
-			// 	   });
-
 		
 		$scope.fundProject = function(project, index, fundAmount) {
 			
