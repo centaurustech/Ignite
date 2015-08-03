@@ -279,6 +279,7 @@
 			Project.post($scope.form, project_image)
 				.success(function(data) {
 					$scope.message = "Thank you, your project is now pending approval";
+					$scope.dismissModal();
 					$.fn.fullpage.moveSectionDown();
             		$window.location.href = "/#/homeView";
 				});
@@ -303,7 +304,8 @@
 		$scope.categoryColor = "#aacf37";
 		
 		$scope.selectedCategory = function() {
-			var name_lower = String($scope.form.category).toLowerCase();
+			var name_lower = String($scope.form.category.name).toLowerCase();
+
 			switch(name_lower) {
 				case "technology":  $scope.categoryColor =  "#A796B8"; break;
 				case "business":    $scope.categoryColor = "#69A9BC"; break;
