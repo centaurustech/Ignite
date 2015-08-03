@@ -176,9 +176,23 @@
 		
 		$scope.submitProject = function() {
 			if($scope.createProjectForm.$valid && $scope.form.category !== undefined) {
-				$scope.createProject();
-				swal("", "Your Project Will Be Reviewed Soon!", "success")
-				$('#submit-project').click();	
+				swal({   
+					title: "Are you sure?",   
+					text: "",   
+					type: "warning",  
+					showCancelButton: true,   
+					confirmButtonColor: "#AACF37",   
+					confirmButtonText: "Yes, submit it!",   
+					closeOnConfirm: false }, 
+					function(input){ 
+						if(input) {
+							$scope.createProject();
+							swal("", "Your Project Will Be Reviewed Soon!", "success");
+							$('#submit-project').click();	
+						} else {
+							return;
+						}
+					});
 			} else {
 				swal("The Project Is Not Yet Complete!");
 			}
