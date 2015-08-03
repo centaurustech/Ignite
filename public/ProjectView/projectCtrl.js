@@ -37,7 +37,7 @@
 		
 		$scope.fund = function() {
 		    ModalService.showModal({
-			    templateUrl: 'ProjectView/submodal.html',
+			    templateUrl: 'ProjectView/FundModal.html',
 				controller: 'FundCtrl',
 				inputs: { ProjectToFund: $scope.filteredProjects[$scope.currentIndex] }
 		    }).then(function(modal) {
