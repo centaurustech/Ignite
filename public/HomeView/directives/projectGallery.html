@@ -41,7 +41,7 @@
                         <p class="progress-bar-label">FUNDED
                             <br/> {{ (project.funded / 1000) | number:0 }}k / {{ (project.budget / 1000) | number:0}}k </p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.funded / project.budget * 100 }}%;"></div>
+                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.budget === 0 ? 100 : project.funded / project.budget * 100 }}%;"></div>
                         </div>
                         <img class="progress-image" height="35px" src="/assets/icons/card-icons/Clock.svg" />
                         <p class="progress-bar-label">DAYS LEFT

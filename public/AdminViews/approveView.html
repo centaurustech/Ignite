@@ -9,11 +9,11 @@
         <div class="adm-btn" ng-click="approveProject($index)">APPROVE IT</div>
         <div class="card-container">
             <div class="card-banner" style="background-color: {{project.background_color}};">
-                <img class="banner-icon" width="60px" ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg" />
-                <p class="banner-text">
-                    <span class="card-title" ng-click="openProject(project._id, $index)">{{ project.title | uppercase}}</span>
-                    <br/>
-                    <span class="card-creator">{{ project.creator.first_name + " " + project.creator.last_name  | uppercase}}</span>
+                <div class="card-image-container">
+                    <img class="banner-icon" ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg" />
+                </div>
+                <p ng-click="openProject(project._id, $index)" class="banner-text module line-clamp">
+                    {{ project.title | uppercase}}
                 </p>
             </div>
             <div class="card-bar-section">
@@ -21,7 +21,7 @@
                 <p class="progress-bar-label">FUNDED
                     <br/> {{ (project.funded / 1000) | number:0 }}k / {{ (project.budget / 1000) | number:0}}k </p>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.funded / project.budget * 100 }}%;"></div>
+                    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.budget === 0 ? 100 : project.funded / project.budget * 100 }}%;"></div>
                 </div>
                 <img class="progress-image" height="35px" src="/assets/icons/card-icons/Clock.svg" />
                 <p class="progress-bar-label">DAYS LEFT
