@@ -311,7 +311,6 @@
 				case "security":    $scope.categoryColor = "#8ABD9B"; break;
 				default: 		    $scope.categoryColor = "#aacf37"; break;
 			}	
-			console.log($scope.categoryColor);
 		}
 		
 		$scope.openSubModal = function() {
