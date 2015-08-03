@@ -50,17 +50,17 @@
                 var name_lower = String(category_name).toLowerCase();
                 switch (name_lower) {
                     case "technology":
-                        return "#b1b1a6";
+                        return "#A796B8";
                     case "business":
-                        return "#53a6be";
+                        return "#69A9BC";
                     case "operations":
-                        return "#acadbf";
+                        return "#C5AA8B";
                     case "security":
-                        return "#6fbac0";
+                        return "#8ABD9B";
                     default:
                         return "smokewhite";
                 }
-            }
+            }   
 
             User.getFollowedProjects($routeParams.userId)
                 .success(function(data) {
