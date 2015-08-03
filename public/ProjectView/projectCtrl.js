@@ -195,6 +195,9 @@
 					});
 			} else {
 				swal("The Project Is Not Yet Complete!");
+				$(".ng-invalid-required").css("border", "1px solid red");
+				$(".ng-valid-required").css("border", "none");
+				$(".form-container").css("border", "none");
 			}
 			
 		}
