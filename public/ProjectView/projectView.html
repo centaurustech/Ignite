@@ -184,7 +184,7 @@
                                             <div ng-repeat="comment in project.comments" class="project-comment">
                                                 <a href="" ng-click="closeModalAndRedirect('/profileView/' + comment.user_id._id)" data-dismiss="modal"> <img class="media-object img-circle" ng-src="{{comment.user_id.image}}" /></a>
                                                 <p>{{comment.user_id.first_name + " " + comment.user_id.last_name}} : {{ comment.comment }}</p>
-                                                <p>@ {{comment.timestamp | date:'MM/dd/yyyy at h:mma'}}</p>
+                                                <p>@ {{comment.timestamp | date:'MM/dd/yyyy - h:mma'}}</p>
                                             </div>
                                             <p class="project-view-section-text" ng-show="project.comments.length === 0">No Comments</p>
                                             <div id="add-comment" ng-click="addComment()">Add Comment</div>
