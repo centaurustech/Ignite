@@ -9,6 +9,7 @@
 		$scope.message;					// message to show the project is pending approval.
 		$scope.form = {}; 				// initialize a blank project
 		$scope.form.resources = [];		// initialize resources
+		$scope.form.category = {};
 		
 		// Resource Form Fields
 		$scope.resource_form_role;
