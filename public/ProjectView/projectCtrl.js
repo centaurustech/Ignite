@@ -170,10 +170,10 @@
 		
 		$scope.project = ProjectToFund;
 		$scope.message;
+		$scope.accepted = "false";
 		$scope.fundProject = function(project, fundAmount) {
-			alert($rootScope.user.employee_id);
 			// Ensure the user has accepted the terms
-			if(!$scope.accepted) {
+			if($scope.accepted === "false") {
 				$scope.message = "Please accept the terms.";
 				return;
 			}
@@ -183,14 +183,15 @@
 				return;
 			}
 			// Ensure the user has funded a value greater than 0
-			if($scope.fund_amount > 0) {
-				$scope.message = "The fund amount is less than 0.";
+			if($scope.fund_amount <= 0 || typeof $scope.fund_amount === "undefined") {
+				$scope.message = "The fund amount is invalid";
 				return;
 			}
 			
 			// Fund the project
 			$scope.funded = true;
-			$scope.message = "Thanks"
+			$scope.fund_amount = "";
+			$scope.message = "Thanks for funding this project!"
 			Project.addBacker(project._id, $rootScope.user._id, fundAmount).
 				success(function(data) {
 					ProjectToFund.funded = data.funded;
@@ -201,9 +202,18 @@
 				});
 		};
 		
+		$scope.accept = function() {
+			if($scope.accepted === "false") {
+				$scope.accepted = "true";
+			} else {
+				$scope.accepted = "false";
+			}
+		}
+		
 		$scope.dismissModal = function(result) {
 		    close(result); 
 		 };
+		 
 	}]);
 	
 	

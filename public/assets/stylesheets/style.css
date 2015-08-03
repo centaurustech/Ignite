@@ -1331,9 +1331,122 @@ button.green {
 /* Fund Project */
 #fund-modal {
     z-index: 2000 !important;
+    padding: 0;
+    margin: 0;
+    
+    font-family: 'Oxygen', sans-serif !important;
+    font-weight: 500;
 }
 
-.fund-modal .modal-dialog {
-    width: 37%;
+#fund-modal .modal-dialog {
+    width: 500px;
     margin-top: 18%;
+}
+
+#fund-modal input[type="text"],
+#fund-modal input[type="number"]  {
+    border-radius: 5px;
+    border: 1px solid #979797;
+    outline: none;
+    height: 30px;
+}
+
+#fund-modal .modal-body {
+    margin-top: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#fund-modal .modal-header .close {
+    margin-top: -30px;
+    margin-right: -15px;
+    font-size: 3em;
+    
+}
+
+#fund-modal h1.title {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #aacf37;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#fund-modal p {
+    font-weight: 500;
+}
+
+#fund-modal .modal-body>.row>.col-sm-12 {
+    padding: 0;
+    margin-top: 30px;
+}
+
+#fund-modal #emp-id, 
+#fund-modal #accept {
+    padding: 0;
+}
+
+#accept-box {
+    margin-right: 10px;
+}
+
+#fund-modal #emp-id {
+    text-align: right;
+}
+#fund-modal #emp-id-input {
+    display: block;
+    float: right;
+    margin-left: 10px;
+}
+
+#amount-input {
+    padding-bottom: 0px;
+    margin-top: 30px;
+}
+
+#fund-modal #fund_amount {
+    width: 100%;
+}
+
+#amount-input {
+    padding: 0;
+}
+
+#fund-confirm-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 175px;
+}
+
+#fund-message {
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+#fund-modal .check-box {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background-color: #aacf37;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 5px;  
+    margin-right: 5px;
+}
+
+#fund-modal .check-box[check="true"] {
+    color: white;   
+}
+
+#fund-modal .check-box[check="false"] {
+    color: #aacf37;   
+}
+
+#fund-modal .check-box:hover {
+    cursor: pointer;
 }
