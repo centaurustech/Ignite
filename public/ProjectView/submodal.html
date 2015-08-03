@@ -1,11 +1,38 @@
-<div class="modal project-modal">
+<div class="modal project-modal fund-modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" ng-click="dismissModal()" data-dismiss="modal" aria-hidden="true" style="z-index: 1000;">&times;</button>
             </div>
             <div class="modal-body">
-                asdf ASKLJDLKAJS KJD LKAJS DLKJA LSKDJK ASLKJD LKAJ SLKDJ LKAJS LKDJ
+                <div class="row">
+                    <h1>
+                        {{ project.title }}
+                    </h1>
+                    <p>
+                        I agree to Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    </p>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="checkbox" ng-model="accepted"/>
+                            I accept
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            Employee ID: 
+                            <input type="text" ng-model="employee_id"/>
+                        </div> 
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <p>Amount of money</p>
+                            <input type="number" ng-model="fund_amount"/>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="fund-confirm-button" ng-click="fundProject(project, fund_amount)">FundIT</div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div id="fund-message">{{message}}</div>
+                        </div>
+                    </div>
+                </div>    
             </div>
         </div>
     </div>

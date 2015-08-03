@@ -9,8 +9,8 @@
 		]);
 	
 	app.controller("ProjectController", 
-		["$scope", "$rootScope", "$location", "Project", "FilteredProjects", "Index", "IsPreview", "Image", "close", 
-		function($scope, $rootScope, $location, Project, FilteredProjects, Index, IsPreview, Image, close) {	
+		["$scope", "$rootScope", "$location", "ModalService", "Project", "FilteredProjects", "Index", "IsPreview", "Image", "close", 
+		function($scope, $rootScope, $location, ModalService, Project, FilteredProjects, Index, IsPreview, Image, close) {	
 		
 		// If it is a preview, it must be prepopulated with default values.
 		if(IsPreview === true) {
@@ -36,23 +36,36 @@
 		
 		
 		$scope.fund = function() {
-			swal({ title: "FundIT",
-				   text: "How Much Would You Like To Fund?",
-				   type: "input",   
-				   showCancelButton: true,   
-				   closeOnConfirm: false,   
-				   animation: "slide-from-top",   
-				   inputPlaceholder: "Fund Amount" }, 
-				   function(inputValue) {   
-					   if (inputValue === false) return false;      
-					   if (isNaN(inputValue) || inputValue == "") {     
-						   swal.showInputError("Please Enter a Dollar Value");     
-						   return false;  
-					   }      
-					   $scope.fundProject($scope.filteredProjects[$scope.currentIndex], $scope.currentIndex, inputValue);
-					   swal("Really?", "That's all that you've got?  $" + inputValue, "success"); 
-				   });
-		}
+		    ModalService.showModal({
+			    templateUrl: 'ProjectView/submodal.html',
+				controller: 'FundCtrl',
+				inputs: { ProjectToFund: $scope.filteredProjects[$scope.currentIndex] }
+		    }).then(function(modal) {
+			    modal.element.modal({ backdrop: 'static'});
+				$('.project-modal').css("z-index", 1050);
+				$('.modal-backdrop').css("z-index", 1060);
+			    modal.close.then(function(result) {
+					$('.project-modal').css("z-index", 1075);
+					$('.modal-backdrop').css("z-index", 1049);
+			    });
+    		});
+		};
+			// swal({ title: "FundIT",
+			// 	   text: "How Much Would You Like To Fund?",
+			// 	   type: "input",   
+			// 	   showCancelButton: true,   
+			// 	   closeOnConfirm: false,   
+			// 	   animation: "slide-from-top",   
+			// 	   inputPlaceholder: "Fund Amount" }, 
+			// 	   function(inputValue) {   
+			// 		   if (inputValue === false) return false;      
+			// 		   if (isNaN(inputValue) || inputValue == "") {     
+			// 			   swal.showInputError("Please Enter a Dollar Value");     
+			// 			   return false;  
+			// 		   }      
+			// 		   $scope.fundProject($scope.filteredProjects[$scope.currentIndex], $scope.currentIndex, inputValue);
+			// 		   swal("Really?", "That's all that you've got?  $" + inputValue, "success"); 
+			// 	   });
 
 		
 		$scope.fundProject = function(project, index, fundAmount) {
@@ -151,6 +164,48 @@
 			 
 		
 	}]);
+	
+	app.controller("FundCtrl", ["$scope", "$rootScope", "Project", "ProjectToFund", "close", function($scope, $rootScope, Project, ProjectToFund, close) {
+		
+		
+		$scope.project = ProjectToFund;
+		$scope.message;
+		$scope.fundProject = function(project, fundAmount) {
+			alert($rootScope.user.employee_id);
+			// Ensure the user has accepted the terms
+			if(!$scope.accepted) {
+				$scope.message = "Please accept the terms.";
+				return;
+			}
+			// Ensure the user has entered the correct employee id
+			if($scope.employee_id === $rootScope.user.employee_id ) {
+				$scope.message ="Your employee id is incorrect.";
+				return;
+			}
+			// Ensure the user has funded a value greater than 0
+			if($scope.fund_amount > 0) {
+				$scope.message = "The fund amount is less than 0.";
+				return;
+			}
+			
+			// Fund the project
+			$scope.funded = true;
+			$scope.message = "Thanks"
+			Project.addBacker(project._id, $rootScope.user._id, fundAmount).
+				success(function(data) {
+					ProjectToFund.funded = data.funded;
+					ProjectToFund.backers = data.backers;
+				})
+				.error(function(data) {
+					$scope.message = data;
+				});
+		};
+		
+		$scope.dismissModal = function(result) {
+		    close(result); 
+		 };
+	}]);
+	
 	
 	app.controller("CreateProjectCtrl", ["$scope", "$rootScope", "$window", "Project", "ModalService", "close", function($scope, $rootScope, $window, Project, ModalService, close) {
 		$scope.message;					// message to show the project is pending approval.

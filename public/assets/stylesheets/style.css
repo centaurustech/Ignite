@@ -1322,3 +1322,14 @@ button.green {
 #user-search input {
     width: 200px;
 }
+
+
+/* Fund Project */
+.fund-modal {
+    z-index: 2000 !important;
+}
+
+.fund-modal .modal-dialog {
+    width: 37%;
+    margin-top: 18%;
+}
