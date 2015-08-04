@@ -1,29 +1,61 @@
 /**
- * Angular Module and Controller for Profile partial
+ * Angular Module and Controller for Profile View
  */
 (function() {
     var app = angular.module('ProfileControllers', [
         "UserService",
         "ProjectService"
     ]);
-
+    
+    /**
+     * ======================================================================
+     * Controller for the ng-view profileView.html
+     * profileView.html is displayed for any user, not just the current user. 
+     * It is swapped into ng-view and shows project and user information.
+     * ======================================================================
+     */
     app.controller("ProfileController", ["$scope", "$rootScope", "Project", "$timeout", "User", "$routeParams", "ModalService",
         function($scope, $rootScope, Project, $timeout, User, $routeParams, ModalService) {
-            $scope.filteredProjects;
-            $scope.projects;
-            $scope.following;
+            
+            $scope.filteredProjects;        // array, A subset of references to all projects, ones that show up in the filter.
+            $scope.projects;                // array, All projects
+            $scope.following;               // array, All Projects that the user has followed.
 
-            $scope.showFilters = false;
-            $scope.showOwn = true;
-            $scope.filterBy = "";
+            $scope.showOwn = true;          // boolean, indicates whether we're showing followed projects (not creator's projects).
 
+            $scope.user;                    // The user that is being viewed
+            
+            // The filters that are displayed in the filter bar.
+            $scope.filters = [{     
+                display_name: "In Progress",                            // Name to display under the icon
+                image: "/assets/icons/card-icons/Inprogressw.svg",      // Icon to display in the filter bar
+                svg_name: "Inprogress",                                 // Name of the svg used to change the color
+                filter_name: "in_progress"                              // Name of the filter.
+            }, {
+                display_name: "Expired",
+                image: "/assets/icons/card-icons/Expiredw.svg",
+                svg_name: "Expired",
+                filter_name: "expired"
+            }, {
+                display_name: "Fully Funded",
+                image: "/assets/icons/card-icons/Fullyfundw.svg",
+                svg_name: "Fullyfund",
+                filter_name: "fully_funded"
+            }, {
+                display_name: "Endorsed",
+                image: "/assets/icons/card-icons/Starw.svg",
+                svg_name: "Star",
+                filter_name: "endorsed"
+            }];
+            $scope.filterBy = "";           // String, filter string. used to filter on properties of projects.
+            
+            // Retrieve the user's information from the server.
             User.getUser($routeParams.userId)
                 .success(function(data) {
-                    console.log(data);
                     $scope.user = data;
                 });
 
-
+            // Retrieve all of the projects that the viewed user has created.
             User.getProjects($routeParams.userId)
                 .success(function(data) {
                     $scope.projects = data;
@@ -45,7 +77,36 @@
                         });
                     });
                 });
+                
+            // Retrieve all of the projects that the viewed user is following
+            User.getFollowedProjects($routeParams.userId)
+                .success(function(data) {
+                    $scope.following = data;
 
+                    $scope.following.forEach(function(project) {
+                        var days_left = (new Date(project.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
+                        project.days_left = days_left > 0 ? days_left : 0;
+                        project.background_color = $scope.selectColorByCategory(project.category.name);
+                        
+                        project.starImage = "/assets/icons/card-icons/Starw.svg";
+                        project.viewStarImage = "/assets/buttons/project-view/endorse.svg";
+                        project.isFollowed = false;
+                        project.followers.forEach(function(follower) {
+                            if (follower === $rootScope.user._id) {
+                                project.isFollowed = true;
+                                project.starImage = "/assets/icons/card-icons/Star.svg";
+                                project.viewStarImage = "/assets/icons/card-icons/Star.svg";
+                            }
+                        });
+                    });
+                });
+
+
+            /**
+             * Retrieve the category color associated to the category.
+             * Parameter - 
+             *  category_name: String, name of the category.
+             */
             $scope.selectColorByCategory = function(category_name) {
                 var name_lower = String(category_name).toLowerCase();
                 switch (name_lower) {
@@ -62,21 +123,13 @@
                 }
             }
 
-            User.getFollowedProjects($routeParams.userId)
-                .success(function(data) {
-                    $scope.following = data;
-
-                    $scope.following.forEach(function(project) {
-                        var days_left = (new Date(project.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
-                        project.days_left = days_left > 0 ? days_left : 0;
-                        project.background_color = $scope.selectColorByCategory(project.category.name);
-                    });
-                });
-
-            $scope.dropDownClick = function() {
-                $scope.showFilters = !$scope.showFilters;
-            };
-
+            /**
+             * Open the project view modal for the selected project.
+             * The modal is a carousel for all projects that are in filteredProjects.
+             * Parameters -
+             *      projectId: String, the id of the project to be viewed.
+             *      index:     Number, the index of said project in it's respective array.
+             */
             $scope.openProject = function(projectId, index) {
                 ModalService.showModal({
                     templateUrl: 'ProjectView/projectView.html',
@@ -88,36 +141,14 @@
                         Image: null
                     }
                 }).then(function(modal) {
-                    modal.element.modal({
-                        //backdrop: 'static'
-                    });
+                    modal.element.modal({});
                     modal.close.then(function(result) {
 
                     });
                 });
             };
 
-            $scope.filters = [{
-                display_name: "In Progress",
-                image: "/assets/icons/card-icons/Inprogressw.svg",
-                svg_name: "Inprogress",
-                filter_name: "in_progress"
-            }, {
-                display_name: "Expired",
-                image: "/assets/icons/card-icons/Expiredw.svg",
-                svg_name: "Expired",
-                filter_name: "expired"
-            }, {
-                display_name: "Fully Funded",
-                image: "/assets/icons/card-icons/Fullyfundw.svg",
-                svg_name: "Fullyfund",
-                filter_name: "fully_funded"
-            }, {
-                display_name: "Endorsed",
-                image: "/assets/icons/card-icons/Starw.svg",
-                svg_name: "Star",
-                filter_name: "endorsed"
-            }]
+
 
             $scope.setFilter = function(filter_name, index) {
                 $scope.filters.forEach(function(filter) {
@@ -132,56 +163,11 @@
                 $scope.filterBy = filter_name;
                 $scope.filters[index].image = "/assets/icons/card-icons/" + $scope.filters[index].svg_name + ".svg";
             }
-
-            $scope.setInProgress = function() {
-                $scope.showOwn = true;
-                $scope.filterBy = "inProgress";
-            }
-
-            $scope.setExpired = function() {
-                $scope.showOwn = true;
-                $scope.filterBy = "expired";
-            }
-
-            $scope.setFullyFunded = function() {
-                $scope.showOwn = true;
-                $scope.filterBy = "fullyFunded";
-            }
-
-            $scope.setFollowing = function() {
-                    $scope.showOwn = false;
-                }
-                /*
-                var isFilterVisible = true;
-                // Hide the filter after 4 seconds
-                var to = $timeout(function() {
-                    $('#user-filters').addClass("height-zero", 1000);
-                    $('#user-filters').children().hide();
-                    isFilterVisible = false;
-                }, 4000);
-
-                // If the filters are hidden, display the filters
-                $scope.showFilters = function() {
-                    $timeout.cancel(to);
-                    if (!isFilterVisible) {
-                        $('#user-filters').removeClass("height-zero", 10);
-                        $('#user-filters').children().show();
-                        isFilterVisible = true;
-                    }
-                };
-
-                // If the filters are shown, hide them after 2 seconds
-                $scope.hideFilters = function() {
-                    if (isFilterVisible) {
-                        to = $timeout(function() {
-                            $('#user-filters').addClass("height-zero", 1000);
-                            $('#user-filters').children().hide();
-                            isFilterVisible = false;
-                        }, 1000);
-                    }
-                }
-                */
-
+            
+            /**
+             * Allow the current user to follow this project.
+             * Must fix bug: index is for filteredProjects, user could follow endorsed. return follow star back in endorsed view.
+             */
             $scope.followProject = function(index) {
                 if ($scope.filteredProjects[index].isFollowed) {
                     swal("You've already endorsed this project!");
@@ -194,10 +180,27 @@
                         });
                 }
             }
+            
+            $scope.followFollowedProject = function(index) {
+                if ($scope.following[index].isFollowed) {
+                    swal("You've already endorsed this project!");
+                } else {
+                    Project.addFollower($scope.following[index]._id, $rootScope.user._id)
+                        .success(function(data) {
+                            $scope.following[index].isFollowed = true;
+                            $scope.following[index].starImage = "/assets/icons/card-icons/Star.svg";
+                            swal("Thanks for the support!", "You just endorsed this project!", "success");
+                        });
+                }
+            }
 
         }
     ]);
-
+    
+    /**
+     * Filter for filtering on properties. 
+     * It takes in the filter string and returns all projects that correspond.
+     */
     app.filter("projectFilter", function() {
         return function(projects, filterBy) {
             var resultProjects = [];
@@ -230,47 +233,7 @@
                     return projects;
                     break;
             }
-
-
-
             return resultProjects;
         }
     });
-
-
-    /* Approved Projects Directive and Controller */
-    app.directive('approvedProjects', function() {
-        return {
-            restrict: 'E',
-            templateUrl: 'ProfileView/directives/approvedProjects.html',
-            controller: 'ApprovedProjectsCtrl'
-        };
-    });
-
-    app.controller('ApprovedProjectsCtrl', ["$scope", "$rootScope", "User", function($scope, $rootScope, User) {
-        $scope.approvedProjects;
-        User.getProjects($rootScope.user._id)
-            .success(function(data) {
-                $scope.approvedProjects = data;
-            });
-    }]);
-
-    /* Pending Projects Directive and Controller */
-    app.directive('pendingProjects', function() {
-        return {
-            restrict: 'E',
-            templateUrl: 'ProfileView/directives/pendingProjects.html',
-            controller: 'PendingProjectsCtrl'
-        };
-    });
-
-    app.controller('PendingProjectsCtrl', ["$scope", "$rootScope", "User", function($scope, $rootScope, User) {
-        $scope.pendingProjects;
-        User.getPendingProjects($rootScope.user._id)
-            .success(function(data) {
-                $scope.pendingProjects = data;
-            });
-    }]);
-
-
 })();
