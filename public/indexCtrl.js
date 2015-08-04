@@ -58,6 +58,7 @@
                 paddingTop: '105px',
                 paddingBottom: '10px',
                 normalScrollElements: '#project-gallery, .modal, #profileView, .navbar, #fullpage, .footer',
+                scrollingSpeed: 350
             });
 
         $rootScope.$on('$viewContentLoaded', function() {

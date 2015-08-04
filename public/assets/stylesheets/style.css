@@ -114,6 +114,19 @@ header .navbar .header-button {
     margin-top: 10px;
     margin-left: 0px;
 }
+
+#nav-search input:focus {
+    outline: none;
+    border-color: #aacf37;
+    box-shadow: 0 0 10px #aacf37;
+}
+
+#nav-search input {
+    border: 2px solid #dadada;
+    border-radius: 7px;
+}
+
+
 /* ========= Home Page ========= */
 
 #myCarousel {
