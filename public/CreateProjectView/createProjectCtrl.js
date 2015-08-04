@@ -160,7 +160,14 @@
                     }
                 }).then(function(modal) {
                     modal.element.modal({});
-                    modal.close.then(function(result) {});
+                    $('.project-modal').css("z-index", 1080);
+                    $('.create-project').css("z-index", 1060);
+                    $('.modal-backdrop').css("z-index", 1060);
+                    modal.close.then(function(result) {
+                        $('.project-modal').css("z-index", 1050);
+                        $('.create-project').css("z-index", 1075);
+                        $('.modal-backdrop').css("z-index", 1049);
+                    });
                 });
             };
         
