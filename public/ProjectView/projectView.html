@@ -119,15 +119,6 @@
                                                 <p class="project-view-section-text summary">{{ project.summary }}</p>
                                             </div>
                                         </div>
-                                        <!-- Backers
-                                        <span class="project-view-section-header">Backers:</span><br/>
-                                        <div ng-repeat="backer in project.backers">
-                                            {{backer.user_id.first_name + " " + backer.user_id.last_name }}<br/>
-                                            ${{backer.funded | number}}
-                                        </div>
-                                    </div>
-
-                                 -->
                                     </div>
                                 </div>
                                 <!-- Separation Bar -->
@@ -155,7 +146,7 @@
                                         <p>Share</p>
                                     </div>
                                     <!-- FundIT Button -->
-                                    <div ng-show="$root.user.is_budget_owner" class="col-md-4 separator-button">
+                                    <div ng-show="$root.user.is_budget_owner && project.days_left > 0" class="col-md-4 separator-button">
                                         <img id="fundit-button" ng-click="fund()" src="/assets/images/Fundit_Button.svg" />
                                     </div>
                                 </div>
