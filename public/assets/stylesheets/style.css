@@ -1005,9 +1005,6 @@ button.green {
     margin-bottom: 0px;
 }
 
-.project-view-main .text .col-md-6:nth-child(1) {
-    border-right: 1px solid #b9bbbc;
-}
 
 .project-view-main .text .col-md-6 p {
     margin-bottom: 50px;
@@ -1017,9 +1014,6 @@ button.green {
     margin-top: 30px;
 }
 
-.project-view-main .details-section div:nth-child(1) {
-    border-right: 1px solid black;
-}
 
 .fundit-form {
     margin-top: 50px;
@@ -1138,18 +1132,51 @@ button.green {
 .project-comment {
     margin-top: 20px;
     border-top: 1px solid #979797;
-    height: 50px;
+    padding-top: 20px;
 }
 
 .project-comment img {
     display: block;
-    float: left;
-    height: 50px;
+    width: 65px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.project-comment p {
-    float: left;
-    margin-left: 20px;
+.project-comment.row div div p.comment-name,
+.project-comment.row div div p.comment-time {
+    margin-bottom: -10px;
+    font-size: 12px;
+}
+
+.project-comment.row  .col-md-12 {
+    padding: 0;
+}
+
+.project-comment.row div .col-md-10 {
+    padding: 0;
+}
+
+.project-comment .comment-name {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.project-comment .comment-name:hover {
+    text-decoration: none;
+}
+
+
+.project-comment .comment-time {
+    text-align: right;
+}
+
+.project-comment .comment-text {
+    margin-top: 25px;
+}
+
+.project-comment .comment-info {
+    
 }
 
 .project-launch {
@@ -1172,24 +1199,48 @@ button.green {
     background-color: #aacf37;
     border-radius: 5px;
     color: white;  
+    margin-top: 20px;
 }
 
 #add-comment:hover {
     cursor: pointer;
 }
 
+.project-backer {
+    float: left;
+    text-align: center;
+    width: 150px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 40px;
+
+}
+
+.project-backer p {
+    margin-bottom: -10px;
+}
+
 .project-backer a img {
-    height: 65px;
+    display: block;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.project-backer a img:hover {
+    cursor: pointer;
 }
 
 .go-details {
     display: block;
     float: right;
+    margin-top: 20px;
     margin-right: 20px;
     padding: 10px;
     background-color: #979797;
     border-radius: 5px;
     color: white;
+    clear: left;
 }
 
 .go-details:hover {

@@ -136,7 +136,7 @@
                                     <!-- Comment Button -->
                                     <div class="col-md-2 separator-button">
                                         <img ng-click="showComments()" src="/assets/buttons/project-view/comment.svg" />
-                                        <p>Comment</p>
+                                        <p>Comments</p>
                                     </div>
                                     <!-- Share Button -->
                                     <div class="col-md-2 separator-button">
@@ -172,10 +172,20 @@
                                         <div class="col-md-12 comments-area">
                                             <!-- Comments -->
                                             <div class="project-view-section-header">Comments:</div>
-                                            <div ng-repeat="comment in project.comments" class="project-comment">
-                                                <a href="" ng-click="closeModalAndRedirect('/profileView/' + comment.user_id._id)" data-dismiss="modal"> <img class="media-object img-circle" ng-src="{{comment.user_id.image}}" /></a>
-                                                <p>{{comment.user_id.first_name + " " + comment.user_id.last_name}} : {{ comment.comment }}</p>
-                                                <p>@ {{comment.timestamp | date:'MM/dd/yyyy - h:mma'}}</p>
+                                            <div ng-repeat="comment in project.comments" class="project-comment row">
+                                                <div class="col-md-2 comment-info">
+                                                    <a href="" ng-click="closeModalAndRedirect('/profileView/' + comment.user_id._id)" data-dismiss="modal">
+                                                        <img class="media-object img-circle" ng-src="{{comment.user_id.image}}"/>
+                                                        <p class="comment-name">{{comment.user_id.first_name + " " + comment.user_id.last_name}}</p>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <p class="comment-text">{{ comment.comment }}</p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p class="comment-time">{{comment.timestamp | date:'MMM d yyyy @ h:mma'}}</p>
+                                                </div>
+                                                
                                             </div>
                                             <p class="project-view-section-text" ng-show="project.comments.length === 0">No Comments</p>
                                             <div id="add-comment" ng-click="addComment()">Add Comment</div>
@@ -185,9 +195,11 @@
                                     <!-- Backers Section -->
                                     <div ng-show="showSection.showBackers" class="row text">
                                         <div class="col-md-12">
+                                            <div class="project-view-section-header">Backers:</div>
                                             <div ng-repeat="backer in project.backers" class="project-backer">
                                                 <a ng-click="closeModalAndRedirect('/profileView/' + backer.user_id._id)" data-dismiss="modal"><img class="media-object img-circle" ng-src="{{backer.user_id.image}}" /></a>
-                                                <p>{{backer.user_id.first_name + " " + backer.user_id.last_name}} : ${{ backer.funded | number }}</p>
+                                                <p>{{backer.user_id.first_name + " " + backer.user_id.last_name}}</p>
+                                                <p> ${{ backer.funded | number }}</p>
                                             </div>
                                             <p class="project-view-section-text" ng-show="project.backers.length === 0">No Backers</p>
                                             <div class="go-details" ng-click="showDetails()">Back To Project</div>
