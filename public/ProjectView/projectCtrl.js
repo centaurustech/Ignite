@@ -244,6 +244,9 @@
                 success(function(data) {
                         ProjectToFund.funded = data.funded;
                         ProjectToFund.backers = data.backers;
+                        $scope.dismissModal();
+                        $('#fund-close').click();
+                        swal("Thanks", "You've contributed $" + fundAmount, "success");
                     })
                     .error(function(data) {
                         $scope.message = data;
