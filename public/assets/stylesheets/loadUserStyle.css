@@ -1,0 +1,158 @@
+body {
+	font-family: 'Oxygen', sans-serif;
+	
+	font-size: 2em;
+	color: white;
+	text-align: center;
+	
+	margin: 0;
+	padding: 0;
+	
+		background: url("/assets/loaduser/bg.svg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.container {
+	height: 100%;
+	width: 100%;
+
+}
+
+#login-container {
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#fundit-logo {
+	width: 100%;
+	height: 50px;
+	background-color: #363636;
+	text-align: center;
+}
+
+#fundit-logo img {
+	margin-top: 8px;
+	width: 175px;
+}
+
+
+.fade-in-message-1 {
+	margin-top: 7%;
+}
+
+.login-button {
+	float: left;
+	width: 180px;
+	background-color: #373737;
+	
+	padding: 10px 15px 10px 15px;
+	
+}
+
+.or {
+	float: left;
+	width: 50px;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 10px;
+}
+
+.register-button {
+	float: left;
+	width: 180px;
+	background-color: #373737;
+	
+	padding: 10px 15px 10px 15px;
+}
+
+
+
+#login {
+	width: 225px;
+	float: left;
+}
+
+#login input, #login-submit {
+	margin-left: -10px;
+}
+
+#register {
+	width: 225px;
+	margin-left: 50px;
+	float: right;
+}
+
+#register input, #register-submit {
+	margin-right: -20px;
+}
+
+.red {
+	color: #FF5353;
+}
+
+#username-input {
+	margin-top: 50%;
+}
+
+input {
+	font-family: 'Oxygen', sans-serif;
+	background: none;
+	border: none;
+	outline: none;
+	text-align: center;
+	border-bottom: 1px solid #E8E8E8;
+	color: #373737;
+	font-size: 16px;
+}
+
+::-webkit-input-placeholder {
+	color: black;
+	font-family: 'Oxygen', sans-serif;
+	font-size: 16px;
+}
+:-moz-placeholder {
+	color: black;
+	font-family: 'Oxygen', sans-serif;
+	font-size: 16px;
+}
+::-moz-placeholder {
+	color: black;
+	font-family: 'Oxygen', sans-serif;
+	font-size: 16px;
+}
+:-ms-input-placeholder {
+	color: black;
+	font-family: 'Oxygen', sans-serif;
+	font-size: 16px;
+}
+
+#login-submit, #register-submit {
+	background: #373737;
+	border: none;
+	color: white;
+	outline: none;
+	font-size: 20px;
+	width: 50px;
+}
+
+
+#login-submit:hover, #register-submit:hover, .login-button, .register-button {
+	cursor: pointer;
+}
+
+#footer {
+	margin-top: 30px;
+	float: right;
+	width: 100%;
+}
+
+#footer img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 250px;
+}

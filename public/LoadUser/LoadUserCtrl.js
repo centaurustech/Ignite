@@ -31,7 +31,7 @@
     
                 User.login(username, password)
                     .error(function(data) {
-                        $scope.message = data;
+                        $('#login input').css("border-bottom", "1px solid red");
                     }).success(function(data) {
                         $window.location.href = '/';
                     });
@@ -56,7 +56,8 @@
             $scope.register = function() {
                 User.register($scope.form)
                     .error(function(data) {
-                        $scope.message = data;
+                        $('#username-reg-input').css("border-bottom", "1px solid red");
+                        $('#username-reg-input').effect( "shake" );
                     }).success(function(data) {
                         $window.location.href = '/';
                     });
