@@ -358,6 +358,7 @@ header .navbar .header-button {
     display: block;
     margin-top: 8px;
     width: 60px;
+    height: 60px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -889,6 +890,7 @@ button.green {
 
 .project-view-sidebar .side-cat-icon img {
     width: 70px;
+    height: 70px;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -1126,6 +1128,7 @@ button.green {
 
 #main-section-separator .separator-button #fundit-button {
     width: 250px;
+    height: 70px;
     margin-top: 20px;
 }
 
@@ -1484,6 +1487,7 @@ button.green {
     margin-top: 20px;
     margin-bottom: 20px;
     width: 175px;
+    height: 50px;
 }
 
 #fund-message {
