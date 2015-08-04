@@ -36,7 +36,7 @@
     </div>
     <!-- Projects -->
     <div id="user-projects" class="col-md-9">
-        <div ng-repeat="project in (filteredProjects = ( projects | projectFilter:filterBy ))" class="col-md-12 col-sm-12 col-lg-6 project-gallery project-filter-item" ng-show="showOwn">
+        <div ng-repeat="project in (filteredProjects = ( projects | projectFilter:filterBy | filter:$root.searchQuery))" class="col-md-12 col-sm-12 col-lg-6 project-gallery project-filter-item" ng-show="showOwn">
             <div class="card-container">
                 <div class="card-banner" style="background-color: {{project.background_color}};">
                     <div class="card-image-container">
