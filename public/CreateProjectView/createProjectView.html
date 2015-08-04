@@ -5,13 +5,16 @@
                 <button type="button" class="close" ng-click="dismissModal()" data-dismiss="modal" aria-hidden="true" style="z-index: 1000;">&times;</button>
             </div>
             <div class="modal-body row">
+                <!-- Left Column -->
                 <div class="col-md-3 col-sm-12 col-xs-12 create-user-info">
+                    <!-- Category Icon -->
                     <div id="create-project-category-icon" style="background: {{ categoryColor }};">
                         <img ng-src="/assets/icons/category-icons/{{form.category.name}}w.svg" />
                     </div>
                     <a ng-click="closeModalAndRedirect()" data-dismiss="modal">
                         <img class="creator-img media-object img-circle" ng-src="{{$root.user.image}}" />
                     </a>
+                    <!-- User Profile Section -->
                     <p class="project-view-creator-name">
                         {{project.creator.first_name + " " + project.creator.last_name | uppercase }}
                     </p>
@@ -37,6 +40,7 @@
                         <p>{{ toolTipText }}</p>
                     </div>
                 </div>
+                <!-- Right Column -->
                 <div class="col-md-9 col-sm-12 col-xs-12" id="create-project-main">
                     <div class="row">
                         <div class="col-md-12 col-xs-12 col-sm-12">
@@ -102,6 +106,7 @@
                                     <div id="add-resource-button" ng-click="addResource()">Add more <img class="resource-icon" src="/assets/icons/misc-icon/add.svg"></div>
                                 </div>
                             </form>
+                            <!-- Buttons -->
                             <div class="create-project-buttons">
                                 <button class="btn green left" ng-click="$root.showNotImplemented()">Save</button>
                                 <button class="btn left " ng-click="openSubModal()">Preview</button>
