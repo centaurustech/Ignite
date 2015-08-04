@@ -19,16 +19,16 @@
 	// 2.5 after
 	setTimeout(function(){ 
 		$(".login-button").fadeIn(2000);
-	}, 4000);
+	}, 3000);
 	// 1.5 after
 	setTimeout(function(){ 
 		$(".or").fadeIn(2000);
 		$(".register-button").fadeIn(2000);
-	}, 5500);
+	}, 4500);
 	// 0.5 after
 	setTimeout(function(){ 
-		$("#footer").fadeIn(8000);
-	}, 6500);
+		$("#footer").fadeIn(6000);
+	}, 5500);
 	
 	
 	
