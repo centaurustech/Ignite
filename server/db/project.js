@@ -122,6 +122,10 @@ projectSchema.methods.addBacker = function(backer_id, funded, callback) {
 
 /**
  * Add a comment to the project
+ * Parameters
+ *      user_id: the _id of the user that is adding the comment
+ *      comment: the string comment
+ *      callback: an anonymous function that takes the project with the new comment.
  */
 projectSchema.methods.addComment = function(user_id, comment, callback) {
     var project = this;
@@ -146,7 +150,12 @@ projectSchema.methods.addComment = function(user_id, comment, callback) {
     });     
 };
 
-
+/**
+ * Add a follower to the project
+ * Parameters
+ *      user_id: the _id of the user that is following this project
+ *      callback: an anonymous function that takes the project with the new follower.
+ */
 projectSchema.methods.addFollower = function(user_id, callback) {
     var project = this;
     
@@ -181,6 +190,12 @@ projectSchema.methods.addFollower = function(user_id, callback) {
     });
 };
 
+/**
+ * Remove a follower from the project
+ * Parameters
+ *      user_id: the _id of the user that is no longer following the project
+ *      callback: an anonymous function that takes the updated project
+ */
 projectSchema.methods.removeFollower = function(user_id, callback) {
     var project = this;
     
@@ -221,6 +236,12 @@ projectSchema.methods.removeFollower = function(user_id, callback) {
     });
 };
 
+/**
+ * Add the creator to the project, it pushes onto the user's projects array.
+ * Parameters
+ *      user_id: the _id of the user who is the creator.
+ *      callback: an anonymous function that takes the project with the new comment.
+ */
 projectSchema.methods.addCreator = function(user_id, callback) {
     var project = this;
     
@@ -245,6 +266,10 @@ projectSchema.methods.addCreator = function(user_id, callback) {
 
 /**
  * Add a resource to the project
+ * Parameters
+ *      role - The Name of the Resource
+ *      description - the http Link
+ * 
  */
 projectSchema.methods.addResource = function(role, description, callback) {
     var project = this;
@@ -271,6 +296,9 @@ projectSchema.methods.addResource = function(role, description, callback) {
 
 /**
  * Set the category for the project
+ * Parameters
+ *      name: String, the name of the category
+ *      callback: anonymous function which takes the updated project.
  */
  projectSchema.methods.setCategory = function(name, callback) {
      var project = this;
@@ -296,6 +324,7 @@ projectSchema.methods.addResource = function(role, description, callback) {
 
 /**
  * Set the city for the project
+ * DEPRECATED.
  */
  projectSchema.methods.setCity = function(cityName, callback) {
      var project = this;
