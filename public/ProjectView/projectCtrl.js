@@ -21,11 +21,11 @@
 
             // If it is a preview, it must be prepopulated with default values.
             if (IsPreview === true) {
-                FilteredProjects[0].category = (FilteredProjects[0].category ? {
-                    name: String(FilteredProjects[0].category.name)
-                } : {
-                    name: "Technology"
-                });
+                FilteredProjects[0].category.name = (FilteredProjects[0].category.name ? 
+                    String(FilteredProjects[0].category.name)
+                    :
+                    "Technology"
+                );
                 FilteredProjects[0].background_color = "#A796B8";
                 FilteredProjects[0].funded = 0;
                 FilteredProjects[0].days_left = 0;
