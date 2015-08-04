@@ -12,8 +12,15 @@
     app.directive('carousel', function() {
         return {
             restrict: 'E',
-            templateUrl: 'HomeDirectives/directives/carousel.html'
+            templateUrl: 'HomeDirectives/directives/carousel.html',
+            controllerAs: 'CarouselCtrl'
         };
     });
+    
+    app.controller('CarouselCtrl', ["$scope", 
+        function($scope){
+
+        }
+    ]);
 
 })();
