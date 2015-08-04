@@ -11,26 +11,12 @@
 	
 	setTimeout(function(){ 
 		$(".fade-in-message-1").fadeIn(2000);
-	}, 0);
-	// 3 seconds after
-	setTimeout(function(){ 
 		$(".fade-in-message-2").fadeIn(2000);
-	}, 0);
-	// 2.5 after
-	setTimeout(function(){ 
 		$(".login-button").fadeIn(2000);
-	}, 3000);
-	// 1.5 after
-	setTimeout(function(){ 
 		$(".or").fadeIn(2000);
 		$(".register-button").fadeIn(2000);
-	}, 4500);
-	// 0.5 after
-	setTimeout(function(){ 
-		$("#footer").fadeIn(6000);
-	}, 5500);
-	
-	
+		$("#footer").fadeIn(2000);
+	}, 250);	
 	
 	$('.login-button').click(function() {
 		$('#login').fadeIn(1000);

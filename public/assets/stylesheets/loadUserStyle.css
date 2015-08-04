@@ -48,7 +48,7 @@ body {
 	float: left;
 	width: 180px;
 	background-color: #373737;
-	
+	border-radius:5px;
 	padding: 10px 15px 10px 15px;
 	
 }
@@ -65,7 +65,7 @@ body {
 	float: left;
 	width: 180px;
 	background-color: #373737;
-	
+	border-radius:5px;
 	padding: 10px 15px 10px 15px;
 }
 
@@ -78,6 +78,7 @@ body {
 
 #login input, #login-submit {
 	margin-left: -10px;
+	border-radius:5px;
 }
 
 #register {
@@ -88,6 +89,7 @@ body {
 
 #register input, #register-submit {
 	margin-right: -20px;
+	border-radius:5px;
 }
 
 .red {
