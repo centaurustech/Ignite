@@ -7,8 +7,8 @@
             <div class="modal-body">
                 <div id="projectCarousel" class="carousel slide" data-interval="false" data-ride="carousel" class="row">
                     <!-- Wrapper for slides -->
-                    <div class="carousel-inner" role="listbox">
-                        <div ng-repeat="project in filteredProjects" class="item row project-view-slide" ng-class="{active: $index==currentIndex}">
+                    <div class="carousel-inner" role="listbox" id="project-slides">
+                        <div ng-repeat="project in filteredProjects" class="item row project-view-slide" ng-class="{active: ($index + 1)===slideIndex}">
                             <div class="project-view-container row">
                                 <!-- Left sidebar -->
                                 <div class="project-view-sidebar col-md-3">

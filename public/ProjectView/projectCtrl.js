@@ -41,14 +41,14 @@
             }
 
             $scope.filteredProjects = FilteredProjects;     
-            $scope.currentIndex = Index;                // Number, Current Index of the Carousel (project currently being viewed)
-            $scope.slideIndex = Index;                  // Number, Index of the slide                          
-
+            $scope.slideIndex = Index + 1               // Number, Index of the slide    
+            $scope.currentIndex = Index;                // Number, Index of the project in filteredProjects   
             $scope.showSection = {                      // The sections below the separation bar which get swapped out
                 showDetails: true,                      // set details as the default to be shown.
                 showBackers: false,
                 showComments: false,
-            }
+            }    
+            
             
             /**
              * Display a modal for funding the currently viewed project.
@@ -142,14 +142,15 @@
              * Slide the carousel one slide left.
              */
             $scope.slideLeft = function() {
-                $scope.slideIndex === 0 ? $scope.filteredProjects.length - 1 : $scope.slideIndex--;
+                $scope.currentIndex = ($scope.currentIndex === 0) ? $scope.filteredProjects.length - 1 : $scope.currentIndex - 1;
             };
             
             /**
              * Slide the carousel one slide right.
              */
             $scope.slideRight = function() {
-                $scope.slideIndex === $scope.filteredProjects.length - 1 ? 0 : $scope.slideIndex++;
+                $scope.currentIndex = ($scope.currendIndex === $scope.filteredProjects.length - 1) ? 0 : $scope.currentIndex + 1;
+
             };
             
             /**
@@ -183,6 +184,7 @@
                     Project.addEndorser(projectId, $rootScope.user._id)
                         .success(function(data) {
                             swal("Thanks for the support!", "You just endorsed this project!", "success");
+                            FilteredProjects[$scope.currentIndex].starImage = "/assets/icons/card-icons/Star.svg";
                             $scope.filteredProjects[$scope.currentIndex].viewStarImage = "/assets/icons/card-icons/Star.svg";
                             $scope.filteredProjects[$scope.currentIndex].followers = data.followers;
                         });
