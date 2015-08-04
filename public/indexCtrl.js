@@ -113,7 +113,15 @@
         // staffDetails_photourl = "api.adorable.io/avatars/100/" + Math.floor(String(Math.random() * 100));
         // staffDetails_extemail = "tang.alex.93@gmail.com";
 
-
+        /**
+         * Check if the user logged in is from the HSBC Intranet.
+         * A dummy user is any user who is not from the HSBC Intranet that was registered.
+         * 
+         * If the user is using a dummy account, add the user to the root scope.
+         * If the user is not using a dummy account (nothing returned), check if they are signed in with SSO.
+         * If the user is not signed in, redirect them to the registration page for a dummy account.
+         * If the user is signed in, get all known information about them, if there is none, add a new entry for them.
+         */
         User.getDummyUser().success(function(data) {
             if (data) {
                 // get dummy user first if we've logged in with local authentication.
@@ -125,7 +133,7 @@
             } else {
                 var employeeInfo = User.getEmployeeInfo();
                 if (employeeInfo) {
-                    User.getCurrentUser(employeeInfo).success(function(data) {
+                    User.getSSOUser(employeeInfo).success(function(data) {
                         $rootScope.user = data;
                     });
                 }

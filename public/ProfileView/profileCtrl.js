@@ -172,7 +172,7 @@
                 if ($scope.filteredProjects[index].isFollowed) {
                     swal("You've already endorsed this project!");
                 } else {
-                    Project.addFollower($scope.filteredProjects[index]._id, $rootScope.user._id)
+                    Project.addEndorser($scope.filteredProjects[index]._id, $rootScope.user._id)
                         .success(function(data) {
                             $scope.filteredProjects[index].isFollowed = true;
                             $scope.filteredProjects[index].starImage = "/assets/icons/card-icons/Star.svg";
@@ -185,7 +185,7 @@
                 if ($scope.following[index].isFollowed) {
                     swal("You've already endorsed this project!");
                 } else {
-                    Project.addFollower($scope.following[index]._id, $rootScope.user._id)
+                    Project.addEndorser($scope.following[index]._id, $rootScope.user._id)
                         .success(function(data) {
                             $scope.following[index].isFollowed = true;
                             $scope.following[index].starImage = "/assets/icons/card-icons/Star.svg";

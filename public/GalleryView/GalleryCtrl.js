@@ -63,7 +63,7 @@
              * Retrieve all of the projects that have been approved from the server.
              * Assigns the retrieved projects to $scope.projects
              */
-            Project.get().success(function(data) {
+            Project.getApprovedProjects().success(function(data) {
                 $scope.projects = data;
                 
                 // TODO: refactor this method out.
@@ -212,7 +212,7 @@
                 if ($scope.filteredProjects[index].isFollowed) {
                     swal("You've already endorsed this project!");
                 } else {
-                    Project.addFollower($scope.filteredProjects[index]._id, $rootScope.user._id)
+                    Project.addEndorser($scope.filteredProjects[index]._id, $rootScope.user._id)
                         .success(function(data) {
                             $scope.filteredProjects[index].isFollowed = true;
                             $scope.filteredProjects[index].starImage = "/assets/icons/card-icons/Star.svg";

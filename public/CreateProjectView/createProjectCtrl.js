@@ -90,7 +90,7 @@
                     $scope.addResource();
                 }
                 // Attach the project in the form and project_image to the POST request.
-                Project.post($scope.form, project_image)
+                Project.createrProject($scope.form, project_image)
                     .success(function(data) {
                         $scope.dismissModal();
                         $.fn.fullpage.moveSectionDown();

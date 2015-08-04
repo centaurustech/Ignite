@@ -180,7 +180,7 @@
                     swal("You've already endorsed this project!");
                 } else {
                     currentProject.isFollowed = true;
-                    Project.addFollower(projectId, $rootScope.user._id)
+                    Project.addEndorser(projectId, $rootScope.user._id)
                         .success(function(data) {
                             swal("Thanks for the support!", "You just endorsed this project!", "success");
                             $scope.filteredProjects[$scope.currentIndex].viewStarImage = "/assets/icons/card-icons/Star.svg";
@@ -238,7 +238,7 @@
                 $scope.funded = true;
                 $scope.fund_amount = "";
                 $scope.message = "Thanks for funding this project!"
-                Project.addBacker(project._id, $rootScope.user._id, fundAmount).
+                Project.addFunder(project._id, $rootScope.user._id, fundAmount).
                 success(function(data) {
                         ProjectToFund.funded = data.funded;
                         ProjectToFund.backers = data.backers;
