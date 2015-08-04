@@ -18,16 +18,18 @@ router.param('id', function(req, res, next, id) {
     return next();
 });
 
-// ======================================================== //
-//                                                          //
-//          CRUD Operations on User Model                   //
-//                                                          //
-// ======================================================== //
 
 /**
  * Route to retrieve all user
  * query string parameter p must match the password.
+ *
+ * <Usage>
+ *      /api/user/getAll?p=[password]
+ * 
+ * <Query String Parameters>
+ *      password: it hurts.
  */
+
 router.get('/user/getAll', function(req, res) {
     var password = req.query.p;
     
@@ -46,6 +48,13 @@ router.get('/user/getAll', function(req, res) {
 
 /**
  * Route to set a user as a budget owner.
+ * It will do nothing if they are already a budget owner.
+ * 
+ * <Usage>
+ *      /api/user/makeBudgetOwner?id=[id]
+ * 
+ * <Query String Parameters>
+ *      id: the _id of the user to make into a budget owner.
  */
 router.post('/user/makeBudgetOwner', function(req, res) {
    var user_id = req.query.id;
@@ -65,6 +74,12 @@ router.post('/user/makeBudgetOwner', function(req, res) {
 
 /**
  * Retrieve a user by id
+ * 
+ * <Usage>
+ *      /api/user?id=[id]
+ * 
+ * <Query String Parameters>
+ *      id: the _id of the user 
  */
 router.get('/user/', function(req, res) {
     var id = req.query.id;
@@ -78,7 +93,12 @@ router.get('/user/', function(req, res) {
 
 
 /**
- * Retrieve the current user
+ * Retrieve the current DUMMY User if there is a session.
+ * A dummy user is a registered user that was created because
+ * they did not use SSO.
+ * 
+ * <Usage>
+ *      /api/user/currentDummyUser
  */
 router.get('/user/currentDummyUser', function(req, res) {
     if(req.user) {
@@ -91,6 +111,12 @@ router.get('/user/currentDummyUser', function(req, res) {
 /**
  * Retrieve the current user from their employee ID.
  * If they are not registered in the database, add them.
+ * 
+ * <Usage>
+ *      /api/user/currentUser
+ * 
+ * <Request Body Parameters>
+ *      employeeInfo: JS Object containing all of the SSO fields. 
  */
 router.post('/user/currentUser', function(req, res) {
     var employeeInfo = req.body;
@@ -131,6 +157,11 @@ router.post('/user/currentUser', function(req, res) {
 
 /**
  * Retrieve all approved projects associated to a user
+ * The id of the user will have been parsed and placed into req.
+ * 
+ * <Usage>
+ *      /api/user/projects/[id]
+ * 
  */
 router.get('/user/projects/:id', function(req, res) {
     var query = Project.find({$and : [{creator: req.id}, {is_approved: true}]})
@@ -160,6 +191,10 @@ router.get('/user/projects/:id', function(req, res) {
 
 /**
  * Retrieve all project that the user is following
+ * The id of the user will have been parsed and placed into req.
+ * 
+ * <Usage>
+ *      /api/user/followedProjects/[id]
  */
 router.get('/user/followedProjects/:id', function(req, res) {
    User.findById( {_id: req.id}, function(err, user) {
@@ -195,6 +230,10 @@ router.get('/user/followedProjects/:id', function(req, res) {
 
 /**
  * Retrieve all projects that the user has funded
+ * The id of the user will have been parsed and placed into req.
+ * 
+ * <Usage>
+ *      /api/user/fundedProjects/[id]
  */
  router.get('/user/fundedProjects/:id', function(req, res) {
     User.findById({ "_id" : req.id }, function(err, user) {
@@ -224,20 +263,16 @@ router.get('/user/followedProjects/:id', function(req, res) {
     });
  });
 
-
-/**
- * Retrieve all non approved projects associated to a user
- */
-router.get('/user/pendingProjects/:id', function(req, res) {
-    Project.find({$and : [{creator: req.id}, {is_approved: false}]}, function(err, projects){
-        if(err) { console.error(err); }
-        res.json(projects);
-    });
-});
-
 /**
  * Route to register a user.
  * The new user is in the request body.
+ * 
+ * <Usage>
+ *      /api/user/followedProjects/[id]
+ * 
+ * <Request Message Body>
+ *      The message body should contain an individual field for each
+ *      value found below. 
  */
 router.post('/user/register', function(req, res) {
     User.register(new User(
@@ -271,7 +306,7 @@ router.post('/user/login', passport.authenticate('local'), function(req, res) {
 /* POST logout */
 router.post('/user/logout', function(req, res) {
     req.logout();
-    res.redirect('/#/loginView');
+    res.redirect('/LoadUser/loadUserView.html');
 });
 
 module.exports = router;

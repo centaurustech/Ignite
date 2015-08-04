@@ -79,7 +79,7 @@
                 });
                 
             // Retrieve all of the projects that the viewed user is following
-            User.getFollowedProjects($routeParams.userId)
+            User.getEndorsedProjects($routeParams.userId)
                 .success(function(data) {
                     $scope.following = data;
 

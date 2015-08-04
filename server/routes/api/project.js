@@ -32,26 +32,13 @@ router.get('/project/categories', function(req, res) {
 });
 
 /**
- * Retrieve all cities.
+ * Route to approve a project 
  * 
  * <Usage>
- *      /api/project/cities
- */
-router.get('/project/cities', function(req, res) {
-    City.find({}, function(err, cities) {
-        if (err) console.error(err);
-        res.send(cities);
-    });
-});
-
-// ======================================================== //
-//                                                          //
-//             CRUD Operations on Project Model             //
-//                                                          //
-// ======================================================== //
-
-/**
- * Route to approve a project 
+ *      /api/project/approveProject?id=[id]
+ * 
+ * <Query String Parameters>
+ *      id: The _id of the project to start funding.
  */
 router.post('/project/approveProject', function(req, res) {
     var id = req.query.id;
@@ -101,6 +88,12 @@ router.post('/project/approveProject', function(req, res) {
 /**
  * Route to retrieve all projects that have not been approved.
  * query string parameter p must match the password.
+ * 
+ * <Usage>
+ *      /api/project/nonApproved?p=[password]
+ * 
+ * <Query String Parameters>
+ *      password: please stop paining me to write this.
  */
 router.get('/project/nonApproved', function(req, res) {
     var password = req.query.p;
@@ -186,6 +179,7 @@ router.get('/project/:id', function(req, res) {
         }
     });
 });
+
 
 /**
  * Retrieve all projects that are approved.
@@ -294,17 +288,6 @@ router.post('/project', function(req, res, next) {
 });
 
 /**
- * Route to update a project by id.
- * The updated project is in the request body.
- * 
- * <Usage>
- *     /api/project/[id]
- */
-router.put('/project/:id', function(req, res) {
-
-});
-
-/**
  * Route to delete a project by id.
  * Project is a field in the request object. 
  * 
@@ -322,14 +305,6 @@ router.delete('/project/:id', function(req, res, next) {
     });
 
 });
-
-
-
-// ======================================================== //
-//                                                          //
-//           Custom Operations on Project Model             //
-//                                                          //
-// ======================================================== //
 
 /**
  * Route to add a backer to a project 
