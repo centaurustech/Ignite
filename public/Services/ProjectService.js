@@ -1,5 +1,5 @@
 /**
- * Angular factory used for all api methods on Projects /api/projects.
+ * Angular factory used for all api methods on Projects /api/project.
  */
 angular.module('ProjectService', []).factory('Project', ['$http', '$rootScope', function($http, $rootScope) {
 
