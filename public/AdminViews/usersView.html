@@ -1,13 +1,17 @@
 <div id="users-view" class="row">
+    <!-- Password Prompt -->
     <div ng-show="!verified" class="password-input">
         Password:
         <input type="password" ng-model="password"></input>
         <br/>
         <div class="adm-btn" ng-click="tryPassword()">Show</div>
     </div>
+    <!-- Search through the users -->
     <div ng-show="verified" id="user-search">
         <input type="text" placeholder="Search Users!" ng-model="query"></input>
     </div>
+    
+    <!-- All users -->
     <div ng-repeat="user in users | filter: query" class="users-user col-md-3">
         <div class="inner">
             <img ng-src="{{user.image}}" />

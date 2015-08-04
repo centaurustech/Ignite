@@ -1,10 +1,13 @@
 <div id="projects-to-approve" class="row">
+    <!-- Password Prompt -->
     <div ng-show="!verified" class="password-input">
         Password:
         <input type="password" ng-model="password"></input>
         <br/>
         <div class="adm-btn" ng-click="tryPassword()">Show</div>
     </div>
+    
+    <!-- All Non Approved Projects -->
     <div ng-repeat="project in projects" class="gallery-card col-md-6 col-sm-12 col-lg-4">
         <div class="adm-btn" ng-click="approveProject($index)">APPROVE IT</div>
         <div class="card-container">
@@ -18,8 +21,11 @@
             </div>
             <div class="card-bar-section">
                 <img class="progress-image" height="35px" src="/assets/icons/card-icons/Fund.svg" />
-                <p class="progress-bar-label">FUNDED
-                    <br/> {{ (project.funded / 1000) | number:0 }}k / {{ (project.budget / 1000) | number:0}}k </p>
+                <p class="progress-bar-label">
+                    FUNDED
+                    <br/> 
+                    {{ (project.funded / 1000) | number:0 }}k / {{ (project.budget / 1000) | number:0}}k 
+                    </p>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.budget === 0 ? 100 : project.funded / project.budget * 100 }}%;"></div>
                 </div>
@@ -42,5 +48,7 @@
             </div>
         </div>
     </div>
+    
+    <!-- Message to indicate there are no new projects, shown only if there are no projects -->
     <h1 ng-show="projects.length === 0">No New Project Submissions</h1>
 </div>
