@@ -1,5 +1,8 @@
 /**
  * Angular Module and Controller for mainView.html
+ * 
+ * This is the APPLICATION ROOT MODULE.
+ * It has dependencies on each other sub module. 
  */
 (function() {
     var app = angular.module('Ignite', [
@@ -14,7 +17,7 @@
         "angularModalService"
     ]);
 
-
+    // Set up the routes for the ng-view
     app.config(["$routeProvider",
         function($routeProvider) {
             $routeProvider
@@ -47,8 +50,9 @@
                 });
         }
     ]);
-
+    
     app.run(function($rootScope) {
+        // Initialization code for FullPageJS. 
         angular.element(document.querySelector('#fullpage'))
             .fullpage({
                 paddingTop: '105px',
@@ -59,51 +63,47 @@
         $rootScope.$on('$viewContentLoaded', function() {
 
         });
-
+        
+        /**
+         * Show a popup that says the feature is not yet implemented.
+         */
+        $rootScope.showNotImplemented = function() {
+            swal("Sorry This Feature Is Not Yet Complete. Please Try Again Later :)");
+        }
+        // Allow showing of multiple modals
         $('.modal').on('hidden.bs.modal', function(event) {
             $(this).removeClass('fv-modal-stack');
             $('body').data('fv_open_modals', $('body').data('fv_open_modals') - 1);
         });
-
-
+        
         // Allow showing of multiple modals 
         $('.modal').on('shown.bs.modal', function(event) {
-
             // keep track of the number of open modals
             if (typeof($('body').data('fv_open_modals')) == 'undefined') {
                 $('body').data('fv_open_modals', 0);
             }
-
-
             // if the z-index of this modal has been set, ignore.
             if ($(this).hasClass('fv-modal-stack')) {
                 return;
             }
-
             $(this).addClass('fv-modal-stack');
-
             $('body').data('fv_open_modals', $('body').data('fv_open_modals') + 1);
-
             $(this).css('z-index', 1040 + (10 * $('body').data('fv_open_modals')));
-
             $('.modal-backdrop').not('.fv-modal-stack')
                 .css('z-index', 1039 + (10 * $('body').data('fv_open_modals')));
-
-
             $('.modal-backdrop').not('fv-modal-stack')
                 .addClass('fv-modal-stack');
-
         });
 
-        $rootScope.showNotImplemented = function() {
-            swal("Sorry This Feature Is Not Yet Complete. Please Try Again Later :)");
-        }
+
 
     });
 
     app.controller("IndexController", ["$scope", "$rootScope", "User", "$window", "ModalService", function($scope, $rootScope, User, $window, ModalService) {
         $rootScope.user = null;
-
+        
+        $scope.screen = "down";             // String, either up or down. If Up we are on the lower screen, upperscreen otherwise.
+           
         // staffDetails_name = "alex tang";
         // staffDetails_empid = "e";  // change this for new simulate HSBC user.     
         // staffDetails_extphone = "1234"; 
@@ -132,7 +132,11 @@
             }
         });
 
-        // logout function for the logout button
+        /**
+         * Logout function for the logout button.
+         * Log out the current user (this only works for registered accounts, not SSO).
+         * It is currently not being used.
+         */
         $scope.logout = function() {
             User.logout().success(function(data) {
                 $window.location.href = "/LoadUser/loadUserView.html";
@@ -140,7 +144,6 @@
         };
 
         // Scrolling for two main sections
-        $scope.screen = "down";
         $scope.scroll = function() {
             if ($scope.screen === "down") {
                 $scope.screen = "up";
@@ -156,6 +159,14 @@
             $.fn.fullpage.moveSectionDown();
             $scope.screen = "up";
         }
+        
+        /**
+         * Scroll Up
+         */
+         $scope.scrollUp = function() {
+             $.fn.fullpage.moveSectionUp();
+             $scope.screen = "down";
+         }
 
 
         // Navbar - Create Project
@@ -164,9 +175,7 @@
                 templateUrl: 'CreateProjectView/createProjectView.html',
                 controller: 'CreateProjectCtrl'
             }).then(function(modal) {
-                modal.element.modal({
-                    //backdrop: 'static'
-                });
+                modal.element.modal({});
                 modal.close.then(function(result) {
 
                 });
@@ -174,14 +183,16 @@
         };
 
         // Navigate to Gallery
-        $scope.explore = function() {
+        $scope.showGallery = function() {
             $scope.scrollDown();
-            $window.location.href = "/#/homeView";
+            $window.location.href = "/#/";
         }
-
-        $scope.moveToSearchScreen = function() {
-            $scope.scrollDown();
-            $window.location.href = "/#/homeView";
+        
+        /**
+         * Navigate to the banner view.
+         */
+        $scope.showBanner = function() {
+            $scope.scrollUp();
         }
     }]);
 

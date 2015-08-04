@@ -73,7 +73,7 @@
                         </li>
                         <li>
                             <!-- Fundit Logo -->
-                            <a href="#/homeView" class="pull-left">
+                            <a class="pull-left" ng-click="showBanner()">
                                 <img width="200px" src="/assets/images/F_Advance_Logo.svg">
                             </a>
                         </li>
@@ -81,13 +81,15 @@
                     <!-- Items on the right side of the nav bar -->
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#/homeView" ng-click="explore()">
+                            <!-- Explore Button -->
+                            <a href="/#/" ng-click="showGallery()">
                                 <div class="header-button">EXPLORE
                                     <div class="header-underline"></div>
                                 </div>
                             </a>
                         </li>
                         <li>
+                            <!-- Create Button -->
                             <a ng-click="openCreateProjectModal()">
                                 <div class="header-button">CREATE
                                     <div class="header-underline"></div>
@@ -98,9 +100,8 @@
                             <!-- Search Bar -->
                             <form id="nav-search" class="navbar-form" role="search">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search" ng-model="$root.searchQuery" ng-click="moveToSearchScreen()">
+                                    <input type="text" class="form-control" placeholder="Search" ng-model="$root.searchQuery" ng-click="showGallery()">
                                 </div>
-                                <!--<button type="submit" class="btn btn-default">Submit</button>-->
                             </form>
                         </li>
                     </ul>
@@ -122,8 +123,8 @@
     </div>
     <div class="footer">
         <img class="footer-left" src="/assets/images/powered_by_innovate@HSBC.png" />
-        <div class="scroll-button" class="button" ng-click="scroll()"><img height="20px" ng-src="/assets/images/{{screen}}.svg" </div>
-        </div>
+        <div class="scroll-button" class="button" ng-click="scroll()"><img height="20px" ng-src="/assets/images/{{screen}}.svg"/></div>
+    </div>
 </body>
 
 </html>
