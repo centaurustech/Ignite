@@ -1151,13 +1151,15 @@ button.green {
     text-align: center;
 }
 
-#main-section-separator .separator-button #fundit-button {
-    width: 250px;
-    height: 70px;
+#main-section-separator .separator-button#fundit-button {
+    background-image: url("/assets/images/Fundit_Button.svg");
+    background-size: cover;
+    width: 300px;
+    height: 83px;
     margin-top: 20px;
 }
 
-#main-section-separator .separator-button #fundit-button:hover {
+#main-section-separator .separator-button#fundit-button:hover {
     cursor: pointer;
 }
 
