@@ -26,7 +26,7 @@
                             <input id="fund_amount" type="number" ng-model="fund_amount" />
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <img id="fund-confirm-button" src="/assets/images/Fundit_Button.svg" ng-click="fundProject(project, fund_amount)" />
+                            <div id="fund-confirm-button" ng-click="fundProject(project, fund_amount)"></div>
                         </div>
                         <div id="fund-message" class="col-md-12 col-sm-12 col-xs-12">
                             <div ng-show="funded" class="check-box" check="true">&#10004</div>{{message}}

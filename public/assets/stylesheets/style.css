@@ -1508,13 +1508,20 @@ button.green {
 }
 
 #fund-confirm-button {
+    background-image: url("/assets/images/Fundit_Button.svg");
+    background-size: cover;
+    
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 175px;
-    height: 50px;
+    width: 200px;
+    height: 55px;
+}
+
+#fund-confirm-button:hover {
+    cursor: pointer;
 }
 
 #fund-message {
