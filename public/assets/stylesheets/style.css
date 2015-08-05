@@ -3,6 +3,29 @@ body {
     margin: 0;
     padding: 0;
 }
+
+
+/* Colors */
+.technology {
+    background-color: #A796B8;
+}
+
+.operations {
+    background-color: #C5AA8B;
+}
+
+.business {
+    background-color: #69A9BC;
+}
+
+.security {
+    background-color: #8ABD9B;
+}
+
+
+
+
+
 /* Sweet Alert */
 .sweet-alert {
     font-family: 'Oxygen', sans-serif !important;
@@ -11,6 +34,8 @@ body {
 .sweet-alert .confirm {
     background-color: #aacf37 !important;
 }
+
+
 
 
 .nav,

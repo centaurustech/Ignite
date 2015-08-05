@@ -71,7 +71,7 @@
                     var days_left = Math.floor((new Date(project.end_date).getTime() - new Date(project.start_date).getTime()) / 1000 / 60 / 60 / 24);
                     project.days_left = days_left > 0 ? days_left : 0;
                     project.follower_count = project.followers.length;
-                    project.background_color = $scope.selectColorByCategory(project.category.name);
+                    project.background_color = String(project.category.name).toLowerCase();
                     project.starImage = "/assets/icons/card-icons/Starw.svg";
                     project.viewStarImage = "/assets/buttons/project-view/endorse.svg";
                     project.isFollowed = false;
