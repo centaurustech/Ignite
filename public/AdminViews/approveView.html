@@ -11,7 +11,7 @@
     <div ng-repeat="project in projects" class="gallery-card col-md-6 col-sm-12 col-lg-4">
         <div class="adm-btn" ng-click="approveProject($index)">APPROVE IT</div>
         <div class="card-container">
-            <div class="card-banner" style="background-color: {{project.background_color}};">
+            <div class="card-banner {{project.background_color}}">
                 <div class="card-image-container">
                     <img class="banner-icon" ng-src="/assets/icons/category-icons/{{project.category.name}}w.svg" />
                 </div>
@@ -40,7 +40,7 @@
                     <br/> {{ project.followers.length }} times </p>
             </div>
             <div class="card-info-section">
-                <p class="card-description">{{project.summary}}</p>
+                <p ng-click="openProject(project._id, $index)" class="card-description module line-clamp">{{project.summary}}</p>
                 <a id="card-user-photo" href="/#/profileView/{{project.creator._id}}">
                     <p class="card-user-name">{{ project.creator.first_name + " " + project.creator.last_name | uppercase}}</p>
                     <img height="65px" class="media-object img-circle" ng-src="{{ project.creator.image }}" />
