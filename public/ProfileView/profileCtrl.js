@@ -63,7 +63,7 @@
                     $scope.projects.forEach(function(project) {
                         var days_left = (new Date(project.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
                         project.days_left = days_left > 0 ? days_left : 0;
-                        project.background_color = $scope.selectColorByCategory(project.category.name);
+                        project.background_color = String(project.category.name).toLowerCase();
 
                         project.starImage = "/assets/icons/card-icons/Starw.svg";
                         project.viewStarImage = "/assets/buttons/project-view/endorse.svg";
@@ -86,7 +86,7 @@
                     $scope.following.forEach(function(project) {
                         var days_left = (new Date(project.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
                         project.days_left = days_left > 0 ? days_left : 0;
-                        project.background_color = $scope.selectColorByCategory(project.category.name);
+                        project.background_color = String(project.category.name).toLowerCase();
                         
                         project.starImage = "/assets/icons/card-icons/Starw.svg";
                         project.viewStarImage = "/assets/buttons/project-view/endorse.svg";
@@ -100,29 +100,7 @@
                         });
                     });
                 });
-
-
-            /**
-             * Retrieve the category color associated to the category.
-             * Parameter - 
-             *  category_name: String, name of the category.
-             */
-            $scope.selectColorByCategory = function(category_name) {
-                var name_lower = String(category_name).toLowerCase();
-                switch (name_lower) {
-                    case "technology":
-                        return "#A796B8";
-                    case "business":
-                        return "#69A9BC";
-                    case "operations":
-                        return "#C5AA8B";
-                    case "security":
-                        return "#8ABD9B";
-                    default:
-                        return "smokewhite";
-                }
-            }
-
+                
             /**
              * Open the project view modal for the selected project.
              * The modal is a carousel for all projects that are in filteredProjects.
