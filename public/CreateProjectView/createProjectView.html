@@ -8,7 +8,7 @@
                 <!-- Left Column -->
                 <div class="col-md-3 col-sm-12 col-xs-12 create-user-info">
                     <!-- Category Icon -->
-                    <div id="create-project-category-icon" style="background: {{ categoryColor }};">
+                    <div id="create-project-category-icon" class="{{ form.category.name ? form.category.name.toLowerCase() : 'technology' }}">
                         <img ng-src="/assets/icons/category-icons/{{form.category.name}}w.svg" />
                     </div>
                     <a ng-click="closeModalAndRedirect()" data-dismiss="modal">
@@ -64,7 +64,7 @@
                                 <!-- Upload Image Or Video -->
                                 <div id="upload-project-file" class="row">
                                     <input id="upload-project-image" class="col-xs-12 col-md-12 col-sm-12" name="file" type="file" id="file" file-model="project_image" accept="image/*" />
-                                    <p class="col-xs-12 col-md-12 col-sm-12 upload-project-image-text">Drag and Drop Project Image Here</p>
+                                    <p class="upload-project-image-text">Drag and Drop Project Image Here</p>
                                 </div>
                                 <!--Project Summary -->
                                 <div class="row">
@@ -78,7 +78,7 @@
                                 </div>
                                 <!-- Campaign Start Date-->
                                 <div class="row">
-                                    <p id="create-project-date-text"> Campaign Start Date: </p>
+                                    <p id="create-project-date-text"> Campaign Start Date: yyyy-mm-dd</p>
                                     <input ng-click="setToolTip('startDate')" class="col-xs-12 col-md-12 col-sm-12" placeholder="Funding Start Date" type='date' name='start_date' ng-model="form.start_date" required/>
                                     <br/>
                                 </div>
