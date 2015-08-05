@@ -77,7 +77,7 @@
             $scope.approveProject = function(index) {
                 swal({
                         title: "Approve",
-                        text: "When will funding start?",
+                        text: "When will funding start? (yyyy-mm-dd)",
                         type: "input",
                         inputType: "date",
                         showCancelButton: true,
