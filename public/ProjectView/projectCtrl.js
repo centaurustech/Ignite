@@ -26,7 +26,7 @@
                     :
                     "Technology"
                 );
-                FilteredProjects[0].background_color = "#A796B8";
+                FilteredProjects[0].background_color = String(FilteredProjects[0].category.name).toLowerCase();
                 FilteredProjects[0].funded = 0;
                 FilteredProjects[0].days_left = 0;
                 FilteredProjects[0].followers = [];

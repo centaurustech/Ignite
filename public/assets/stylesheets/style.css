@@ -1108,12 +1108,12 @@ button.green {
 
 #projectCarousel .carousel-control.right {
     position: fixed;
-    right: -85px;
+    margin-right: -85px;
 }
 
 #projectCarousel .carousel-control.left {
     position: fixed;
-    left: -85px;
+    margin-left: -85px;
 }
 
 .project-modal .modal-header button.close {
