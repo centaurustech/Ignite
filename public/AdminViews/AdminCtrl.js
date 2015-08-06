@@ -51,7 +51,7 @@
                             var days_left = (new Date(project.end_date).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24;
                             project.days_left = days_left > 0 ? days_left : 0;
                             project.follower_count = project.followers.length;
-                            project.background_color = (project.category.name) ? String(project.category.name).toLowerCase() : "technology";
+                            project.background_color = (project.category) ? String(project.category.name).toLowerCase() : "technology";
                             project.starImage = "/assets/icons/card-icons/Starw.svg";
                             project.viewStarImage = "/assets/buttons/project-view/endorse.svg";
                             project.isFollowed = false;
