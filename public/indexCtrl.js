@@ -126,12 +126,16 @@
         User.getDummyUser().success(function(data) {
             if (data) {
                 // get dummy user first if we've logged in with local authentication.
+                console.log("Got Dummy Account");
                 $rootScope.user = data;
             } else if (typeof staffDetails_empid === 'undefined') {
                 // if it does not exist, then we check if we have hsbc auth.
                 // redirect to login if not.
+                console.log("NO HSBC AUTH, REDIRECTING TO LOGIN")
                 $window.location.href = "/LoadUser/loadUserView.html";
             } else {
+                // HSBC
+                console.log("GOT SSO CREDENTIALS");
                 var employeeInfo = User.getEmployeeInfo();
                 if (employeeInfo) {
                     User.getSSOUser(employeeInfo).success(function(data) {
