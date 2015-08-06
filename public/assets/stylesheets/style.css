@@ -394,6 +394,7 @@ header .navbar .header-button {
     padding-left: 31px;
     text-overflow: ellipsis;
     width: 57%;
+    height: 75px;
     font-size: 1.5em;
 }
 
