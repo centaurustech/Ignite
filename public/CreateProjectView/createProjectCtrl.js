@@ -89,6 +89,12 @@
                 if ($scope.resource_form_role !== "" && $scope.resource_form_description !== "") {
                     $scope.addResource();
                 }
+                
+                if(typeof $scope.form.category.name === 'undefined' || !$scope.form.category.name || $scope.form.category.name === "") {
+                    // TODO: Small bug in UI, sometimes the category is not set.
+                    $scope.form.category.name = "Technology"; // default to technology
+                }
+                
                 // Attach the project in the form and project_image to the POST request.
                 Project.createProject($scope.form, project_image)
                     .success(function(data) {
