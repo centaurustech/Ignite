@@ -31,6 +31,15 @@
                 <div class="col-sm-2 col-md-12 col-xs-4">
                     <h3>PHONE:</h3> {{ user.phone }}
                 </div>
+                <div class="col-sm-2 col-md-12 col-xs-4">
+                    <h3>PROJECTS FUNDED:</h3> {{ user.funded.length }}
+                </div>
+                <div class="col-sm-2 col-md-12 col-xs-4">
+                    <h3>PROJECTS CREATED:</h3> {{ user.projects.length }}
+                </div>
+                <div class="col-sm-2 col-md-12 col-xs-4">
+                    <h3>PROJECTS ENDORSED:</h3> {{ user.following.length }}
+                </div>
             </div>
         </div>
     </div>
