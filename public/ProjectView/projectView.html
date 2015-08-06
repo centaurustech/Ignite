@@ -116,7 +116,7 @@
                                         <!-- Description and Invitation -->
                                         <div class="row text">
                                             <div class="col-md-12">
-                                                <p class="project-view-section-text summary">{{ project.summary }}</p>
+                                                <p class="project-view-section-text summary"><pre class="pre-clean">{{ project.summary }}</pre></p>
                                             </div>
                                         </div>
                                     </div>
@@ -158,10 +158,10 @@
                                         <div class="col-md-12">
                                             <!-- Value Proposition -->
                                             <div class="project-view-section-header">Value Proposition:</div>
-                                            <p class="project-view-section-text">{{ project.value_proposition }}</p>
+                                            <p class="project-view-section-text"><pre class="pre-clean">{{ project.value_proposition }}</pre></p>
                                             <!-- Project Details -->
                                             <div class="project-view-section-header">Project Details:</div>
-                                            <p class="project-view-section-text">{{ project.description }}</p>
+                                            <p class="project-view-section-text"><pre class="pre-clean">{{ project.description }}</pre></p>
                                             <!-- Resources -->
                                             <div class="project-view-section-header">Resources:</div>
                                             <a ng-repeat="resource in project.resources" class="project-resource" target="_blank" ng-href="{{ resource.description | link }}">{{ resource.role }}<br/></a>
