@@ -820,7 +820,7 @@ button.green {
 }
 
 #user-projects {
-    height: 85vh;
+    height: 73vh;
     overflow-y: scroll;
     border-left: 1px solid #b9bbbc;
 }
@@ -828,9 +828,10 @@ button.green {
 #profileView {
     max-height: 100%;
     width: 100%;
+    height: 81vh;
     overflow-y: scroll;
     font-family: 'Oxygen', sans-serif;
-    padding-top: 86px;
+    padding-top: 66px;
 }
 
 #profile-info {
