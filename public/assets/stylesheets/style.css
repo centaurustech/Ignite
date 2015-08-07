@@ -390,12 +390,13 @@ header .navbar .header-button {
 
 .card-container .card-banner .banner-text {
     margin-top: 0px;
-    padding-top: 10px;
+    padding-top: 14px;
     padding-left: 31px;
     text-overflow: ellipsis;
     width: 57%;
-    height: 75px;
-    font-size: 1.5em;
+    height: 65px;
+    font-size: 1.3em;
+    line-height: 1.3em;
 }
 
 .banner-text:hover {
