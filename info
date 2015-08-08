@@ -1,4 +1,4 @@
-Ignite web application built by Alex Tang for innnovate@HSBC's crowd funding initiative.
+FundIT web application built for innnovate@HSBC's crowd funding initiative.
 
 
 // =========================================================================
@@ -45,6 +45,22 @@ Ignite/
 - app.js					> initialization code for express.js
 
 
+** Each folder in public that ends in 'View' or 'Views' contains at least one html file and one corresponding controller.
+** Each view is completely compartmentalized and can be used independently provided that they can retrieve data from the server.
+** The webpage initially loads index.html and attempts to log the user in. After authentication, the user is redirected to GalleryView.
+
+
+// ======================================================================
+//							Admin Pages
+// ======================================================================
+There are two admin pages made in order for administrators set users as
+budget owners and to start funding for project submissions.
+
+/#/approveView
+/#/usersView
+
+Both pages require a password, verified at the server.
+Password: 'admin'
 
 
 
@@ -74,13 +90,13 @@ tests are written for server side model methods.
 
 Run by typing in the command line:
 	make test
+	
+	
+	
+// =================================================================
+//							Backlog
+// =================================================================
+The backlog containing unfinished parts of the website, bugs, and features
+can be found at:
 
-
-
-
-// ==================================================================
-//			 				MongoDB Scripts
-// ==================================================================
-
-Open mongo and use the command:
-	load("script_name");
+	https://trello.com/b/kcBF0GHj/fundit-backlog
