@@ -1,16 +1,22 @@
 Ignite web application built by Alex Tang for innnovate@HSBC's crowd funding initiative.
 
 
-// ==================================================================
-// 				Instructions On Running The Application 
-// ==================================================================
+// =========================================================================
+// 				Instructions On Running and Installing The Application 
+// =========================================================================
 
-1. Install node.js - https://nodejs.org/
-2. Install bower   - http://bower.io/
-3. Change directory into the root of the project (Ignite)
-4. Run 'npm install' to install all dependencies for the node server
-5. Run 'bower install' to install all of the dependencies for the client side
-6. Run 'npm start' to run the application locally on port 3000.
+1.  Install node.js - https://nodejs.org/
+2.  Install bower   - http://bower.io/
+3.  Install git     - https://git-scm.com/
+4.  Retrieve the code from github. 'git clone https://github.com/alex-tang/Ignite'
+5.  Change directory into the root of the project (Ignite)
+6.  Run 'npm install' to install all dependencies for the node server
+7.  Run 'bower install' to install all of the dependencies for the client side
+8.  Ensure that the folder /data/db at root exists for mongod. 'mkdir -p /data/db'
+9.  Run 'mongod' to start the mongodb daemon.
+10. Run 'mongo', 'use ignite', 'load("mongo_scripts/initialize_db.js")' to initialize the database.
+11. Run 'npm start' to run the application locally on port 3000.
+
 
 // ==================================================================
 //			 			Directory Structure 
@@ -24,7 +30,7 @@ Ignite/
 ---- assets/
 ---- CreateProjectView/
 ---- GalleryView/
----- HomeView/				> Folder to hold all directives to be placed in dex.html
+---- HomeView/				> Folder to hold all directives to be placed in index.html
 ---- LoadUser/				> Registration and log in for users that are not signed in with Single Sign On at HSBC
 ---- ProfileView/
 ---- ProjectView/			
@@ -39,6 +45,9 @@ Ignite/
 - app.js					> initialization code for express.js
 
 
+
+
+
 // ==================================================================
 //			 				Authentication
 // ==================================================================
@@ -50,6 +59,13 @@ detect and allow users to register and create an account. The authentication
 process for this can be found at:
 http://mherman.org/blog/2015/01/31/local-authentication-with-passport-and-express-4/#.VYCZCxNViko
 
+In both cases, the users will be logged in. Once logged in, all information
+regarding the user can be found in the root scope at $root.user
+
+
+
+
+
 // ==================================================================
 //			 					Tests
 // ==================================================================
@@ -58,6 +74,9 @@ tests are written for server side model methods.
 
 Run by typing in the command line:
 	make test
+
+
+
 
 // ==================================================================
 //			 				MongoDB Scripts
