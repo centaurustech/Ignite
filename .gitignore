@@ -1,6 +1,6 @@
 data/*
 node_modules/*
-config/*
+config/npm-debug.log
 npm-debug.log
 public/assets/project_images/*
 bower_components/
