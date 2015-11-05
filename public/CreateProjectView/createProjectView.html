@@ -61,11 +61,12 @@
                                     <input ng-click="setToolTip('title')" class="col-xs-12 col-md-12 col-sm-12 create-input" placeholder="Title" type='text' name='title' ng-model="form.title" required/>
                                     <br/>
                                 </div>
-                                <!-- Upload Image Or Video -->
+                                <!-- Upload Image Or Video 
                                 <div id="upload-project-file" class="row">
                                     <input id="upload-project-image" class="col-xs-12 col-md-12 col-sm-12" name="file" type="file" id="file" file-model="project_image" accept="image/*" />
                                     <p class="upload-project-image-text">Drag and Drop Project Image Here</p>
                                 </div>
+                                -->
                                 <!--Project Summary -->
                                 <div class="row">
                                     <textarea ng-click="setToolTip('summary')" class="col-xs-12 col-md-12 col-sm-12" placeholder="Short Summary" type='text' rows='3' name='summary' ng-model="form.summary" required/>
@@ -92,19 +93,21 @@
                                     <textarea ng-click="setToolTip('valueProposition')" class="col-xs-12 col-md-12 col-sm-12" placeholder="Value Proposition" type='text' rows='6' name='value_proposition' ng-model="form.value_proposition" required/>
                                     <br/>
                                 </div>
-                                <div class="row">
-                                    <!-- Added Resources -->
+                                <!--
+                                <div class="row"> -->
+                                    <!-- Added Resources 
                                     <div ng-repeat="resource in form.resources" class="col-xs-12 col-md-12 col-sm-12 added-resource">
                                         Resource #{{ $index + 1 }}
                                         <input ng-click="setToolTip('resourceRole')" class="col-xs-12 col-md-12 col-sm-12 resource" type='text' name='resource_role' ng-model="resource.role" placeholder='Resource Name' />
                                         <input ng-click="setToolTip('resourceDescription')" class="col-xs-12 col-md-12 col-sm-12 resource" type='text' name='resource_description' ng-model="resource.description" placeholder='Resource Link' />
-                                    </div>
-                                    <!-- New Resource -->
+                                    </div> -->
+                                    <!-- New Resource 
                                     <input ng-click="setToolTip('resourceRole')" class="col-xs-12 col-md-12 col-sm-12 resource resource-input-role" type='text' name='resource_role' ng-model="resource_form_role" placeholder='Resource Name' />
                                     <input ng-click="setToolTip('resourceDescription')" class="col-xs-12 col-md-12 col-sm-12 resource" type='text' name='resource_description' ng-model="resource_form_description" placeholder='Resource Link' />
                                     <img class="resource-link-icon" src="/assets/icons/misc-icon/link.svg" />
                                     <div id="add-resource-button" ng-click="addResource()">Add more <img class="resource-icon" src="/assets/icons/misc-icon/add.svg"></div>
                                 </div>
+                                -->
                             </form>
                             <!-- Buttons -->
                             <div class="create-project-buttons">
