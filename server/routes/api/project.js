@@ -246,13 +246,13 @@ router.get('/project', function(req, res, next) {
  *     /api/project/
  */
 router.post('/project', function(req, res, next) {
-    var userJSON = JSON.parse(req.body.user);
-    var projectJSON = JSON.parse(req.body.project);
-    var resources = projectJSON.resources;
+    var userJSON = req.body.user;
+    var projectJSON = req.body.project;
+    //var resources = projectJSON.resources;
     var category = projectJSON.category.name;
 
     // Only include project image if it has been uploaded
-    if (req.files.file) {
+    if (req.body.file) {
         projectJSON.image = "/assets/project_images/" + req.files.file.name;
     } else {
         projectJSON.image = "/assets/project_images/default_project_image.jpg";
@@ -260,18 +260,18 @@ router.post('/project', function(req, res, next) {
 
     // Remove these fields from the project since they will be referenced
     // in mongodb directly to the object rather than the name.
-    delete projectJSON.resources;
+    //delete projectJSON.resources;
     delete projectJSON.category;
-
+    
     var project = new Project(projectJSON);
     project.is_approved = false;
-
+    
     // Add resources to the project
-    resources.forEach(function(resource) {
-        project.addResource(resource.role, resource.description, function(err, data) {
-            if (err) console.error(err);
-        });
-    });
+    // resources.forEach(function(resource) {
+    //     project.addResource(resource.role, resource.description, function(err, data) {
+    //         if (err) console.error(err);
+    //     });
+    // });
 
 
     // Set the category for the project.
