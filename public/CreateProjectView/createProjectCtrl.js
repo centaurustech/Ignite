@@ -21,9 +21,9 @@
            
  
             $scope.form = {};                        // JS Object, A blank project.
-            $scope.form.resources = [];              // array, Collection of resources (links) 
+            //$scope.form.resources = [];              // array, Collection of resources (links) 
             $scope.form.category = {};               // JS Object, Category to be selected
-            $scope.project_image;                    // File, the image which is being uploaded
+            //$scope.project_image;                    // File, the image which is being uploaded
             // Resource Form Fields
             $scope.resource_form_role = "";          // string, The Name
             $scope.resource_form_description = "";   // string, The Link
@@ -86,9 +86,9 @@
                 var project_image = $scope.project_image;
     
                 // Ensure that the last resource has been added
-                if ($scope.resource_form_role !== "" && $scope.resource_form_description !== "") {
-                    $scope.addResource();
-                }
+                // if ($scope.resource_form_role !== "" && $scope.resource_form_description !== "") {
+                //     $scope.addResource();
+                // }
                 
                 if(typeof $scope.form.category.name === 'undefined' || !$scope.form.category.name || $scope.form.category.name === "") {
                     // TODO: Small bug in UI, sometimes the category is not set.

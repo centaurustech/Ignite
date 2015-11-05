@@ -45,16 +45,22 @@ angular.module('ProjectService', []).factory('Project', ['$http', '$rootScope', 
          */
         createProject: function(project, image) {
 
-            var formData = new FormData();
-            formData.append('user', angular.toJson($rootScope.user));
-            formData.append('file', image);
-            formData.append('project', angular.toJson(project));
+            //var formData = new FormData();
+            //formData.append('user', angular.toJson($rootScope.user));
+            //formData.append('file', image);
+            //formData.append('project', angular.toJson(project));
 
-            return $http.post('/api/project', formData, {
-                transformRequest: angular.identity,
-                headers: {
-                    'Content-Type': undefined
-                } // required, in order to set to multipart
+            var data = 
+                {
+                    user: $rootScope.user,
+                    project: project
+                };
+
+            return $http.post('/api/project', data, {
+                //transformRequest: angular.identity,
+                //headers: {
+                //     'Content-Type': undefined
+                //} // required, in order to set to multipart
             });
         },
         
